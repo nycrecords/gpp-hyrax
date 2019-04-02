@@ -59,28 +59,6 @@
         <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
         <method v="2" />
       </configuration>
-      <configuration default="false" name="spec: gpp-hyrax" type="RakeRunConfigurationType" factoryName="Rake">
-        <module name="gpp-hyrax" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-        <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-        <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-        <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
-          <COVERAGE_PATTERN ENABLED="true">
-            <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-          </COVERAGE_PATTERN>
-        </EXTENSION>
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="spec" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":rspec " />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
-        <method v="2" />
-      </configuration>
       <configuration default="false" name="hydra:server" type="RakeRunConfigurationType" factoryName="Rake">
         <module name="gpp-hyrax" />
         <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
@@ -98,6 +76,28 @@
         <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="hydra:server" />
         <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
         <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
+        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+        <method v="2" />
+      </configuration>
+      <configuration default="false" name="spec: gpp-hyrax" type="RakeRunConfigurationType" factoryName="Rake">
+        <module name="gpp-hyrax" />
+        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+        <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+        <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+        <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+          <COVERAGE_PATTERN ENABLED="true">
+            <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+          </COVERAGE_PATTERN>
+        </EXTENSION>
+        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="spec" />
+        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":rspec " />
         <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
         <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
         <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
@@ -400,6 +400,24 @@
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/arel-8.0.0/lib" />
         </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="ast (vbundled(2.4.0)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="3" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/ast-2.4.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/ast-2.4.0/test" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/ast-2.4.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/ast-2.4.0/test" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/ast-2.4.0/test" />
+        </excluded>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
@@ -2172,6 +2190,24 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="jaro_winkler (vbundled(1.5.2)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="3" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/jaro_winkler-1.5.2/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/jaro_winkler-1.5.2/lib" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/jaro_winkler-1.5.2/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/jaro_winkler-1.5.2/lib" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/jaro_winkler-1.5.2/ext" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="jbuilder (vbundled(2.8.0)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="3" />
@@ -2928,17 +2964,20 @@
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/bin" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/ext" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/ports" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/patches" />
         </CLASSES>
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/bin" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/ext" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/ports" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/patches" />
         </SOURCES>
         <excluded>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/bin" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/ports" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.10.2/patches" />
         </excluded>
       </library>
@@ -3065,6 +3104,46 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="parallel (vbundled(1.17.0)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="3" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parallel-1.17.0/lib" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parallel-1.17.0/lib" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="parser (vbundled(2.6.2.0)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="3" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/ci" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/doc" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/test" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/ci" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/doc" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/test" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/ci" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/doc" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/parser-2.6.2.0/test" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="posix-spawn (vbundled(0.3.13)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="3" />
@@ -3099,6 +3178,27 @@
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/power_converter-0.1.2/lib" />
         </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="psych (vbundled(3.1.0)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="3" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/psych-3.1.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/psych-3.1.0/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/psych-3.1.0/lib" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/psych-3.1.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/psych-3.1.0/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/psych-3.1.0/lib" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/psych-3.1.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/psych-3.1.0/ext" />
+        </excluded>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
@@ -3314,6 +3414,24 @@
         </SOURCES>
         <excluded>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/railties-5.1.7/exe" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="rainbow (vbundled(3.0.0)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="3" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rainbow-3.0.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rainbow-3.0.0/spec" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rainbow-3.0.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rainbow-3.0.0/spec" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rainbow-3.0.0/spec" />
         </excluded>
       </library>
     </orderEntry>
@@ -3857,6 +3975,33 @@
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rspec-support-3.8.0/lib" />
         </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="rubocop (vbundled(0.66.0)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="3" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/exe" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/assets" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/config" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/exe" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/assets" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/config" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/exe" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/assets" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/rubocop-0.66.0/config" />
+        </excluded>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
@@ -4518,6 +4663,24 @@
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/uglifier-4.1.20/lib" />
         </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="unicode-display_width (vbundled(1.5.0)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="3" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/unicode-display_width-1.5.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/unicode-display_width-1.5.0/data" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/unicode-display_width-1.5.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/unicode-display_width-1.5.0/data" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/unicode-display_width-1.5.0/data" />
+        </excluded>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
