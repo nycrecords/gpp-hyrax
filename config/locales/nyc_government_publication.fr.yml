@@ -1,0 +1,8 @@
+fr:
+  hyrax:
+    icons:
+      nyc_government_publication:     'fa fa-file-text-o'
+    select_type:
+      nyc_government_publication:
+        description:        "Nyc government publication œuvres"
+        name:               "Nyc Government Publication"

@@ -1,0 +1,10 @@
+es:
+  hyrax:
+    icons:
+      nyc_government_publication:     'fa fa-file-text-o'
+    select_type:
+      nyc_government_publication:
+        # TODO: translate `human_name` into Spanish
+        description:        "Nyc government publication trabajos"
+        name:               "Nyc Government Publication"
+        # TODO: translate `human_name` into Spanish
