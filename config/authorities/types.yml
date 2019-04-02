@@ -1,0 +1,53 @@
+terms:
+  - id: adjudications_-_decisions
+    term: Adjudications / Decisions
+  - id: audit_report
+    term: Audit Report
+  - id: brochures
+    term: Brochures
+  - id: budget_-_finance
+    term: Budget / Finance
+  - id: bulletins
+    term: Bulletins
+  - id: calendars
+    term: Calendars
+  - id: data_-_statistics
+    term: Data / Statistics
+  - id: directives
+    term: Directives
+  - id: environmental_impact_statements_-_draft
+    term: Environmental Impact Statements - Draft
+  - id: environmental_impact_statements_-_final
+    term: Environmental Impact Statements - Final
+  - id: executive_orders
+    term: Executive Orders
+  - id: guides
+    term: Guides
+  - id: laws_-_legislation
+    term: Laws / Legislation
+  - id: manuals_-_directories
+    term: Manuals / Directories
+  - id: minutes
+    term: Minutes
+  - id: newsletters_-_other_serial_publications
+    term: Newsletters / Other Serial Publications
+  - id: other
+    term: Other
+  - id: plans
+    term: Plans
+  - id: press_releases
+    term: Press Releases
+  - id: proceedings
+    term: Proceedings
+  - id: reports_-_annual
+    term: Reports - Annual
+  - id: reports_-_biennial
+    term: Reports - Biennial
+  - id: reports_-_monthly
+    term: Reports - Monthly
+  - id: reports_-_weekly
+    term: Reports - Weekly
+  - id: reports_-_other_(consultant/staff)
+    term: Reports - Other (Consultant/Staff)
+  - id: studies
+    term: Studies

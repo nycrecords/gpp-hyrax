@@ -1,0 +1,11 @@
+terms:
+  - id: bronx
+    term: Bronx
+  - id: brooklyn
+    term: Brooklyn
+  - id: manhattan
+    term: Manhattan
+  - id: queens
+    term: Queens
+  - id: staten_island
+    term: Staten Island
