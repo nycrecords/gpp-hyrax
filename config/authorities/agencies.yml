@@ -1,310 +1,207 @@
 terms:
-- id: NYCOA
-  term: Actuary, NYC Office of the
-  active: true
-- id: AJC
-  term: Administrative Justice Coordinator, NYC Office of
-  active: true
-- id: OATH
-  term: Administrative Trials and Hearings, Office of
-  active: true
-- id: DFTA
-  term: Aging, Department for the
-  active: true
-- id: DOB
-  term: Buildings, Department of
-  active: true
-- id: BIC
-  term: Business Integrity Commission
-  active: true
-- id: CFB
-  term: Campaign Finance Board
-  active: true
-- id: CIDI
-  term: Center for Innovation through Data Intelligence
-  active: true
-- id: OCME
-  term: Chief Medical Examiner, NYC Office of
-  active: true
-- id: ACS
-  term: Children's Services, Administration for
-  active: true
-- id: NYCC
-  term: City Council, New York
-  active: true
-- id: DCP
-  term: City Planning, Department of
-  active: true
-- id: DCAS
-  term: Citywide Administrative Services, Department of
-  active: true
-- id: CSC
-  term: Civil Service Commission
-  active: true
-- id: CCRB
-  term: Civilian Complaint Review Board
-  active: true
-- id: OCDV
-  term: Combat Domestic Violence, Mayor's Office to
-  active: true
-- id: CGE
-  term: Commission on Gender Equity
-  active: true
-- id: CCPC
-  term: Commission to Combat Police Corruption
-  active: true
-- id: CAU
-  term: Community Affairs Unit
-  active: true
-- id: COMP
-  term: Comptroller
-  active: true
-- id: COIB
-  term: Conflicts of Interest Board
-  active: true
-- id: DCA
-  term: Consumer Affairs, Department of
-  active: true
-- id: MOCS
-  term: Contract Services, Mayor's Office of
-  active: true
-- id: BOC
-  term: Correction, Board of
-  active: true
-- id: DOC
-  term: Correction, Department of
-  active: true
-- id: MOCJ
-  term: Criminal Justice, Mayor's Office of
-  active: true
-- id: DCLA
-  term: Cultural Affairs, Department of
-  active: true
-- id: MODA
-  term: Data Analytics, Mayor's Office of
-  active: true
-- id: DDC
-  term: Design and Construction, Department of
-  active: true
-- id: EDC
-  term: Economic Development Corporation
-  active: true
-- id: Opportunity
-  term: Economic Opportunity, Mayor's Office for
-  active: true
-- id: DOE
-  term: Education, Department of
-  active: true
-- id: BOE
-  term: Elections, Board of
-  active: true
-- id: OEM
-  term: Emergency Management, Office of
-  active: true
-- id: OEC
-  term: Environmental Coordination, Mayor's Office of
-  active: true
-- id: DEP
-  term: Environmental Protection, Department of
-  active: true
-- id: OER
-  term: Environmental Remediation, Mayor's Office of
-  active: true
-- id: EEPC
-  term: Equal Employment Practices Commission
-  active: true
-- id: DOF
-  term: Finance, Department of
-  active: true
-- id: FISA-OPA
-  term: Financial Information Services Agency – Office of Payroll Administration
-  active: true
-- id: FDNY
-  term: Fire Department, New York City
-  active: true
-- id: MOFP
-  term: Food Policy Director, Mayor's Office of the
-  active: true
-- id: GNYC
-  term: GreeNYC
-  active: true
-- id: HHC
-  term: Health and Hospitals Corporation
-  active: true
-- id: DOHMH
-  term: Health and Mental Hygiene, Department of
-  active: true
-- id: DHS
-  term: Homeless Services, Department of
-  active: true
-- id: NYCHA
-  term: Housing Authority, New York City
-  active: true
-- id: HPD
-  term: Housing Preservation and Development, Department of
-  active: true
-- id: HRO
-  term: Housing Recovery Operations
-  active: true
-- id: HRA
-  term: Human Resources Administration
-  active: true
-- id: CCHR
-  term: Human Rights, City Commission on
-  active: true
-- id: MOIA
-  term: Immigrant Affairs, Mayor's Office of
-  active: true
-- id: IBO
-  term: Independent Budget Office, NYC
-  active: true
-- id: MOIP
-  term: Information Privacy, Mayor’s Office of
-  active: true
-- id: DOITT
-  term: Information Technology and Telecommunications, Department of
-  active: true
-- id: OIG-NYPD
-  term: Inspector General NYPD, Office of the
-  active: true
-- id: MOIGA
-  term: Intergovernmental Affairs, Mayor's Office of
-  active: true
-- id: IA
-  term: International Affairs, Mayor's Office for
-  active: true
-- id: DOI
-  term: Investigation, Department of
-  active: true
-- id: OLR
-  term: Labor Relations, NYC Office of
-  active: true
-- id: LPC
-  term: Landmarks Preservation Commission
-  active: true
-- id: LAW
-  term: Law Department
-  active: true
-- id: LOFT
-  term: Loft Board
-  active: true
-- id: OLTPS
-  term: Long-Term Planning & Sustainability, Office of
-  active: true
-- id: OMB
-  term: Management and Budget, Office of
-  active: true
-- id: Mayor's Fund
-  term: Mayor's Fund to Advance NYC (Mayor's Fund)
-  active: true
-- id: OM
-  term: Mayor's Office
-  active: true
-- id: MOME
-  term: Media and Entertainment, Mayor's Office of
-  active: true
-- id: MDSC
-  term: Municipal Drug Strategy Council
-  active: true
-- id: NBAT
-  term: New Business Acceleration Team
-  active: true
-- id: NYCGO
-  term: NYC & Company
-  active: true
-- id: NYCERS
-  term: NYC Employees' Retirement System
-  active: true
-- id: SERVICE
-  term: NYC Service
-  active: true
-- id: OPS
-  term: Operations, Mayor's Office of
-  active: true
-- id: DPR
-  term: Parks and Recreation, Department of
-  active: true
-- id: MOPD
-  term: People with Disabilities, Mayor's Office of
-  active: true
-- id: NYPD
-  term: Police Department
-  active: true
-- id: PPF
-  term: Police Pension Fund
-  active: true
-- id: DOP
-  term: Probation, Department of
-  active: true
-- id: PPB
-  term: Procurement Policy Board
-  active: true
-- id: Pub Adv
-  term: Public Advocate
-  active: true
-- id: DesignCommission
-  term: Public Design Commission
-  active: true
-- id: QuadAC
-  term: Quadrennial Advisory Commission
-  active: true
-- id: DORIS
-  term: Records and Information Services, Department of
-  active: true
-- id: ORR
-  term: Recovery & Resiliency, Mayor's Office of
-  active: true
-- id: RGB
-  term: Rent Guidelines Board
-  active: true
-- id: DSNY
-  term: Sanitation, Department of
-  active: true
-- id: SCA
-  term: School Construction Authority
-  active: true
-- id: SBS
-  term: Small Business Services, Department of
-  active: true
-- id: BSA
-  term: Standards and Appeals, Board of
-  active: true
-- id: Sustainability
-  term: Sustainability, Mayor's Office of
-  active: true
-- id: TAT
-  term: Tax Appeals Tribunal, New York City
-  active: true
-- id: TC
-  term: Tax Commission, New York City
-  active: true
-- id: TLC
-  term: Taxi and Limousine Commission
-  active: true
-- id: MOTI
-  term: Technology and Innovation, Mayor's Office of
-  active: true
-- id: DOT
-  term: Transportation, Department of
-  active: true
-- id: DVS
-  term: Veterans' Services, Department of
-  active: true
-- id: NYWB
-  term: Water Board
-  active: true
-- id: NYW
-  term: Water Finance Authority, NYC Municipal
-  active: true
-- id: WMAB
-  term: Waterfront Management Advisory Board
-  active: true
-- id: WKDEV
-  term: Workforce Development, Mayor's Office of
-  active: true
-- id: WIB
-  term: Workforce Investment Board
-  active: true
-- id: DYCD
-  term: Youth and Community Development, Department of
-  active: true
+  - id: NYCOA
+    term: Actuary, NYC Office of the
+  - id: AJC
+    term: Administrative Justice Coordinator, NYC Office of
+  - id: OATH
+    term: Administrative Trials and Hearings, Office of
+  - id: DFTA
+    term: Aging, Department for the
+  - id: DOB
+    term: Buildings, Department of
+  - id: BIC
+    term: Business Integrity Commission
+  - id: CFB
+    term: Campaign Finance Board
+  - id: CIDI
+    term: Center for Innovation through Data Intelligence
+  - id: OCME
+    term: Chief Medical Examiner, NYC Office of
+  - id: ACS
+    term: Children's Services, Administration for
+  - id: NYCC
+    term: City Council, New York
+  - id: DCP
+    term: City Planning, Department of
+  - id: DCAS
+    term: Citywide Administrative Services, Department of
+  - id: CSC
+    term: Civil Service Commission
+  - id: CCRB
+    term: Civilian Complaint Review Board
+  - id: OCDV
+    term: Combat Domestic Violence, Mayor's Office to
+  - id: CGE
+    term: Commission on Gender Equity
+  - id: CCPC
+    term: Commission to Combat Police Corruption
+  - id: CAU
+    term: Community Affairs Unit
+  - id: COMP
+    term: Comptroller
+  - id: COIB
+    term: Conflicts of Interest Board
+  - id: DCA
+    term: Consumer Affairs, Department of
+  - id: MOCS
+    term: Contract Services, Mayor's Office of
+  - id: BOC
+    term: Correction, Board of
+  - id: DOC
+    term: Correction, Department of
+  - id: MOCJ
+    term: Criminal Justice, Mayor's Office of
+  - id: DCLA
+    term: Cultural Affairs, Department of
+  - id: MODA
+    term: Data Analytics, Mayor's Office of
+  - id: DDC
+    term: Design and Construction, Department of
+  - id: EDC
+    term: Economic Development Corporation
+  - id: Opportunity
+    term: Economic Opportunity, Mayor's Office for
+  - id: DOE
+    term: Education, Department of
+  - id: BOE
+    term: Elections, Board of
+  - id: OEM
+    term: Emergency Management, Office of
+  - id: OEC
+    term: Environmental Coordination, Mayor's Office of
+  - id: DEP
+    term: Environmental Protection, Department of
+  - id: OER
+    term: Environmental Remediation, Mayor's Office of
+  - id: EEPC
+    term: Equal Employment Practices Commission
+  - id: DOF
+    term: Finance, Department of
+  - id: FISA-OPA
+    term: Financial Information Services Agency – Office of Payroll Administration
+  - id: FDNY
+    term: Fire Department, New York City
+  - id: MOFP
+    term: Food Policy Director, Mayor's Office of the
+  - id: GNYC
+    term: GreeNYC
+  - id: HHC
+    term: Health and Hospitals Corporation
+  - id: DOHMH
+    term: Health and Mental Hygiene, Department of
+  - id: DHS
+    term: Homeless Services, Department of
+  - id: NYCHA
+    term: Housing Authority, New York City
+  - id: HPD
+    term: Housing Preservation and Development, Department of
+  - id: HRO
+    term: Housing Recovery Operations
+  - id: HRA
+    term: Human Resources Administration
+  - id: CCHR
+    term: Human Rights, City Commission on
+  - id: MOIA
+    term: Immigrant Affairs, Mayor's Office of
+  - id: IBO
+    term: Independent Budget Office, NYC
+  - id: MOIP
+    term: Information Privacy, Mayor’s Office of
+  - id: DOITT
+    term: Information Technology and Telecommunications, Department of
+  - id: OIG-NYPD
+    term: Inspector General NYPD, Office of the
+  - id: MOIGA
+    term: Intergovernmental Affairs, Mayor's Office of
+  - id: IA
+    term: International Affairs, Mayor's Office for
+  - id: DOI
+    term: Investigation, Department of
+  - id: OLR
+    term: Labor Relations, NYC Office of
+  - id: LPC
+    term: Landmarks Preservation Commission
+  - id: LAW
+    term: Law Department
+  - id: LOFT
+    term: Loft Board
+  - id: OLTPS
+    term: Long-Term Planning &amp; Sustainability, Office of
+  - id: OMB
+    term: Management and Budget, Office of
+  - id: FUND
+    term: Mayor's Fund to Advance NYC
+  - id: OM
+    term: Mayor's Office
+  - id: MOME
+    term: Media and Entertainment, Mayor's Office of
+  - id: MDSC
+    term: Municipal Drug Strategy Council
+  - id: NBAT
+    term: New Business Acceleration Team
+  - id: NYCGO
+    term: NYC &amp; Company
+  - id: NYCERS
+    term: NYC Employees' Retirement System
+  - id: SERVICE
+    term: NYC Service
+  - id: OPS
+    term: Operations, Mayor's Office of
+  - id: DPR
+    term: Parks and Recreation, Department of
+  - id: MOPD
+    term: People with Disabilities, Mayor's Office of
+  - id: NYPD
+    term: Police Department
+  - id: PPF
+    term: Police Pension Fund
+  - id: DOP
+    term: Probation, Department of
+  - id: PPB
+    term: Procurement Policy Board
+  - id: PUB-ADV
+    term: Public Advocate
+  - id: DesignCommission
+    term: Public Design Commission
+  - id: QuadAC
+    term: Quadrennial Advisory Commission
+  - id: DORIS
+    term: Records and Information Services, Department of
+  - id: ORR
+    term: Recovery &amp; Resiliency, Mayor's Office of
+  - id: RGB
+    term: Rent Guidelines Board
+  - id: DSNY
+    term: Sanitation, Department of
+  - id: SCA
+    term: School Construction Authority
+  - id: SBS
+    term: Small Business Services, Department of
+  - id: BSA
+    term: Standards and Appeals, Board of
+  - id: Sustainability
+    term: Sustainability, Mayor's Office of
+  - id: TAT
+    term: Tax Appeals Tribunal, New York City
+  - id: TC
+    term: Tax Commission, New York City
+  - id: TLC
+    term: Taxi and Limousine Commission
+  - id: MOTI
+    term: Technology and Innovation, Mayor's Office of
+  - id: DOT
+    term: Transportation, Department of
+  - id: DVS
+    term: Veterans' Services, Department of
+  - id: NYWB
+    term: Water Board
+  - id: NYW
+    term: Water Finance Authority, NYC Municipal
+  - id: WMAB
+    term: Waterfront Management Advisory Board
+  - id: WKDEV
+    term: Workforce Development, Mayor's Office of
+  - id: WIB
+    term: Workforce Investment Board
+  - id: DYCD
+    term: Youth and Community Development, Department of
