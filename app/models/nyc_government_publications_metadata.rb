@@ -1,4 +1,4 @@
-module NycGovernmentPublicationMetadata
+module NycGovernmentPublicationsMetadata
   extend ActiveSupport::Concern
 
   included do
@@ -30,7 +30,7 @@ module NycGovernmentPublicationMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :type, predicate: ::RDF::Vocab::DC.type do |index|
+    property :report_type, predicate: ::RDF::Vocab::DC.type do |index|
       index.as :stored_searchable, :facetable
     end
 
