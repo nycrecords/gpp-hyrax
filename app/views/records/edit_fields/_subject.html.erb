@@ -1,0 +1,4 @@
+<%= f.input :subject, as: :select,
+            collection: SubjectsService.select_all_options,
+            input_html: { class: 'form-control', multiple: true, style: 'height: 150px' }
+%>
