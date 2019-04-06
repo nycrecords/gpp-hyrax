@@ -9,22 +9,49 @@ class User < ApplicationRecord
   include Hyrax::User
   include Hyrax::UserUsageStats
 
-
-
   if Blacklight::Utils.needs_attr_accessible?
     attr_accessible :email, :password, :password_confirmation
   end
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  # Include devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # remove :database_authenticatable, remove :validatable to integrate with SAML
+  devise_modules = [
+      :registerable,
+      :recoverable,
+      :rememberable,
+      :omniauthable,
+      omniauth_providers: [:saml],
+      authentication_keys: [:uid]
+  ]
 
+  devise(*devise_modules)
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier for
   # the account.
   def to_s
     email
+  end
+
+
+  # When a user authenticates via SAML, find their User object or make
+  # a new one. Populate it with data we get from SAML.
+  # @param [OmniAuth::AuthHash] auth
+  def self.from_omniauth(auth)
+    Rails.logger.debug "auth = #{auth.inspect}"
+    saml_attrs = auth.extra.response_object.attributes
+    # Uncomment the debugger above to capture what a SAML auth object looks like for testing
+    user = where(uid: auth.info.uid, guid: saml_attrs[:GUID]).first_or_create
+    user.guid = saml_attrs[:GUID]
+    user.first_name = saml_attrs[:givenName]
+    user.middle_initial = saml_attrs[:middleName]
+    user.last_name = saml_attrs[:sn]
+    user.email_validated = saml_attrs[:nycExtEmailValidationFlag]
+    user.uid = auth.info.uid
+    user.email = auth.info.email
+    user.display_name = "#{user.first_name} #{user.middle_initial or ''} #{user.last_name}"
+    user.save
+    user
   end
 end

@@ -18,7 +18,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
+        'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -51,4 +51,33 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # SAML Settings
+  idp_metadata_parser = OneLogin::RubySaml::IdpMetadataParser.new
+  idp_metadata = idp_metadata_parser.parse_remote_to_hash(ENV['IDP_METADATA_URL'])
+  sp_cert = Rails.root.join('config', 'certs', 'sp.crt')
+  sp_key = Rails.root.join( 'config', 'certs', 'sp.key')
+  config.saml_setttings = {
+      issuer: "https://gpp-hyrax-dev-joel.appdev.records.nycnet/users/auth/saml/metadata",
+      idp_sso_target_url: idp_metadata[:idp_sso_target_url],
+      idp_slo_target_url: idp_metadata[:idp_slo_target_url],
+      assertion_consumer_service_binding: "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+      assertion_consumer_service_url: "https://gpp-hyrax-dev-joel.appdev.records.nycnet/users/auth/saml/callback",
+      name_identifier_format: "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
+      request_attributes: {},
+      idp_cert: idp_metadata[:idp_cert],
+      certificate: File.read(sp_cert),
+      private_key: File.read(sp_key),
+      security: {
+          authn_requests_signed: true,
+          logout_requests_signed: true,
+          logout_responses_signed: true,
+          want_assertions_signed: true,
+          want_assertions_encrypted: false,
+          want_messages_signed: false,
+          metadata_signed: false,
+          signature_method: XMLSecurity::Document::RSA_SHA1,
+          digest_method: XMLSecurity::Document::SHA1
+      }
+  }
 end
