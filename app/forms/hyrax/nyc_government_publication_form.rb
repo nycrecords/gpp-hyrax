@@ -6,7 +6,7 @@ module Hyrax
     self.model_class = ::NycGovernmentPublication
 
     def self.multiple?(field)
-      if [:title, :description, :agency].include? field.to_sym
+      if [:title, :description].include? field.to_sym
         false
       else
         super

@@ -1,0 +1,6 @@
+<script>
+    $("#nyc_government_publication_date_issued").mask('00/00/0000');
+</script>
+<%= f.input :date_issued, as: :string, required: f.object.required?(key),
+            input_html: { class: 'form-control', multiple: false, placeholder: 'MM/DD/YYYY' }
+%>
