@@ -5,17 +5,17 @@ default: &default
   acs_url: <%= ENV.fetch('SAML_ACS_URL') { 'http://localhost:3000/users/auth/saml/callback' } %>
   name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent'
   acs_binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'
-  security_config: {
-    authn_requests_signed: yes,
-    logout_requests_signed: yes,
-    logout_responses_signed: yes,
-    want_assertions_signed: yes,
-    want_assertions_encrypted: no,
-    want_messages_signed: no,
-    metadata_signed: no,
-    signature_method: XMLSecurity::Document::RSA_SHA1,
-    digest_method: XMLSecurity::Document::SHA1
-  }
+  security_config:
+    authn_requests_signed: true
+    logout_requests_signed: true
+    logout_responses_signed: true
+    want_assertions_signed: true
+    want_assertions_encrypted: false
+    want_messages_signed: false
+    metadata_signed: false
+    signature_method: "http://www.w3.org/2000/09/xmldsig#rsa-sha1"
+    digest_method: "http://www.w3.org/2000/09/xmldsig#sha1"
+
 
 development:
   <<: *default

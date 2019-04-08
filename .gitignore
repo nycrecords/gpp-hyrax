@@ -7,6 +7,9 @@
 # Ignore environment configuration
 .env
 
+# Ignore certificates and private keys
+/config/certs/*
+
 # Ignore bundler config.
 /.bundle
 
