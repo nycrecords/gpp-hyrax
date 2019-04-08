@@ -1,3 +1,10 @@
+<script>
+    characterCounter("#description-character-count", 300, $("#nyc_government_publication_description").val().length, 100);
+    $("#nyc_government_publication_description").keyup(function () {
+        characterCounter("#description-character-count", 300, $(this).val().length, 100);
+    });
+</script>
 <%= f.input :description, as: :text, required: f.object.required?(key),
-            input_html: { class: 'form-control', multiple: false, style: 'height: 150px'}
+            input_html: { class: 'form-control', multiple: false, style: 'height: 150px; resize: none', minlength: 100, maxlength: 300}
 %>
+<p id="description-character-count" class="character-counter">300 characters remaining</p>
