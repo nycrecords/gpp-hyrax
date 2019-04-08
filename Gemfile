@@ -73,3 +73,4 @@ gem 'riiif', '~> 2.0'
 
 gem 'hydra-role-management'
 gem 'omniauth-saml'
+gem 'dotenv-rails'

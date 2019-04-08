@@ -1,0 +1,36 @@
+# Devise Omniauth-SAML Configuration
+
+default: &default
+  issuer: <%= ENV.fetch('SAML_ISSUER') { 'http://localhost:3000/users/auth/saml/metadata' } %>
+  acs_url: <%= ENV.fetch('SAML_ACS_URL') { 'http://localhost:3000/users/auth/saml/callback' } %>
+  name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent'
+  acs_binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'
+  security_config: {
+    authn_requests_signed: yes,
+    logout_requests_signed: yes,
+    logout_responses_signed: yes,
+    want_assertions_signed: yes,
+    want_assertions_encrypted: no,
+    want_messages_signed: no,
+    metadata_signed: no,
+    signature_method: XMLSecurity::Document::RSA_SHA1,
+    digest_method: XMLSecurity::Document::SHA1
+  }
+
+development:
+  <<: *default
+  idp_metadata_url: 'https://fidm.us1.gigya.com/saml/v2.0/3_DkZigi2v_eW7z-cZt8PAw-cYWQYg2d8VqABUFRZUhhzxNAdwR5brLl_h8Hqbo7Bm/idp/metadata'
+  sp_cert_path: 'config/certs/sp.crt'
+  sp_key_path: 'config/certs/sp.key'
+
+test:
+  <<: *default
+  idp_metadata_url: 'https://fidm.us1.gigya.com/saml/v2.0/3_DkZigi2v_eW7z-cZt8PAw-cYWQYg2d8VqABUFRZUhhzxNAdwR5brLl_h8Hqbo7Bm/idp/metadata'
+  sp_cert_path: 'config/certs/sp.crt'
+  sp_key_path: 'config/certs/sp.key'
+
+production:
+  <<: *default
+  idp_metadata_url: <%= ENV['SAML_IDP_METADATA_URL'] %>
+  sp_cert_path: <%= ENV['SAML_SP_CERT_PATH'] %>
+  sp_key_path: <%= ENV['SAML_SP_KEY_PATH'] %>
