@@ -47,7 +47,7 @@ class User < ApplicationRecord
     user.first_name = saml_attrs[:givenName]
     user.middle_initial = saml_attrs[:middleName]
     user.last_name = saml_attrs[:sn]
-    user.email_validated = saml_attrs[:nycExtEmailValidationFlag]
+    user.email_validated = saml_attrs[:nycExtEmailValidationFlag].to_s == "True" ? true : false
     user.email = auth.info.email
     user.display_name = "#{user.first_name} #{user.middle_initial or ''} #{user.last_name}"
     user.save
