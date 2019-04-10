@@ -538,7 +538,6 @@ ActiveRecord::Schema.define(version: 20190404170226) do
     t.binary "zotero_token"
     t.string "zotero_userid"
     t.string "preferred_locale"
-    t.string "uid", default: "", null: false
     t.string "provider"
     t.string "guid", default: "", null: false
     t.string "first_name"

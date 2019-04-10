@@ -1,6 +1,5 @@
 class AddOmniauthSamlToUsers < ActiveRecord::Migration[5.1]
   def change
-    add_column :users, :uid, :string, default: '', null: false
     add_column :users, :provider, :string
     add_column :users, :guid, :string, default: '', null: false
     add_column :users, :first_name, :string
@@ -10,5 +9,7 @@ class AddOmniauthSamlToUsers < ActiveRecord::Migration[5.1]
     add_column :users, :active, :boolean, default: false
     add_column :users, :nyc_employee, :boolean, default: false
     add_column :users, :has_nyc_account, :boolean, default: false
+
+    change_column :users, :email, :string, unique: false
   end
 end

@@ -208,7 +208,7 @@ Devise.setup do |config|
   #
   # Defines which key will be used when recovering the password for an account
   # config.reset_password_keys = [:email]
-  config.authentication_keys = [:uid]
+  config.authentication_keys = [:guid]
 
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
@@ -328,28 +328,4 @@ Devise.setup do |config|
                       signature_method: saml_config[:security_config][:signature_method],
                       digest_method: saml_config[:security_config][:digest_method]
                   }
-
-    # puts config.omniauth :saml
-    # config.omniauth :saml,
-    #                 issuer: "https://gpp-hyrax-dev-joel.appdev.records.nycnet/users/auth/saml/metadata",
-    #                 idp_sso_target_url: idp_metadata[:idp_sso_target_url],
-    #                 idp_slo_target_url: idp_metadata[:idp_slo_target_url],
-    #                 assertion_consumer_service_binding: "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
-    #                 assertion_consumer_service_url: "https://gpp-hyrax-dev-joel.appdev.records.nycnet/users/auth/saml/callback",
-    #                 name_identifier_format: "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
-    #                 request_attributes: {},
-    #                 idp_cert: idp_metadata[:idp_cert],
-    #                 certificate: "-----BEGIN CERTIFICATE-----MIIELDCCAxQCCQDqxM8aYLBfTTANBgkqhkiG9w0BAQsFADCB1zELMAkGA1UEBhMCVVMxETAPBgNVBAgMCE5ldyBZb3JrMREwDwYDVQQHDAhOZXcgWW9yazE3MDUGA1UECgwuRGVwYXJ0bWVudCBvZiBSZWNvcmRzIGFuZCBJbmZvcm1hdGlvbiBTZXJ2aWNlczELMAkGA1UECwwCSVQxMTAvBgNVBAMMKGdwcC1oeXJheC1kZXYtam9lbC5hcHBkZXYucmVjb3Jkcy5ueWNuZXQxKTAnBgkqhkiG9w0BCQEWGmpvY2FzdGlsbG9AcmVjb3Jkcy5ueWMuZ292MB4XDTE5MDQwNDE3MjkwOFoXDTI5MDQwMzE3MjkwOFowgdcxCzAJBgNVBAYTAlVTMREwDwYDVQQIDAhOZXcgWW9yazERMA8GA1UEBwwITmV3IFlvcmsxNzA1BgNVBAoMLkRlcGFydG1lbnQgb2YgUmVjb3JkcyBhbmQgSW5mb3JtYXRpb24gU2VydmljZXMxCzAJBgNVBAsMAklUMTEwLwYDVQQDDChncHAtaHlyYXgtZGV2LWpvZWwuYXBwZGV2LnJlY29yZHMubnljbmV0MSkwJwYJKoZIhvcNAQkBFhpqb2Nhc3RpbGxvQHJlY29yZHMubnljLmdvdjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMwQoX+4DXP9WnOCFsX796P/FsNuHpiysVzb3k3I8lVx73btjGUxam+ksez8WIj3kG5q+GLzcyrDiUej8xwDgLQpwoVPFLaj99Kb+TBe+49JbsNjg7FU0ovyt/jBWTtErHTbWTGSrR6rsw582z0j4YHYKgZseeVw0CRevp8ATrE+hJA2U+aN3/fNT+EBgrZHI5mbrMpUiUfH77yIUTpxJ9BU+PXDaci+36haALacQZOr/xrtD5QiXIl+N1NGGRI2dvw1L8nrd2ydx/yk+VsK+bKaENWUGm+57Ru+yqcb4N4zYjMsQe3uHEuq9Pmins0BrgXmV8/jxgep/mhOIeIaivUCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAkKWW2BQiCICm4DJJ5Qbgf7YgF0ytBWhRypEbGKHD1uTlcsI+ufNPKO8veqwuf1lVTVgHnSaDUE67J0PyGGBXsNsGVNnPa47QWCXczZuy6rcbvoSIw+gjJsGzZnFMPeJvoON8dku2aF2UFFXw4gj7EQtR9giwzvyB3EQnAzS1X+wadZLSYy/C+rH1kWixmIgbWRiGKkVycyS4jcAqhCnBY7eAK2G6LkwYMsGUvoR5l6v20/Y3voAiXOJFX8u+yWJDQMfu6j63d7WQyK4SFmoexYZgan13N7a99iwDdPYMIbxuNurqQsGifyrWCmCbCHsbMvLjfdDvV9qVlOqaRmGCMA==-----END CERTIFICATE-----",
-    #                 private_key: "-----BEGIN PRIVATE KEY-----MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDMEKF/uA1z/VpzghbF+/ej/xbDbh6YsrFc295NyPJVce927YxlMWpvpLHs/FiI95Buavhi83Mqw4lHo/McA4C0KcKFTxS2o/fSm/kwXvuPSW7DY4OxVNKL8rf4wVk7RKx021kxkq0eq7MOfNs9I+GB2CoGbHnlcNAkXr6fAE6xPoSQNlPmjd/3zU/hAYK2RyOZm6zKVIlHx++8iFE6cSfQVPj1w2nIvt+oWgC2nEGTq/8a7Q+UIlyJfjdTRhkSNnb8NS/J63dsncf8pPlbCvmymhDVlBpvue0bvsqnG+DeM2IzLEHt7hxLqvT5op7NAa4F5lfP48YHqf5oTiHiGor1AgMBAAECggEAajDdWdE1bv6QaztvDmgoXjcIaXqMgXm7wk7ISEIhmUVJD+JeBOrKMH7L+D74842go1UXHKcDb2WBsr4mbJWGDDsO9sBITyLUe8yeyAUlc1MLSLIofcdeKWWNRu2Wubjq5YSfzaQ+Yo+HBisDC7X4S9FpTR518GfcaJDFMYi/aovmmLlobMPetyuol2Moij2SHFhmPg/4gvfo6OZNmJIJqZ7h6nCdbVIF/XXj7vA+U0MlEFMF8TBdH1COFX8QRoaq0/9JxH5XY3Toycndb0T7XP7zgJISI+vFWmlS3FDb0G+MCsZKuk/2XmiG2vo9DSvymOrZ7wErFsYf25oUTXC/oQKBgQD/7TDJfHPV/o2iKIxdidT8cbp5bt0ByjT2UIVaT/iPz8FJZDh+XoxBjoJEoqDqqBFy3fJWYaP5q4NI+EvZW9g1RD3y9b8v13EWpxodfBMLcUkUXmumfGvDpkQRQefj5qv+R43VVtoP0W+9Rg7EaAv2dNB6/jV0p5uWC4f2lLbTywKBgQDMH6DyE8Z7JejJJCl7ESL45tMwbSKv4hjrmp4Wz8+Xfo+ixIHpsFeVozYvdgPEbZq5uzUL6q9H6Aa4gPOZkVMEU2xqQm1JT4rhvtpfft4mFpovc+72k+Ykm74Aol4kthuBByo+OcxILlWZzKvA4Hp+LlHVLbd9dBq6gAKFkD/EPwKBgQCrCcLcNV9Y+emAISdF8DK2j+827r+nTZM9tqyYoe+VdRxRRzh2RAvqWCp5YlK24KHgqbImxtSGrHhuEProBfimCLh6IoCmoY5DvGO4ps43jHtxsHSzbF29AOZmviwS5Hu30exZUtUjUy4hSave2UZ9bK5UNIZXMxjJG2W/hr31JwKBgQCszYXaCcW4kUI9raB0L/C0V+ynjWyVC0pfglidJTYvoRQGDmeQpxmucyo3CahszQD0hTiGKxpSPGocHgablfx6qAka97s/GdiP/Zsuxt9XzUCgNXwyQMjPaw1xygL6/zPPinpHjXSUEq2i8zLfqOnqElpypy40RWsvQZlg6togzwKBgAmyDWEY96rLl0Ph+cDEGzwWwgUeTtbOezOwXBAj/lsvPrqL8uaX28uxGgWMim5//Y5YAA7mAdc3284B67Z1dy1ajFsbS/VwALO4sTfPng4cT10lO7hN2U85hj+H5d7RbW3giCk/MeVyJMzuyAzPZOjrmY4kT0qt9cFp/+hWOD5s-----END PRIVATE KEY-----",
-    #                 security: {
-    #                     authn_requests_signed: true,
-    #                     logout_requests_signed: true,
-    #                     logout_responses_signed: true,
-    #                     want_assertions_signed: true,
-    #                     want_assertions_encrypted: false,
-    #                     want_messages_signed: false,
-    #                     metadata_signed: false,
-    #                     signature_method: XMLSecurity::Document::RSA_SHA1,
-    #                     digest_method: XMLSecurity::Document::SHA1
-    #                 }
 end

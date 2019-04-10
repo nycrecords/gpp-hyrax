@@ -23,7 +23,7 @@ class User < ApplicationRecord
       :rememberable,
       :omniauthable,
       omniauth_providers: [:saml],
-      authentication_keys: [:uid]
+      authentication_keys: [:guid]
   ]
 
   devise(*devise_modules)
@@ -42,13 +42,12 @@ class User < ApplicationRecord
     Rails.logger.debug "auth = #{auth.inspect}"
     saml_attrs = auth.extra.response_object.attributes
     # Uncomment the debugger above to capture what a SAML auth object looks like for testing
-    user = where(uid: saml_attrs[:GUID], guid: saml_attrs[:GUID]).first_or_create
+    user = where(guid: saml_attrs[:GUID]).first_or_create
     user.guid = saml_attrs[:GUID]
     user.first_name = saml_attrs[:givenName]
     user.middle_initial = saml_attrs[:middleName]
     user.last_name = saml_attrs[:sn]
     user.email_validated = saml_attrs[:nycExtEmailValidationFlag]
-    user.uid = saml_attrse[:GUID]
     user.email = auth.info.email
     user.display_name = "#{user.first_name} #{user.middle_initial or ''} #{user.last_name}"
     user.save
