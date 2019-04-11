@@ -1,0 +1,4 @@
+<%= f.input :community_board_district, as: :select,
+            collection: CommunityBoardsService.select_all_options,
+            input_html: { class: 'form-control', multiple: true, style: 'height: 150px' }
+%>

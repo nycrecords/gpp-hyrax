@@ -1,0 +1,5 @@
+<script>
+    $("#nyc_government_publication_calendar_year").mask('0000');
+</script>
+<%= f.input :calendar_year, as: :multi_value, input_html: { class: 'form-control', maxlength: 4 }, required: f.object.required?(key) %>
+<hr style="border-top: 1px solid gray;">

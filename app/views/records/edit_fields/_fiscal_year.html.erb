@@ -1,0 +1,7 @@
+<script>
+    $("#nyc_government_publication_fiscal_year").mask('0000');
+</script>
+<hr style="border-top: 1px solid gray;">
+<p style="font-size: 20px"><strong>Dates Covered: You must enter either a Fiscal Year or a Calendar Year. You may enter both if applicable.</strong></p>
+<span class="label label-info required-tag">required</span>
+<%= f.input :fiscal_year, as: :multi_value, input_html: { class: 'form-control', maxlength: 4 }, required: f.object.required?(key) %>
