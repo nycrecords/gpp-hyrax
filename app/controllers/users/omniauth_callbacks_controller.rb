@@ -3,7 +3,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def saml
     @user = User.from_omniauth(request.env["omniauth.auth"])
     if @user.email_validated.nil? || @user.try(:email_validated) == false
-      email_validation_status = check_email_validation_status(guid: @user.guid)
+      email_validation_status = NYCIDWebServices.check_email_validation_status(guid: @user.guid)
       if email_validation_status == false
         redirect_to validate_email(email_address: @user.email)
         return
