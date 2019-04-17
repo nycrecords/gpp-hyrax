@@ -5,13 +5,25 @@ export default class GppSaveWorkControl extends SaveWorkControl {
         super.activate();
     }
 
-    isValid() {
-        // EDIT THIS FUNCTION WITH CUSTOM VALIDATORS
+    validateMetadata(e) {
+        let subjectValid = this.publicationSubjectValidator();
+        if (this.requiredFields.areComplete && subjectValid) {
+            this.requiredMetadata.check();
+            return true;
+        }
+        this.requiredMetadata.uncheck();
         return false;
     }
 
-    customValidator() {
-        // WRITE CUSTOM VALIDATOR LOGIC HERE
-        return false;
+    publicationSubjectValidator() {
+        let selectedSubjects = $("#nyc_government_publication_subject option:selected");
+        let subjectError = $("#publication-subject-error");
+        if (selectedSubjects.length > 3) {
+            subjectError.show();
+            subjectError.focus();
+            return false;
+        }
+        subjectError.hide();
+        return true;
     }
 }

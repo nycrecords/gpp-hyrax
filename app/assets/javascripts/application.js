@@ -27,4 +27,4 @@
 //= require app.js.erb
 
 //= require character-counter
-// TODO: Figure out how to import jquery.mask.js
+//= require jquery.inputmask.bundle.min
