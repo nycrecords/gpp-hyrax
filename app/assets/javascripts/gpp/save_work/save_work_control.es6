@@ -7,9 +7,11 @@ export default class GppSaveWorkControl extends SaveWorkControl {
     }
 
     validateMetadata(e) {
+        let titleValid = this.titleValidator();
+        let descriptionValid = this.descriptionValidator();
         let subjectValid = this.publicationSubjectValidator();
         let datesCoveredValid = this.datesCoveredValidator();
-        if (this.requiredFields.areComplete && subjectValid && datesCoveredValid) {
+        if (this.requiredFields.areComplete && titleValid && descriptionValid && subjectValid && datesCoveredValid) {
             this.requiredMetadata.check();
             return true;
         }
@@ -21,6 +23,22 @@ export default class GppSaveWorkControl extends SaveWorkControl {
         this.requiredFields.reload();
         this.initializeDatesCoveredCallbacks();
         this.formStateChanged();
+    }
+
+    titleValidator() {
+        let title = $("#nyc_government_publication_title");
+        if (title.val().length < 10 || title.val().length > 150) {
+            return false;
+        }
+        return true;
+    }
+
+    descriptionValidator() {
+        let description = $("#nyc_government_publication_description");
+        if (description.val().length < 100 || description.val().length > 300) {
+            return false;
+        }
+        return true;
     }
 
     publicationSubjectValidator() {
