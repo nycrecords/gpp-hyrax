@@ -38,27 +38,27 @@ module NycGovernmentPublicationsMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :fiscal_year, predicate: ::RDF::Vocab::DC.temporal, multiple: true do |index|
+    property :fiscal_year, predicate: ::RDF::URI.intern('http://a860-gpp.nyc.gov/temporal-fiscal'), multiple: true do |index|
       index.as :stored_searchable, :facetable
     end
 
-    property :calendar_year, predicate: ::RDF::Vocab::DC.temporal, multiple: true do |index|
+    property :calendar_year, predicate: ::RDF::URI.intern('http://a860-gpp.nyc.gov/temporal-calendar'), multiple: true do |index|
       index.as :stored_searchable, :facetable
     end
 
-    property :borough, predicate: ::RDF::Vocab::DC.spatial, multiple: true do |index|
+    property :borough, predicate: ::RDF::URI.intern('http://a860-gpp.nyc.gov/spatial-borough'), multiple: true do |index|
       index.as :stored_searchable, :facetable
     end
 
-    property :school_district, predicate: ::RDF::Vocab::DC.spatial, multiple: true do |index|
+    property :school_district, predicate: ::RDF::URI.intern('http://a860-gpp.nyc.gov/spatial-school-district'), multiple: true do |index|
       index.as :stored_searchable, :facetable
     end
 
-    property :community_board_district, predicate: ::RDF::Vocab::DC.spatial, multiple: true do |index|
+    property :community_board_district, predicate: ::RDF::URI.intern('http://a860-gpp.nyc.gov/spatial-community-board-district'), multiple: true do |index|
       index.as :stored_searchable, :facetable
     end
 
-    property :associated_place, predicate: ::RDF::Vocab::DC.spatial, multiple: true do |index|
+    property :associated_place, predicate: ::RDF::URI.intern('http://a860-gpp.nyc.gov/spatial-place'), multiple: true do |index|
       index.as :stored_searchable, :facetable
     end
   end
