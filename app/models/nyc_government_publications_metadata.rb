@@ -10,7 +10,7 @@ module NycGovernmentPublicationsMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :agency, predicate: ::RDF::Vocab::DC.creator do |index|
+    property :agency, predicate: ::RDF::Vocab::DC.creator, multiple: false  do |index|
       index.as :stored_searchable, :facetable
     end
 
@@ -22,15 +22,15 @@ module NycGovernmentPublicationsMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :description, predicate: ::RDF::Vocab::DC.abstract do |index|
+    property :description, predicate: ::RDF::Vocab::DC.abstract, multiple: false  do |index|
       index.as :stored_searchable, :facetable
     end
 
-    property :date_issued, predicate: ::RDF::Vocab::DC.issued do |index|
+    property :date_issued, predicate: ::RDF::Vocab::DC.issued, multiple: false  do |index|
       index.as :stored_searchable, :facetable
     end
 
-    property :report_type, predicate: ::RDF::Vocab::DC.type do |index|
+    property :report_type, predicate: ::RDF::Vocab::DC.type, multiple: false  do |index|
       index.as :stored_searchable, :facetable
     end
 
