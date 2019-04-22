@@ -1,0 +1,10 @@
+<script>
+    characterCounter("#collection-description-character-count", 300, $("#collection_description").val().length, 100);
+    $("#collection_description").keyup(function () {
+        characterCounter("#collection-description-character-count", 300, $(this).val().length, 100);
+    });
+</script>
+<%= f.input :description, as: :text, required: f.object.required?(key),
+            input_html: { class: 'form-control', multiple: false, style: 'height: 150px; resize: none', minlength: 100, maxlength: 300}
+%>
+<p id="collection-description-character-count" class="character-counter">300 characters remaining</p>
