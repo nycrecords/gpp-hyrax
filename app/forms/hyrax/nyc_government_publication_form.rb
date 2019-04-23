@@ -30,13 +30,13 @@ module Hyrax
 
     self.terms = [:title, :sub_title, :agency, :additional_creators, :subject, :description,
                   :date_issued, :report_type, :language, :fiscal_year, :calendar_year, :borough, :school_district,
-                  :community_board_district, :associated_place]
+                  :community_board_district, :associated_place, :visibility]
     self.required_fields = [:title, :agency, :subject, :description, :date_issued, :report_type, :language]
 
 
     def primary_terms
       # REMOVED REQUIRED FIELDS TO MAKE THEM SHOW IN ORDER WE DEFINED.
-      primary = (terms)
+      primary = (terms - [:visibility])
 
       (required_fields - primary).each do |missing|
         Rails.logger.warn("The form field #{missing} is configured as a " \

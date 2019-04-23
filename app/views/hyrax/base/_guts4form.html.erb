@@ -5,9 +5,11 @@
     <div class="panel panel-default tabs" role="main">
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
-        <% (tabs - ['relationships']).each_with_index do | tab, i | %>
+        <% (tabs).each_with_index do | tab, i | %>
           <% if i == 0 %>
             <li role="presentation" class="active">
+          <% elsif tab == 'relationships' %>
+            <li class="hidden" role="presentation">
           <% else %>
             <li role="presentation">
           <% end %>
@@ -20,7 +22,7 @@
 
       <!-- Tab panes -->
       <div class="tab-content">
-        <% (tabs - ['relationships'] - ['share']).each_with_index do | tab, i | %>
+        <% (tabs - ['share']).each_with_index do | tab, i | %>
           <% if i == 0 %>
             <div role="tabpanel" class="tab-pane active" id="<%= tab %>">
           <% else %>
@@ -41,3 +43,4 @@
       <%= render 'form_progress', f: f %>
     </div>
   </div>
+</div>

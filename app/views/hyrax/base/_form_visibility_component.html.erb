@@ -3,10 +3,13 @@
   <ul class="visibility">
     <li class="radio">
       <label>
-        <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE %>
-        <%= visibility_badge(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE) %>
-        <br/>
-        <%= t('hyrax.visibility.restricted.note_html') %>
+        <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC, data: { 'target': '#collapsePublic' }, :checked => true %>
+        <%= visibility_badge(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC) %>
+        <br />
+        <%= t('hyrax.visibility.open.note_html', type: f.object.human_readable_type) %>
+        <div class="collapse" id="collapsePublic">
+          <%= t('hyrax.visibility.open.warning_html', label: visibility_badge(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)) %>
+        </div>
       </label>
     </li>
   </ul>
