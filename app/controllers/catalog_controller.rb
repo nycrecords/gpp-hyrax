@@ -1,4 +1,5 @@
 class CatalogController < ApplicationController
+  include BlacklightAdvancedSearch::Controller
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
 
@@ -14,6 +15,13 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    # default advanced config values
+    config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
+    # config.advanced_search[:qt] ||= 'advanced'
+    config.advanced_search[:url_key] ||= 'advanced'
+    config.advanced_search[:query_parser] ||= 'dismax'
+    config.advanced_search[:form_solr_parameters] ||= {}
+
     config.view.gallery.partials = [:index_header, :index]
     config.view.masonry.partials = [:index]
     config.view.slideshow.partials = [:index]
@@ -21,7 +29,7 @@ class CatalogController < ApplicationController
 
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
     config.show.partials.insert(1, :openseadragon)
-    config.search_builder_class = Hyrax::CatalogSearchBuilder
+    config.search_builder_class = GppCatalogSearchBuilder
 
     # Show gallery view
     config.view.gallery.partials = [:index_header, :index]
@@ -216,14 +224,6 @@ class CatalogController < ApplicationController
       }
     end
 
-    config.add_search_field('format') do |field|
-      solr_name = solr_name("format", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
     config.add_search_field('identifier') do |field|
       solr_name = solr_name("id", :stored_searchable)
       field.solr_local_parameters = {
@@ -272,6 +272,8 @@ class CatalogController < ApplicationController
         pf: solr_name
       }
     end
+
+    include AdvancedSearchFields
 
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
