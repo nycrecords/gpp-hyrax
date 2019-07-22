@@ -157,6 +157,7 @@ GEM
     concurrent-ruby (1.1.5)
     connection_pool (2.2.2)
     crass (1.0.4)
+    database_cleaner (1.7.0)
     declarative (0.0.10)
     declarative-option (0.1.0)
     deprecation (1.0.0)
@@ -676,6 +677,8 @@ GEM
       rdf-xsd (>= 2.2, < 4.0)
       sparql (>= 2.2, < 4.0)
       sxp (~> 1.0)
+    shoulda-matchers (4.1.1)
+      activesupport (>= 4.2.0)
     signet (0.11.0)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -764,6 +767,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  database_cleaner
   devise
   devise-guests (~> 0.6)
   fcrepo_wrapper
@@ -776,9 +780,10 @@ DEPENDENCIES
   rails (~> 5.1.6, >= 5.1.6.2)
   riiif (~> 2.0)
   rsolr (>= 1.0)
-  rspec-rails
+  rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   selenium-webdriver
+  shoulda-matchers
   solr_wrapper (>= 0.3)
   spring
   spring-watcher-listen (~> 2.0.0)
@@ -790,4 +795,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   2.0.1
+   2.0.2

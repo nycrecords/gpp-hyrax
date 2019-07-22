@@ -107,7 +107,7 @@ en:
         description: A brief (100-300 characters) explanation of the contents of this document.
         date_issued: This document's date of publication by agency.
         report_type: Use the dropdown for a list of the most common kinds of reports and pick the one closest to what you are submitting.
-        language: If the publication is written in a language other than English, pick the language from the dropdown list. English is the default choice.
+        language: Select the language of the publication. To select multiple languages, hold down CTRL while clicking an option.
         fiscal_year: The fiscal year covered by this publication. If multiple fiscal years are covered, select "Add more" to add additional years.
         calendar_year: The calendar year covered by this publication. If multiple calendar years are covered, select "Add more" to add additional years.
         borough: The borough associated with this publication. To select multiple boroughs, hold down CTRL while clicking an option. Required if applicable.

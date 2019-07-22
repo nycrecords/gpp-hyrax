@@ -39,6 +39,9 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
+  gem 'rspec-rails', "~> 3.5"
+  gem 'shoulda-matchers'
 end
 
 group :development do
@@ -66,7 +69,6 @@ gem 'devise'
 gem 'devise-guests', '~> 0.6'
 group :development, :test do
   gem 'fcrepo_wrapper'
-  gem 'rspec-rails'
 end
 
 gem 'riiif', '~> 2.0'
