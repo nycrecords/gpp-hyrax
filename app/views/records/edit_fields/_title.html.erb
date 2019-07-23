@@ -1,7 +1,7 @@
 <script>
-    characterCounter("#title-character-count", 150, $("#nyc_government_publication_title").val().length, 10);
-    $("#nyc_government_publication_title").keyup(function () {
-        characterCounter("#title-character-count", 150, $(this).val().length, 10);
+    characterCounter('#title-character-count', 150, $('#nyc_government_publication_title').val().length, 10);
+    $('#nyc_government_publication_title').keyup(function () {
+        characterCounter('#title-character-count', 150, $(this).val().length, 10);
     });
 </script>
 <p>Welcome to the Submissions Portal for the Municipal Library at the New York City Department of Records and
@@ -11,7 +11,8 @@
   that you have successfully uploaded the publication, or a warning if there is any problem with the publication after
   virus scanning. The Municipal Library staff checks that everything is in order and the publication is loaded into the
   Government Documents Portal, where it is accessible and preserved.</p>
-<%= f.input :title, as: :string, required: f.object.required?(key),
-            input_html: {class: 'form-control', multiple: false, minlength: 10, maxlength: 150}
-%>
+<%= f.input :title,
+            as: :string,
+            required: f.object.required?(key),
+            input_html: {class: 'form-control', multiple: false, minlength: 10, maxlength: 150} %>
 <p id="title-character-count" class="character-counter">150 characters remaining</p>

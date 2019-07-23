@@ -1,3 +1,5 @@
+'use strict';
+
 function characterCounter (target, limit, currentLength, minLength) {
     /* Global character counter
      *
@@ -18,14 +20,14 @@ function characterCounter (target, limit, currentLength, minLength) {
      * */
     var length = limit - currentLength;
     minLength = (typeof minLength !== 'undefined') ? minLength : 0;
-    var s = length === 1 ? "" : "s";
-    $(target).text(length + " character" + s + " remaining");
+    var s = length === 1 ? '' : 's';
+    $(target).text(length + ' character' + s + ' remaining');
     if (length == 0) {
-        $(target).css("color", "red");
+        $(target).css('color', 'red');
     } else if (currentLength < minLength) {
-        $(target).css("color", "red");
+        $(target).css('color', 'red');
     }
     else {
-        $(target).css("color", "black");
+        $(target).css('color', 'black');
     }
 }

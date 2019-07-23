@@ -3,7 +3,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-# NOTE: If you generated more than one work, you have to set "js: true"
+# NOTE: If you generated more than one work, you have to set 'js: true'
 RSpec.feature 'Create a NycGovernmentPublication', js: false do
   context 'a logged in user' do
     let(:user_attributes) do
@@ -32,22 +32,22 @@ RSpec.feature 'Create a NycGovernmentPublication', js: false do
 
     scenario do
       visit '/dashboard'
-      click_link "Works"
-      click_link "Add new work"
+      click_link 'Works'
+      click_link 'Add new work'
 
       # If you generate more than one work uncomment these lines
-      # choose "payload_concern", option: "NycGovernmentPublication"
-      # click_button "Create work"
+      # choose 'payload_concern', option: 'NycGovernmentPublication'
+      # click_button 'Create work'
 
-      expect(page).to have_content "Add New NYC Government Publication"
-      click_link "Files" # switch tab
-      expect(page).to have_content "Add files"
-      expect(page).to have_content "Add folder"
+      expect(page).to have_content 'Add New NYC Government Publication'
+      click_link 'Files' # switch tab
+      expect(page).to have_content 'Add files'
+      expect(page).to have_content 'Add folder'
       within('span#addfiles') do
         attach_file("files[]", "#{Hyrax::Engine.root}/spec/fixtures/image.jp2", visible: false)
         attach_file("files[]", "#{Hyrax::Engine.root}/spec/fixtures/jp2_fits.xml", visible: false)
       end
-      click_link "Descriptions" # switch tab
+      click_link 'Descriptions' # switch tab
       fill_in('nyc_government_publication_title', with: 'My Test Submission')
       page.select 'Actuary, NYC Office of the', from: 'nyc_government_publication_agency'
       page.select 'Accounting', from: 'nyc_government_publication_subject'

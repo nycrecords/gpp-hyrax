@@ -21,11 +21,11 @@ module Hyrax
     end
 
     def title
-      super.first || ""
+      super.first || ''
     end
 
     def description
-      super.first || ""
+      super.first || ''
     end
 
     self.terms = [:title, :sub_title, :agency, :additional_creators, :subject, :description,

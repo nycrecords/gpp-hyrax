@@ -1,4 +1,5 @@
-<%= f.input :agency, as: :select,
+<%= f.input :agency,
+            as: :select,
             collection: AgenciesService.select_all_options,
             include_blank: true,
             input_html: { class: 'form-control' }

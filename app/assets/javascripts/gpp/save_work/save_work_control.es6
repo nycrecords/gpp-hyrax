@@ -26,7 +26,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
     }
 
     titleValidator() {
-        let title = $("#nyc_government_publication_title");
+        let title = $('#nyc_government_publication_title');
         if (title.val().length < 10 || title.val().length > 150) {
             return false;
         }
@@ -34,7 +34,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
     }
 
     descriptionValidator() {
-        let description = $("#nyc_government_publication_description");
+        let description = $('#nyc_government_publication_description');
         if (description.val().length < 100 || description.val().length > 300) {
             return false;
         }
@@ -42,8 +42,8 @@ export default class GppSaveWorkControl extends SaveWorkControl {
     }
 
     publicationSubjectValidator() {
-        let selectedSubjects = $("#nyc_government_publication_subject option:selected");
-        let subjectError = $("#publication-subject-error");
+        let selectedSubjects = $('#nyc_government_publication_subject option:selected');
+        let subjectError = $('#publication-subject-error');
         if (selectedSubjects.length > 3) {
             subjectError.show();
             subjectError.focus();
@@ -54,8 +54,8 @@ export default class GppSaveWorkControl extends SaveWorkControl {
     }
 
     datesCoveredValidator() {
-        let fiscalYear = $("#nyc_government_publication_fiscal_year");
-        let calendarYear = $("#nyc_government_publication_calendar_year");
+        let fiscalYear = $('#nyc_government_publication_fiscal_year');
+        let calendarYear = $('#nyc_government_publication_calendar_year');
         if (fiscalYear.val().length === 0 && calendarYear.val().length === 0) {
             return false;
         }
@@ -63,7 +63,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
     }
 
     initializeDatesCoveredCallbacks() {
-        $("#nyc_government_publication_fiscal_year").change(() => this.formStateChanged());
-        $("#nyc_government_publication_calendar_year").change(() => this.formStateChanged());
+        $('#nyc_government_publication_fiscal_year').change(() => this.formStateChanged());
+        $('#nyc_government_publication_calendar_year').change(() => this.formStateChanged());
     }
 }
