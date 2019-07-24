@@ -130,9 +130,3 @@ en:
         school_district: Associated School District(s)
         community_board_district: Associated Community Board District(s)
         associated_place: Associated Place (Other)
-    placeholers:
-      defaults:
-#       Placeholders for NYC Government Publication Work
-    maxlengths:
-      defaults:
-        sub_title: 10
