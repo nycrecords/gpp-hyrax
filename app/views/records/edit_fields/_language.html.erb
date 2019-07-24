@@ -1,0 +1,4 @@
+<%= f.input :language,
+            as: :select,
+            collection: PublicationLanguagesService.select_all_options,
+            input_html: { class: 'form-control', multiple: true, style: 'height: 150px' } %>

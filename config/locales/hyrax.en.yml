@@ -56,3 +56,77 @@ en:
     institution_name_full: The Institution Name
     product_name: Hyrax
     product_twitter_handle: "@SamveraRepo"
+  simple_form:
+    hints:
+      admin_set:
+        description: A brief overarching description that applies to all works collected in this set. For example, "Theses and supplementary files created by the School of Earth Sciences graduate students."
+        title: A name to aid in identifying the Administrative Set and to distinguish it from other Administrative Sets in the repository.
+      collection:
+        based_near: A place name related to the collection, such as its site of publication, or the city, state, or country the collection contents are about. Calls upon the <a href='http://www.geonames.org'>GeoNames web service</a>.
+        contributor: A person or group you want to recognize for playing a role in the creation of the collection, but not the primary role.
+        creator: The person or group responsible for the collection. Usually this is the author of the content. Personal names should be entered with the last name first, e.g. &quot;Smith, John.&quot;.
+        date_created: The date on which the collection was created.
+        description: Free-text notes about the collection. Examples include abstracts of a paper or citation information for a journal article.
+        identifier: A unique handle identifying the collection. An example would be a DOI for a journal article, or an ISBN or OCLC number for a book.
+        keyword: Words or phrases you select to describe what the collection is about. These are used to search for content.
+        language: The language of the collection's content.
+        license: Licensing and distribution information governing access to the collection. Select from the provided drop-down list.
+        publisher: The person or group making the collection available. Generally this is the institution.
+        related_url: A link to a website or other specific content (audio, video, PDF document) related to the collection. An example is the URL of a research project from which the collection was derived.
+        resource_type: Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected.
+        subject: Headings or index terms describing what the collection is about; these do need to conform to an existing vocabulary.
+        title: A name to aid in identifying a collection.
+      collection_type:
+        allow_multiple_membership: Allow works to belong to multiple collections of this type
+        assigns_visibility: Allow collections of this type to assign initial visibility settings to a new work
+        assigns_workflow: Allow collections of this type to assign workflow to a new work
+        brandable: Allow collections of this type to be branded
+        description: A brief statement of the general purpose of this collection type.  Users will see this if they have more than one collection type to choose from when creating a new collection.
+        discoverable: Allow collections of this type to be discoverable
+        nestable: Allow collections of this type to be nested (a collection can contain other collections)
+        require_membership: A work must belong to at least one collection of this type
+        sharable: Allow users to assign collection managers, depositors, and viewers for collections they manage
+        share_applies_to_new_works: When new works are created directly in the collection, grant sharing users and groups permissions for the new work according to their collection roles.
+        title: ''
+      defaults:
+        based_near: A place name related to the work, such as its site of publication, or the city, state, or country the work contents are about. Calls upon the <a href='http://www.geonames.org'>GeoNames web service</a>.
+        contributor: A person or group you want to recognize for playing a role in the creation of the work, but not the primary role.
+        creator: The person or group responsible for the work. Usually this is the author of the content. Personal names should be entered with the last name first, e.g. &quot;Smith, John.&quot;.
+        date_created: The date on which the work was created.
+        identifier: A unique handle identifying the work. An example would be a DOI for a journal article, or an ISBN or OCLC number for a book.
+        keyword: Words or phrases you select to describe what the work is about. These are used to search for content.
+        license: Licensing and distribution information governing access to the work. Select from the provided drop-down list.
+        publisher: The person or group making the work available. Generally this is the institution.
+        related_url: A link to a website or other specific content (audio, video, PDF document) related to the work. An example is the URL of a research project from which the work was derived.
+        resource_type: Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected.
+#       Hints for NYC Government Publication Work
+        title: On the front page, the first page or in the Executive Summary (if any) of the docucment, what is it called? 10-150 characters.
+        agency: What agency is the primary creator of this document?
+        additional_creators: What other agencies, consultants, or authors, if any, contributed to the creation of this document?
+        subject: Select what subjects you feel are the most relevant subjects covered in this report. To select multiple subjects, hold down CTRL while clicking an option. Pick up to three.
+        description: A brief (100-300 characters) explanation of the contents of this document.
+        date_issued: This document's date of publication by agency.
+        report_type: Use the dropdown for a list of the most common kinds of reports and pick the one closest to what you are submitting.
+        language: Select the language of the publication. To select multiple languages, hold down CTRL while clicking an option.
+        fiscal_year: The fiscal year covered by this publication. If multiple fiscal years are covered, select "Add more" to add additional years.
+        calendar_year: The calendar year covered by this publication. If multiple calendar years are covered, select "Add more" to add additional years.
+        borough: The borough associated with this publication. To select multiple boroughs, hold down CTRL while clicking an option. Required if applicable.
+        school_district: The school district(s) associated with this publication. To select multiple school districts, hold down CTRL while clicking an option. Required if applicable.
+        community_board_district: The community board district(s) associated with this publication. To select multiple community board districts, hold down CTRL while clicking an option. Required if applicable.
+        associated_place: The place associated with this publication. Required if applicable.
+    labels:
+      defaults:
+#       Labels for NYC Government Publication Work
+        sub_title: Sub-Title
+        additional_creators: Additional Creator(s)
+        subject: Subject(s)
+        description: Description
+        date_issued: Date Issued
+        report_type: Report Type
+        language: Language(s)
+        fiscal_year: Associated Year - Fiscal
+        calendar_year: Associated Year - Calendar
+        borough: Associated Borough(s)
+        school_district: Associated School District(s)
+        community_board_district: Associated Community Board District(s)
+        associated_place: Associated Place (Other)

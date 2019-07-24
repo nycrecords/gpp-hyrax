@@ -20,6 +20,11 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require blacklight/blacklight
 
-//= require_tree .
 //= require hyrax
+//= require almond
+//= require gpp/save_work/save_work_control
+//= require gpp/editor
+//= require app.js.erb
 
+//= require character-counter
+//= require jquery.inputmask.bundle.min
