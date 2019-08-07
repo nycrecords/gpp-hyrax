@@ -20,7 +20,6 @@ module NYCID
     USER_SEARCH_ENDPOINT = "/account/api/user.htm"
     # Search for multiple users by their guids or their "Start Date"
     USERS_SEARCH_ENDPOINT = "/account/api/getUsers.htm"
-
     # Default HTTP Verb for API
     DEFAULT_METHOD = 'GET'
 
@@ -71,7 +70,6 @@ module NYCID
     #
     # Returns:
     # JSON-formatted user as specified by NYC.ID (http://nyc4d.nycnet/nycid/search.shtml#json-formatted-users)
-
     def search_user(guid: nil, email: nil)
       if guid.nil? && email.nil?
         raise ArgumentError.new("You must provide either a GUID or Email Address")
@@ -89,7 +87,6 @@ module NYCID
           method = DEFAULT_METHOD
       )
     end
-
 
 
     # Query the NYC.ID Web Services API

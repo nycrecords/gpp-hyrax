@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'sign_in', to: 'omniauth#new', as: :new_user_session
     post 'sign_in', to: 'omniauth_callbacks#saml', as: :new_session
-    get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+    get 'sign_out', to: 'sessions#destroy', as: :destroy_user_session
   end
 
   mount Hydra::RoleManagement::Engine => '/'

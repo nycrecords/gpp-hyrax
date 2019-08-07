@@ -8,7 +8,7 @@ default: &default
   security_config:
     authn_requests_signed: true
     logout_requests_signed: true
-    logout_responses_signed: true
+    logout_responses_signed: false
     want_assertions_signed: true
     want_assertions_encrypted: false
     want_messages_signed: false

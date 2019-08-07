@@ -157,6 +157,9 @@ GEM
     concurrent-ruby (1.1.5)
     connection_pool (2.2.2)
     crass (1.0.4)
+    debase (0.2.3)
+      debase-ruby_core_source (>= 0.10.2)
+    debase-ruby_core_source (0.10.5)
     declarative (0.0.10)
     declarative-option (0.1.0)
     deprecation (1.0.0)
@@ -655,6 +658,8 @@ GEM
       json
       multipart-post
       oauth2
+    ruby-debug-ide (0.7.0)
+      rake (>= 0.8.1)
     ruby-progressbar (1.10.0)
     ruby-saml (1.10.0)
       nokogiri (>= 1.8.2)
@@ -777,6 +782,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  debase
   devise
   devise-guests (~> 0.6)
   dotenv-rails
@@ -792,6 +798,7 @@ DEPENDENCIES
   riiif (~> 2.0)
   rsolr (>= 1.0)
   rspec-rails
+  ruby-debug-ide
   sass-rails (~> 5.0)
   selenium-webdriver
   solr_wrapper (>= 0.3)
