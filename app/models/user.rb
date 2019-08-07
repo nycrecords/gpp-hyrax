@@ -53,4 +53,10 @@ class User < ApplicationRecord
     user.save
     user
   end
+
+  # Mailboxer (the notification system) needs the User object to respond to this method
+  # in order to send emails
+  def mailboxer_email(_object)
+    email
+  end
 end

@@ -1,0 +1,6 @@
+<strong><p style="font-size: 20px">Place Covered: If applicable, select an associated borough, Community Board District,
+  school district and/or place name.</p></strong>
+<%= f.input :borough,
+            as: :select,
+            collection: BoroughsService.select_all_options,
+            input_html: { class: 'form-control', multiple: true, style: 'height: 100px' } %>
