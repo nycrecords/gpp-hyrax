@@ -1,9 +1,9 @@
+#
 class User < ApplicationRecord
   # Connects this user object to Hydra behaviors.
   include Hydra::User
   # Connects this user object to Role-management behaviors.
   include Hydra::RoleManagement::UserRoles
-
 
   # Connects this user object to Hyrax behaviors.
   include Hyrax::User
@@ -18,12 +18,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # remove :database_authenticatable, remove :validatable to integrate with SAML
   devise_modules = [
-      :registerable,
-      :recoverable,
-      :rememberable,
-      :omniauthable,
-      omniauth_providers: [:saml],
-      authentication_keys: [:guid]
+    :registerable,
+    :recoverable,
+    :rememberable,
+    :omniauthable,
+    omniauth_providers: [:saml],
+    authentication_keys: [:guid]
   ]
 
   devise(*devise_modules)
@@ -33,7 +33,6 @@ class User < ApplicationRecord
   def to_s
     email
   end
-
 
   # When a user authenticates via SAML, find their User object or make
   # a new one. Populate it with data we get from SAML.
@@ -47,9 +46,9 @@ class User < ApplicationRecord
     user.first_name = saml_attrs[:givenName]
     user.middle_initial = saml_attrs[:middleName]
     user.last_name = saml_attrs[:sn]
-    user.email_validated = saml_attrs[:nycExtEmailValidationFlag].to_s == "True" ? true : false
+    user.email_validated = saml_attrs[:nycExtEmailValidationFlag].to_s == 'True'
     user.email = auth.info.email
-    user.display_name = "#{user.first_name} #{user.middle_initial or ''} #{user.last_name}"
+    user.display_name = "#{user.first_name} #{user.middle_initial || ''} #{user.last_name}"
     user.save
     user
   end
