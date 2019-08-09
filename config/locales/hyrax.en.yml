@@ -105,7 +105,7 @@ en:
         additional_creators: What other agencies, consultants, or authors, if any, contributed to the creation of this document?
         subject: Select what subjects you feel are the most relevant subjects covered in this report. To select multiple subjects, hold down CTRL while clicking an option. Pick up to three.
         description: A brief (100-300 characters) explanation of the contents of this document.
-        date_issued: This document's date of publication by agency.
+        date_published: This document's date of publication by agency.
         report_type: Use the dropdown for a list of the most common kinds of reports and pick the one closest to what you are submitting.
         language: Select the language of the publication. To select multiple languages, hold down CTRL while clicking an option.
         fiscal_year: The fiscal year covered by this publication. If multiple fiscal years are covered, select "Add more" to add additional years.
@@ -121,7 +121,7 @@ en:
         additional_creators: Additional Creator(s)
         subject: Subject(s)
         description: Description
-        date_issued: Date Issued
+        date_published: Date Published
         report_type: Report Type
         language: Language(s)
         fiscal_year: Associated Year - Fiscal

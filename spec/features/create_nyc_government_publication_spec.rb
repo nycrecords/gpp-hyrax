@@ -52,7 +52,7 @@ RSpec.feature 'Create a NycGovernmentPublication', js: false do
       page.select 'Actuary, NYC Office of the', from: 'nyc_government_publication_agency'
       page.select 'Accounting', from: 'nyc_government_publication_subject'
       fill_in('nyc_government_publication_description', with: 'This is some test description. This is some test description. This is some test description. This is some test description. ')
-      fill_in('nyc_government_publication_date_issued', with: '01/01/2019')
+      fill_in('nyc_government_publication_date_published', with: '01/01/2019')
       page.select 'Adjudications / Decisions', from: 'nyc_government_publication_report_type'
       page.select 'English', from: 'nyc_government_publication_language'
       fill_in('nyc_government_publication_fiscal_year', with: '2019')

@@ -26,7 +26,7 @@ module NycGovernmentPublicationsMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :date_issued, predicate: ::RDF::Vocab::DC.issued, multiple: false  do |index|
+    property :date_published, predicate: ::RDF::Vocab::DC.issued, multiple: false  do |index|
       index.as :stored_searchable, :facetable
     end
 
