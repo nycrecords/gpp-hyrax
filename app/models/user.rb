@@ -36,18 +36,22 @@ class User < ApplicationRecord
 
   # When a user authenticates via SAML, find their User object or make
   # a new one. Populate it with data we get from SAML.
-  # @param [OmniAuth::AuthHash] auth
-  def self.from_omniauth(auth)
-    Rails.logger.debug "auth = #{auth.inspect}"
-    saml_attrs = auth.extra.response_object.attributes
-    # Uncomment the debugger above to capture what a SAML auth object looks like for testing
-    user = where(guid: saml_attrs[:GUID]).first_or_create
-    user.guid = saml_attrs[:GUID]
-    user.first_name = saml_attrs[:givenName]
-    user.middle_initial = saml_attrs[:middleName]
-    user.last_name = saml_attrs[:sn]
-    user.email_validated = saml_attrs[:nycExtEmailValidationFlag].to_s == 'True'
-    user.email = auth.info.email
+  # @param [Hash] user_json
+  def self.from_omniauth(user_json)
+    user = where(guid: user_json['id']).first
+    if user.nil?
+      user = where(email: user_json['email']).first_or_create
+    end
+
+    user.guid = user_json['id']
+    user.first_name = user_json['firstName']
+    user.middle_initial = user_json['middleInitial']
+    user.last_name = user_json['lastName']
+    user.email = user_json['email']
+    user.email_validated = user_json['validated']
+    user.active = user_json['active']
+    user.nyc_employee = user_json['nycEmployee']
+    user.has_nyc_account = user_json['hasNYCAccount']
     user.display_name = "#{user.first_name} #{user.middle_initial || ''} #{user.last_name}"
     user.save
     user

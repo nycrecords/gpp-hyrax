@@ -16,6 +16,10 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Enabled: false
 
+Style/ClassAndModuleChildren:
+  Enabled: false
+  EnforcedStyle: nested
+
 Style/CommentedKeyword:
   Enabled: false
 

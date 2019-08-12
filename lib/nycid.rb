@@ -3,7 +3,7 @@ require 'httparty'
 #
 # Documentation for NYC.ID Web Services can be found at: http://nyc4d.nycnet/nycid/web-services.shtml
 module NYCID
-  #
+  # Class for creating and sending requests to NYC.ID Web Services.
   class NYCIDWebServices
     # Validate a user's email address
     EMAIL_VALIDATION_ENDPOINT = '/account/validateEmail.htm'.freeze
@@ -39,14 +39,14 @@ module NYCID
     #
     # Params:
     # * +:guid+ - Unique identifier for the user from NYC.ID
-    def check_email_validation_status(guid:)
-      if guid.nil? raise ArgumentError, 'You must provide a GUID'
-      end
+    def check_email_validation_status(guid)
+      # if guid.nil? raise ArgumentError, 'You must provide a GUID'
+      # end
       params = { guid: guid }
       response = nycid_web_services_request(
-        endpoint = EMAIL_VALIDATION_STATUS_ENDPOINT,
-        params = params,
-        method = DEFAULT_METHOD
+        EMAIL_VALIDATION_STATUS_ENDPOINT,
+        params,
+        method: DEFAULT_METHOD
       )
       response['validated']
     end
@@ -55,9 +55,11 @@ module NYCID
     #
     # Params:
     # * +:email_address+ - Users email address, Required if guid is nil
-    def validate_email(email_address:)
-      if email_address.nil? raise ArgumentError, 'You must provide an email_address'
+    def validate_email(email_address)
+      if email_address.nil?
+        raise ArgumentError, 'You must provide an email_address'
       end
+
       "#{@api_uri}#{EMAIL_VALIDATION_ENDPOINT}?emailAddress=#{email_address}&target=#{@acs_url}"
     end
 
@@ -69,20 +71,20 @@ module NYCID
     #
     # Returns:
     # JSON-formatted user as specified by NYC.ID (http://nyc4d.nycnet/nycid/search.shtml#json-formatted-users)
-    def search_user(guid: nil, email: nil)
-      if guid.nil? && email.nil?
-        raise ArgumentError, 'You must provide either a GUID or Email Address'
-      end
+    def search_user(guid)
+      # if guid.nil? && email.nil?
+      #   raise ArgumentError, 'You must provide either a GUID or Email Address'
+      # end
 
-      params = { userName: @service_account_username }
-      unless guid.nil? params[:guid] = guid
-      end
-      unless email.nil? params[:email] = email
-      end
+      # params = { userName: @service_account_username }
+      # unless guid.nil? params[:guid] = guid
+      # end
+      # unless email.nil? params[:email] = email
+      # end
       nycid_web_services_request(
-        endpoint = USER_SEARCH_ENDPOINT,
-        params = params,
-        method = DEFAULT_METHOD
+        USER_SEARCH_ENDPOINT,
+        { guid: guid },
+        method: DEFAULT_METHOD
       )
     end
 
@@ -100,7 +102,7 @@ module NYCID
     # HTTP Response from NYC.ID Web Services API Endpoint.
     def nycid_web_services_request(endpoint, params, method: DEFAULT_METHOD) #:doc:
       params[:userName] = @service_account_username
-      signature = generate_nycid_signature(endpoint, params, @service_account_password, method)
+      signature = generate_nycid_signature(endpoint, params, @service_account_password, method: method)
       params[:signature] = signature
 
       url = "#{ENV['NYC_ID_WEB_SERVICES_URL']}#{endpoint}"
@@ -117,20 +119,20 @@ module NYCID
     #
     # Returns:
     #
-    # HMAC-SHA1 Signature for NYC.ID Web Services request.
+    # HMAC-SHA256 Signature for NYC.ID Web Services request.
     def generate_nycid_signature(url_path, query_string, signing_key, method: DEFAULT_METHOD) #:doc:
       # endpoint must begin with a forward slash
       url_path = "/#{url_path}" if url_path.first != '/'
 
       # Sort the query string by keys
-      parameter_values = Hash[query_string.sort_by {|key, val| key.to_s}]
+      parameter_values = Hash[query_string.sort_by { |key, val| key.to_s }]
 
       # Signature contains only the values of the sorted query string joined with no separator
       signature_parameter_values = parameter_values.map { |key, val| "#{val}" }.join
 
       value_to_sign = "#{method}#{url_path}#{signature_parameter_values}"
 
-      OpenSSL::HMAC.hexdigest('sha1', signing_key, value_to_sign)
+      OpenSSL::HMAC.hexdigest('sha256', signing_key, value_to_sign)
     end
   end
 end
