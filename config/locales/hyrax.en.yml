@@ -108,8 +108,8 @@ en:
         date_published: This document's date of publication by agency.
         report_type: Use the dropdown for a list of the most common kinds of reports and pick the one closest to what you are submitting.
         language: Select the language of the publication. To select multiple languages, hold down CTRL while clicking an option.
-        fiscal_year: The fiscal year covered by this publication. If multiple fiscal years are covered, select "Add more" to add additional years.
-        calendar_year: The calendar year covered by this publication. If multiple calendar years are covered, select "Add more" to add additional years.
+        fiscal_year: The fiscal year covered by this publication. If multiple fiscal years are covered, select "Add more" to add additional years. All years prior to 1600 will be defaulted to 1600.
+        calendar_year: The calendar year covered by this publication. If multiple calendar years are covered, select "Add more" to add additional years. All years prior to 1600 will be defaulted to 1600.
         borough: The borough associated with this publication. To select multiple boroughs, hold down CTRL while clicking an option. Required if applicable.
         school_district: The school district(s) associated with this publication. To select multiple school districts, hold down CTRL while clicking an option. Required if applicable.
         community_board_district: The community board district(s) associated with this publication. To select multiple community board districts, hold down CTRL while clicking an option. Required if applicable.
