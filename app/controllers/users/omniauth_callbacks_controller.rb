@@ -1,7 +1,7 @@
+# Controller which implements Omniauth callbacks.
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include NYCID
   def saml
-    # @user = User.from_omniauth(request.env['omniauth.auth'])
     saml_attrs = request.env['omniauth.auth'].extra.response_object.attributes
     nycidwebservices = NYCIDWebServices.new
 
@@ -14,7 +14,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     user_json = nycidwebservices.search_user(saml_attrs[:GUID])
-    @user = User.from_omniauth(user_json.parsed_response)
+    @user = User.from_omniauth(user_json)
 
     set_flash_message :notice, :success, kind: 'SAML'
     sign_in_and_redirect @user
