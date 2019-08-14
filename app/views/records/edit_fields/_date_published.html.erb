@@ -1,5 +1,5 @@
 <script>
-    $('#nyc_government_publication_date_issued').inputmask(
+    $('#nyc_government_publication_date_published').inputmask(
         {
             alias: 'datetime',
             inputFormat: 'mm/dd/yyyy',
@@ -8,6 +8,6 @@
             min: '01/01/1600'
         });
 </script>
-<%= f.input :date_issued, as: :string,
+<%= f.input :date_published, as: :string,
             required: f.object.required?(key),
             input_html: { class: 'form-control', multiple: false, placeholder: 'MM/DD/YYYY' } %>
