@@ -319,14 +319,14 @@ Devise.setup do |config|
                   private_key: File.read(sp_key),
                   # security: saml_config[:security_config]
                   security: {
-                      authn_requests_signed: saml_config[:security_config][:authn_requests_signed],
-                      logout_requests_signed: saml_config[:security_config][:logout_requests_signed],
-                      logout_responses_signed: saml_config[:security_config][:logout_responses_signed],
-                      want_assertions_signed: saml_config[:security_config][:want_assertions_signed],
-                      want_assertions_encrypted: saml_config[:security_config][:want_assertions_encrypted],
-                      want_messages_signed: saml_config[:security_config][:want_messages_signed],
-                      metadata_signed: saml_config[:security_config][:metadata_signed],
-                      signature_method: saml_config[:security_config][:signature_method],
-                      digest_method: saml_config[:security_config][:digest_method]
+                    authn_requests_signed: saml_config[:security_config][:authn_requests_signed],
+                    logout_requests_signed: saml_config[:security_config][:logout_requests_signed],
+                    logout_responses_signed: saml_config[:security_config][:logout_responses_signed],
+                    want_assertions_signed: saml_config[:security_config][:want_assertions_signed],
+                    want_assertions_encrypted: saml_config[:security_config][:want_assertions_encrypted],
+                    want_messages_signed: saml_config[:security_config][:want_messages_signed],
+                    metadata_signed: saml_config[:security_config][:metadata_signed],
+                    signature_method: saml_config[:security_config][:signature_method],
+                    digest_method: saml_config[:security_config][:digest_method]
                   }
 end
