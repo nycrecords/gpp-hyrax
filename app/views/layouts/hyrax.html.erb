@@ -9,9 +9,8 @@
     <div class="skip-to-content">
       <%= link_to "Skip to Content", "#skip-to-content" %>
     </div>
-    <% if user_signed_in? %>
-      <%= render '/masthead' %>
-    <% end %>
+    <%= render '/nycid_header' %>
+    <%= render '/masthead' %>
     <%= content_for(:navbar) %>
     <%= content_for(:precontainer_content) %>
     <div id="content-wrapper" class="container" role="main">
