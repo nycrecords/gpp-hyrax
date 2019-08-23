@@ -77,5 +77,5 @@ end
 gem 'riiif', '~> 2.0'
 
 gem 'hydra-role-management'
-gem 'omniauth-saml'
-gem 'dotenv-rails'
+gem 'omniauth-saml', '>= 1.10.1'
+gem 'dotenv-rails', '>= 2.7.2'
