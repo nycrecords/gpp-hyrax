@@ -41,17 +41,24 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
-    config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
-    config.add_facet_field solr_name("resource_type", :facetable), label: "Resource Type", limit: 5
-    config.add_facet_field solr_name("creator", :facetable), limit: 5
-    config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
-    config.add_facet_field solr_name("keyword", :facetable), limit: 5
-    config.add_facet_field solr_name("subject", :facetable), limit: 5
-    config.add_facet_field solr_name("language", :facetable), limit: 5
-    config.add_facet_field solr_name("based_near_label", :facetable), limit: 5
-    config.add_facet_field solr_name("publisher", :facetable), limit: 5
-    config.add_facet_field solr_name("file_format", :facetable), limit: 5
-    config.add_facet_field solr_name('member_of_collection_ids', :symbol), limit: 5, label: 'Collections', helper_method: :collection_title_by_id
+    config.add_facet_field solr_name("subject", :facetable), label: "Subject", limit: 5
+    config.add_facet_field solr_name("agency", :facetable), label: "Agency", limit: 5
+    config.add_facet_field solr_name("report_type", :facetable), label: "Report Type", limit: 5
+    config.add_facet_field solr_name("language", :facetable), label: "Language", limit: 5
+    config.add_facet_field solr_name("fiscal_year", :facetable), label: "Fiscal Year", limit: 5
+    config.add_facet_field solr_name("calendar_year", :facetable), label: "Calendar Year", limit: 5
+    config.add_facet_field solr_name("borough", :facetable), label: "Borough(s)", limit: 5
+    # config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
+    # config.add_facet_field solr_name("resource_type", :facetable), label: "Resource Type", limit: 5
+    # config.add_facet_field solr_name("creator", :facetable), limit: 5
+    # config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
+    # config.add_facet_field solr_name("keyword", :facetable), limit: 5
+    # config.add_facet_field solr_name("subject", :facetable), limit: 5
+    # config.add_facet_field solr_name("language", :facetable), limit: 5
+    # config.add_facet_field solr_name("based_near_label", :facetable), limit: 5
+    # config.add_facet_field solr_name("publisher", :facetable), limit: 5
+    # config.add_facet_field solr_name("file_format", :facetable), limit: 5
+    # config.add_facet_field solr_name('member_of_collection_ids', :symbol), limit: 5, label: 'Collections', helper_method: :collection_title_by_id
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -65,6 +72,9 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name', if: false
+    # Remove agency later
+    # config.add_index_field solr_name("agency", :stored_searchable), label: "Agency"
+    config.add_index_field solr_name("date_published", :stored_searchable), label: "Date Published", itemprop: 'date_published'
     config.add_index_field solr_name("description", :stored_searchable), itemprop: 'description', helper_method: :iconify_auto_link
     config.add_index_field solr_name("keyword", :stored_searchable), itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
     config.add_index_field solr_name("subject", :stored_searchable), itemprop: 'about', link_to_search: solr_name("subject", :facetable)
@@ -270,6 +280,14 @@ class CatalogController < ApplicationController
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
+      }
+    end
+
+    config.add_search_field('agency') do |field|
+      solr_name = solr_name("agency", :stored_searchable)
+      field.solr_local_parameters = {
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
