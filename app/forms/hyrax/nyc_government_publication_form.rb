@@ -33,19 +33,5 @@ module Hyrax
                   :community_board_district, :associated_place]
     self.required_fields = [:title, :agency, :subject, :description, :date_published, :report_type, :language]
 
-
-    def primary_terms
-      # REMOVED REQUIRED FIELDS TO MAKE THEM SHOW IN ORDER WE DEFINED.
-      primary = (terms)
-
-      (required_fields - primary).each do |missing|
-        Rails.logger.warn("The form field #{missing} is configured as a " \
-                            'required field, but not as a term. This can lead ' \
-                            'to unexpected behavior. Did you forget to add it ' \
-                            "to `#{self.class}#terms`?")
-      end
-
-      primary
-    end
   end
 end

@@ -1,0 +1,31 @@
+Layout/EmptyComment:
+  Description: 'Checks empty comment.'
+  Enabled: true
+
+Lint/UnusedBlockArgument:
+  Description: Checks for unused block arguments.
+  StyleGuide: https://github.com/rubocop-hq/ruby-style-guide#underscore-unused-vars
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+  EnforcedStyle: nested
+
+Style/CommentedKeyword:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/UnneededInterpolation:
+  Description: Checks for strings that are just an interpolated expression.
+  Enabled: false
