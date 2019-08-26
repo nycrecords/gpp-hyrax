@@ -208,6 +208,7 @@ Devise.setup do |config|
   #
   # Defines which key will be used when recovering the password for an account
   # config.reset_password_keys = [:email]
+  config.authentication_keys = [:guid]
 
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
@@ -296,4 +297,36 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  # ==> Configuration for omniauth-saml
+  saml_config = YAML.safe_load(ERB.new(IO.read(Rails.root.join('config', 'devise_saml.yml'))).result, [], [], true)[Rails.env].with_indifferent_access
+
+  idp_metadata_parser = OneLogin::RubySaml::IdpMetadataParser.new
+  idp_metadata = idp_metadata_parser.parse_remote_to_hash(saml_config[:idp_metadata_url])
+  sp_cert = Rails.root.join(saml_config[:sp_cert_path])
+  sp_key = Rails.root.join(saml_config[:sp_key_path])
+  config.omniauth :saml,
+                  issuer: saml_config[:issuer],
+                  idp_sso_target_url: idp_metadata[:idp_sso_target_url],
+                  idp_slo_target_url: idp_metadata[:idp_slo_target_url],
+                  assertion_consumer_service_binding: saml_config[:acs_binding],
+                  assertion_consumer_service_url: saml_config[:acs_url],
+                  slo_default_relay_state: '/',
+                  name_identifier_format: saml_config[:name_identifier_format],
+                  request_attributes: {},
+                  idp_cert: idp_metadata[:idp_cert],
+                  certificate: File.read(sp_cert),
+                  private_key: File.read(sp_key),
+                  # security: saml_config[:security_config]
+                  security: {
+                    authn_requests_signed: saml_config[:security_config][:authn_requests_signed],
+                    logout_requests_signed: saml_config[:security_config][:logout_requests_signed],
+                    logout_responses_signed: saml_config[:security_config][:logout_responses_signed],
+                    want_assertions_signed: saml_config[:security_config][:want_assertions_signed],
+                    want_assertions_encrypted: saml_config[:security_config][:want_assertions_encrypted],
+                    want_messages_signed: saml_config[:security_config][:want_messages_signed],
+                    metadata_signed: saml_config[:security_config][:metadata_signed],
+                    signature_method: saml_config[:security_config][:signature_method],
+                    digest_method: saml_config[:security_config][:digest_method]
+                  }
 end
