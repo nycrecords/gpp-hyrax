@@ -4,9 +4,10 @@
     electronically submit their publications to the Government Publications Portal of the Municipal Library.</p>
   <p>Complete the information (metadata) in the automated form and upload your document. You will receive confirmation
     that you have successfully uploaded the publication, or a warning if there is any problem with the publication after
-    virus scanning. The Municipal Library staff checks that everything is in order and the publication is loaded into the
-    Government Documents Portal, where it is accessible and preserved.</p>
+    virus scanning. The Municipal Library staff checks that everything is in order and the publication is loaded into
+    the Government Documents Portal, where it is accessible and preserved.</p>
 
+  <%# Display terms in order of terms array %>
   <% f.object.terms.each do |term| %>
     <%= render_edit_field_partial(term, f: f) %>
   <% end %>
