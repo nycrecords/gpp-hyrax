@@ -1,10 +1,19 @@
-<script>
-    characterCounter('#description-character-count', 300, $('#nyc_government_publication_description').val().length, 100);
-    $('#nyc_government_publication_description').keyup(function () {
-        characterCounter('#description-character-count', 300, $(this).val().length, 100);
-    });
-</script>
-<%= f.input :description, as: :text,
-            required: f.object.required?(key),
-            input_html: { class: 'form-control', multiple: false, style: 'height: 150px; resize: none', minlength: 100, maxlength: 300} %>
-<p id="description-character-count" class="character-counter">300 characters remaining</p>
+<% if f.object.model.class == NycGovernmentPublication %>
+  <script>
+      characterCounter('#description-character-count', 300, $('#nyc_government_publication_description').val().length, 100);
+      $('#nyc_government_publication_description').keyup(function () {
+          characterCounter('#description-character-count', 300, $(this).val().length, 100);
+      });
+  </script>
+  <%= f.input :description, as: :text,
+              required: f.object.required?(key),
+              input_html: {class: 'form-control', multiple: false, style: 'height: 150px; resize: none', minlength: 100, maxlength: 300} %>
+  <p id="description-character-count" class="character-counter">300 characters remaining</p>
+<% else %>
+  <%# Taken from _default.html.erb %>
+  <% if f.object.multiple? key %>
+    <%= f.input :description, as: :multi_value, input_html: {rows: '14', type: 'textarea'}, required: f.object.required?(key) %>
+  <% else %>
+    <%= f.input :description, as: :text, input_html: {rows: '14'}, required: f.object.required?(key) %>
+  <% end %>
+<% end %>
