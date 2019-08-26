@@ -1,27 +1,27 @@
 terms:
-  - id: english
+  - id: English
     term: English
-  - id: spanish
+  - id: Spanish
     term: Spanish
-  - id: chinese
+  - id: Chinese
     term: Chinese
-  - id: russian
+  - id: Russian
     term: Russian
-  - id: arabic
+  - id: Arabic
     term: Arabic
-  - id: bengali
+  - id: Bengali
     term: Bengali
-  - id: french
+  - id: French
     term: French
-  - id: haitian_creole
-    term: Haitian_Creole
-  - id: italian
+  - id: Haitian Creole
+    term: Haitian Creole
+  - id: Italian
     term: Italian
-  - id: korean
+  - id: Korean
     term: Korean
-  - id: polish
+  - id: Polish
     term: Polish
-  - id: urdu
+  - id: Urdu
     term: Urdu
-  - id: yiddish
+  - id: Yiddish
     term: Yiddish
