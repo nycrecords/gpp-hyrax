@@ -21,9 +21,11 @@ module GppHyrax
     config.action_mailer.perform_deliveries = true
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-        address: ENV["SMTP_ADDRESS"],
-        port: ENV["SMTP_PORT"],
-        enable_starttls_auto: false
+      address: ENV["SMTP_ADDRESS"],
+      port: ENV["SMTP_PORT"],
+      user_name: ENV['SMTP_USER_NAME'],
+      password: ENV['SMTP_PASSWORD'],
+      enable_starttls_auto: ENV['ENABLE_STARTTLS_AUTO']
     }
     config.action_mailer.default_url_options = { host: ENV["ACTION_MAILER_HOST"] }
   end

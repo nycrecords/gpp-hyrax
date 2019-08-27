@@ -4,7 +4,7 @@ Mailboxer.setup do |config|
   config.uses_emails = true
 
   #Configures the default from for emails sent for Messages and Notifications
-  config.default_from = "donotreply@records.nyc.gov"
+  config.default_from = ENV['DEFAULT_FROM']
 
   #Configures the methods needed by mailboxer
   config.email_method = :mailboxer_email
