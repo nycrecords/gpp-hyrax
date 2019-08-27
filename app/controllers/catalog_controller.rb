@@ -63,6 +63,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name', if: false
     config.add_index_field solr_name("date_published", :stored_searchable), label: "Date Published", itemprop: 'date_published'
     config.add_index_field solr_name("description", :stored_searchable), itemprop: 'description', helper_method: :iconify_auto_link
+    config.add_index_field solr_name("agency", :stored_searchable), label: "Agency", link_to_search: solr_name("agency", :facetable)
     config.add_index_field solr_name("subject", :stored_searchable), label: "Subject(s)", itemprop: 'about', link_to_search: solr_name("subject", :facetable)
     config.add_index_field solr_name("report_type", :stored_searchable), label: "Report Type", link_to_search: solr_name("report_type", :facetable)
 
