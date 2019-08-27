@@ -11,7 +11,7 @@ en:
           keyword_sim: Keyword
           language_sim: Language
           publisher_sim: Publisher
-          subject_sim: Subject
+          subject_sim: Subject(s)
         index:
           based_near_tesim: Location
           contributor_tesim: Contributor
@@ -27,7 +27,7 @@ en:
           license_tesim: License
           publisher_tesim: Publisher
           rights_statement_tesim: Rights Statement
-          subject_tesim: Subject
+          subject_tesim: Subject(s)
         show:
           based_near_tesim: Location
           contributor_tesim: Contributor
@@ -43,7 +43,7 @@ en:
           license_tesim: License
           publisher_tesim: Publisher
           rights_statement_tesim: Rights Statement
-          subject_tesim: Subject
+          subject_tesim: Subject(s)
           title_tesim: Title
   hyrax:
     account_name: My Institution Account Id

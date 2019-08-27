@@ -1,53 +1,53 @@
 terms:
-  - id: adjudications_-_decisions
+  - id: Adjudications / Decisions
     term: Adjudications / Decisions
-  - id: audit_report
+  - id: Audit Report
     term: Audit Report
-  - id: brochures
+  - id: Brochures
     term: Brochures
-  - id: budget_-_finance
+  - id: Budget / Finance
     term: Budget / Finance
-  - id: bulletins
+  - id: Bulletins
     term: Bulletins
-  - id: calendars
+  - id: Calendars
     term: Calendars
-  - id: data_-_statistics
+  - id: Data / Statistics
     term: Data / Statistics
-  - id: directives
+  - id: Directives
     term: Directives
-  - id: environmental_impact_statements_-_draft
+  - id: Environmental Impact Statements - Draft
     term: Environmental Impact Statements - Draft
-  - id: environmental_impact_statements_-_final
+  - id: Environmental Impact Statements - Final
     term: Environmental Impact Statements - Final
-  - id: executive_orders
+  - id: Executive Orders
     term: Executive Orders
-  - id: guides
+  - id: Guides
     term: Guides
-  - id: laws_-_legislation
+  - id: Laws / Legislation
     term: Laws / Legislation
-  - id: manuals_-_directories
+  - id: Manuals / Directories
     term: Manuals / Directories
-  - id: minutes
+  - id: Minutes
     term: Minutes
-  - id: newsletters_-_other_serial_publications
+  - id: Newsletters / Other Serial Publications
     term: Newsletters / Other Serial Publications
-  - id: other
+  - id: Other
     term: Other
-  - id: plans
+  - id: Plans
     term: Plans
-  - id: press_releases
+  - id: Press Releases
     term: Press Releases
-  - id: proceedings
+  - id: Proceedings
     term: Proceedings
-  - id: reports_-_annual
+  - id: Reports - Annual
     term: Reports - Annual
-  - id: reports_-_biennial
+  - id: Reports - Biennial
     term: Reports - Biennial
-  - id: reports_-_monthly
+  - id: Reports - Monthly
     term: Reports - Monthly
-  - id: reports_-_weekly
+  - id: Reports - Weekly
     term: Reports - Weekly
-  - id: reports_-_other_(consultant/staff)
+  - id: Reports - Other (Consultant/Staff)
     term: Reports - Other (Consultant/Staff)
-  - id: studies
+  - id: Studies
     term: Studies
