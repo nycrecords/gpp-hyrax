@@ -1,361 +1,361 @@
 terms:
-  - id: accounting
+  - id: Accounting
     term: Accounting
-  - id: advertising
+  - id: Advertising
     term: Advertising
-  - id: aged
+  - id: Aged
     term: Aged
-  - id: alcohol
+  - id: Alcohol
     term: Alcohol
-  - id: animal_welfare
+  - id: Animal_welfare
     term: Animal Welfare
-  - id: archaeology
+  - id: Archaeology
     term: Archaeology
-  - id: architecture
+  - id: Architecture
     term: Architecture
-  - id: art_and_design
+  - id: Art and Design
     term: Art and Design
-  - id: athletics
+  - id: Athletics
     term: Athletics
-  - id: banks_and_banking
+  - id: Banks And Banking
     term: Banks and Banking
-  - id: brooklyn
+  - id: Brooklyn
     term: Brooklyn
-  - id: bronx
+  - id: Bronx
     term: Bronx
-  - id: budget_and_finance
+  - id: Budget and Finance
     term: Budget and Finance
-  - id: building_code
+  - id: Building Code
     term: Building Code
-  - id: building_construction
+  - id: Building Construction
     term: Building Construction
-  - id: buildings
+  - id: Buildings
     term: Buildings
-  - id: business
+  - id: Business
     term: Business
-  - id: celebrations_and_parades
+  - id: Celebrations and Parades
     term: Celebrations and Parades
-  - id: cemeteries
+  - id: Cemeteries
     term: Cemeteries
-  - id: census
+  - id: Census
     term: Census
-  - id: charities
+  - id: Charities
     term: Charities
-  - id: children
+  - id: Children
     term: Children
-  - id: city_planning
+  - id: City Planning
     term: City Planning
-  - id: civil_service
+  - id: Civil Service
     term: Civil Service
-  - id: climate
+  - id: Climate
     term: Climate
-  - id: coastal
+  - id: Coastal
     term: Coastal
-  - id: community_relations
+  - id: Community Relations
     term: Community Relations
-  - id: consumers
+  - id: Consumers
     term: Consumers
-  - id: conventions
+  - id: Conventions
     term: Conventions
-  - id: correction
+  - id: Correction
     term: Correction
-  - id: cost
+  - id: Cost
     term: Cost
-  - id: courts
+  - id: Courts
     term: Courts
-  - id: crime_and_criminals
+  - id: Crime and Criminals
     term: Crime and Criminals
-  - id: criminal_justice
+  - id: Criminal Justice
     term: Criminal Justice
-  - id: culture
+  - id: Culture
     term: Culture
-  - id: data_and_communications
+  - id: Data and Communications
     term: Data and Communications
-  - id: death
+  - id: Death
     term: Death
-  - id: demography_and_population
+  - id: Demography and Population
     term: Demography and Population
-  - id: disability
+  - id: Disability
     term: Disability
-  - id: discrimination
+  - id: Discrimination
     term: Discrimination
-  - id: diseases
+  - id: Diseases
     term: Diseases
-  - id: drugs
+  - id: Drugs
     term: Drugs
-  - id: education
+  - id: Education
     term: Education
-  - id: elections_and_voting
+  - id: Elections and Voting
     term: Elections and Voting
-  - id: electric_power
+  - id: Electric Power
     term: Electric Power
-  - id: emergencies
+  - id: Emergencies
     term: Emergencies
-  - id: employment
+  - id: Employment
     term: Employment
-  - id: energy
+  - id: Energy
     term: Energy
-  - id: engineering
+  - id: Engineering
     term: Engineering
-  - id: environment
+  - id: Environment
     term: Environment
-  - id: equal_employment
+  - id: Equal Employment
     term: Equal Employment
-  - id: ethics
+  - id: Ethics
     term: Ethics
-  - id: ethnic_groups
+  - id: Ethnic groups
     term: Ethnic groups
-  - id: families
+  - id: Families
     term: Families
-  - id: finance
+  - id: Finance
     term: Finance
-  - id: fire_fighting
+  - id: Fire Fighting
     term: Fire Fighting
-  - id: firearms
+  - id: Firearms
     term: Firearms
-  - id: food
+  - id: Food
     term: Food
-  - id: food_supply
-    term: Food supply
-  - id: fuels
+  - id: Food Supply
+    term: Food Supply
+  - id: Fuels
     term: Fuels
-  - id: gambling
+  - id: Gambling
     term: Gambling
-  - id: geography
+  - id: Geography
     term: Geography
-  - id: government
+  - id: Government
     term: Government
-  - id: government_-_citizen_participation
+  - id: Government - Citizen participation
     term: Government - Citizen participation
-  - id: hazardous_materials
+  - id: Hazardous Materials
     term: Hazardous Materials
-  - id: health
+  - id: Health
     term: Health
-  - id: history
+  - id: History
     term: History
-  - id: homeless_persons
+  - id: Homeless Persons
     term: Homeless Persons
-  - id: hospitals
+  - id: Hospitals
     term: Hospitals
-  - id: hotels
+  - id: Hotels
     term: Hotels
-  - id: housing
+  - id: Housing
     term: Housing
-  - id: housing_-_limited_profit
+  - id: Housing - Limited Profit
     term: Housing - Limited Profit
-  - id: housing_-_low_income
+  - id: Housing - Low Income
     term: Housing - Low Income
-  - id: human_rights
+  - id: Human Rights
     term: Human Rights
-  - id: immigration
+  - id: Immigration
     term: Immigration
-  - id: industries
+  - id: Industries
     term: Industries
-  - id: infrastructure
+  - id: Infrastructure
     term: Infrastructure
-  - id: insurance
+  - id: Insurance
     term: Insurance
-  - id: internet
+  - id: Internet
     term: Internet
-  - id: islands
+  - id: Islands
     term: Islands
-  - id: labor_and_employment
+  - id: Labor and Employment
     term: Labor and Employment
-  - id: land_use
+  - id: Land Use
     term: Land Use
-  - id: landmarks
+  - id: Landmarks
     term: Landmarks
-  - id: languages
+  - id: Languages
     term: Languages
-  - id: laws_and_legislation
+  - id: Laws and legislation
     term: Laws and legislation
-  - id: lgbtq_(lesbian_/_gay_/_bisexual_/_transgender_/_queer_or_questioning)
+  - id: LGBTQ (Lesbian / Gay / Bisexual / Transgender / Queer or Questioning)
     term: LGBTQ (Lesbian / Gay / Bisexual / Transgender / Queer or Questioning)
-  - id: libraries
+  - id: Libraries
     term: Libraries
-  - id: licenses_and_permits
+  - id: Licenses and Permits
     term: Licenses and Permits
-  - id: manhattan
+  - id: Manhattan
     term: Manhattan
-  - id: maps
+  - id: Maps
     term: Maps
-  - id: markets
+  - id: Markets
     term: Markets
-  - id: mayor_(name)
+  - id: Mayor (Name)
     term: Mayor (Name)
-  - id: memorials
+  - id: Memorials
     term: Memorials
-  - id: mental_health
+  - id: Mental Health
     term: Mental Health
-  - id: monuments
+  - id: Monuments
     term: Monuments
-  - id: motor_vehicles
+  - id: Motor Vehicles
     term: Motor Vehicles
-  - id: museums
+  - id: Museums
     term: Museums
-  - id: neighborhoods
+  - id: Neighborhoods
     term: Neighborhoods
-  - id: nutrition
+  - id: Nutrition
     term: Nutrition
-  - id: officials_and_employees
+  - id: Officials and Employees
     term: Officials and Employees
-  - id: parking
+  - id: Parking
     term: Parking
-  - id: parks_and_recreation
+  - id: Parks and Recreation
     term: Parks and Recreation
-  - id: pensions
+  - id: Pensions
     term: Pensions
-  - id: pests
+  - id: Pests
     term: Pests
-  - id: police
+  - id: Police
     term: Police
-  - id: police_-_community_relations
+  - id: Police - Community Relations
     term: Police - Community Relations
-  - id: police_-_discipline
+  - id: Police - Discipline
     term: Police - Discipline
-  - id: politics_and_government
+  - id: Politics and Government
     term: Politics and Government
-  - id: pollution
+  - id: Pollution
     term: Pollution
-  - id: poverty
+  - id: Poverty
     term: Poverty
-  - id: prices
+  - id: Prices
     term: Prices
-  - id: purchasing_methods
+  - id: Purchasing Methods
     term: Purchasing Methods
-  - id: public_authorities
+  - id: Public Authorities
     term: Public Authorities
-  - id: public_welfare
+  - id: Public Welfare
     term: Public Welfare
-  - id: queens
+  - id: Queens
     term: Queens
-  - id: real_property
+  - id: Real Property
     term: Real Property
-  - id: records
+  - id: Records
     term: Records
-  - id: recreation
+  - id: Recreation
     term: Recreation
-  - id: recycling
+  - id: Recycling
     term: Recycling
-  - id: refuse_and_refuse_disposal
+  - id: Refuse and Refuse Disposal
     term: Refuse and Refuse Disposal
-  - id: religions
+  - id: Religions
     term: Religions
-  - id: rent_control
+  - id: Rent Control
     term: Rent Control
-  - id: rent_stabilization_law
+  - id: Rent Stabilization Law
     term: Rent Stabilization Law
-  - id: restaurants
+  - id: Restaurants
     term: Restaurants
-  - id: retail
+  - id: Retail
     term: Retail
-  - id: rivers
+  - id: Rivers
     term: Rivers
-  - id: sanitation
+  - id: Sanitation
     term: Sanitation
-  - id: schools
+  - id: Schools
     term: Schools
-  - id: schools_-_administration
+  - id: Schools - Administration
     term: Schools - Administration
-  - id: schools_-_charter
+  - id: Schools - Charter
     term: Schools - Charter
-  - id: schools_-_parochial
+  - id: Schools - Parochial
     term: Schools - Parochial
-  - id: schools_-_private
+  - id: Schools - Private
     term: Schools - Private
-  - id: schools_-_buildings
+  - id: Schools - Buildings
     term: Schools - Buildings
-  - id: sewage
+  - id: Sewage
     term: Sewage
-  - id: small_business
+  - id: Small Business
     term: Small Business
-  - id: snow_removal
+  - id: Snow Removal
     term: Snow Removal
-  - id: special_districts
+  - id: Special Districts
     term: Special Districts
-  - id: state_of_new_york
+  - id: State of New York
     term: State of New York
-  - id: staten_island
+  - id: Staten Island
     term: Staten Island
-  - id: statistics
+  - id: Statistics
     term: Statistics
-  - id: street_vendors
+  - id: Street Vendors
     term: Street Vendors
-  - id: streets_-_maintenance_and_repair
+  - id: Streets - Maintenance and Repair
     term: Streets - Maintenance and Repair
-  - id: streets_and_highways
+  - id: Streets and Highways
     term: Streets and Highways
-  - id: students
+  - id: Students
     term: Students
-  - id: subways
+  - id: Subways
     term: Subways
-  - id: subways_-_stations
+  - id: Subways - Stations
     term: Subways - Stations
-  - id: supplies
+  - id: Supplies
     term: Supplies
-  - id: surveying
+  - id: Surveying
     term: Surveying
-  - id: taxation
+  - id: Taxation
     term: Taxation
-  - id: taxation_-_exemption_from
+  - id: Taxation - Exemption from
     term: Taxation - Exemption from
-  - id: taxation_-_real_property
+  - id: Taxation - Real Property
     term: Taxation - Real Property
-  - id: taxicabs
+  - id: Taxicabs
     term: Taxicabs
-  - id: teachers
+  - id: Teachers
     term: Teachers
-  - id: television
+  - id: Television
     term: Television
-  - id: terminals
+  - id: Terminals
     term: Terminals
-  - id: terrorism
+  - id: Terrorism
     term: Terrorism
-  - id: toilets
+  - id: Toilets
     term: Toilets
-  - id: tolls
+  - id: Tolls
     term: Tolls
-  - id: tourists
+  - id: Tourists
     term: Tourists
-  - id: traffic_and_parking
+  - id: Traffic and Parking
     term: Traffic and Parking
-  - id: traffic_safety
+  - id: Traffic Safety
     term: Traffic Safety
-  - id: transit
+  - id: Transit
     term: Transit
-  - id: transit_-_rapid
+  - id: Transit - Rapid
     term: Transit - Rapid
-  - id: transportation
+  - id: Transportation
     term: Transportation
-  - id: transportation_-_finance
+  - id: Transportation - Finance
     term: Transportation - Finance
-  - id: transportation_-_school
+  - id: Transportation - School
     term: Transportation - School
-  - id: transportation-_planning
-    term: Transportation- Planning
-  - id: trees
+  - id: Transportation - Planning
+    term: Transportation - Planning
+  - id: Trees
     term: Trees
-  - id: trusts_and_estates
+  - id: Trusts and Estates
     term: Trusts and Estates
-  - id: universities_and_colleges
+  - id: Universities and Colleges
     term: Universities and Colleges
-  - id: vendors_and_contracts
+  - id: Vendors and Contracts
     term: Vendors and Contracts
-  - id: veterans
+  - id: Veterans
     term: Veterans
-  - id: volunteers
+  - id: Volunteers
     term: Volunteers
-  - id: water
+  - id: Water
     term: Water
-  - id: water_supply
+  - id: Water Supply
     term: Water Supply
-  - id: weapons
+  - id: Weapons
     term: Weapons
-  - id: weather
+  - id: Weather
     term: Weather
-  - id: women
+  - id: Women
     term: Women
-  - id: world_trade_center
+  - id: World Trade Center
     term: World Trade Center
-  - id: youth
+  - id: Youth
     term: Youth
