@@ -41,8 +41,14 @@ terms:
     term: Proceedings
   - id: Reports - Annual
     term: Reports - Annual
+  - id: Reports - Biannual
+    term: Reports - Biannual
   - id: Reports - Biennial
     term: Reports - Biennial
+  - id: Reports - Every 4 Years
+    term: Reports - Every 4 Years
+  - id: Reports - Every 5 Years
+    term: Reports - Every 5 Years
   - id: Reports - Monthly
     term: Reports - Monthly
   - id: Reports - Weekly
