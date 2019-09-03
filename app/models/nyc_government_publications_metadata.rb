@@ -2,6 +2,11 @@ module NycGovernmentPublicationsMetadata
   extend ActiveSupport::Concern
 
   included do
+    after_initialize :set_default_visibility
+    def set_default_visibility
+      self.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC if new_record?
+    end
+
     property :title, predicate: ::RDF::Vocab::DC.title do |index|
       index.as :stored_searchable, :facetable
     end
