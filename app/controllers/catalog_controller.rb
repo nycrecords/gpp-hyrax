@@ -21,6 +21,10 @@ class CatalogController < ApplicationController
     solr_name('agency', :stored_sortable)
   end
 
+  def self.date_published_field
+    solr_name('date_published', :stored_sortable)
+  end
+
   configure_blacklight do |config|
     config.view.gallery.partials = [:index_header, :index]
     config.view.masonry.partials = [:index]
@@ -267,15 +271,13 @@ class CatalogController < ApplicationController
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     # label is key, solr field is value
-    config.add_sort_field "score desc, #{uploaded_field} desc", label: "relevance"
-    config.add_sort_field "#{uploaded_field} desc", label: "date uploaded \u25BC"
-    config.add_sort_field "#{uploaded_field} asc", label: "date uploaded \u25B2"
-    config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
-    config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
+    config.add_sort_field "score desc, #{date_published_field} desc", label: "relevance"
     config.add_sort_field "#{title_field} asc", :label => "Title (A-Z)"
     config.add_sort_field "#{title_field} desc", :label => "Title (Z-A)"
     config.add_sort_field "#{agency_field} asc", :label => "Agency (A-Z)"
     config.add_sort_field "#{agency_field} desc", :label => "Agency (Z-A)"
+    config.add_sort_field "#{date_published_field} desc", :label => "Date Published (Newest)"
+    config.add_sort_field "#{date_published_field} asc", :label => "Date Published (Oldest)"
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.

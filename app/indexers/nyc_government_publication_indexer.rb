@@ -14,6 +14,7 @@ class NycGovernmentPublicationIndexer < Hyrax::WorkIndexer
    super.tap do |solr_doc|
      solr_doc['title_ssi'] = object.title
      solr_doc['agency_ssi'] = object.agency
+     solr_doc['date_published_ssi'] = object.date_published
    end
   end
 end
