@@ -271,7 +271,7 @@ class CatalogController < ApplicationController
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     # label is key, solr field is value
-    config.add_sort_field "score desc, #{date_published_field} desc", label: "relevance"
+    config.add_sort_field "score desc, #{date_published_field} desc", label: "Relevance"
     config.add_sort_field "#{date_published_field} desc", :label => "Date Published (Newest)"
     config.add_sort_field "#{date_published_field} asc", :label => "Date Published (Oldest)"
     config.add_sort_field "#{title_field} asc", :label => "Title (A-Z)"
