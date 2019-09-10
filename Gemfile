@@ -68,8 +68,8 @@ gem 'rsolr', '>= 1.0'
 gem 'bootstrap-sass', '~> 3.0'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'jquery-rails'
-gem 'devise'
-gem 'devise-guests', '~> 0.6'
+gem 'devise', '>= 4.7.1'
+gem 'devise-guests', '~> 0.7', '>= 0.7.0'
 group :development, :test do
   gem 'fcrepo_wrapper'
 end
