@@ -1,4 +1,6 @@
 terms:
+  - id: Accessibility
+    term: Accessibility
   - id: Accounting
     term: Accounting
   - id: Advertising
@@ -91,6 +93,8 @@ terms:
     term: Electric Power
   - id: Emergencies
     term: Emergencies
+  - id: Emergency Preparedness
+    term: Emergency Preparedness
   - id: Employment
     term: Employment
   - id: Energy
@@ -127,6 +131,8 @@ terms:
     term: Government
   - id: Government - Citizen participation
     term: Government - Citizen participation
+  - id: Hazard Mitigation
+    term: Hazard Mitigation
   - id: Hazardous Materials
     term: Hazardous Materials
   - id: Health
@@ -225,6 +231,8 @@ terms:
     term: Purchasing Methods
   - id: Public Authorities
     term: Public Authorities
+  - id: Public Health
+    term: Public Health
   - id: Public Welfare
     term: Public Welfare
   - id: Queens
