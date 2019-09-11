@@ -1,3 +1,11 @@
+<%
+  # Redirect public users back to the homepage
+  @collection = Collection.first
+  if current_user.has_nyc_account and @collection
+    controller.redirect_to(@collection)
+%>
+<% end %>
+
 <% provide :page_header do %>
   <h1><%= t("hyrax.dashboard.title") %></h1>
 <% end %>
