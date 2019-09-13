@@ -19,7 +19,7 @@
       </li>
     <% else %>
       <li class="dropdown">
-        <%= link_to hyrax.dashboard_profile_path(current_user), role: 'button' do %>
+        <%= link_to '', role: 'button', data: { toggle: 'dropdown' } do %>
           <span class="sr-only"><%= t("hyrax.toolbar.profile.sr_action") %></span>
           <span class="hidden-xs">&nbsp;<%= current_user.name %></span>
           <span class="sr-only"> <%= t("hyrax.toolbar.profile.sr_target") %></span>
