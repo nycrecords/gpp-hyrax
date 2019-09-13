@@ -76,8 +76,6 @@ end
 
 gem 'riiif', '~> 2.0'
 
-# gem 'auto-session-timeout'
-# gem 'auto-session-timeout-warning'
 gem 'auto-session-timeout-warning', git: 'git@github.com:nycrecords/auto-session-timeout-warning.git'
 gem 'hydra-role-management'
 gem 'jquery-ui-rails'
