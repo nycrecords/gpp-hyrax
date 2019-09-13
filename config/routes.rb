@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  
+
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
-  
+
     concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get 'sign_in', to: 'omniauth#new', as: :new_user_session
     post 'sign_in', to: 'omniauth_callbacks#saml', as: :new_session
     get 'sign_out', to: 'sessions#destroy', as: :destroy_user_session
+    get 'active' => 'sessions#active'
+    get 'timeout' => 'sessions#timeout'
   end
 
   mount Hydra::RoleManagement::Engine => '/'
