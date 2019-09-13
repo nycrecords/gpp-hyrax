@@ -25,4 +25,12 @@ class SolrDocument
   # Do content negotiation for AF models. 
 
   use_extension( Hydra::ContentNegotiation )
+
+  def date_published
+    self[Solrizer.solr_name('date_published')][0]
+  end
+
+  def agency
+    self[Solrizer.solr_name('agency')][0]
+  end
 end
