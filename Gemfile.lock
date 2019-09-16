@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:nycrecords/auto-session-timeout-warning.git
+  remote: https://github.com/nycrecords/auto-session-timeout-warning.git
   revision: 5b1bb1b2127e25008dc1cacc8169bc9a972e219e
   specs:
     auto-session-timeout-warning (1.1.0)
