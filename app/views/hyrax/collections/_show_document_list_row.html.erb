@@ -1,10 +1,5 @@
 <% id = document.id %>
 <tr id="document_<%= id %>">
-  <td>&nbsp;
-    <% if current_user and document.depositor != current_user.user_key %>
-      <i class="glyphicon glyphicon-share-alt" />
-    <% end %>
-  </td>
   <td>
     <div class="media">
       <div class="media-body">
