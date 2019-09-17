@@ -503,7 +503,7 @@ GEM
     noid-rails (3.0.1)
       actionpack (>= 5.0.0, < 6)
       noid (~> 0.9)
-    nokogiri (1.10.2)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     nokogumbo (1.5.0)
       nokogiri
@@ -536,7 +536,7 @@ GEM
       nokogiri (~> 1.6)
       rails (~> 5.0)
       rdf
-    rack (2.0.6)
+    rack (2.0.7)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.1.7)
@@ -554,7 +554,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.4)
+    rails-html-sanitizer (1.2.0)
       loofah (~> 2.2, >= 2.2.2)
     rails_autolink (1.1.6)
       rails (> 3.1)
@@ -564,7 +564,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (12.3.2)
+    rake (12.3.3)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -802,7 +802,7 @@ DEPENDENCIES
   hyrax (= 2.5.1)
   jbuilder (~> 2.5)
   jquery-rails
-  jquery-ui-rails
+  jquery-ui-rails (>= 6.0.1)
   listen (>= 3.0.5, < 3.2)
   omniauth-saml
   puma (~> 3.7)
@@ -825,4 +825,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   2.0.2
+   1.17.3

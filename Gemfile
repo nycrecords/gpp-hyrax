@@ -78,6 +78,6 @@ gem 'riiif', '~> 2.0'
 
 gem 'auto-session-timeout-warning', git: 'https://github.com/nycrecords/auto-session-timeout-warning.git'
 gem 'hydra-role-management'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '>= 6.0.1'
 gem 'omniauth-saml'
 gem 'dotenv-rails'
