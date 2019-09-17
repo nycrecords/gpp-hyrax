@@ -19,7 +19,6 @@ class User < ApplicationRecord
   devise_modules = [
     :registerable,
     :recoverable,
-    :rememberable,
     :omniauthable,
     omniauth_providers: [:saml],
     authentication_keys: [:guid]

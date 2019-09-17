@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/nycrecords/auto-session-timeout-warning.git
+  revision: 5b1bb1b2127e25008dc1cacc8169bc9a972e219e
+  specs:
+    auto-session-timeout-warning (1.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -781,6 +787,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  auto-session-timeout-warning!
   bootstrap-sass (~> 3.0)
   byebug
   capybara (~> 2.13)
@@ -795,6 +802,7 @@ DEPENDENCIES
   hyrax (= 2.5.1)
   jbuilder (~> 2.5)
   jquery-rails
+  jquery-ui-rails
   listen (>= 3.0.5, < 3.2)
   omniauth-saml
   puma (~> 3.7)

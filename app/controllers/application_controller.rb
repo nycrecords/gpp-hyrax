@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  auto_session_timeout 30.minutes
+  before_timedout_action
+
   helper Openseadragon::OpenseadragonHelper
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller

@@ -17,4 +17,12 @@ class SessionsController < Devise::SessionsController
       super
     end
   end
+
+  def active
+    render_session_status
+  end
+
+  def timeout
+    redirect_to user_saml_omniauth_authorize_path(locale: nil) + '/spslo'
+  end
 end
