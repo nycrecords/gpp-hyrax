@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  auto_session_timeout 60.minutes
+  auto_session_timeout 30.minutes
   before_timedout_action
 
   helper Openseadragon::OpenseadragonHelper

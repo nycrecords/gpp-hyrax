@@ -7,7 +7,7 @@
 
   <body>
     <% if current_user %>
-      <%= auto_session_warning_tag %>
+      <%= auto_session_warning_tag message: "Your session will expire in approximately 5 minutes." %>
       <%= auto_session_timeout_js timeout: 1800,
                                   frequency: 60,
                                   start: 60,
