@@ -73,7 +73,7 @@
     </div>
   </div>
 
-  <div class="row hyc-body">
+  <div class="row">
     <div class="col-md-8 hyc-description">
       <%= render 'collection_description', presenter: @presenter %>
 
@@ -92,7 +92,7 @@
   </div>
 
   <% if can? :deposit, @presenter.solr_document %>
-    <div>
+    <div style="text-align: center;">
       <% if @presenter.create_many_work_types? %>
         <%= link_to t('hyrax.collection.actions.add_new_work.label'),
                     '#',
@@ -102,7 +102,7 @@
       <% else # simple link to the first work type %>
         <%= link_to 'Submit a Publication',
                     new_polymorphic_path([main_app, @presenter.first_work_type], add_works_to_collection: @presenter.id),
-                    class: 'btn btn-primary' %>
+                    class: 'btn btn-primary submit-btn' %>
       <% end %>
     </div>
   <% end %>
@@ -130,10 +130,6 @@
 
   <!-- Works -->
   <% if @members_count > 0 %>
-      <div class="hyc-blacklight hyc-bl-title">
-        <h4><%= t('.works_in_collection') %> (<%= @members_count %>)</h4>
-      </div>
-
       <div class="hyc-blacklight hyc-bl-sort">
         <%= render 'sort_and_per_page', collection: @presenter %>
       </div>
