@@ -8,6 +8,8 @@
         <% tabs.each_with_index do | tab, i | %>
           <% if i == 0 %>
             <li role="presentation" class="active">
+          <% elsif tab == "relationships" %>
+            <li role="presentation" class="hidden">
           <% else %>
             <li role="presentation">
           <% end %>
