@@ -284,7 +284,7 @@ module Hyrax
       respond_to do |wants|
         wants.html do
           # Calling `#t` in a controller context does not mark _html keys as html_safe
-          flash[:notice] = "Your files are being processed in the background. You may need to refresh this page to see these updates."
+          flash[:notice] = 'Your files are being processed. You may need to refresh this page to see these updates.'
           redirect_to [main_app, curation_concern]
         end
         wants.json { render :show, status: :created, location: polymorphic_path([main_app, curation_concern]) }
