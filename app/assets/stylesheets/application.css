@@ -14,4 +14,5 @@
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require jquery-ui
  *= require_self
+ *= require 'blacklight_advanced_search'
  */

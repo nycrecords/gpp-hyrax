@@ -1,4 +1,5 @@
 class CatalogController < ApplicationController
+  include BlacklightAdvancedSearch::Controller
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
 
@@ -26,6 +27,17 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    # default advanced config values
+    config.advanced_search = {
+        qt:'search',
+        url_key: 'advanced',
+        query_parser: 'dismax',
+        form_solr_parameters: {
+            "facet.limit" => 20,
+            "facet.sort" => "index" # sort by byte order of values
+        }
+    }
+
     config.view.gallery.partials = [:index_header, :index]
     config.view.masonry.partials = [:index]
     config.view.slideshow.partials = [:index]
@@ -124,6 +136,7 @@ class CatalogController < ApplicationController
         pf: title_name.to_s
       }
     end
+    # TODO: CHANGE SOMETHING IN HERE TO TAKE OUT COLLECTIONS FROM SEARCH
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate
@@ -203,14 +216,6 @@ class CatalogController < ApplicationController
 
     config.add_search_field('resource_type') do |field|
       solr_name = solr_name("resource_type", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('format') do |field|
-      solr_name = solr_name("format", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
