@@ -1,4 +1,5 @@
 class SessionsController < Devise::SessionsController
+  auto_session_timeout_actions
   SAML_SETTINGS = Devise.omniauth_configs[:saml].strategy
 
   def destroy
@@ -16,10 +17,6 @@ class SessionsController < Devise::SessionsController
     else
       super
     end
-  end
-
-  def active
-    render_session_status
   end
 
   def timeout

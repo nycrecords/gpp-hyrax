@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get 'sign_out', to: 'sessions#destroy', as: :destroy_user_session
     get 'active' => 'sessions#active'
     get 'timeout' => 'sessions#timeout'
+    get 'renew_session' => 'sessions#renew'
   end
 
   mount Hydra::RoleManagement::Engine => '/'
