@@ -55,7 +55,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: "search",
       rows: 10,
-      qf: "title_tesim description_tesim creator_tesim keyword_tesim"
+      qf: "keyword_tesim associated_place_tesim title_tesim sub_title_tesim agency_tesim additional_creators_tesim subject_tesim description_tesim date_published_tesim report_type_tesim language_tesim fiscal_year_tesim calendar_year_tesim borough_tesim school_district_tesim community_board_district associated_place_tesim"
     }
 
     # solr field configuration for document/show views
@@ -132,11 +132,10 @@ class CatalogController < ApplicationController
       all_names = config.show_fields.values.map(&:field).join(" ")
       title_name = solr_name("title", :stored_searchable)
       field.solr_parameters = {
-        qf: "#{all_names} file_format_tesim all_text_timv",
+        qf: "#{all_names} file_format_tesim all_text_timv title_tesim sub_title_tesim agency_tesim additional_creators_tesim subject_tesim description_tesim date_published_tesim report_type_tesim language_tesim fiscal_year_tesim calendar_year_tesim borough_tesim school_district_tesim community_board_district associated_place_tesim",
         pf: title_name.to_s
       }
     end
-    # TODO: CHANGE SOMETHING IN HERE TO TAKE OUT COLLECTIONS FROM SEARCH
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate
