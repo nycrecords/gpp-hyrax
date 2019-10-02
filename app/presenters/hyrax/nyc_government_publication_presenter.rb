@@ -14,7 +14,6 @@ module Hyrax
              :borough,
              :school_district,
              :community_board_district,
-             :associated_place,
-             to: :solr_document
+             :associated_place, to: :solr_document
   end
 end
