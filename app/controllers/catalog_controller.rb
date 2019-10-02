@@ -28,15 +28,11 @@ class CatalogController < ApplicationController
 
   configure_blacklight do |config|
     # default advanced config values
-    config.advanced_search = {
-        qt:'search',
-        url_key: 'advanced',
-        query_parser: 'dismax',
-        form_solr_parameters: {
-            "facet.limit" => 20,
-            "facet.sort" => "index" # sort by byte order of values
-        }
-    }
+    config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
+    # config.advanced_search[:qt] ||= 'advanced'
+    config.advanced_search[:url_key] ||= 'advanced'
+    config.advanced_search[:query_parser] ||= 'dismax'
+    config.advanced_search[:form_solr_parameters] ||= {}
 
     config.view.gallery.partials = [:index_header, :index]
     config.view.masonry.partials = [:index]
