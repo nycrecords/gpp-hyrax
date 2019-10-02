@@ -49,9 +49,9 @@ class CatalogController < ApplicationController
 
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
-      qt: "search",
-      rows: 10,
-      qf: "keyword_tesim associated_place_tesim title_tesim sub_title_tesim agency_tesim additional_creators_tesim subject_tesim description_tesim date_published_tesim report_type_tesim language_tesim fiscal_year_tesim calendar_year_tesim borough_tesim school_district_tesim community_board_district associated_place_tesim"
+        qt: "search",
+        rows: 10,
+        qf: "keyword_tesim associated_place_tesim title_tesim sub_title_tesim agency_tesim additional_creators_tesim subject_tesim description_tesim date_published_tesim report_type_tesim language_tesim fiscal_year_tesim calendar_year_tesim borough_tesim school_district_tesim community_board_district associated_place_tesim"
     }
 
     # solr field configuration for document/show views
@@ -128,8 +128,8 @@ class CatalogController < ApplicationController
       all_names = config.show_fields.values.map(&:field).join(" ")
       title_name = solr_name("title", :stored_searchable)
       field.solr_parameters = {
-        qf: "#{all_names} file_format_tesim all_text_timv title_tesim sub_title_tesim agency_tesim additional_creators_tesim subject_tesim description_tesim date_published_tesim report_type_tesim language_tesim fiscal_year_tesim calendar_year_tesim borough_tesim school_district_tesim community_board_district associated_place_tesim",
-        pf: title_name.to_s
+          qf: "#{all_names} file_format_tesim all_text_timv title_tesim sub_title_tesim agency_tesim additional_creators_tesim subject_tesim description_tesim date_published_tesim report_type_tesim language_tesim fiscal_year_tesim calendar_year_tesim borough_tesim school_district_tesim community_board_district associated_place_tesim",
+          pf: title_name.to_s
       }
     end
 
@@ -147,8 +147,8 @@ class CatalogController < ApplicationController
       # See: http://wiki.apache.org/solr/LocalParams
       solr_name = solr_name("title", :stored_searchable)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
@@ -187,80 +187,80 @@ class CatalogController < ApplicationController
     config.add_search_field('description') do |field|
       solr_name = solr_name("description", :stored_searchable)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('date_published') do |field|
       solr_name = solr_name("date_published", :stored_searchable)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('report_type') do |field|
       solr_name = solr_name("report_type", :stored_searchable)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('language') do |field|
       solr_name = solr_name("language", :stored_searchable)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('fiscal_year') do |field|
       solr_name = solr_name("fiscal_year", :stored_searchable)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('calendar_year') do |field|
       solr_name = solr_name("calendar_year", :stored_searchable)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('borough') do |field|
       solr_name = solr_name("borough", :stored_searchable)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('school_district') do |field|
       solr_name = solr_name("school_district", :stored_searchable)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('community_board_district') do |field|
       solr_name = solr_name("community_board_district", :stored_searchable)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('associated_place') do |field|
       solr_name = solr_name("associated_place", :stored_searchable)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
