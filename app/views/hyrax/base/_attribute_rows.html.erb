@@ -1,4 +1,6 @@
-<%= presenter.attribute_to_html(:date_modified, label: t('hyrax.base.show.last_modified'), html_dl: true) %>
+<% if user_signed_in? && (current_user.admin? || current_user.library_reviewers?) %>
+  <%= presenter.attribute_to_html(:date_modified, label: t('hyrax.base.show.last_modified'), html_dl: true) %>
+<% end %>
 <%= presenter.attribute_to_html(:sub_title, html_dl: true) %>
 <%= presenter.attribute_to_html(:agency, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:additional_creators, html_dl: true) %>
