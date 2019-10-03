@@ -51,7 +51,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
         qt: "search",
         rows: 10,
-        qf: "keyword_tesim associated_place_tesim title_tesim sub_title_tesim agency_tesim additional_creators_tesim subject_tesim description_tesim date_published_tesim report_type_tesim language_tesim fiscal_year_tesim calendar_year_tesim borough_tesim school_district_tesim community_board_district associated_place_tesim"
+        qf: "title_tesim description_tesim creator_tesim keyword_tesim"
     }
 
     # solr field configuration for document/show views
