@@ -1,0 +1,16 @@
+<% if user_signed_in? && (current_user.admin? || current_user.library_reviewers?) %>
+  <%= presenter.attribute_to_html(:date_modified, label: t('hyrax.base.show.last_modified'), html_dl: true) %>
+<% end %>
+<%= presenter.attribute_to_html(:sub_title, html_dl: true) %>
+<%= presenter.attribute_to_html(:agency, render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:additional_creators, html_dl: true) %>
+<%= presenter.attribute_to_html(:subject, render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:report_type, html_dl: true) %>
+<%= presenter.attribute_to_html(:date_published, html_dl: true) %>
+<%= presenter.attribute_to_html(:language, render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:fiscal_year, html_dl: true) %>
+<%= presenter.attribute_to_html(:calendar_year, html_dl: true) %>
+<%= presenter.attribute_to_html(:borough, html_dl: true) %>
+<%= presenter.attribute_to_html(:school_district, html_dl: true) %>
+<%= presenter.attribute_to_html(:community_board_district, html_dl: true) %>
+<%= presenter.attribute_to_html(:associated_place, html_dl: true) %>
