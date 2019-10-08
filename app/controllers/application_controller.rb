@@ -14,4 +14,9 @@ class ApplicationController < ActionController::Base
   with_themed_layout '1_column'
 
   protect_from_forgery with: :exception, except: [:saml]
+
+  # Redirect to location that triggered authentication or to homepage
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || root_path
+  end
 end
