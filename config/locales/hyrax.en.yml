@@ -47,6 +47,8 @@ en:
           title_tesim: Title
   hyrax:
     account_name: My Institution Account Id
+    controls:
+      contact: Contact Us
     directory:
       suffix: "@example.org"
     footer:
