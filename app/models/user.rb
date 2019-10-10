@@ -21,7 +21,7 @@ class User < ApplicationRecord
     :recoverable,
     :omniauthable,
     omniauth_providers: [:saml],
-    authentication_keys: [:guid]
+    authentication_keys: [:email]
   ]
 
   devise(*devise_modules)
