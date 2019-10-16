@@ -4,7 +4,7 @@ module Hyrax
   module Workflow
     class PendingReviewNotification < GppNotification
       def workflow_recipients
-        { to: library_reviewers << depositor }
+        { to: library_reviewers }
       end
 
       def subject
