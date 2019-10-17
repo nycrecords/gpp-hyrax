@@ -8,7 +8,7 @@ module Hyrax
       end
 
       def subject
-        'Government Publications Portal: Approval'
+        'Government Publications Portal: Submission Approval'
       end
 
       def message

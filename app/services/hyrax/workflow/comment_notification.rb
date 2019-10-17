@@ -8,7 +8,7 @@ module Hyrax
       end
 
       def subject
-        'You have a new comment'
+        'Government Publications Portal: Submission Comments'
       end
 
       def message
