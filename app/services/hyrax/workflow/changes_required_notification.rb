@@ -8,7 +8,7 @@ module Hyrax
       end
 
       def subject
-        'Government Publications Portal: Submission Rejection'
+        'Government Publications Portal: Submission Changes Required'
       end
 
       def message
