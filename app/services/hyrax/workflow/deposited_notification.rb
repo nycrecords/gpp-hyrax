@@ -8,11 +8,15 @@ module Hyrax
       end
 
       def subject
-        'Deposit has been approved'
+        'Government Publications Portal: Submission Approval'
       end
 
       def message
-        "#{title} (#{link_to work_id, document_url}) was approved by #{user.user_key}. #{comment}"
+        "You submitted: #{title}<br><br>" +
+            "Your submission has been accepted and archived in the Government Publications Portal.<br><br>" +
+            "Emails to this mailbox are not monitored. Please contact the Municipal Library at municipal-library-admins@records.nyc.gov.<br><br>" +
+            "Thank you,<br>" +
+            "Municipal Library"
       end
     end
   end

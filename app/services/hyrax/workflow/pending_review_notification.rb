@@ -4,15 +4,19 @@ module Hyrax
   module Workflow
     class PendingReviewNotification < GppNotification
       def workflow_recipients
-        { to: library_reviewers << depositor }
+        { to: library_reviewers }
       end
 
       def subject
-        'Deposit needs review'
+        'You have a new task'
       end
 
       def message
-        "#{title} (#{link_to work_id, document_url}) was deposited by #{user.user_key} and is awaiting approval #{comment}"
+        "A new item has been submitted:<br><br>" +
+            "Title: #{title}<br>" +
+            "Submitted by: #{user.display_name} (#{user.user_key})<br><br>" +
+            "The submission must be checked before inclusion in the archive.<br><br>" +
+            "To review this submission, please visit: #{link_to work_id, document_url}"
       end
     end
   end
