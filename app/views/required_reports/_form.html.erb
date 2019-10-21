@@ -1,0 +1,54 @@
+<%= simple_form_for @required_report do |f| %>
+  <% if required_report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(required_report.errors.count, "error") %> prohibited this required_report from being saved:</h2>
+
+      <ul>
+        <% required_report.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :title,
+              as: :string,
+              input_html: { class: 'form-control' }
+  %>
+
+  <%= f.input :agency,
+              as: :select,
+              collection: AgenciesService.select_all_options,
+              include_blank: true,
+              input_html: { class: 'form-control' }
+  %>
+
+  <%= f.input :frequency,
+              as: :string,
+              input_html: { class: 'form-control' }
+  %>
+
+  <%= f.input :due_date,
+              as: :string,
+              input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD' } %>
+
+  <%= f.input :citation,
+              as: :string,
+              input_html: { class: 'form-control' }
+  %>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+
+  <script>
+      $('#required_report_due_date').inputmask(
+          {
+              alias: 'datetime',
+              inputFormat: 'yyyy-mm-dd',
+              placeholder: '_',
+              showMaskOnHover: false,
+              min: '01/01/1600'
+          });
+  </script>
+<% end %>
