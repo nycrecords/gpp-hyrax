@@ -45,4 +45,18 @@
             showMaskOnHover: false,
             min: '1600-01-01'
         });
+
+    // Ensure fiscal year is at least 1600
+    $('#nyc_government_publication_fiscal_year').inputmask('numeric', {
+        inputtype: 'text',
+        min: 1600,
+        rightAlign: false
+    });
+
+    // Ensure calendar year is at least 1600
+    $('#nyc_government_publication_calendar_year').inputmask('numeric', {
+        inputtype: 'text',
+        min: 1600,
+        rightAlign: false
+    });
 </script>
