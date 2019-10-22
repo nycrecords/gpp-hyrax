@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Required Reports</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Agency</th>
+      <th>Frequency</th>
+      <th>Due date</th>
+      <th>Citation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @required_reports.each do |required_report| %>
+      <tr>
+        <td><%= required_report.title %></td>
+        <td><%= required_report.agency %></td>
+        <td><%= required_report.frequency %></td>
+        <td><%= required_report.due_date %></td>
+        <td><%= required_report.citation %></td>
+        <td><%= link_to 'Show', required_report %></td>
+        <td><%= link_to 'Edit', edit_required_report_path(required_report) %></td>
+        <td><%= link_to 'Destroy', required_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Required Report', new_required_report_path %>
