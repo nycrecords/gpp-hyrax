@@ -23,4 +23,40 @@
             previously visited the batch download page in this Turbolinks session %>
         $("#fileupload").fileupload('option', 'downloadTemplateId', 'template-download')
     });
+
+    // Title character counter
+    characterCounter('#title-character-count', 150, $('#nyc_government_publication_title').val().length, 10);
+    $('#nyc_government_publication_title').keyup(function () {
+        characterCounter('#title-character-count', 150, $(this).val().length, 10);
+    });
+
+    // Description character counter
+    characterCounter('#description-character-count', 300, $('#nyc_government_publication_description').val().length, 100);
+    $('#nyc_government_publication_description').keyup(function () {
+        characterCounter('#description-character-count', 300, $(this).val().length, 100);
+    });
+
+    // Ensure YYYY-MM-DD date format
+    $('#nyc_government_publication_date_published').inputmask(
+        {
+            alias: 'datetime',
+            inputFormat: 'yyyy-mm-dd',
+            placeholder: '_',
+            showMaskOnHover: false,
+            min: '1600-01-01'
+        });
+
+    // Ensure fiscal year is at least 1600
+    $('#nyc_government_publication_fiscal_year').inputmask('numeric', {
+        inputtype: 'text',
+        min: 1600,
+        rightAlign: false
+    });
+
+    // Ensure calendar year is at least 1600
+    $('#nyc_government_publication_calendar_year').inputmask('numeric', {
+        inputtype: 'text',
+        min: 1600,
+        rightAlign: false
+    });
 </script>

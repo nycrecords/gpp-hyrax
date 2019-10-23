@@ -1,10 +1,4 @@
 <% if f.object.model.class == NycGovernmentPublication %>
-  <script>
-      characterCounter('#title-character-count', 150, $('#nyc_government_publication_title').val().length, 10);
-      $('#nyc_government_publication_title').keyup(function () {
-          characterCounter('#title-character-count', 150, $(this).val().length, 10);
-      });
-  </script>
   <%= f.input :title,
               as: :string,
               required: f.object.required?(key),
