@@ -8,7 +8,7 @@ module Hyrax
       end
 
       def subject
-        'You have a new task'
+        'Government Publications Portal: You have a new task'
       end
 
       def message

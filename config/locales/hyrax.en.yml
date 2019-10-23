@@ -58,6 +58,10 @@ en:
     institution_name_full: The Institution Name
     product_name: Government Publications Portal
     product_twitter_handle: "@SamveraRepo"
+  mailboxer:
+    message_mailer:
+      subject_new: "%{subject}"
+      subject_reply: "%{subject}"
   simple_form:
     hints:
       admin_set:
