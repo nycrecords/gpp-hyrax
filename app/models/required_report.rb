@@ -1,2 +1,0 @@
-class RequiredReport < ApplicationRecord
-end
