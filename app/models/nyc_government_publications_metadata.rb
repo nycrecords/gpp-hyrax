@@ -19,6 +19,10 @@ module NycGovernmentPublicationsMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :required_report_type, predicate: ::RDF::URI.intern('http://a860-gpp.nyc.gov/required-report-type'), multiple: false do |index|
+      index.as :stored_searchable, :facetable
+    end
+
     property :additional_creators, predicate: ::RDF::Vocab::DC.contributor, multiple: true do |index|
       index.as :stored_searchable, :facetable
     end

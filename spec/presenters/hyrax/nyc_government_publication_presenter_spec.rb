@@ -19,7 +19,7 @@ RSpec.describe Hyrax::NycGovernmentPublicationPresenter do
   end
   let(:user) { double(user_key: 'test@example.com') }
   let(:solr_properties) do
-    %w[sub_title report_type date_published fiscal_year calendar_year agency additional_creators borough school_district community_board_district associated_place required_report]
+    %w[sub_title report_type date_published fiscal_year calendar_year agency additional_creators borough school_district community_board_district associated_place required_report_type]
   end
   subject { presenter }
 
@@ -41,5 +41,5 @@ RSpec.describe Hyrax::NycGovernmentPublicationPresenter do
   it { is_expected.to delegate_method(:school_district).to(:solr_document) }
   it { is_expected.to delegate_method(:community_board_district).to(:solr_document) }
   it { is_expected.to delegate_method(:associated_place).to(:solr_document) }
-  it { is_expected.to delegate_method(:required_report).to(:solr_document) }
+  it { is_expected.to delegate_method(:required_report_type).to(:solr_document) }
 end

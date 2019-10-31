@@ -15,6 +15,6 @@ module Hyrax
              :school_district,
              :community_board_district,
              :associated_place,
-             :required_report, to: :solr_document
+             :required_report_type, to: :solr_document
   end
 end

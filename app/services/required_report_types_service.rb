@@ -1,6 +1,6 @@
-module RequiredReportsService
+module RequiredReportTypesService
   mattr_accessor :authority
-  self.authority = Qa::Authorities::Local.subauthority_for('required_reports')
+  self.authority = Qa::Authorities::Local.subauthority_for('required_report_types')
 
   def self.select_all_options
     authority.all.map do |element|
