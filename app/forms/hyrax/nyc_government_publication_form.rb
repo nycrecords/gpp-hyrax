@@ -30,7 +30,7 @@ module Hyrax
 
     self.terms = [:title, :sub_title, :agency, :additional_creators, :subject, :description,
                   :date_published, :report_type, :language, :fiscal_year, :calendar_year, :borough, :school_district,
-                  :community_board_district, :associated_place]
+                  :community_board_district, :associated_place, :required_report]
     self.required_fields = [:title, :agency, :subject, :description, :date_published, :report_type, :language]
 
   end
