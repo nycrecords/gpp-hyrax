@@ -530,6 +530,7 @@ GEM
     orm_adapter (0.5.0)
     os (1.0.0)
     parslet (1.8.2)
+    pg (1.1.4)
     posix-spawn (0.3.13)
     power_converter (0.1.2)
     public_suffix (3.0.3)
@@ -812,6 +813,7 @@ DEPENDENCIES
   jquery-ui-rails
   listen (>= 3.0.5, < 3.2)
   omniauth-saml
+  pg
   puma (~> 3.7)
   rails (~> 5.1.6, >= 5.1.6.2)
   riiif (~> 2.0)
