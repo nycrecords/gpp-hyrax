@@ -70,9 +70,5 @@ module NycGovernmentPublicationsMetadata
     property :associated_place, predicate: ::RDF::URI.intern('http://a860-gpp.nyc.gov/spatial-place'), multiple: true do |index|
       index.as :stored_searchable, :facetable
     end
-
-    property :required_report, predicate: ::RDF::URI.intern('http://a860-gpp.nyc.gov/required-report'), multiple: false do |index|
-      index.as :stored_searchable, :facetable
-    end
   end
 end
