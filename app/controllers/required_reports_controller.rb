@@ -1,6 +1,7 @@
 class RequiredReportsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_required_report, only: [:show, :edit, :update, :destroy]
+  # Removed :edit, :update, :destroy actions from 'only' for now
+  before_action :set_required_report, only: [:show]
 
   # GET /required_reports
   # GET /required_reports.json

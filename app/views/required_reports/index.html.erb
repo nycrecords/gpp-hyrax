@@ -17,7 +17,7 @@
       <th>Start date</th>
       <th>End date</th>
       <th>Last published date</th>
-      <th colspan="3"></th>
+      <th colspan="1"></th>
     </tr>
     </thead>
 
@@ -36,8 +36,8 @@
         <td><%= required_report.end_date %></td>
         <td><%= required_report.last_published_date %></td>
         <td><%= link_to 'Show', required_report %></td>
-        <td><%= link_to 'Edit', edit_required_report_path(required_report) %></td>
-        <td><%= link_to 'Destroy', required_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<!--        <td><%#= link_to 'Edit', edit_required_report_path(required_report) %></td>-->
+<!--        <td><%#= link_to 'Destroy', required_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
     </tbody>
