@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <%= f.input :title,
+  <%= f.input :name,
               as: :string,
               input_html: { class: 'form-control' }
   %>
@@ -23,18 +23,44 @@
               input_html: { class: 'form-control' }
   %>
 
+  <%= f.input :description,
+              as: :string,
+              input_html: { class: 'form-control' }
+  %>
+
+  <%= f.input :local_law,
+              as: :string,
+              input_html: { class: 'form-control' }
+  %>
+
+  <%= f.input :charter_and_code,
+              as: :string,
+              input_html: { class: 'form-control' }
+  %>
+
   <%= f.input :frequency,
               as: :string,
               input_html: { class: 'form-control' }
   %>
 
-  <%= f.input :due_date,
-              as: :string,
-              input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD' } %>
+  <%= f.input :frequency_integer,
+              as: :integer,
+              input_html: { class: 'form-control' }
+  %>
 
-  <%= f.input :citation,
+  <%= f.input :other_frequency_description,
               as: :string,
               input_html: { class: 'form-control' }
+  %>
+
+  <%= f.input :start_date,
+              as: :string,
+              input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD' }
+  %>
+
+  <%= f.input :end_date,
+              as: :string,
+              input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD' }
   %>
 
   <div class="actions">
@@ -42,7 +68,16 @@
   </div>
 
   <script>
-      $('#required_report_due_date').inputmask(
+      $('#required_report_start_date').inputmask(
+          {
+              alias: 'datetime',
+              inputFormat: 'yyyy-mm-dd',
+              placeholder: '_',
+              showMaskOnHover: false,
+              min: '01/01/1600'
+          });
+
+      $('#required_report_end_date').inputmask(
           {
               alias: 'datetime',
               inputFormat: 'yyyy-mm-dd',

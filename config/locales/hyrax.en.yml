@@ -112,6 +112,7 @@ en:
         associated_place: The place associated with this publication. Required if applicable.
       required_report:
         title: ''
+        description: ''
       defaults:
         based_near: A place name related to the work, such as its site of publication, or the city, state, or country the work contents are about. Calls upon the <a href='http://www.geonames.org'>GeoNames web service</a>.
         contributor: A person or group you want to recognize for playing a role in the creation of the work, but not the primary role.
