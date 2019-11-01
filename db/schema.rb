@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190404170226) do
+ActiveRecord::Schema.define(version: 20191031204401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -284,6 +284,22 @@ ActiveRecord::Schema.define(version: 20190404170226) do
     t.datetime "updated_at", null: false
     t.index ["local_authority_id"], name: "index_qa_local_authority_entries_on_local_authority_id"
     t.index ["uri"], name: "index_qa_local_authority_entries_on_uri", unique: true
+  end
+
+  create_table "required_reports", force: :cascade do |t|
+    t.string "agency", null: false
+    t.string "name", null: false
+    t.string "description"
+    t.string "local_law"
+    t.string "charter_and_code"
+    t.string "frequency"
+    t.integer "frequency_integer"
+    t.string "other_frequency_description"
+    t.date "start_date", null: false
+    t.date "end_date"
+    t.date "last_published_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "roles", id: :serial, force: :cascade do |t|

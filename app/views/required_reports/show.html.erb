@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Agency:</strong>
+  <%= @required_report.agency %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @required_report.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @required_report.description %>
+</p>
+
+<p>
+  <strong>Local law:</strong>
+  <%= @required_report.local_law %>
+</p>
+
+<p>
+  <strong>Charter and code:</strong>
+  <%= @required_report.charter_and_code %>
+</p>
+
+<p>
+  <strong>Frequency:</strong>
+  <%= @required_report.frequency %>
+</p>
+
+<p>
+  <strong>Frequency integer:</strong>
+  <%= @required_report.frequency_integer %>
+</p>
+
+<p>
+  <strong>Other frequency description:</strong>
+  <%= @required_report.other_frequency_description %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @required_report.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @required_report.end_date %>
+</p>
+
+<p>
+  <strong>Last published date:</strong>
+  <%= @required_report.last_published_date %>
+</p>
+
+<%= link_to 'Edit', edit_required_report_path(@required_report) %> |
+<%= link_to 'Back', required_reports_path %>
