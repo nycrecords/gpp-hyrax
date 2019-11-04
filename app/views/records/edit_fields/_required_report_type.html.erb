@@ -1,0 +1,6 @@
+<%= f.input :required_report_type,
+            as: :select,
+            collection: RequiredReportTypesService.select_all_options,
+            include_blank: true,
+            input_html: { class: 'form-control' }
+%>
