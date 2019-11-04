@@ -2,8 +2,9 @@
 
 <h1>Required Reports</h1>
 
-<table>
-  <thead>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
     <tr>
       <th>Agency</th>
       <th>Name</th>
@@ -16,11 +17,11 @@
       <th>Start date</th>
       <th>End date</th>
       <th>Last published date</th>
-      <th colspan="3"></th>
+      <th colspan="1"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @required_reports.each do |required_report| %>
       <tr>
         <td><%= required_report.agency %></td>
@@ -35,13 +36,20 @@
         <td><%= required_report.end_date %></td>
         <td><%= required_report.last_published_date %></td>
         <td><%= link_to 'Show', required_report %></td>
-        <td><%= link_to 'Edit', edit_required_report_path(required_report) %></td>
-        <td><%= link_to 'Destroy', required_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<!--        <td><%#= link_to 'Edit', edit_required_report_path(required_report) %></td>-->
+<!--        <td><%#= link_to 'Destroy', required_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
 <%= link_to 'New Required Report', new_required_report_path %>
+
+<br>
+
+<div class="alert alert-info">If a required report needs to be edited or deleted, please email
+  <a href="mailto:gpp_support@nycrecords.atlassian.net">gpp_support@nycrecords.atlassian.net</a> for assistance.
+</div>
