@@ -23,6 +23,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
         this.requiredFields.reload();
         this.initializeDatesCoveredCallbacks();
         this.formStateChanged();
+        this.getAgencyRequiredReports();
     }
 
     titleValidator() {
@@ -65,5 +66,27 @@ export default class GppSaveWorkControl extends SaveWorkControl {
     initializeDatesCoveredCallbacks() {
         $('#nyc_government_publication_fiscal_year').change(() => this.formStateChanged());
         $('#nyc_government_publication_calendar_year').change(() => this.formStateChanged());
+    }
+
+    getAgencyRequiredReports() {
+        $('#nyc_government_publication_agency').change(function() {
+            var selectedAgency = $("#nyc_government_publication_agency").val();
+            $.ajax({
+                url: "/required_reports/agency_required_reports",
+                type: "GET",
+                data: {"agency": $("#nyc_government_publication_agency").val()},
+                dataType: "JSON",
+                success: function(data) {
+                    alert(data['hello']);
+                    if (selectedAgency !== '') {
+                        $("#nyc_government_publication_required_report_type").prop('disabled', false);
+                    }
+                    else {
+                        $("#nyc_government_publication_required_report_type").prop('disabled', true);
+                    }
+                },
+                error: function(data) {}
+            });
+        });
     }
 }

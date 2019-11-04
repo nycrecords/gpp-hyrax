@@ -63,6 +63,13 @@ class RequiredReportsController < ApplicationController
   #   end
   # end
 
+  # GET /required_reports/agency_required_reports
+  def agency_required_reports
+    puts params[:agency]
+    @test = {"test": "blah", "hello": "world"}
+    render json: @test
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_required_report
