@@ -79,8 +79,9 @@ end
 gem 'riiif', '~> 2.0'
 
 gem 'auto-session-timeout-warning', git: 'https://github.com/nycrecords/auto-session-timeout-warning.git'
+gem 'blacklight_advanced_search'
+gem 'dotenv-rails'
 gem 'hydra-role-management'
 gem 'jquery-ui-rails'
+gem 'nilify_blanks'
 gem 'omniauth-saml'
-gem 'dotenv-rails'
-gem 'blacklight_advanced_search'
