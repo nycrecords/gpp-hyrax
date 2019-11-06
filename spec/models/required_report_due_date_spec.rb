@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe RequiredReportsDueDate, type: :model do
+RSpec.describe RequiredReportDueDate, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

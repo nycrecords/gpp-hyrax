@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191104201220) do
+ActiveRecord::Schema.define(version: 20191106144533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -286,6 +286,16 @@ ActiveRecord::Schema.define(version: 20191104201220) do
     t.index ["uri"], name: "index_qa_local_authority_entries_on_uri", unique: true
   end
 
+  create_table "required_report_due_dates", force: :cascade do |t|
+    t.bigint "required_report_id", null: false
+    t.date "due_date", null: false
+    t.datetime "date_submitted"
+    t.datetime "delinquency_report_published_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["required_report_id"], name: "index_required_report_due_dates_on_required_report_id"
+  end
+
   create_table "required_reports", force: :cascade do |t|
     t.string "agency", null: false
     t.string "name", null: false
@@ -300,16 +310,6 @@ ActiveRecord::Schema.define(version: 20191104201220) do
     t.date "last_published_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "required_reports_due_dates", force: :cascade do |t|
-    t.bigint "required_report_id", null: false
-    t.date "due_date", null: false
-    t.datetime "date_submitted"
-    t.datetime "delinquency_report_published_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["required_report_id"], name: "index_required_reports_due_dates_on_required_report_id"
   end
 
   create_table "roles", id: :serial, force: :cascade do |t|
@@ -607,6 +607,6 @@ ActiveRecord::Schema.define(version: 20191104201220) do
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
   add_foreign_key "permission_template_accesses", "permission_templates"
   add_foreign_key "qa_local_authority_entries", "qa_local_authorities", column: "local_authority_id"
-  add_foreign_key "required_reports_due_dates", "required_reports"
+  add_foreign_key "required_report_due_dates", "required_reports"
   add_foreign_key "uploaded_files", "users"
 end

@@ -1,0 +1,2 @@
+class RequiredReportDueDate < ApplicationRecord
+end
