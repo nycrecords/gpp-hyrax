@@ -65,9 +65,13 @@ class RequiredReportsController < ApplicationController
 
   # GET /required_reports/agency_required_reports
   def agency_required_reports
-    puts params[:agency]
-    @test = {"test": "blah", "hello": "world"}
-    render json: @test
+    @report_names = []
+    @agency = params[:agency]
+    @reports = RequiredReport.where(agency: @agency)
+    @reports.each { |report|
+      @report_names << report.name
+    }
+    render json: {'report_names': @report_names}
   end
 
   private

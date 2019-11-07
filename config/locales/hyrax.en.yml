@@ -99,6 +99,7 @@ en:
       nyc_government_publication:
         title: On the front page, the first page or in the Executive Summary (if any) of the docucment, what is it called? 10-150 characters.
         agency: What agency is the primary creator of this document?
+        required_report_type: Please select an agency before selecting a required report type. If your required report type is not on this list, please contact <a href="mailto:municipal-library-admins@records.nyc.gov">municipal-library-admins@records.nyc.gov</a>.
         additional_creators: What other agencies, consultants, or authors, if any, contributed to the creation of this document?
         subject: Select what subjects you feel are the most relevant subjects covered in this report. To select multiple subjects, hold down CTRL while clicking an option. Pick up to three.
         description: A brief (100-300 characters) explanation of the contents of this document.

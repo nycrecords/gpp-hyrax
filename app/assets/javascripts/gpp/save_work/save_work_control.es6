@@ -69,20 +69,30 @@ export default class GppSaveWorkControl extends SaveWorkControl {
     }
 
     getAgencyRequiredReports() {
-        $('#nyc_government_publication_agency').change(function() {
-            var selectedAgency = $("#nyc_government_publication_agency").val();
+        let agency = $('#nyc_government_publication_agency');
+        let required_report = $('#nyc_government_publication_required_report_type');
+        agency.change(function() {
+            let selectedAgency = agency.val();
             $.ajax({
-                url: "/required_reports/agency_required_reports",
-                type: "GET",
-                data: {"agency": $("#nyc_government_publication_agency").val()},
-                dataType: "JSON",
+                url: '/required_reports/agency_required_reports',
+                type: 'GET',
+                data: {'agency': agency.val()},
+                dataType: 'JSON',
                 success: function(data) {
-                    alert(data['hello']);
                     if (selectedAgency !== '') {
-                        $("#nyc_government_publication_required_report_type").prop('disabled', false);
+                        required_report.empty();
+                        // Add blank option
+                        required_report.append(new Option('', ''));
+                        data['report_names'].forEach(function (report) {
+                            required_report.append(new Option(report, report));
+                        });
+                        // Add Not Required option
+                        required_report.append(new Option('Not Required', 'Not Required'));
+                        required_report.prop('disabled', false);
                     }
                     else {
-                        $("#nyc_government_publication_required_report_type").prop('disabled', true);
+                        required_report.empty();
+                        required_report.prop('disabled', true);
                     }
                 },
                 error: function(data) {}
