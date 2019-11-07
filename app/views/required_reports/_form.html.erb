@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'required_reports' %>
+
 <%= simple_form_for @required_report do |f| %>
   <% if required_report.errors.any? %>
     <div id="error_explanation">
@@ -11,16 +13,20 @@
     </div>
   <% end %>
 
+  <div class="alert alert-danger" id="alert-error" role="alert" style="display: none;"></div>
+
   <%= f.input :name,
               as: :string,
-              input_html: { class: 'form-control' }
+              input_html: { class: 'form-control' },
+              required: true
   %>
 
   <%= f.input :agency,
               as: :select,
               collection: AgenciesService.select_all_options,
               include_blank: true,
-              input_html: { class: 'form-control' }
+              input_html: { class: 'form-control' },
+              required: true
   %>
 
   <%= f.input :description,
@@ -39,7 +45,8 @@
   %>
 
   <%= f.input :frequency,
-              as: :string,
+              as: :select,
+              collection: FrequenciesService.select_all_options,
               input_html: { class: 'form-control' }
   %>
 
@@ -49,13 +56,14 @@
   %>
 
   <%= f.input :other_frequency_description,
-              as: :string,
-              input_html: { class: 'form-control' }
+              as: :text,
+              input_html: { class: 'form-control', rows: 3, maxlength: 500 }
   %>
 
   <%= f.input :start_date,
               as: :string,
-              input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD' }
+              input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD' },
+              required: true
   %>
 
   <%= f.input :end_date,
@@ -64,26 +72,8 @@
   %>
 
   <div class="actions">
-    <%= f.button :submit %>
+    <%= f.button :submit,
+                 class: 'btn btn-primary'
+    %>
   </div>
-
-  <script>
-      $('#required_report_start_date').inputmask(
-          {
-              alias: 'datetime',
-              inputFormat: 'yyyy-mm-dd',
-              placeholder: '_',
-              showMaskOnHover: false,
-              min: '01/01/1600'
-          });
-
-      $('#required_report_end_date').inputmask(
-          {
-              alias: 'datetime',
-              inputFormat: 'yyyy-mm-dd',
-              placeholder: '_',
-              showMaskOnHover: false,
-              min: '01/01/1600'
-          });
-  </script>
 <% end %>
