@@ -31,6 +31,7 @@ $(document).ready(function () {
         if (local_law_value_length === 0 && charter_and_code_value_length === 0) {
             errorDiv.text('One of Local Law or Charter and Code is required.');
             errorDiv.show();
+            errorDiv.focus();
 
             return false;
         }
@@ -41,6 +42,7 @@ $(document).ready(function () {
             if (frequency_value_length === 0 || frequency_integer_value_length === 0) {
                 errorDiv.text('Frequency and Frequency Integer or Other frequency description is required.');
                 errorDiv.show();
+                errorDiv.focus();
 
                 return false;
             }
@@ -50,6 +52,7 @@ $(document).ready(function () {
             if (frequency_value_length > 0 || frequency_integer_value_length > 0) {
                 errorDiv.text('Frequency and Frequency Integer or Other frequency description is required.');
                 errorDiv.show();
+                errorDiv.focus();
 
                 return false;
             }
