@@ -52,7 +52,7 @@
 
   <%= f.input :frequency_integer,
               as: :integer,
-              input_html: { class: 'form-control' }
+              input_html: { class: 'form-control', min: '0', max: '9999' }
   %>
 
   <%= f.input :other_frequency_description,
