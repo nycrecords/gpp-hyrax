@@ -76,7 +76,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
             $.ajax({
                 url: '/required_reports/agency_required_reports',
                 type: 'GET',
-                data: {'agency': agency.val()},
+                data: {'agency': selectedAgency},
                 dataType: 'JSON',
                 success: function(data) {
                     if (selectedAgency !== '') {
