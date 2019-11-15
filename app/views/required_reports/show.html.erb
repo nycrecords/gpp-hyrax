@@ -10,7 +10,7 @@
   <%= @required_report.name %>
 </p>
 
-<p>
+<p style="word-break: break-all">
   <strong>Description:</strong>
   <%= @required_report.description %>
 </p>
@@ -55,5 +55,5 @@
   <%= @required_report.last_published_date %>
 </p>
 
-<%= link_to 'Edit', edit_required_report_path(@required_report) %> |
+<!--<%#= link_to 'Edit', edit_required_report_path(@required_report) %> |-->
 <%= link_to 'Back', required_reports_path %>
