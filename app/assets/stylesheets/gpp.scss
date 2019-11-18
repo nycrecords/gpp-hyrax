@@ -237,3 +237,11 @@ body.gpp-dashboard {
   border-radius: 10px !important;
   width: 50%;
 }
+
+#required-report-table {
+  .wrap-text {
+    overflow: hidden;
+    max-width: 250px;
+    word-wrap: break-word;
+  }
+}
