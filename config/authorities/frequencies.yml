@@ -7,3 +7,5 @@ terms:
     term: Every X Weeks
   - id: Every X Days
     term: Every X Days
+  - id: Once
+    term: Once
