@@ -2,8 +2,16 @@
 
 <h1>Required Reports</h1>
 
+<%= link_to 'New Required Report', new_required_report_path, class: "btn btn-primary" %>
+
+<br>
+
+<div class="alert alert-info">If a required report needs to be edited or deleted, please email
+  <a href="mailto:gpp_support@nycrecords.atlassian.net">gpp_support@nycrecords.atlassian.net</a> for assistance.
+</div>
+
 <div class="table-responsive">
-  <table class="table table-striped table-bordered">
+  <table id="required-report-table" class="table table-striped table-bordered">
     <thead>
     <tr>
       <th>Agency</th>
@@ -26,7 +34,7 @@
       <tr>
         <td><%= required_report.agency %></td>
         <td><%= required_report.name %></td>
-        <td><%= required_report.description %></td>
+        <td class="wrap-text"><%= required_report.description %></td>
         <td><%= required_report.local_law %></td>
         <td><%= required_report.charter_and_code %></td>
         <td><%= required_report.frequency %></td>
@@ -42,14 +50,4 @@
     <% end %>
     </tbody>
   </table>
-</div>
-
-<br>
-
-<%= link_to 'New Required Report', new_required_report_path %>
-
-<br>
-
-<div class="alert alert-info">If a required report needs to be edited or deleted, please email
-  <a href="mailto:gpp_support@nycrecords.atlassian.net">gpp_support@nycrecords.atlassian.net</a> for assistance.
 </div>

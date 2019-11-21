@@ -21,6 +21,8 @@ terms:
     term: Chief Medical Examiner, NYC Office of (OCME)
   - id: Children's Services, Administration for (ACS)
     term: Children's Services, Administration for (ACS)
+  - id: City Clerk, Office of the (CLERK)
+    term: City Clerk, Office of the (CLERK)
   - id: City Council, New York (NYCC)
     term: City Council, New York (NYCC)
   - id: City Planning, Department of (DCP)
@@ -41,6 +43,8 @@ terms:
     term: Commission to Combat Police Corruption (CCPC)
   - id: Community Affairs Unit (CAU)
     term: Community Affairs Unit (CAU)
+  - id: Community Boards
+    term: Community Boards
   - id: Comptroller (COMP)
     term: Comptroller (COMP)
   - id: Conflicts of Interest Board (COIB)
@@ -61,6 +65,8 @@ terms:
     term: Data Analytics, Mayor's Office of (MODA)
   - id: Design and Construction, Department of (DDC)
     term: Design and Construction, Department of (DDC)
+  - id: Districting Commission
+    term: Districting Commission
   - id: Economic Development Corporation (EDC)
     term: Economic Development Corporation (EDC)
   - id: Economic Opportunity, Mayor's Office for (Opportunity)
@@ -143,6 +149,8 @@ terms:
     term: Municipal Drug Strategy Council (MDSC)
   - id: New Business Acceleration Team (NBAT)
     term: New Business Acceleration Team (NBAT)
+  - id: New York City Fire Pension Fund
+    term: New York City Fire Pension Fund
   - id: NYC & Company (NYCGO)
     term: NYC & Company (NYCGO)
   - id: NYC Employees' Retirement System (NYCERS)

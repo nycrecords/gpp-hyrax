@@ -9,7 +9,7 @@ class CreateRequiredReports < ActiveRecord::Migration[5.1]
       t.string :frequency
       t.integer :frequency_integer
       t.string :other_frequency_description
-      t.date :start_date, null: false
+      t.date :start_date
       t.date :end_date
       t.date :last_published_date
 
