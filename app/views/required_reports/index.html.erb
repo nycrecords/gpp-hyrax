@@ -14,18 +14,11 @@
   <table id="required-report-table" class="table table-striped table-bordered">
     <thead>
     <tr>
-      <th>Agency</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Local law</th>
-      <th>Charter and code</th>
-      <th>Frequency</th>
-      <th>Frequency integer</th>
-      <th>Other frequency description</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Last published date</th>
-      <th colspan="1"></th>
+      <th class="col-xs-2">Agency</th>
+      <th class="col-xs-3">Name</th>
+      <th class="col-xs-5">Description</th>
+      <th class="col-xs-1">Local law</th>
+      <th class="col-xs-1">Charter and code</th>
     </tr>
     </thead>
 
@@ -33,17 +26,10 @@
     <% @required_reports.each do |required_report| %>
       <tr>
         <td><%= required_report.agency %></td>
-        <td><%= required_report.name %></td>
-        <td class="wrap-text"><%= required_report.description %></td>
+        <td><%= link_to required_report.name, required_report %></td>
+        <td><%= required_report.description %></td>
         <td><%= required_report.local_law %></td>
         <td><%= required_report.charter_and_code %></td>
-        <td><%= required_report.frequency %></td>
-        <td><%= required_report.frequency_integer %></td>
-        <td><%= required_report.other_frequency_description %></td>
-        <td><%= required_report.start_date %></td>
-        <td><%= required_report.end_date %></td>
-        <td><%= required_report.last_published_date %></td>
-        <td><%= link_to 'Show', required_report %></td>
 <!--        <td><%#= link_to 'Edit', edit_required_report_path(required_report) %></td>-->
 <!--        <td><%#= link_to 'Destroy', required_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
