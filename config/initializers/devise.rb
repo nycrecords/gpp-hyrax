@@ -311,7 +311,6 @@ Devise.setup do |config|
                   assertion_consumer_service_binding: saml_config[:acs_binding],
                   assertion_consumer_service_url: saml_config[:acs_url],
                   slo_default_relay_state: '/',
-                  name_identifier_format: saml_config[:name_identifier_format],
                   request_attributes: {},
                   idp_cert: idp_metadata[:idp_cert],
                   certificate: File.read(sp_cert),
