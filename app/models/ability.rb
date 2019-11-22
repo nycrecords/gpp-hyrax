@@ -14,7 +14,11 @@ class Ability
     end
 
     if current_user.library_reviewers?
-      can [:index, :show, :new, :edit, :create, :update, :destroy], RequiredReport
+      can [:index, :show, :new, :edit, :create, :update, :destroy, :agency_required_reports], RequiredReport
+    end
+
+    if current_user.agency_submitters?
+      can [:agency_required_reports], RequiredReport
     end
 
     # Limits creating new objects to a specific group
