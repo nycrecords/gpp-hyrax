@@ -3,7 +3,6 @@
 default: &default
   issuer: <%= ENV.fetch('SAML_ISSUER') { 'http://localhost:3000/users/auth/saml/metadata' } %>
   acs_url: <%= ENV.fetch('SAML_ACS_URL') { 'http://localhost:3000/users/auth/saml/callback' } %>
-  name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent'
   acs_binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'
   security_config:
     authn_requests_signed: true
