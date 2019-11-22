@@ -70,7 +70,7 @@ class SolrDocument
     self[Solrizer.solr_name('associated_place')]
   end
 
-  def required_report_type
-    self[Solrizer.solr_name('required_report_type')]
+  def required_report_name
+    self[Solrizer.solr_name('required_report_name')]
   end
 end

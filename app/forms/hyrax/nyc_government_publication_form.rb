@@ -28,10 +28,10 @@ module Hyrax
       super.first || ''
     end
 
-    self.terms = [:title, :sub_title, :agency, :required_report_type, :additional_creators, :subject, :description,
+    self.terms = [:title, :sub_title, :agency, :required_report_name, :additional_creators, :subject, :description,
                   :date_published, :report_type, :language, :fiscal_year, :calendar_year, :borough, :school_district,
                   :community_board_district, :associated_place]
-    self.required_fields = [:title, :agency, :required_report_type, :subject, :description, :date_published,
+    self.required_fields = [:title, :agency, :required_report_name, :subject, :description, :date_published,
                             :report_type, :language]
 
   end

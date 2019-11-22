@@ -70,7 +70,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
 
     getAgencyRequiredReports() {
         let agency = $('#nyc_government_publication_agency');
-        let required_report = $('#nyc_government_publication_required_report_type');
+        let required_report = $('#nyc_government_publication_required_report_name');
         agency.change(function() {
             let selectedAgency = agency.val();
             $.ajax({
