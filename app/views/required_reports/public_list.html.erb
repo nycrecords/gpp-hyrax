@@ -1,0 +1,33 @@
+<h1>Required Reports</h1>
+
+<div class="table-responsive">
+  <table id="required-report-table" class="table table-striped table-bordered">
+    <thead>
+    <tr>
+      <th class="col-md">Agency</th>
+      <th class="col-md">Name</th>
+      <th class="col-md">Description</th>
+      <th class="col-md">Frequency</th>
+      <th class="col-md">Authorizing Resource (Local Law)</th>
+      <th class="col-md">Authorizing Resource (Charter and code)</th>
+      <th class="col-md">Last Published Date</th>
+      <th class="col-md">See All Reports</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @required_reports.each do |required_report| %>
+      <tr>
+        <td><%= required_report.agency %></td>
+        <td><%= required_report.name %></td>
+        <td><%= required_report.description %></td>
+        <td><%= required_report.frequency %></td>
+        <td><%= required_report.local_law %></td>
+        <td><%= required_report.charter_and_code %></td>
+        <td><%= required_report.last_published_date %></td>
+        <td><%= link_to 'Search', '' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
