@@ -4,6 +4,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
     activate() {
         super.activate();
         this.initializeDatesCoveredCallbacks();
+        $('#nyc_government_publication_required_report_name').prop('disabled', true);
     }
 
     validateMetadata(e) {

@@ -68,10 +68,10 @@ class RequiredReportsController < ApplicationController
     @report_names = []
     @agency = params[:agency]
     @reports = RequiredReport.where(agency: @agency)
-    @reports.each { |report|
+    @reports.each do |report|
       @report_names << report.name
-    }
-    render json: {'report_names': @report_names}
+    end
+    render json: { 'report_names': @report_names }
   end
 
   private
