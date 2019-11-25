@@ -42,7 +42,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :required_reports
+  resources :required_reports do
+    collection do
+      get 'agency_required_reports'
+    end
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

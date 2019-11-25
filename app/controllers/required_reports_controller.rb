@@ -63,6 +63,17 @@ class RequiredReportsController < ApplicationController
   #   end
   # end
 
+  # GET /required_reports/agency_required_reports
+  def agency_required_reports
+    @report_names = []
+    @agency = params[:agency]
+    @reports = RequiredReport.where(agency: @agency)
+    @reports.each do |report|
+      @report_names << report.name
+    end
+    render json: { 'report_names': @report_names }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_required_report

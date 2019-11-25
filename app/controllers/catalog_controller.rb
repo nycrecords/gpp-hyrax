@@ -128,7 +128,7 @@ class CatalogController < ApplicationController
       all_names = config.show_fields.values.map(&:field).join(" ")
       title_name = solr_name("title", :stored_searchable)
       field.solr_parameters = {
-          qf: "#{all_names} file_format_tesim all_text_timv title_tesim sub_title_tesim agency_tesim additional_creators_tesim subject_tesim description_tesim date_published_tesim report_type_tesim language_tesim fiscal_year_tesim calendar_year_tesim borough_tesim school_district_tesim community_board_district associated_place_tesim",
+          qf: "#{all_names} file_format_tesim all_text_timv title_tesim sub_title_tesim agency_tesim additional_creators_tesim subject_tesim description_tesim date_published_tesim report_type_tesim language_tesim fiscal_year_tesim calendar_year_tesim borough_tesim school_district_tesim community_board_district_tesim associated_place_tesim required_report_name_tesim",
           pf: title_name.to_s
       }
     end
@@ -258,6 +258,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('associated_place') do |field|
       solr_name = solr_name("associated_place", :stored_searchable)
+      field.solr_local_parameters = {
+          qf: solr_name,
+          pf: solr_name
+      }
+    end
+
+    config.add_search_field('required_report_name') do |field|
+      solr_name = solr_name("required_report_name", :stored_searchable)
       field.solr_local_parameters = {
           qf: solr_name,
           pf: solr_name

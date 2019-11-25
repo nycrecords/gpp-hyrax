@@ -4,6 +4,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
     activate() {
         super.activate();
         this.initializeDatesCoveredCallbacks();
+        $('#nyc_government_publication_required_report_name').prop('disabled', true);
     }
 
     validateMetadata(e) {
@@ -23,6 +24,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
         this.requiredFields.reload();
         this.initializeDatesCoveredCallbacks();
         this.formStateChanged();
+        this.getAgencyRequiredReports();
     }
 
     titleValidator() {
@@ -65,5 +67,37 @@ export default class GppSaveWorkControl extends SaveWorkControl {
     initializeDatesCoveredCallbacks() {
         $('#nyc_government_publication_fiscal_year').change(() => this.formStateChanged());
         $('#nyc_government_publication_calendar_year').change(() => this.formStateChanged());
+    }
+
+    getAgencyRequiredReports() {
+        let agency = $('#nyc_government_publication_agency');
+        let required_report = $('#nyc_government_publication_required_report_name');
+        agency.change(function() {
+            let selectedAgency = agency.val();
+            $.ajax({
+                url: '/required_reports/agency_required_reports',
+                type: 'GET',
+                data: {'agency': selectedAgency},
+                dataType: 'JSON',
+                success: function(data) {
+                    if (selectedAgency !== '') {
+                        required_report.empty();
+                        // Add blank option
+                        required_report.append(new Option('', ''));
+                        data['report_names'].forEach(function (report) {
+                            required_report.append(new Option(report, report));
+                        });
+                        // Add Not Required option
+                        required_report.append(new Option('Not Required', 'Not Required'));
+                        required_report.prop('disabled', false);
+                    }
+                    else {
+                        required_report.empty();
+                        required_report.prop('disabled', true);
+                    }
+                },
+                error: function(data) {}
+            });
+        });
     }
 }
