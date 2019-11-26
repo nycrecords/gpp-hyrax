@@ -1,5 +1,5 @@
 class RequiredReportsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :public_list
   # Removed :edit, :update, :destroy actions from 'only' for now
   before_action :set_required_report, only: [:show]
 
