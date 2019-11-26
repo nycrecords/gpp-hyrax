@@ -76,7 +76,21 @@ class RequiredReportsController < ApplicationController
 
   # GET /required_reports/public_list
   def public_list
-    @required_reports = RequiredReport.all
+    @search_reports = []
+    @required_reports = RequiredReport.all.order(agency: :asc, name: :asc)
+    @required_reports.each do |report|
+      if report.frequency != 'Once'
+        if report.frequency_integer == 1
+          report.frequency = report.frequency.delete_suffix('s')
+        end
+        report.frequency = report.frequency.sub('X', report.frequency_integer.to_s)
+      end
+    end
+    @search_url = [
+        root_url.delete_suffix('?locale=en') + 'catalog?additional_creators=&agency=',
+        '&all_fields=&associated_place=&borough=&calendar_year=&community_board_district=&date_published=&description=&fiscal_year=&language=&locale=en&op=AND&report_type=&required_report_name=',
+        '&school_district=&search_field=advanced&sort=date_published_ssi+desc&sub_title=&subject=&title='
+    ]
   end
 
   private
