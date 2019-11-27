@@ -28,6 +28,11 @@ module GppHyrax
       enable_starttls_auto: ENV['ENABLE_STARTTLS_AUTO']
     }
     config.action_mailer.default_url_options = { host: ENV['RAILS_HOST'] }
+
+    config.calendar = Business::Calendar.new(
+      working_days: %w( mon tue wed thu fri ),
+      holidays: ['2019-01-01', '2019-01-21', '2019-02-18', '2019-05-27', '2019-07-04', '2019-09-02', '2019-10-14', '2019-11-05', '2019-11-11','2019-11-28', '2019-12-25', '2020-01-01', '2020-01-20', '2020-02-17', '2020-05-25', '2020-07-04', '2020-07-03', '2020-09-07', '2020-10-12', '2020-11-03', '2020-11-11', '2020-11-26', '2020-12-25']
+    )
   end
 end
 
