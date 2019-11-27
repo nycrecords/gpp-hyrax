@@ -65,25 +65,24 @@ class RequiredReportsController < ApplicationController
 
   # GET /required_reports/agency_required_reports
   def agency_required_reports
-    @report_names = []
+    @required_report_names = []
     @agency = params[:agency]
-    @reports = RequiredReport.where(agency: @agency)
-    @reports.each do |report|
-      @report_names << report.name
+    @required_reports = RequiredReport.where(agency: @agency)
+    @required_reports.each do |required_report|
+      @required_report_names << required_report.name
     end
-    render json: { 'report_names': @report_names }
+    render json: { 'required_report_names': @required_report_names }
   end
 
   # GET /required_reports/public_list
   def public_list
-    @search_reports = []
     @required_reports = RequiredReport.all.order(agency: :asc, name: :asc)
-    @required_reports.each do |report|
-      if report.frequency != 'Once'
-        if report.frequency_integer == 1
-          report.frequency = report.frequency.delete_suffix('s')
+    @required_reports.each do |required_report|
+      if required_report.frequency != 'Once'
+        if required_report.frequency_integer == 1
+          required_report.frequency = required_report.frequency.delete_suffix('s')
         end
-        report.frequency = report.frequency.sub('X', report.frequency_integer.to_s)
+        required_report.frequency = required_report.frequency.sub('X', required_report.frequency_integer.to_s)
       end
     end
     @search_url = [
