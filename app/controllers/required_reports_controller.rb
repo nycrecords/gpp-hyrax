@@ -86,9 +86,9 @@ class RequiredReportsController < ApplicationController
       end
     end
     @search_url = [
-        root_url.delete_suffix('?locale=en') + 'catalog?additional_creators=&agency=',
-        '&all_fields=&associated_place=&borough=&calendar_year=&community_board_district=&date_published=&description=&fiscal_year=&language=&locale=en&op=AND&report_type=&required_report_name=',
-        '&school_district=&search_field=advanced&sort=date_published_ssi+desc&sub_title=&subject=&title='
+        root_url.delete_suffix('?locale=en') + 'catalog?utf8=%E2%9C%93&locale=en&agency=',
+        '&required_report_name=',
+        '&sort=date_published_ssi+desc&search_field=advanced'
     ]
   end
 
