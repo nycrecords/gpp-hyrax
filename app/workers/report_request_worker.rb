@@ -15,7 +15,7 @@ class ReportRequestWorker
         required_report = late_reports.required_report
         agency = required_report.agency
 
-        ReportRequestMailer.email(agency.point_of_contact_emails).deliver
+        ReportRequestMailer.email(required_report).deliver
 
         report.delinquency_report_published_date = Time.current
       end

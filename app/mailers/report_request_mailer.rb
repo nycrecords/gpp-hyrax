@@ -1,5 +1,6 @@
 class ReportRequestMailer < ApplicationMailer
-  def email(poc_emails)
-    mail(from: 'munilib@records.nyc.gov', to: poc_emails, subject: 'Test Email', body: 'Test Email Body')
+  def email(required_report)
+    @agency = required_report.agency
+    mail(from: 'munilib@records.nyc.gov', to: @agency.point_of_contact_emails, subject: 'Notice of Late Publication')
   end
 end
