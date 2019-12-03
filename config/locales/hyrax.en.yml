@@ -50,6 +50,7 @@ en:
     controls:
       contact: Contact Us
       manage_required_reports: Manage Required Reports
+      public_list_required_reports: Required Reports
     directory:
       suffix: "@example.org"
     footer:

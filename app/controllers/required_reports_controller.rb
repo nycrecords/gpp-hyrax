@@ -1,5 +1,5 @@
 class RequiredReportsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :public_list
   # Removed :edit, :update, :destroy actions from 'only' for now
   before_action :set_required_report, only: [:show]
 
@@ -65,13 +65,31 @@ class RequiredReportsController < ApplicationController
 
   # GET /required_reports/agency_required_reports
   def agency_required_reports
-    @report_names = []
+    @required_report_names = []
     @agency = params[:agency]
-    @reports = RequiredReport.where(agency: @agency)
-    @reports.each do |report|
-      @report_names << report.name
+    @required_reports = RequiredReport.where(agency: @agency)
+    @required_reports.each do |required_report|
+      @required_report_names << required_report.name
     end
-    render json: { 'report_names': @report_names }
+    render json: { 'required_report_names': @required_report_names }
+  end
+
+  # GET /required_reports/public_list
+  def public_list
+    @required_reports = RequiredReport.all.order(agency: :asc, name: :asc)
+    @required_reports.each do |required_report|
+      if required_report.frequency != 'Once'
+        if required_report.frequency_integer == 1
+          required_report.frequency = required_report.frequency.delete_suffix('s')
+        end
+        required_report.frequency = required_report.frequency.sub('X', required_report.frequency_integer.to_s)
+      end
+    end
+    @search_url = [
+        root_url(locale: nil) + 'catalog?utf8=%E2%9C%93&locale=en&agency=',
+        '&required_report_name=',
+        '&sort=date_published_ssi+desc&search_field=advanced'
+    ]
   end
 
   private
