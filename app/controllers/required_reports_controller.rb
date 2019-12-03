@@ -76,15 +76,7 @@ class RequiredReportsController < ApplicationController
 
   # GET /required_reports/public_list
   def public_list
-    @required_reports = RequiredReport.all.order(agency: :asc, name: :asc)
-    @required_reports.each do |required_report|
-      if required_report.frequency != 'Once'
-        if required_report.frequency_integer == 1
-          required_report.frequency = required_report.frequency.delete_suffix('s')
-        end
-        required_report.frequency = required_report.frequency.sub('X', required_report.frequency_integer.to_s)
-      end
-    end
+    @required_reports = RequiredReport.all.order(agency_name: :asc, name: :asc)
     @search_url = [
         root_url(locale: nil) + 'catalog?utf8=%E2%9C%93&locale=en&agency=',
         '&required_report_name=',

@@ -12,10 +12,7 @@ class ReportRequestWorker
                                           .where('due_date < ?', late_date)
 
       late_reports.each do |report|
-        required_report = late_reports.required_report
-        agency = required_report.agency
-
-        ReportRequestMailer.email(required_report).deliver
+        ReportRequestMailer.email(report).deliver
 
         report.delinquency_report_published_date = Time.current
       end

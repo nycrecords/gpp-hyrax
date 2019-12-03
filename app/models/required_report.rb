@@ -12,7 +12,7 @@ class RequiredReport < ApplicationRecord
       if frequency_integer == 1
         frequency_string = frequency_string.delete_suffix('s')
       end
-      frequency_string.sub('X', frequency_integer.to_s)
+      frequency_string = frequency_string.sub('X', frequency_integer.to_s)
     end
 
     frequency_string

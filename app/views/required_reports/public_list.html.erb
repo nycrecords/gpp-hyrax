@@ -18,10 +18,10 @@
     <tbody>
     <% @required_reports.each do |required_report| %>
       <tr>
-        <td><%= required_report.agency %></td>
+        <td><%= required_report.agency_name %></td>
         <td><%= required_report.name %></td>
         <td><%= required_report.description %></td>
-        <td><%= required_report.frequency %></td>
+        <td><%= required_report.frequency_string %></td>
         <td><%= required_report.local_law %></td>
         <td><%= required_report.charter_and_code %></td>
         <td><%= required_report.last_published_date %></td>
