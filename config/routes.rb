@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   resources :required_reports do
     collection do
       get 'agency_required_reports'
+      get 'public_list'
     end
   end
 
