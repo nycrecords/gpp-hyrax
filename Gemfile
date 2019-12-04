@@ -87,7 +87,7 @@ gem 'jquery-ui-rails'
 gem 'nilify_blanks'
 gem 'omniauth-saml'
 
-# Cron..
+# Use sidekiq and whenever for background jobs
 gem 'sidekiq'
 gem 'sidekiq-client-cli'
 gem 'whenever'

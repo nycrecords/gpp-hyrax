@@ -5,6 +5,7 @@ class RequiredReport < ApplicationRecord
   # Convert empty name and agency fields to null
   nilify_blanks only: [:name, :agency]
 
+  # Parse frequency and frequency integer into readable string
   def frequency_string
     frequency_string = frequency
 
