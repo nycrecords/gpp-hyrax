@@ -1,0 +1,41 @@
+<p>
+  <%= Date.today %>
+</p>
+<p>
+  To: <%= @agency.name %>
+</p>
+<p>
+  From: Municipal Library Staff
+</p>
+<p>
+  The New York City Charter, Chapter 49, Section 1133, requires that agencies submit to the Department of Records and
+  Information Services (DORIS) all reports, documents, studies and publications required by local law, executive
+  order, or mayoral directive to be published, issued, or transmitted to the City Council or Mayor, within 10 business
+  days of their publication. For any report that is not received within 10 business days of the publication date,
+  DORIS is required to email the agency to request the report, and to provide the text of that email in place of the
+  report in the Government Publications Portal.
+</p>
+<p>
+  Consistent with these requirements, DORIS hereby requests the transmission of the report shown below, which DORIS
+  has not received as of <%= Date.today %>. Please submit this report to the Government Publications Portal. If you have
+  questions, please contact staff at the Municipal Library at
+  <a href="mailto:munilib@records.nyc.gov">munilib@records.nyc.gov</a>.
+</p>
+<p>
+  <b>Required Report Type:</b> <%= @required_report.name %>
+</p>
+<p>
+  <b>Report Description:</b> <%= @required_report.description %>
+</p>
+<p>
+  <b>Reporting Frequency:</b> <%= @required_report.frequency_string %>
+</p>
+<p>
+  <b>Report Due Date:</b> <%= @required_report_due_date.due_date %>
+</p>
+<p>
+  <b>Authorizing Resource (Charter and Code):</b> <%= @required_report.charter_and_code %>
+</p>
+<p>
+  <b>Authorizing Resource (Local Law):</b> <%= @required_report.local_law %>
+</p>

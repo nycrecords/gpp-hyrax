@@ -91,3 +91,7 @@ gem 'omniauth-saml'
 gem 'sidekiq'
 gem 'sidekiq-client-cli'
 gem 'whenever'
+
+# Use Wicked PDF to generate PDFs
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
