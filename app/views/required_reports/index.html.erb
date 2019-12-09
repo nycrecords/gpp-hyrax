@@ -25,7 +25,7 @@
     <tbody>
     <% @required_reports.each do |required_report| %>
       <tr>
-        <td><%= required_report.agency %></td>
+        <td><%= required_report.agency_name %></td>
         <td><%= link_to required_report.name, required_report %></td>
         <td><%= required_report.description %></td>
         <td><%= required_report.local_law %></td>

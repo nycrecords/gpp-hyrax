@@ -1,7 +1,7 @@
 class CreateRequiredReports < ActiveRecord::Migration[5.1]
   def change
     create_table :required_reports do |t|
-      t.string :agency, null: false
+      t.string :agency_name, null: false
       t.string :name, null: false
       t.string :description
       t.string :local_law
@@ -15,5 +15,7 @@ class CreateRequiredReports < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+
+    add_foreign_key :required_reports, :agencies, column: :agency_name, primary_key: 'name'
   end
 end
