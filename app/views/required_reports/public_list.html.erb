@@ -25,7 +25,7 @@
         <td><%= required_report.local_law %></td>
         <td><%= required_report.charter_and_code %></td>
         <td><%= required_report.last_published_date %></td>
-        <td><%= link_to 'Search', @search_url[0] + url_encode(required_report.agency) + @search_url[1] + url_encode(required_report.name) + @search_url[2] %></td>
+        <td><%= link_to 'Search', @search_url[0] + url_encode(required_report.agency_name) + @search_url[1] + url_encode(required_report.name) + @search_url[2] %></td>
       </tr>
     <% end %>
     </tbody>
