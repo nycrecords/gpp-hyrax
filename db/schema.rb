@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191106182840) do
+ActiveRecord::Schema.define(version: 20191127105815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "agencies", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "point_of_contact_emails", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_agencies_on_name", unique: true
   end
 
   create_table "bookmarks", id: :serial, force: :cascade do |t|
@@ -304,7 +305,7 @@ ActiveRecord::Schema.define(version: 20191106182840) do
   end
 
   create_table "required_reports", force: :cascade do |t|
-    t.string "agency", null: false
+    t.string "agency_name", null: false
     t.string "name", null: false
     t.string "description"
     t.string "local_law"
@@ -615,5 +616,6 @@ ActiveRecord::Schema.define(version: 20191106182840) do
   add_foreign_key "permission_template_accesses", "permission_templates"
   add_foreign_key "qa_local_authority_entries", "qa_local_authorities", column: "local_authority_id"
   add_foreign_key "required_report_due_dates", "required_reports"
+  add_foreign_key "required_reports", "agencies", column: "agency_name", primary_key: "name"
   add_foreign_key "uploaded_files", "users"
 end

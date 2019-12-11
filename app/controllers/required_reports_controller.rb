@@ -67,7 +67,7 @@ class RequiredReportsController < ApplicationController
   def agency_required_reports
     @required_report_names = []
     @agency = params[:agency]
-    @required_reports = RequiredReport.where(agency: @agency)
+    @required_reports = RequiredReport.where(agency_name: @agency)
     @required_reports.each do |required_report|
       @required_report_names << required_report.name
     end
@@ -76,15 +76,7 @@ class RequiredReportsController < ApplicationController
 
   # GET /required_reports/public_list
   def public_list
-    @required_reports = RequiredReport.all.order(agency: :asc, name: :asc)
-    @required_reports.each do |required_report|
-      if required_report.frequency != 'Once'
-        if required_report.frequency_integer == 1
-          required_report.frequency = required_report.frequency.delete_suffix('s')
-        end
-        required_report.frequency = required_report.frequency.sub('X', required_report.frequency_integer.to_s)
-      end
-    end
+    @required_reports = RequiredReport.all.order(agency_name: :asc, name: :asc)
     @search_url = [
         root_url(locale: nil) + 'catalog?utf8=%E2%9C%93&locale=en&agency=',
         '&required_report_name=',
@@ -100,6 +92,6 @@ class RequiredReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def required_report_params
-      params.require(:required_report).permit(:agency, :name, :description, :local_law, :charter_and_code, :frequency, :frequency_integer, :other_frequency_description, :start_date, :end_date, :last_published_date)
+      params.require(:required_report).permit(:agency_name, :name, :description, :local_law, :charter_and_code, :frequency, :frequency_integer, :other_frequency_description, :start_date, :end_date, :last_published_date)
     end
 end
