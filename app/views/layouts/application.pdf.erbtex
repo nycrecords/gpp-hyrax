@@ -1,0 +1,7 @@
+\documentclass[12pt,sloppy]{letter}
+\usepackage{graphicx}
+\begin{document}
+\thispagestyle{empty}
+\vspace*{-8\baselineskip}
+<%= yield %>
+\end{document}
