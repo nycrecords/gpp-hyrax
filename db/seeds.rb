@@ -8,10 +8,18 @@
 
 require 'csv'
 
+# Populate agencies table
+csv = CSV.read(ENV['AGENCIES_CSV_PATH'], encoding: 'ISO8859-1')
+csv.each do |row|
+  Agency.create(name: row[0].to_s, point_of_contact_emails: [])
+  puts row[0]
+end
+
+# Populate required_reports table
 csv = CSV.read(ENV['REQUIRED_REPORTS_CSV_PATH'], headers: true, encoding: 'ISO8859-1')
 csv.each do |row|
   RequiredReport.create(id: row[0],
-                        agency: row[1].to_s,
+                        agency_name: row[1].to_s,
                         name: row[2].to_s,
                         description: row[3].to_s,
                         frequency: row[4].to_s,
