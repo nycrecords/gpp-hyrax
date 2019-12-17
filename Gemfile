@@ -93,4 +93,4 @@ gem 'sidekiq-client-cli'
 gem 'whenever'
 
 # Use Rails-LaTeX to generate PDFs
-gem 'rails-latex'
+gem 'rails-latex', '>= 2.3.3'
