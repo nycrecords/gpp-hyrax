@@ -1,5 +1,7 @@
 \documentclass[12pt,sloppy]{letter}
 \usepackage{graphicx}
+\usepackage{hyperref}
+\hyphenpenalty=10000
 \begin{document}
 \thispagestyle{empty}
 \vspace*{-8\baselineskip}
