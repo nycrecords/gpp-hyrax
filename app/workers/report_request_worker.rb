@@ -19,13 +19,11 @@ class ReportRequestWorker
       agency = required_report.agency
 
       # Create PDF
-      pdf = WickedPdf.new.pdf_from_string(
-        ApplicationController.new.render_to_string(template: 'report_request_mailer/notice.html.erb',
-                                                   locals: { :@required_report_due_date => required_report_due_date,
-                                                             :@required_report => required_report,
-                                                             :@agency => agency },
-                                                   layout: 'pdf.html')
-      )
+      pdf = ApplicationController.new.render_to_string(template: 'report_request_mailer/notice.pdf.erb',
+                                                       locals: { :@required_report_due_date => required_report_due_date,
+                                                                 :@required_report => required_report,
+                                                                 :@agency => agency },
+                                                       layout: 'application.pdf')
 
       # Send email notice of late report
       ReportRequestMailer.email(agency, pdf).deliver

@@ -92,6 +92,5 @@ gem 'sidekiq'
 gem 'sidekiq-client-cli'
 gem 'whenever'
 
-# Use Wicked PDF to generate PDFs
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+# Use Rails-LaTeX to generate PDFs
+gem 'rails-latex'
