@@ -7,17 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'csv'
+require 'json'
 
 # Populate agencies table
-csv = CSV.read(ENV['AGENCIES_CSV_PATH'], encoding: 'ISO8859-1')
-csv.each do |row|
-  Agency.create(name: row[0].to_s, point_of_contact_emails: [])
-  puts row[0]
+agencies = File.read(ENV['AGENCIES_JSON_PATH'])
+JSON.parse(agencies).each do |agency|
+  Agency.create(name: agency['name'], point_of_contact_emails: agency['point_of_contact_emails'])
 end
 
 # Populate required_reports table
-csv = CSV.read(ENV['REQUIRED_REPORTS_CSV_PATH'], headers: true, encoding: 'ISO8859-1')
-csv.each do |row|
+required_reports = CSV.read(ENV['REQUIRED_REPORTS_CSV_PATH'], headers: true, encoding: 'ISO8859-1')
+required_reports.each do |row|
   RequiredReport.create(id: row[0],
                         agency_name: row[1].to_s,
                         name: row[2].to_s,
