@@ -28,6 +28,14 @@ class RequiredReportsController < ApplicationController
   def create
     @required_report = RequiredReport.new(required_report_params)
 
+    frequency = required_report_params['frequency']
+    frequency_integer = required_report_params['frequency_integer']
+    start_date = required_report_params['start_date']
+    end_date = required_report_params['end_date']
+
+    frequency_calculation = FrequencyCalculation.new
+    due_dates = frequency_calculation.calculate(frequency, frequency_integer, start_date, end_date)
+
     respond_to do |format|
       if @required_report.save
         format.html { redirect_to @required_report, notice: 'Required report was successfully created.' }
