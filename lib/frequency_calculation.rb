@@ -25,7 +25,6 @@ class FrequencyCalculation
     return end_date_from_start_date if end_date.nil?
 
     end_date < end_date_from_start_date ? end_date : end_date_from_start_date
-    end
   end
 
   def get_frequency_symbol(frequency)
