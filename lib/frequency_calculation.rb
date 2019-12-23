@@ -6,17 +6,20 @@ class FrequencyCalculation
   end
 
   def calculate(frequency, frequency_integer, start_date, end_date)
-    dates = []
+    dates = [@calendar.roll_forward(start_date)]
+
+    return dates if frequency == 'Once'
+
     date = start_date
+    end_date = calculate_end_date(start_date, end_date)
     frequency_symbol = get_frequency_symbol(frequency)
 
     while date < end_date
       date = date.advance(frequency_symbol => frequency_integer)
-      date = @calendar.roll_forward(date)
-      dates << date
+      dates << @calendar.roll_forward(date)
     end
 
-    dates
+    dates.uniq
   end
 
   def calculate_end_date(start_date, end_date)
