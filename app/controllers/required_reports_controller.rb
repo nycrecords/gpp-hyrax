@@ -33,12 +33,13 @@ class RequiredReportsController < ApplicationController
     start_date = Date.parse(required_report_params['start_date'])
     end_date = Date.parse(required_report_params['end_date']) unless required_report_params['end_date'].blank?
 
-    # Get attributes for RequiredReportDueDate
+    # Get attributes for RequiredReportDueDate.
     due_date_attributes = RequiredReportDueDate.new.generate_due_date_attributes(frequency,
                                                                                  frequency_integer,
                                                                                  start_date,
                                                                                  end_date)
 
+    # Return new RequiredReport object with required_report_due_dates_attributes added to params.
     @required_report = RequiredReport.new(required_report_params.merge(required_report_due_dates_attributes:
                                                                          due_date_attributes))
 
