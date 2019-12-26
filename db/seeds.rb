@@ -15,19 +15,32 @@ JSON.parse(agencies).each do |agency|
   Agency.create(name: agency['name'], point_of_contact_emails: agency['point_of_contact_emails'])
 end
 
-# Populate required_reports table
+# Populate required_reports and required_report_due_dates tables
 required_reports = CSV.read(ENV['REQUIRED_REPORTS_CSV_PATH'], headers: true, encoding: 'ISO8859-1')
 required_reports.each do |row|
-  RequiredReport.create(id: row[0],
-                        agency_name: row[1].to_s,
-                        name: row[2].to_s,
-                        description: row[3].to_s,
-                        frequency: row[4].to_s,
-                        frequency_integer: row[5].to_i,
-                        other_frequency_description: row[6].to_s,
-                        charter_and_code: row[9].to_s,
-                        local_law: row[10].to_s,
-                        start_date: row[11].to_s,
-                        end_date: row[12].to_s
+  # Data formatting
+  frequency = row[4].titleize.strip unless row[4].blank?
+  start_date = Date.parse(row[11]) unless row[11].blank?
+  end_date = Date.parse(row[12]) unless row[12].blank?
+
+  required_report = RequiredReport.create(agency_name: row[1],
+                                          name: row[2],
+                                          description: row[3],
+                                          frequency: frequency,
+                                          frequency_integer: row[5].to_i,
+                                          other_frequency_description: row[6],
+                                          charter_and_code: row[9],
+                                          local_law: row[10],
+                                          start_date: start_date,
+                                          end_date: end_date
   )
+  # Calculate due dates for each required report
+  due_date_attributes = RequiredReportDueDate.new.generate_due_date_attributes(frequency,
+                                                                               row[5].to_i,
+                                                                               start_date,
+                                                                               end_date)
+  due_date_attributes.each do |date|
+    RequiredReportDueDate.create(required_report_id: required_report.id,
+                                 due_date: date[:due_date])
+  end
 end

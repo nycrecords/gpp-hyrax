@@ -8,6 +8,10 @@ class FrequencyCalculation
 
   # Returns an array of unique due dates.
   def calculate(frequency, frequency_integer, start_date, end_date)
+    if frequency.blank?
+        return []
+    end
+
     dates = [@calendar.roll_forward(start_date)]
 
     return dates if frequency == 'Once'
