@@ -28,16 +28,11 @@ class RequiredReportsController < ApplicationController
   # POST /required_reports
   # POST /required_reports.json
   def create
-    frequency = required_report_params['frequency']
-    frequency_integer = required_report_params['frequency_integer'].to_i
-    start_date = Date.parse(required_report_params['start_date'])
-    end_date = Date.parse(required_report_params['end_date']) unless required_report_params['end_date'].blank?
-
     # Get attributes for RequiredReportDueDate.
-    due_date_attributes = RequiredReportDueDate.new.generate_due_date_attributes(frequency,
-                                                                                 frequency_integer,
-                                                                                 start_date,
-                                                                                 end_date)
+    due_date_attributes = RequiredReportDueDate.new.generate_due_date_attributes(required_report_params[:frequency],
+                                                                                 required_report_params[:frequency_integer],
+                                                                                 required_report_params[:start_date],
+                                                                                 required_report_params[:end_date])
 
     # Return new RequiredReport object with required_report_due_dates_attributes added to params.
     @required_report = RequiredReport.new(required_report_params.merge(required_report_due_dates_attributes:
