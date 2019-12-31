@@ -11,6 +11,8 @@ class RequiredReport < ApplicationRecord
 
   # Parse frequency and frequency integer into readable string
   def frequency_string
+    return '' if frequency.nil?
+
     frequency_string = frequency
 
     if frequency_string != 'Once'

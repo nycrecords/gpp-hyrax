@@ -77,9 +77,15 @@ class RequiredReportsController < ApplicationController
   def agency_required_reports
     @required_report_names = []
     @agency = params[:agency]
-    @required_reports = RequiredReport.where(agency_name: @agency)
+
+    @required_reports = RequiredReportDueDate.includes(:required_report)
+                            .where(date_submitted: nil)
+                            .where('required_reports.agency_name = ?', @agency)
+                            .order('required_reports.name ASC, due_date ASC')
+                            .references(:required_reports)
+
     @required_reports.each do |required_report|
-      @required_report_names << required_report.name
+      @required_report_names << { 'report_name': required_report.required_report.name, 'due_date': required_report.due_date }
     end
     render json: { 'required_report_names': @required_report_names }
   end

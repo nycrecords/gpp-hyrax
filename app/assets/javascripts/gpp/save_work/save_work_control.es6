@@ -85,7 +85,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
                         // Add blank option
                         required_report.append(new Option('', ''));
                         data['required_report_names'].forEach(function (report) {
-                            required_report.append(new Option(report, report));
+                            required_report.append(new Option(report['report_name'] + ' (' + report['due_date'] + ')', report['report_name']));
                         });
                         // Add Not Required option
                         required_report.append(new Option('Not Required', 'Not Required'));
