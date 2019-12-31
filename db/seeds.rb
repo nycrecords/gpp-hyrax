@@ -23,24 +23,21 @@ required_reports.each do |row|
   start_date = Date.parse(row[11]) unless row[11].blank?
   end_date = Date.parse(row[12]) unless row[12].blank?
 
-  required_report = RequiredReport.create(agency_name: row[1],
-                                          name: row[2],
-                                          description: row[3],
-                                          frequency: frequency,
-                                          frequency_integer: row[5].to_i,
-                                          other_frequency_description: row[6],
-                                          charter_and_code: row[9],
-                                          local_law: row[10],
-                                          start_date: start_date,
-                                          end_date: end_date
-  )
   # Calculate due dates for each required report
   due_date_attributes = RequiredReportDueDate.new.generate_due_date_attributes(frequency,
-                                                                               row[5].to_i,
-                                                                               start_date,
-                                                                               end_date)
-  due_date_attributes.each do |date|
-    RequiredReportDueDate.create(required_report_id: required_report.id,
-                                 due_date: date[:due_date])
-  end
+                                                                               row[5],
+                                                                               row[11],
+                                                                               row[12])
+
+  RequiredReport.create({agency_name: row[1],
+                         name: row[2],
+                         description: row[3],
+                         frequency: frequency,
+                         frequency_integer: row[5].to_i,
+                         other_frequency_description: row[6],
+                         charter_and_code: row[9],
+                         local_law: row[10],
+                         start_date: start_date,
+                         end_date: end_date
+                        }.merge(required_report_due_dates_attributes: due_date_attributes))
 end

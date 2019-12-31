@@ -77,17 +77,15 @@ class RequiredReportsController < ApplicationController
   def agency_required_reports
     @required_report_names = []
     @agency = params[:agency]
-    @required_reports = RequiredReportDueDate.select(Arel.star).where(
-        RequiredReport.arel_table[:agency_name].eq(@agency).and(
-            RequiredReportDueDate.arel_table[:date_submitted].eq(nil)
-        )
-    ).joins(
-        RequiredReportDueDate.arel_table.join(RequiredReport.arel_table).on(
-            RequiredReportDueDate.arel_table[:required_report_id].eq(RequiredReport.arel_table[:id])
-        ).join_sources
-    )
+
+    @required_reports = RequiredReportDueDate.includes(:required_report)
+                            .where(date_submitted: nil)
+                            .where('required_reports.agency_name = ?', @agency)
+                            .order('required_reports.name ASC, due_date ASC')
+                            .references(:required_reports)
+
     @required_reports.each do |required_report|
-      @required_report_names << { 'report_name': required_report.name, 'due_date': required_report.due_date }
+      @required_report_names << { 'report_name': required_report.required_report.name, 'due_date': required_report.due_date }
     end
     render json: { 'required_report_names': @required_report_names }
   end
