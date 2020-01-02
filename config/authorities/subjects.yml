@@ -53,6 +53,8 @@ terms:
     term: Coastal
   - id: community_relations
     term: Community Relations
+  - id: compliance
+    term: Compliance
   - id: consumers
     term: Consumers
   - id: conventions
