@@ -13,7 +13,7 @@ class ReportRequestWorker
     late_reports = RequiredReportDueDate.includes(required_report: :agency)
                                         .where(date_submitted: nil, delinquency_report_published_date: nil)
                                         .where('due_date < ?', late_date)
-
+    failed_reports = {}
     late_reports.each do |report|
       required_report_due_date = report
       required_report = required_report_due_date.required_report
@@ -62,7 +62,12 @@ class ReportRequestWorker
 
         # Set delinquency_report_published_date to current datetime
         report.update_attributes(delinquency_report_published_date: Time.current)
+      else
+        failed_reports[required_report_due_date.id] = { name: required_report.name,
+                                                        error: work.errors.full_messages.join(' ') }
       end
     end
+
+    ReportRequestMailer.failure_email(failed_reports).deliver unless failed_reports.empty?
   end
 end
