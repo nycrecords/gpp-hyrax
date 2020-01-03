@@ -26,16 +26,18 @@ class ReportRequestWorker
                                                                  :@agency => agency },
                                                        layout: 'application.pdf')
 
-      f = File.new('testfile.pdf', 'w')
+      f = Tempfile.new([format('%s_report_request', required_report.id.to_s), '.pdf'])
       f.write(pdf)
-      uploaded_file = Hyrax::UploadedFile.create(user: user, file: pdf)
+      uploaded_file = Hyrax::UploadedFile.create(user: user, file: f)
       f.close
+      f.unlink
 
       work = NycGovernmentPublication.new
       actor = Hyrax::CurationConcern.actor
       attributes = { uploaded_files: [uploaded_file.id.to_s],
                      title: [format('Delinquency Notice - %s', required_report.name)],
                      agency: agency.name,
+                     required_report_name: required_report.name,
                      description: [required_report.description],
                      report_type: 'Delinquent Report Notice',
                      subject: ['Compliance'],

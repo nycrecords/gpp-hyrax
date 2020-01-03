@@ -52,6 +52,10 @@ module Hyrax
 
     def create
       if actor.create(actor_environment)
+        # Update RequiredReportDueDate date_submitted
+        required_report_due_date = RequiredReportDueDate.where(id: params[hash_key_for_curation_concern]['report_due_date_id']).first
+        required_report_due_date.update_attributes(date_submitted: Time.current)
+
         after_create_response
       else
         respond_to do |wants|
