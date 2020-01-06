@@ -16,7 +16,7 @@ report in the Government Publications Portal.
 Consistent with these requirements, DORIS hereby requests the transmission of the report shown below, which DORIS
 has not received as of <%= Date.today %>. Please submit this report to the Government Publications Portal. If you have
 questions, please contact staff at the Municipal Library at
-\\*\href{mailto:munilib@records.nyc.gov}{munilib@records.nyc.gov}.
+\\*\href{mailto:<%=raw ENV['LIBRARY_USER_EMAIL'] %>}{<%=raw ENV['LIBRARY_USER_EMAIL'] %>}.
 \smallbreak
 \textbf{Required Report Type:} <%=raw @required_report.name %>
 \smallbreak

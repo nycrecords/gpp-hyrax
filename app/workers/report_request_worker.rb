@@ -4,7 +4,7 @@ class ReportRequestWorker
   def perform(*args)
     calendar = Rails.configuration.calendar
     today = Date.today
-    user = User.first
+    user = User.find_by(email: ENV['LIBRARY_USER_EMAIL'])
 
     # Do not proceed if today is not a business day
     return unless calendar.business_day?(today)
