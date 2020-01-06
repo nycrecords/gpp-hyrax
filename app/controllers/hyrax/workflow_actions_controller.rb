@@ -5,11 +5,16 @@ module Hyrax
     def update
       if workflow_action_form.save
         work = workflow_action_form.work
+        date_published = Date.parse(work.date_published)
         required_report_name = work.required_report_name
 
         if (workflow_action_form.name == 'approve') && (required_report_name != 'Not Required')
           required_report = RequiredReport.where(agency_name: work.agency, name: required_report_name).first
-          required_report.update_attributes(last_published_date: work.date_published)
+
+          # Update last_published_date if empty or current work's date is after report's last_published_date
+          if required_report.last_published_date.nil? || (date_published > required_report.last_published_date)
+            required_report.update_attributes(last_published_date: date_published)
+          end
         end
 
         after_update_response
