@@ -5,6 +5,7 @@ class CreateRequiredReportDueDates < ActiveRecord::Migration[5.1]
       t.date :due_date, null: false
       t.datetime :date_submitted
       t.datetime :delinquency_report_published_date
+      t.string :submission_id
 
       t.timestamps
     end

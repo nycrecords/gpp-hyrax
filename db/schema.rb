@@ -299,6 +299,7 @@ ActiveRecord::Schema.define(version: 20191127105815) do
     t.date "due_date", null: false
     t.datetime "date_submitted"
     t.datetime "delinquency_report_published_date"
+    t.string "submission_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["required_report_id"], name: "index_required_report_due_dates_on_required_report_id"
