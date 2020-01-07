@@ -4,7 +4,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
     activate() {
         super.activate();
         this.initializeDatesCoveredCallbacks();
-        $('#nyc_government_publication_required_report_name').prop('disabled', true);
+        this.initializeRequiredReportField();
     }
 
     validateMetadata(e) {
@@ -24,7 +24,8 @@ export default class GppSaveWorkControl extends SaveWorkControl {
         this.requiredFields.reload();
         this.initializeDatesCoveredCallbacks();
         this.formStateChanged();
-        this.getAgencyRequiredReports();
+        this.onAgencyChange();
+        this.getReportDueDateId()
     }
 
     titleValidator() {
@@ -69,35 +70,68 @@ export default class GppSaveWorkControl extends SaveWorkControl {
         $('#nyc_government_publication_calendar_year').change(() => this.formStateChanged());
     }
 
-    getAgencyRequiredReports() {
+    initializeRequiredReportField() {
+        let requiredReportField = $('#nyc_government_publication_required_report_name');
+
+        if (requiredReportField.val() === '') {
+            requiredReportField.prop('disabled', true);
+        } else {
+            let selectedAgency = $('#nyc_government_publication_agency').val();
+
+            this.getAgencyRequiredReports(requiredReportField, selectedAgency, requiredReportField.val());
+        }
+    }
+
+    getAgencyRequiredReports(requiredReportField, selectedAgency, selectedRequiredReport) {
+        $.ajax({
+            url: '/required_reports/agency_required_reports',
+            type: 'GET',
+            data: {'agency': selectedAgency},
+            dataType: 'JSON',
+            success: function(data) {
+                let reportDueDate = $('#report_due_date_id');
+
+                requiredReportField.empty();
+                reportDueDate.val('');
+
+                if (selectedAgency !== '') {
+                    // Add blank option
+                    requiredReportField.append(new Option('', ''));
+                    data['required_report_names'].forEach(function (report) {
+                        let option = new Option(report['report_name'] + ' (' + report['due_date'] + ')', report['report_name']);
+                        option.setAttribute('report_due_date_id', report['report_due_date_id']);
+                        requiredReportField.append(option);
+                    });
+                    // Add Not Required option
+                    requiredReportField.append(new Option('Not Required', 'Not Required'));
+                    requiredReportField.prop('disabled', false);
+                    if (selectedRequiredReport !== null) {
+                        requiredReportField.val(selectedRequiredReport);
+                        reportDueDate.val(requiredReportField.find('option:selected').attr('report_due_date_id'));
+                    }
+                }
+                else {
+                    requiredReportField.prop('disabled', true);
+                }
+            },
+            error: function(data) {}
+        });
+    }
+
+    onAgencyChange() {
         let agency = $('#nyc_government_publication_agency');
-        let required_report = $('#nyc_government_publication_required_report_name');
-        agency.change(function() {
-            let selectedAgency = agency.val();
-            $.ajax({
-                url: '/required_reports/agency_required_reports',
-                type: 'GET',
-                data: {'agency': selectedAgency},
-                dataType: 'JSON',
-                success: function(data) {
-                    if (selectedAgency !== '') {
-                        required_report.empty();
-                        // Add blank option
-                        required_report.append(new Option('', ''));
-                        data['required_report_names'].forEach(function (report) {
-                            required_report.append(new Option(report['report_name'] + ' (' + report['due_date'] + ')', report['report_name']));
-                        });
-                        // Add Not Required option
-                        required_report.append(new Option('Not Required', 'Not Required'));
-                        required_report.prop('disabled', false);
-                    }
-                    else {
-                        required_report.empty();
-                        required_report.prop('disabled', true);
-                    }
-                },
-                error: function(data) {}
-            });
+        let requiredReportField = $('#nyc_government_publication_required_report_name');
+
+        agency.change(() => {
+            this.getAgencyRequiredReports(requiredReportField, agency.val(), null);
+        });
+    }
+
+    getReportDueDateId() {
+        let requiredReportField = $('#nyc_government_publication_required_report_name');
+
+        requiredReportField.on('change', function() {
+            $('#report_due_date_id').val(requiredReportField.find('option:selected').attr('report_due_date_id'));
         });
     }
 }

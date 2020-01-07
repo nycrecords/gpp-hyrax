@@ -85,7 +85,9 @@ class RequiredReportsController < ApplicationController
                             .references(:required_reports)
 
     @required_reports.each do |required_report|
-      @required_report_names << { 'report_name': required_report.required_report.name, 'due_date': required_report.due_date }
+      @required_report_names << { 'report_name': required_report.required_report.name,
+                                  'due_date': required_report.due_date,
+                                  'report_due_date_id': required_report.id }
     end
     render json: { 'required_report_names': @required_report_names }
   end

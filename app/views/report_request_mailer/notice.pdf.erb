@@ -2,7 +2,7 @@
 \smallbreak
 <%= Date.today %>
 \smallbreak
-To: <%= @agency.name %>
+To: <%=raw @agency.name %>
 \smallbreak
 From: Municipal Library Staff
 \smallbreak
@@ -16,16 +16,16 @@ report in the Government Publications Portal.
 Consistent with these requirements, DORIS hereby requests the transmission of the report shown below, which DORIS
 has not received as of <%= Date.today %>. Please submit this report to the Government Publications Portal. If you have
 questions, please contact staff at the Municipal Library at
-\\*\href{mailto:munilib@records.nyc.gov}{munilib@records.nyc.gov}.
+\\*\href{mailto:<%=raw ENV['LIBRARY_USER_EMAIL'] %>}{<%=raw ENV['LIBRARY_USER_EMAIL'] %>}.
 \smallbreak
-\textbf{Required Report Type:} <%= @required_report.name %>
+\textbf{Required Report Type:} <%=raw @required_report.name %>
 \smallbreak
-\textbf{Report Description:} <%= @required_report.description %>
+\textbf{Report Description:} <%=raw @required_report.description %>
 \smallbreak
 \textbf{Reporting Frequency:} <%= @required_report.frequency_string %>
 \smallbreak
 \textbf{Report Due Date:} <%= @required_report_due_date.due_date %>
 \smallbreak
-\textbf{Authorizing Resource (Charter and Code):} <%= @required_report.charter_and_code %>
+\textbf{Authorizing Resource (Charter and Code):} <%=raw @required_report.charter_and_code %>
 \smallbreak
-\textbf{Authorizing Resource (Local Law):} <%= @required_report.local_law %>
+\textbf{Authorizing Resource (Local Law):} <%=raw @required_report.local_law %>
