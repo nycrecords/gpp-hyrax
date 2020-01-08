@@ -56,7 +56,7 @@ module Hyrax
         report_due_date_id = params[hash_key_for_curation_concern]['report_due_date_id']
         if report_due_date_id.present?
           required_report_due_date = RequiredReportDueDate.where(id: params[hash_key_for_curation_concern]['report_due_date_id']).first
-          required_report_due_date.update_attributes(date_submitted: Time.current)
+          required_report_due_date.update_attributes(submission_id: curation_concern.id, date_submitted: Time.current)
         end
 
         after_create_response
@@ -117,9 +117,37 @@ module Hyrax
 
     def destroy
       title = curation_concern.to_s
+      agency = curation_concern.agency
+      required_report_name = curation_concern.required_report_name
+      submission_id = curation_concern.id
+
       env = Actors::Environment.new(curation_concern, current_ability, {})
       return unless actor.destroy(env)
       Hyrax.config.callback.run(:after_destroy, curation_concern.id, current_user)
+
+      # Query for publications with required_report
+      publications = NycGovernmentPublication.where(required_report_name: required_report_name,
+                                                    agency: agency)
+                                             .order('date_published_ssi desc')
+      required_report = RequiredReport.where(agency_name: agency, name: required_report_name).first
+      required_report_due_date = RequiredReportDueDate.where(submission_id: submission_id).first
+
+      # If there are no previous publications, set date_published to nil
+      if publications.present?
+        publications.each do |p|
+          if !(p.suppressed?)
+            # Set required_report.date_published to the publication with the next chronological published date
+            required_report.update_attributes(last_published_date: p.date_published)
+            break
+          end
+        end
+      else
+        required_report.update_attributes(last_published_date: nil)
+      end
+
+      # Set submission_id and date_submitted to nil in required_report_due_dates
+      required_report_due_date.update_attributes(submission_id: nil, date_submitted: nil)
+
       after_destroy_response(title)
     end
 
