@@ -9,7 +9,7 @@ class ReportRequestWorker
     # Do not proceed if today is not a business day
     return unless calendar.business_day?(today)
 
-    late_date = calendar.subtract_business_days(today, 10)
+    late_date = calendar.subtract_business_days(today, 11)
     late_reports = RequiredReportDueDate.includes(required_report: :agency)
                                         .where(date_submitted: nil, delinquency_report_published_date: nil)
                                         .where('due_date < ?', late_date)
