@@ -100,9 +100,9 @@ ActiveRecord::Schema.define(version: 20200108193343) do
   end
 
   create_table "deleted_publications", force: :cascade do |t|
-    t.string "user_guid"
-    t.datetime "timestamp"
-    t.jsonb "metadata"
+    t.string "user_guid", null: false
+    t.datetime "timestamp", null: false
+    t.jsonb "metadata", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

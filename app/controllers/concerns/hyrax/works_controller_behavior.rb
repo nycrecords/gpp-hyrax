@@ -152,7 +152,7 @@ module Hyrax
       # Store deleted work's metadata in deleted_publications
       if metadata.present?
         DeletedPublication.create(user_guid: current_user.guid,
-                                  timestamp: Time.now.utc,
+                                  timestamp: Time.current,
                                   metadata: metadata)
       end
 
