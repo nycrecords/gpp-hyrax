@@ -149,19 +149,20 @@ module Hyrax
       return unless actor.destroy(env)
       Hyrax.config.callback.run(:after_destroy, curation_concern.id, current_user)
 
-      # Store deleted work's metadata in deleted_publications
-      if metadata.present?
-        DeletedPublication.create(user_guid: current_user.guid,
-                                  timestamp: Time.current,
-                                  metadata: metadata)
-      end
-
       # Query for publications with required_report
       publications = NycGovernmentPublication.where(required_report_name: required_report_name,
                                                     agency: agency)
                                              .order('date_published_ssi desc')
       required_report = RequiredReport.where(agency_name: agency, name: required_report_name).first
       required_report_due_date = RequiredReportDueDate.where(submission_id: submission_id).first
+
+      # Store deleted work's metadata in deleted_publications
+      if metadata.present?
+        metadata[:required_report_due_date_id] = required_report_due_date.id unless required_report_due_date.nil?
+        DeletedPublication.create(user_guid: current_user.guid,
+                                  timestamp: Time.current,
+                                  metadata: metadata)
+      end
 
       # If there are no previous publications, set date_published to nil
       if publications.present?
@@ -173,11 +174,12 @@ module Hyrax
           end
         end
       else
-        required_report.update_attributes(last_published_date: nil)
+        required_report.update_attributes(last_published_date: nil) unless required_report.nil?
       end
 
       # Set submission_id and date_submitted to nil in required_report_due_dates
-      required_report_due_date.update_attributes(submission_id: nil, date_submitted: nil)
+      required_report_due_date.update_attributes(submission_id: nil,
+                                                 date_submitted: nil) unless required_report_due_date.nil?
 
       after_destroy_response(title)
     end
