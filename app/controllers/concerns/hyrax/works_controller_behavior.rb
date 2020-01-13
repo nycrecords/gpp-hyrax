@@ -121,6 +121,30 @@ module Hyrax
       required_report_name = curation_concern.required_report_name
       submission_id = curation_concern.id
 
+      # Check that the work has been published before storing metadata
+      if !(curation_concern.suppressed?)
+        metadata = {
+            id: curation_concern.id,
+            date_uploaded: curation_concern.date_uploaded.to_s,
+            title: title,
+            sub_title: curation_concern.sub_title,
+            agency: agency,
+            required_report_name: required_report_name,
+            additional_creators: curation_concern.additional_creators,
+            subject: curation_concern.subject,
+            description: curation_concern.description,
+            date_published: curation_concern.date_published,
+            report_type: curation_concern.report_type,
+            language: curation_concern.language,
+            fiscal_year: curation_concern.fiscal_year,
+            calendar_year: curation_concern.calendar_year,
+            borough: curation_concern.borough,
+            school_district: curation_concern.school_district,
+            community_board_district: curation_concern.community_board_district,
+            associated_place: curation_concern.associated_place
+        }
+      end
+
       env = Actors::Environment.new(curation_concern, current_ability, {})
       return unless actor.destroy(env)
       Hyrax.config.callback.run(:after_destroy, curation_concern.id, current_user)
@@ -132,6 +156,14 @@ module Hyrax
       required_report = RequiredReport.where(agency_name: agency, name: required_report_name).first
       required_report_due_date = RequiredReportDueDate.where(submission_id: submission_id).first
 
+      # Store deleted work's metadata in deleted_publications
+      if metadata.present?
+        metadata[:required_report_due_date_id] = required_report_due_date.id unless required_report_due_date.nil?
+        DeletedPublication.create(user_guid: current_user.guid,
+                                  timestamp: Time.current,
+                                  metadata: metadata)
+      end
+
       # If there are no previous publications, set date_published to nil
       if publications.present?
         publications.each do |p|
@@ -142,11 +174,12 @@ module Hyrax
           end
         end
       else
-        required_report.update_attributes(last_published_date: nil)
+        required_report.update_attributes(last_published_date: nil) unless required_report.nil?
       end
 
       # Set submission_id and date_submitted to nil in required_report_due_dates
-      required_report_due_date.update_attributes(submission_id: nil, date_submitted: nil)
+      required_report_due_date.update_attributes(submission_id: nil,
+                                                 date_submitted: nil) unless required_report_due_date.nil?
 
       after_destroy_response(title)
     end
