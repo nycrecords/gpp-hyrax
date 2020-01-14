@@ -44,7 +44,10 @@ class ReportRequestWorker
                      date_published: today.to_s,
                      calendar_year: [today.year.to_s],
                      language: ['English'],
-                     member_of_collections_attributes: { '0' => { id: 'fn106x926', _destroy: 'false' } } }
+                     member_of_collections_attributes: { '0' => {
+                       id: Collection.where(title: 'Government Publication').first.id,
+                       _destroy: 'false'
+                     } } }
       actor_environment = Hyrax::Actors::Environment.new(work, user.ability, attributes)
       status = actor.create(actor_environment)
 
