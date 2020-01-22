@@ -16,7 +16,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user_json = nycidwebservices.search_user(saml_attrs[:GUID])
     @user = User.from_omniauth(user_json)
 
-    set_flash_message :notice, :success, kind: 'SAML'
+    # Get last sign in datetime and flash to user
+    last_login_datetime = @user.last_sign_in_at.in_time_zone(Rails.configuration.local_timezone)
+    last_login_string = last_login_datetime.strftime('%B %d, %Y %H:%M:%S')
+    flash[:notice] = "Last login: #{last_login_string}"
+
     sign_in_and_redirect @user
   end
 end
