@@ -17,6 +17,8 @@ class ApplicationController < ActionController::Base
 
   # Redirect to location that triggered authentication or to homepage
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) || hyrax.collection_path(Collection.where(title: 'Government Publications').first)
+    gpp_collection = Collection.where(title: 'Government Publications').first
+    path = gpp_collection.present? ? hyrax.collection_path(gpp_collection) : root_path
+    stored_location_for(resource) || path
   end
 end
