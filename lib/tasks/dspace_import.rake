@@ -8,14 +8,10 @@ task :dspace_import => :environment do
     values
   end
 
-  count = 1
   user = User.find_by(email: ENV['LIBRARY_USER_EMAIL'])
 
-  paths = Dir.glob(format('%s/*', ENV['DSPACE_EXPORT_PATH']))
-  paths.each do |path|
-    puts count
-    count = count + 1
-
+  paths = Dir.glob(format('%s/*', ENV['DSPACE_EXPORT_PATH'])).sort_by { |s| s.scan(/\d+/).map { |s| s.to_i } }
+  paths[ENV['DSPACE_IMPORT_STARTING_INDEX'].to_i..-1].each do |path|
     # handle files
     uploaded_files = []
     file_paths = Dir.glob(format('%s/*.pdf', path))
@@ -79,6 +75,7 @@ task :dspace_import => :environment do
           attributes: approve_attributes
       )
       workflow_action_form.save
+      puts 'Finished processing submission at: ' + path
     end
   end
 end
