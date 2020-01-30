@@ -7,6 +7,7 @@ class SessionsController < Devise::SessionsController
     saml_uid = session['saml_uid']
     super do
       session['saml_uid'] = saml_uid
+      response.headers['Clear-Site-Data'] = '"*"'
     end
   end
 
