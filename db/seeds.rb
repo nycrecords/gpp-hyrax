@@ -30,7 +30,8 @@ required_reports.each do |row|
                                                                                row[11],
                                                                                row[12])
 
-  RequiredReport.create({ agency_name: row[1],
+  RequiredReport.create({ id: row[0],
+                          agency_name: row[1],
                           name: row[2],
                           description: row[3],
                           frequency: frequency,

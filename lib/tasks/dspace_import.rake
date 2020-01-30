@@ -39,6 +39,8 @@ task :dspace_import => :environment do
     sub_title = split_elements(metadata.xpath('//dcvalue[@element="title"][@qualifier="alternative"]'))
     title = split_elements(metadata.xpath('//dcvalue[@element="title"][@qualifier="none"]'))
     report_type = metadata.xpath('//dcvalue[@element="type"][@qualifier="none"]').text
+    required_report_id = metadata.xpath('//dcvalue[@element="identifier"][@qualifier="required-report-id"]').text
+    required_report_name = RequiredReport.where(id: required_report_id).first.name if required_report_id.present?
 
     # handle work
     work = NycGovernmentPublication.new
@@ -58,7 +60,7 @@ task :dspace_import => :environment do
                    subject: subject,
                    sub_title: sub_title,
                    title: title,
-                   required_report_name: nil,
+                   required_report_name: required_report_name,
                    report_type: report_type,
                    member_of_collections_attributes: { '0' => {
                        id: Collection.where(title: 'Government Publication').first.id,
@@ -75,7 +77,7 @@ task :dspace_import => :environment do
           attributes: approve_attributes
       )
       workflow_action_form.save
-      puts 'Finished processing submission at: ' + path
+      puts format('Finished processing submission at: %s', path)
     end
   end
 end
