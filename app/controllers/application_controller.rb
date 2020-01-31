@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :check_concurrent_session
+
   auto_session_timeout 30.minutes
   before_timedout_action
 
@@ -15,10 +17,29 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception, except: [:saml]
 
+  # Redirect user to sign_out if user is has another session
+  def check_concurrent_session
+    return unless is_already_logged_in?
+    session[:duplicate] = true
+    redirect_to main_app.destroy_user_session_path
+  end
+
+  # Return boolean value of whether user is logged in
+  def is_already_logged_in?
+    current_user && (session.id != current_user.unique_session_id)
+  end
+
   # Redirect to location that triggered authentication or to homepage
   def after_sign_in_path_for(resource)
+    # Generate new session id and update in user.unique_session_id
+    session.options[:id] = session.instance_variable_get(:@by).generate_sid
+    session.options[:renew] = false
+    resource.update_attributes(unique_session_id: session.id)
+
+    # Get path to Government Publications collection or homepage if collection not found
     gpp_collection = Collection.where(title: 'Government Publications').first
     path = gpp_collection.present? ? hyrax.collection_path(gpp_collection) : root_path
+
     stored_location_for(resource) || path
   end
 end

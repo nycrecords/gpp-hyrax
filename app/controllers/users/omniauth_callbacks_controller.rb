@@ -1,5 +1,7 @@
 # Controller which implements Omniauth callbacks.
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  skip_before_action :check_concurrent_session
+
   include NYCID
   def saml
     saml_attrs = request.env['omniauth.auth'].extra.response_object.attributes
