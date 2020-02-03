@@ -19,6 +19,7 @@ class User < ApplicationRecord
   devise_modules = [
     :registerable,
     :recoverable,
+    :trackable,
     :omniauthable,
     omniauth_providers: [:saml],
     authentication_keys: [:email]
@@ -50,7 +51,7 @@ class User < ApplicationRecord
     user.active = user_json['active']
     user.nyc_employee = user_json['nycEmployee']
     user.has_nyc_account = user_json['hasNYCAccount']
-    user.display_name = "#{user.first_name} #{user.middle_initial || ''} #{user.last_name}"
+    user.display_name = "#{user.first_name} #{user.last_name}"
     user.save
     user
   end
