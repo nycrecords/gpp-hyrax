@@ -10,9 +10,10 @@ task :dspace_import => :environment do
 
   user = User.find_by(email: ENV['LIBRARY_USER_EMAIL'])
 
+  # Paths is an alphanumerically sorted array containing the paths to all directories found in DSPACE_EXPORT_PATH using the Dir.glob() function.
   paths = Dir.glob(format('%s/*', ENV['DSPACE_EXPORT_PATH'])).sort_by { |s| s.scan(/\d+/).map { |s| s.to_i } }
   paths[ENV['DSPACE_IMPORT_STARTING_INDEX'].to_i..-1].each do |path|
-    # handle files
+    # Handle files
     uploaded_files = []
     file_paths = Dir.glob(format('%s/*.pdf', path))
     file_paths.each do |file_path|
@@ -22,7 +23,7 @@ task :dspace_import => :environment do
       file.close
     end
 
-    # handle metadata
+    # Handle metadata
     metadata = Nokogiri::XML(File.open(format('%s/dublin_core.xml', path)))
     agency = metadata.xpath('//dcvalue[@element="contributor"][@qualifier="author"]').text
     additional_creators = split_elements(metadata.xpath('//dcvalue[@element="contributor"][@qualifier="other"]'))
@@ -37,12 +38,12 @@ task :dspace_import => :environment do
     language = split_elements(metadata.xpath('//dcvalue[@element="language"][@qualifier="iso"]'))
     subject = split_elements(metadata.xpath('//dcvalue[@element="subject"]'))
     sub_title = split_elements(metadata.xpath('//dcvalue[@element="title"][@qualifier="alternative"]'))
-    title = split_elements(metadata.xpath('//dcvalue[@element="title"][@qualifier="none"]'))
+    title = [metadata.xpath('//dcvalue[@element="title"][@qualifier="none"]').text]
     report_type = metadata.xpath('//dcvalue[@element="type"][@qualifier="none"]').text
     required_report_id = metadata.xpath('//dcvalue[@element="identifier"][@qualifier="required-report-id"]').text
     required_report_name = RequiredReport.where(id: required_report_id).first.name if required_report_id.present?
 
-    # handle work
+    # Handle work
     work = NycGovernmentPublication.new
     actor = Hyrax::CurationConcern.actor
     attributes = { uploaded_files: uploaded_files,
