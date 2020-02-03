@@ -8,6 +8,16 @@ task :dspace_import => :environment do
     values
   end
 
+  def get_required_report_name(id, name)
+    if id.present?
+      RequiredReport.where(id: id).first.name
+    elsif name == 'Not Required'
+      'Not Required'
+    else
+      nil
+    end
+  end
+
   user = User.find_by(email: ENV['LIBRARY_USER_EMAIL'])
 
   # Paths is an alphanumerically sorted array containing the paths to all directories found in DSPACE_EXPORT_PATH using the Dir.glob() function.
@@ -40,8 +50,8 @@ task :dspace_import => :environment do
     sub_title = split_elements(metadata.xpath('//dcvalue[@element="title"][@qualifier="alternative"]'))
     title = [metadata.xpath('//dcvalue[@element="title"][@qualifier="none"]').text]
     report_type = metadata.xpath('//dcvalue[@element="type"][@qualifier="none"]').text
-    required_report_id = metadata.xpath('//dcvalue[@element="identifier"][@qualifier="required-report-id"]').text
-    required_report_name = RequiredReport.where(id: required_report_id).first.name if required_report_id.present?
+    required_report_name = get_required_report_name(metadata.xpath('//dcvalue[@element="identifier"][@qualifier="required-report-id"]').text,
+                                                    metadata.xpath('//dcvalue[@element="type"][@qualifier="required-report-name"]').text)
 
     # Handle work
     work = NycGovernmentPublication.new

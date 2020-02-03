@@ -47,11 +47,11 @@ class SolrDocument
   end
 
   def fiscal_year
-    self[Solrizer.solr_name('fiscal_year')]
+    self[Solrizer.solr_name('fiscal_year')]&.sort
   end
 
   def calendar_year
-    self[Solrizer.solr_name('calendar_year')]
+    self[Solrizer.solr_name('calendar_year')]&.sort
   end
 
   def borough
