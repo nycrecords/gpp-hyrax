@@ -35,7 +35,7 @@ class ReportRequestWorker
       work = NycGovernmentPublication.new
       actor = Hyrax::CurationConcern.actor
       attributes = { uploaded_files: [uploaded_file.id.to_s],
-                     title: [format('Delinquency Notice - %s', required_report.name)],
+                     title: [format('Late Notice - %s', required_report.name)],
                      agency: agency.name,
                      required_report_name: required_report.name,
                      description: [required_report.description],
