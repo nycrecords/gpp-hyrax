@@ -13,8 +13,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   devise_scope :user do
-    get 'sign_in', to: 'omniauth#new', as: :new_user_session
-    post 'sign_in', to: 'omniauth_callbacks#saml', as: :new_session
     get 'sign_out', to: 'sessions#destroy', as: :destroy_user_session
     get 'active' => 'sessions#active'
     get 'timeout' => 'sessions#timeout'

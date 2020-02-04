@@ -11,9 +11,9 @@ default: &default
     want_assertions_signed: true
     want_assertions_encrypted: false
     want_messages_signed: false
-    metadata_signed: false
-    signature_method: "http://www.w3.org/2000/09/xmldsig#rsa-sha1"
-    digest_method: "http://www.w3.org/2000/09/xmldsig#sha1"
+    metadata_signed: true
+    signature_method: "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"
+    digest_method: "http://www.w3.org/2001/04/xmlenc#sha256"
 
 
 development:
