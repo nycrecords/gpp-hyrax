@@ -18,9 +18,9 @@ has not received as of <%= Date.today %>. Please submit this report to the Gover
 questions, please contact staff at the Municipal Library at
 \\*\href{mailto:<%=raw ENV['LIBRARY_USER_EMAIL'] %>}{<%=raw ENV['LIBRARY_USER_EMAIL'] %>}.
 \smallbreak
-\textbf{Required Report Type:} <%=raw @required_report.name %>
+\textbf{Required Report Type:} <%=raw @required_report.name.gsub("&","\\\\&") %>
 \smallbreak
-\textbf{Report Description:} <%=raw @required_report.description %>
+\textbf{Report Description:} <%=raw @required_report.description&.gsub("&","\\\\&") %>
 \smallbreak
 \textbf{Reporting Frequency:} <%= @required_report.frequency_string %>
 \smallbreak
