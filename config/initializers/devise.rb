@@ -40,7 +40,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [:email]
+  config.authentication_keys = [:email]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -208,7 +208,6 @@ Devise.setup do |config|
   #
   # Defines which key will be used when recovering the password for an account
   # config.reset_password_keys = [:email]
-  config.authentication_keys = [:guid]
 
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
@@ -312,7 +311,6 @@ Devise.setup do |config|
                   assertion_consumer_service_binding: saml_config[:acs_binding],
                   assertion_consumer_service_url: saml_config[:acs_url],
                   slo_default_relay_state: '/',
-                  name_identifier_format: saml_config[:name_identifier_format],
                   request_attributes: {},
                   idp_cert: idp_metadata[:idp_cert],
                   certificate: File.read(sp_cert),

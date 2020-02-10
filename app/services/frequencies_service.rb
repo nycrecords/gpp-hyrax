@@ -1,6 +1,6 @@
-module SubjectsService
+module FrequenciesService
   mattr_accessor :authority
-  self.authority = Qa::Authorities::Local.subauthority_for('subjects')
+  self.authority = Qa::Authorities::Local.subauthority_for('frequencies')
 
   def self.select_all_options
     authority.all.map do |element|

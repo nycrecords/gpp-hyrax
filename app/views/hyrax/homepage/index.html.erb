@@ -1,0 +1,8 @@
+<%
+  @collection = Collection.first
+  if @collection
+    controller.redirect_to(@collection)
+%>
+<% else %>
+  <h1 style="text-align: center;">No default collection detected</h1>
+<% end %>

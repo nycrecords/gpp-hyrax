@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<ul>
+  <% @failed_reports.each do |key, value| %>
+    <li>Required Report Due Date ID:
+      <%= key %><br>
+      Required Report Name:
+      <%= value[:name] %><br>
+      Error: <%= value[:error] %></li>
+  <% end %>
+</ul>
+</body>
+</html>

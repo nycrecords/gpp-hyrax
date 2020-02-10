@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  
+
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
-  
+  mount BlacklightAdvancedSearch::Engine => '/'
+
     concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
@@ -12,9 +13,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   devise_scope :user do
-    get 'sign_in', to: 'omniauth#new', as: :new_user_session
-    post 'sign_in', to: 'omniauth_callbacks#saml', as: :new_session
     get 'sign_out', to: 'sessions#destroy', as: :destroy_user_session
+    get 'active' => 'sessions#active'
+    get 'timeout' => 'sessions#timeout'
+    get 'renew_session' => 'sessions#renew'
   end
 
   mount Hydra::RoleManagement::Engine => '/'
@@ -35,6 +37,13 @@ Rails.application.routes.draw do
 
     collection do
       delete 'clear'
+    end
+  end
+
+  resources :required_reports do
+    collection do
+      get 'agency_required_reports'
+      get 'public_list'
     end
   end
 

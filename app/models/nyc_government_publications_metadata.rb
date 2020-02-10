@@ -2,6 +2,11 @@ module NycGovernmentPublicationsMetadata
   extend ActiveSupport::Concern
 
   included do
+    after_initialize :set_default_visibility
+    def set_default_visibility
+      self.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC if new_record?
+    end
+
     property :title, predicate: ::RDF::Vocab::DC.title do |index|
       index.as :stored_searchable, :facetable
     end
@@ -11,6 +16,10 @@ module NycGovernmentPublicationsMetadata
     end
 
     property :agency, predicate: ::RDF::Vocab::DC.creator, multiple: false  do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :required_report_name, predicate: ::RDF::URI.intern('http://a860-gpp.nyc.gov/required-report-name'), multiple: false do |index|
       index.as :stored_searchable, :facetable
     end
 

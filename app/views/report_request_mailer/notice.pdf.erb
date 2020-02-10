@@ -1,0 +1,31 @@
+\includegraphics[scale=0.6]{<%= File.join(Rails.root, 'public/doris-logo.png') %>}
+\smallbreak
+<%= Date.today %>
+\smallbreak
+To: <%=raw @agency.name %>
+\smallbreak
+From: Municipal Library Staff
+\smallbreak
+The New York City Charter, Chapter 49, Section 1133, requires that agencies submit to the Department of Records and
+Information Services (DORIS) all reports, documents, studies and publications required by local law, executive
+order, or mayoral directive to be published, issued, or transmitted to the City Council or Mayor, within 10 business
+days of their publication. For any report that is not received within 10 business days of the publication date,
+DORIS is required to email the agency to request the report, and to provide the text of that email in place of the
+report in the Government Publications Portal.
+\smallbreak
+Consistent with these requirements, DORIS hereby requests the transmission of the report shown below, which DORIS
+has not received as of <%= Date.today %>. Please submit this report to the Government Publications Portal. If you have
+questions, please contact staff at the Municipal Library at
+\\*\href{mailto:<%=raw ENV['LIBRARY_USER_EMAIL'] %>}{<%=raw ENV['LIBRARY_USER_EMAIL'] %>}.
+\smallbreak
+\textbf{Required Report Type:} <%=raw @required_report.name.gsub("&","\\\\&") %>
+\smallbreak
+\textbf{Report Description:} <%=raw @required_report.description&.gsub("&","\\\\&") %>
+\smallbreak
+\textbf{Reporting Frequency:} <%= @required_report.frequency_string %>
+\smallbreak
+\textbf{Report Due Date:} <%= @required_report_due_date.due_date %>
+\smallbreak
+\textbf{Authorizing Resource (Charter and Code):} <%=raw @required_report.charter_and_code %>
+\smallbreak
+\textbf{Authorizing Resource (Local Law):} <%=raw @required_report.local_law %>

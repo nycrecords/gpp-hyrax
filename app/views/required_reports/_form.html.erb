@@ -1,0 +1,78 @@
+<%= javascript_include_tag 'required_reports' %>
+
+<%= simple_form_for @required_report do |f| %>
+  <% if required_report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(required_report.errors.count, "error") %> prohibited this required_report from being saved:</h2>
+
+      <ul>
+        <% required_report.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="alert alert-danger" id="alert-error" role="alert" style="display: none;" tabindex="0"></div>
+
+  <%= f.input :name,
+              as: :string,
+              input_html: { class: 'form-control' },
+              required: true
+  %>
+
+  <%= f.input :agency_name,
+              as: :select,
+              collection: AgenciesService.select_all_options,
+              include_blank: true,
+              input_html: { class: 'form-control' },
+              required: true
+  %>
+
+  <%= f.input :description,
+              as: :string,
+              input_html: { class: 'form-control' }
+  %>
+
+  <%= f.input :local_law,
+              as: :string,
+              input_html: { class: 'form-control' }
+  %>
+
+  <%= f.input :charter_and_code,
+              as: :string,
+              input_html: { class: 'form-control' }
+  %>
+
+  <%= f.input :frequency,
+              as: :select,
+              collection: FrequenciesService.select_all_options,
+              input_html: { class: 'form-control' }
+  %>
+
+  <%= f.input :frequency_integer,
+              as: :integer,
+              input_html: { class: 'form-control', min: '0', max: '9999' }
+  %>
+
+  <%= f.input :other_frequency_description,
+              as: :text,
+              input_html: { class: 'form-control', rows: 3, maxlength: 500 }
+  %>
+
+  <%= f.input :start_date,
+              as: :string,
+              input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD' }
+  %>
+
+  <%= f.input :end_date,
+              as: :string,
+              input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD' }
+  %>
+
+  <div class="actions">
+    <%= f.button :submit,
+                 class: 'btn btn-primary'
+    %>
+  </div>
+<% end %>

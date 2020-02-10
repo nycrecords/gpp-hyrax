@@ -10,6 +10,8 @@ end
 gem 'rails', '~> 5.1.6', '>= 5.1.6.2'
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.3.0"
+# Use postgresql as the database
+gem "pg"
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -76,6 +78,19 @@ end
 
 gem 'riiif', '~> 2.0'
 
-gem 'hydra-role-management'
-gem 'omniauth-saml'
+gem 'auto-session-timeout-warning', git: 'https://github.com/nycrecords/auto-session-timeout-warning.git'
+gem 'blacklight_advanced_search'
+gem 'business'
 gem 'dotenv-rails'
+gem 'hydra-role-management'
+gem 'jquery-ui-rails'
+gem 'nilify_blanks'
+gem 'omniauth-saml'
+
+# Use sidekiq and whenever for background jobs
+gem 'sidekiq'
+gem 'sidekiq-client-cli'
+gem 'whenever'
+
+# Use Rails-LaTeX to generate PDFs
+gem 'rails-latex'
