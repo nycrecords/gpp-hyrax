@@ -13,7 +13,7 @@ module Hyrax
     self.table_name = 'uploaded_files'
     mount_uploader :file, UploadedFileUploader
     alias uploader file
-    validates_with CheckVirusValidator
+    validates_with CheckVirusValidator if ENV['VIRUS_SCANNER'] == 'on'
     has_many :job_io_wrappers,
              inverse_of: 'uploaded_file',
              class_name: 'JobIoWrapper',

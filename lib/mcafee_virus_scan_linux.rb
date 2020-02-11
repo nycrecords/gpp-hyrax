@@ -8,6 +8,10 @@ class McafeeVirusScanLinux < Hydra::Works::VirusScanner
   end
 
   def infected?
+    system("which #{@uvscan_path}") ? mcafee_scanner : null_scanner
+  end
+
+  def mcafee_scanner
     scan_command = "#{@uvscan_path} --delete -v #{file}"
     system(scan_command)
     file_exists = Dir.glob(file)
