@@ -8,11 +8,11 @@ class McafeeVirusScanLinux < Hydra::Works::VirusScanner
   end
 
   def infected?
-    scan_command = "#{@uvscan_path} --delete -v #{file.path}"
-    scan_result = `#{scan_command}`
-    file_exists = Dir.glob(file.path)
+    scan_command = "#{@uvscan_path} --delete -v #{file}"
+    system(scan_command)
+    file_exists = Dir.glob(file)
     return false unless file_exists.empty?
-    warning "A virus was found in #{file.path}"
+    warning "A virus was found in #{file}"
     true
   end
 end
