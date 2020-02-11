@@ -61,7 +61,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '2.5.1'
+gem 'hyrax', '2.7.0'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
@@ -82,6 +82,7 @@ gem 'auto-session-timeout-warning', git: 'https://github.com/nycrecords/auto-ses
 gem 'blacklight_advanced_search'
 gem 'business'
 gem 'dotenv-rails'
+gem 'httparty'
 gem 'hydra-role-management'
 gem 'jquery-ui-rails'
 gem 'nilify_blanks'
