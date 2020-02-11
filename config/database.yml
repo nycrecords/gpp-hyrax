@@ -12,6 +12,7 @@ default: &default
   password: <%= ENV.fetch("DATABASE_PASSWORD") { "" } %>
   host: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %>
   port: <%= ENV.fetch("DATABASE_PORT") { 5432 } %>
+  database: <%= ENV.fetch("DATABASE_NAME") { "gpp-hyrax-dev" } %>
   timeout: 5000
 
 development:
@@ -27,4 +28,5 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: <%= ENV.fetch("DATABASE_NAME") %>
+
