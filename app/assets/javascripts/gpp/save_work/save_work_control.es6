@@ -20,6 +20,25 @@ export default class GppSaveWorkControl extends SaveWorkControl {
         return false;
     }
 
+    // Sets the files indicator to complete/incomplete
+    validateFiles() {
+        if (!this.uploads.hasFileRequirement) {
+            return true
+        }
+        if (!this.isNew || this.uploads.hasFiles) {
+            // Check for potential errors such as viruses
+            let errors = $('span:contains("Error")');
+            if (errors.length > 0) {
+                this.requiredFiles.uncheck();
+                return false;
+            }
+            this.requiredFiles.check();
+            return true
+        }
+        this.requiredFiles.uncheck();
+        return false
+    }
+
     formChanged() {
         this.requiredFields.reload();
         this.initializeDatesCoveredCallbacks();
