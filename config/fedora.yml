@@ -11,6 +11,6 @@ test:
 production:
   user: fcrepo
   password: fcrepo
-  url: http://127.0.0.1:9080/fcrepo/rest
+  url: <%= ENV['FCREPO_URL'] %>
   base_path: /prod
 
