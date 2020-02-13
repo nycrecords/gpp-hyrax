@@ -23,16 +23,6 @@ task :dspace_import => :environment do
   # Paths is an alphanumerically sorted array containing the paths to all directories found in DSPACE_EXPORT_PATH using the Dir.glob() function.
   paths = Dir.glob(format('%s/*', ENV['DSPACE_EXPORT_PATH'])).sort_by { |s| s.scan(/\d+/).map { |s| s.to_i } }
   paths[ENV['DSPACE_IMPORT_STARTING_INDEX'].to_i..-1].each do |path|
-    # Handle files
-    uploaded_files = []
-    file_paths = Dir.glob(format('%s/*.pdf', path))
-    file_paths.each do |file_path|
-      file = File.open(file_path)
-      uploaded_file = Hyrax::UploadedFile.create(user: user, file: file)
-      uploaded_files << uploaded_file.id.to_s
-      file.close
-    end
-
     # Handle metadata
     metadata = Nokogiri::XML(File.open(format('%s/dublin_core.xml', path)))
     agency = metadata.xpath('//dcvalue[@element="contributor"][@qualifier="author"]').text
@@ -56,8 +46,7 @@ task :dspace_import => :environment do
     # Handle work
     work = NycGovernmentPublication.new
     actor = Hyrax::CurationConcern.actor
-    attributes = { uploaded_files: uploaded_files,
-                   agency: agency,
+    attributes = { agency: agency,
                    additional_creators: additional_creators,
                    borough: borough,
                    community_board_district: community_board_district,
@@ -81,6 +70,18 @@ task :dspace_import => :environment do
     status = actor.create(actor_environment)
 
     if status
+      # Handle files
+      uploaded_files = []
+      file_paths = Dir.glob(format('%s/*.pdf', path), File::FNM_CASEFOLD)
+      file_paths.each do |file_path|
+        file = File.open(file_path)
+        uploaded_file = Hyrax::UploadedFile.create(user: user, file: file)
+        uploaded_files << uploaded_file
+        file.close
+      end
+
+      AttachFilesToWorkJob.perform_now(work, uploaded_files)
+
       approve_attributes = { name: 'approve', comment: '' }
       workflow_action_form = Hyrax::Forms::WorkflowActionForm.new(
           current_ability: user.ability,
