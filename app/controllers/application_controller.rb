@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :check_concurrent_session
+  before_action :set_cache_headers, :check_concurrent_session
 
   auto_session_timeout 30.minutes
   before_timedout_action
@@ -41,5 +41,13 @@ class ApplicationController < ActionController::Base
     path = gpp_collection.present? ? hyrax.collection_path(gpp_collection) : root_path
 
     stored_location_for(resource) || path
+  end
+
+  private
+
+  def set_cache_headers
+    response.headers['Cache-Control'] = 'max-age=0, no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '-1'
   end
 end
