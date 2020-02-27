@@ -2,7 +2,7 @@
 \smallbreak
 <%= Date.today %>
 \smallbreak
-To: <%=raw @agency.name %>
+To: <%=raw @agency.name.gsub("&","\\\\&") %>
 \smallbreak
 From: Municipal Library Staff
 \smallbreak
@@ -20,7 +20,7 @@ questions, please contact staff at the Municipal Library at
 \smallbreak
 \textbf{Required Report Type:} <%=raw @required_report.name.gsub("&","\\\\&") %>
 \smallbreak
-\textbf{Report Description:} <%=raw @required_report.description&.gsub("&","\\\\&") %>
+\textbf{Report Description:} <%=raw @required_report.description&.gsub(/[&$]/, "&" => "\\\\&", "$" => "\\\\$") %>
 \smallbreak
 \textbf{Reporting Frequency:} <%= @required_report.frequency_string %>
 \smallbreak
