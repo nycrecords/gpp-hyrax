@@ -78,14 +78,14 @@
       <%= render 'collection_description', presenter: @presenter %>
 
       <% if @presenter.collection_type_is_nestable? && @presenter.total_parent_collections > 0 %>
-          <div class="hyc-blacklight hyc-bl-title">
-            <h2>
-              <%= t('.parent_collection_header') %> (<%= @presenter.total_parent_collections %>)
-            </h2>
-          </div>
-          <div class="hyc-blacklight hyc-bl-results">
-            <%= render 'show_parent_collections', presenter: @presenter %>
-          </div>
+        <div class="hyc-blacklight hyc-bl-title">
+          <h2>
+            <%= t('.parent_collection_header') %> (<%= @presenter.total_parent_collections %>)
+          </h2>
+        </div>
+        <div class="hyc-blacklight hyc-bl-results">
+          <%= render 'show_parent_collections', presenter: @presenter %>
+        </div>
       <% end %>
 
     </div>
@@ -104,17 +104,6 @@
                     new_polymorphic_path([main_app, @presenter.first_work_type], add_works_to_collection: @presenter.id),
                     class: 'btn btn-primary submit-btn' %>
       <% end %>
-    </div>
-  <% end %>
-
-  <!-- Search results label -->
-  <% if @members_count > 0 || @presenter.subcollection_count > 0 %>
-    <div class="hyc-blacklight hyc-bl-title">
-      <h2>
-        <% if has_collection_search_parameters? %>
-            <%= t('hyrax.dashboard.collections.show.search_results') %>
-        <% end %>
-      </h2>
     </div>
   <% end %>
 
