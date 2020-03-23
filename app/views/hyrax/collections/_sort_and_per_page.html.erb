@@ -1,5 +1,6 @@
 <% if show_sort_and_per_page? && active_sort_fields.many? %>
   <%= form_tag collection_path(collection), method: :get, class: 'per_page form-horizontal' do %>
+    <h2>Sort Publications</h2>
     <fieldset class="pull-left">
       <legend class="sr-only"><%= t('hyrax.sort_label') %></legend>
       <%= label_tag(:sort, '<span>Sort by:</span>'.html_safe) %>
