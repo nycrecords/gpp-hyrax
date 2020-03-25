@@ -1,6 +1,6 @@
 <h2 class="sr-only top-content-title"><%= t('blacklight.search.search_results_header') %></h2>
 
-<% @page_title = t('blacklight.search.page_title.title', :constraints => render_search_to_page_title(params), :application_name => application_name) %>
+<% provide :page_title, construct_page_title('Search') %>
 
 <% content_for(:head) do -%>
   <%= render_opensearch_response_metadata %>
@@ -9,7 +9,7 @@
   <%= json_api_link_tag %>
 <% end %>
 
-<h2><%= t('blacklight.search.search_results') %></h2>
+<h1 tabindex="0"><%= t('blacklight.search.search_results') %></h1>
 
 <%= render 'search_header' %>
 
