@@ -98,7 +98,7 @@ en:
         title: ''
       # Hints for NYC Government Publication Work
       nyc_government_publication:
-        title: On the front page, the first page or in the Executive Summary (if any) of the docucment, what is it called? 10-150 characters.
+        title: On the front page, the first page or in the Executive Summary (if any) of the document, what is it called? 10-150 characters.
         agency: What agency is the primary creator of this document?
         required_report_name: Please select an Agency before selecting Required Report Name. If your required report is not on this list, please contact <a href="mailto:municipal-library-admins@records.nyc.gov">municipal-library-admins@records.nyc.gov</a>.
         additional_creators: What other agencies, consultants, or authors, if any, contributed to the creation of this document?
