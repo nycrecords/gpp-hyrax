@@ -28,7 +28,7 @@
         <td><%= required_report.local_law %></td>
         <td><%= required_report.charter_and_code %></td>
         <td><%= required_report.last_published_date %></td>
-        <td><%= link_to 'Search', @search_url[0] + url_encode(required_report.agency_name) + @search_url[1] + url_encode(required_report.name) + @search_url[2], aria: { label: 'Search all, ' + required_report.name } %></td>
+        <td><%= link_to 'Search', @search_url[0] + url_encode(required_report.agency_name) + @search_url[1] + url_encode(required_report.name) + @search_url[2], aria: { label: format('Search all, %s for %s', required_report.name, required_report.agency_name) } %></td>
       </tr>
     <% end %>
     </tbody>
