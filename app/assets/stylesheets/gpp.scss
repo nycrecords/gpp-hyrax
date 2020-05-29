@@ -249,3 +249,26 @@ body.gpp-dashboard {
 .gpp-nav-link {
   color: black !important;
 }
+
+.underline-link {
+  text-decoration: underline;
+}
+
+a.gpp-nav-link:hover, a.gpp-nav-link:focus {
+  text-decoration: underline !important;
+}
+
+// Adds underline to links on the view submissions page
+li.attribute a {
+  text-decoration: underline;
+}
+
+// Adds underline to links on the search results page
+dl.dl-horizontal dd a {
+  text-decoration: underline;
+}
+
+// Changes color of focus outline globally
+:focus{
+  outline: 2px solid #337ab7 !important;
+}
