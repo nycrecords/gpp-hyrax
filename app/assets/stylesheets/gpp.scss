@@ -268,6 +268,11 @@ dl.dl-horizontal dd a {
   text-decoration: underline;
 }
 
+// Adds underline to links in the user activity table on file details page
+table#activity a {
+  text-decoration: underline;
+}
+
 // Changes color of focus outline globally
 :focus{
   outline: 2px solid #337ab7 !important;
