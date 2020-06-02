@@ -1,0 +1,6 @@
+<div class="search-results-title-row">
+  <h4 class="search-result-title"><%= link_to document.title_or_label,
+                                                    [hyrax, document],
+                                                    class:'underline-link' %></h4>
+  <%= Hyrax::CollectionPresenter.new(document, current_ability).collection_type_badge %>
+</div>

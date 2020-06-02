@@ -9,14 +9,21 @@
     </label>
 
     <div class="input-group" aria-label="Search Bar" tabindex="0">
-      <%= text_field_tag :q, current_search_parameters , class: "q form-control", id: "search-field-header", placeholder: t("hyrax.search.form.q.placeholder"), aria_label: "Search Field" %>
+      <%= text_field_tag :q,
+                         current_search_parameters,
+                         class: "q form-control",
+                         id: "search-field-header",
+                         placeholder: t("hyrax.search.form.q.placeholder"),
+                         aria_label: "Search Field" %>
 
       <div class="input-group-btn">
         <button type="submit" class="btn btn-primary" id="search-submit-header" aria-label="Search">
           <%= t('hyrax.search.button.html') %>
         </button>
         <button class="btn btn-default" type="button" aria-label="Advanced Search Options">
-          <%= link_to 'More options', blacklight_advanced_search_engine.advanced_search_path(search_state.to_h), class: 'advanced_search'%>
+          <%= link_to 'More options',
+                      blacklight_advanced_search_engine.advanced_search_path(search_state.to_h),
+                      class: 'advanced_search underline-link' %>
         </button>
       </div><!-- /.input-group-btn -->
     </div><!-- /.input-group -->
