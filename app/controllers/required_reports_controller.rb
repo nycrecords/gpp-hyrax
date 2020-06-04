@@ -94,7 +94,17 @@ class RequiredReportsController < ApplicationController
 
   # GET /required_reports/public_list
   def public_list
-    @required_reports = RequiredReport.all.order(agency_name: :asc, name: :asc)
+    if params[:per_page].nil?
+      params[:per_page] = 20
+    end
+
+    if params[:agency] == 'All' or params[:agency].nil?
+      @required_reports = RequiredReport.all.order(agency_name: :asc, name: :asc).page(params[:page]).per(params[:per_page])
+    else
+      @required_reports = RequiredReport.where(agency_name: params[:agency]).order(name: :asc).page(params[:page]).per(params[:per_page])
+    end
+
+    @agencies = Agency.all.order(name: :asc)
     @search_url = [
         root_url(locale: nil) + 'catalog?utf8=%E2%9C%93&locale=en&agency=',
         '&required_report_name=',
