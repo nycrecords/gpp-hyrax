@@ -40,6 +40,8 @@ class User < ApplicationRecord
     user = where(guid: user_json['id']).first
     if user.nil?
       user = where(email: user_json['email']).first_or_create
+      AuthorizeSubmitterMailer.email(user).deliver
+      NewSubmitterMailer.email(user).deliver
     end
 
     user.guid = user_json['id']
