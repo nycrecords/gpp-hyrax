@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'required_reports_filters.js' %>
 <% provide :page_title, construct_page_title('Manage Required Reports') %>
 <p id="notice"><%= notice %></p>
 
@@ -9,6 +10,37 @@
 
 <div class="alert alert-info">If a required report needs to be edited or deleted, please email
   <a href="mailto:gpp_support@nycrecords.atlassian.net">gpp_support@nycrecords.atlassian.net</a> for assistance.
+</div>
+
+<div id="required-report-filters" class="col-sm-12">
+  <span>Filter by Agency:</span>
+  <select id="agency-filter" class="agency-filter" aria-label="Filter required reports by agency">
+    <option value="All">All</option>
+    <% @agencies.each do |agency| %>
+      <option value="<%= agency.name %>"><%= agency.name %></option>
+    <% end %>
+  </select>
+
+  <span>Rows per Page:</span>
+  <div id="per_page-dropdown" class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-label="Change number of rows per page">
+      <% if params[:per_page] != nil %>
+        <%= params[:per_page] %>
+      <% else %>
+        20
+      <% end %> per page <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li role="menuitem"><a href="/required_reports?locale=en&amp;per_page=10&amp;agency=<%= params[:agency] %>">10<span class="sr-only"> per page</span></a></li>
+      <li role="menuitem"><a href="/required_reports?locale=en&amp;per_page=20&amp;agency=<%= params[:agency] %>">20<span class="sr-only"> per page</span></a></li>
+      <li role="menuitem"><a href="/required_reports?locale=en&amp;per_page=50&amp;agency=<%= params[:agency] %>">50<span class="sr-only"> per page</span></a></li>
+      <li role="menuitem"><a href="/required_reports?locale=en&amp;per_page=100&amp;agency=<%= params[:agency] %>">100<span class="sr-only"> per page</span></a></li>
+    </ul>
+  </div>
+</div>
+
+<div style="text-align: center;">
+  <%= paginate @required_reports %>
 </div>
 
 <div class="table-responsive">
