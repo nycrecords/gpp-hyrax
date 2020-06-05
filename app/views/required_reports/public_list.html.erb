@@ -1,28 +1,20 @@
+<%= javascript_include_tag 'public_list.js' %>
 <% provide :page_title, construct_page_title('Required Reports') %>
+
 <h1>Required Reports</h1>
 
-<div id="required-report-filters" style="padding-bottom: 10px; text-align: center;">
+<div id="required-report-filters" class="col-sm-12">
   <span>Filter by Agency:</span>
-  <div id="agency-dropdown" class="btn-group" style="padding-right: 10px">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-      <% if params[:agency] != nil %>
-        <%= params[:agency] %>
-      <% else %>
-        All
-      <% end %>
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-      <li role="menuitem"><a href="/required_reports/public_list?locale=en&amp;per_page=<%= params[:per_page] %>&amp;agency=All">All</a></li>
-      <% @agencies.each do |agency| %>
-        <li role="menuitem"><a href="/required_reports/public_list?locale=en&amp;per_page=<%= params[:per_page] %>&amp;agency=<%= agency.name %>"><%= agency.name %></a></li>
-      <% end %>
-    </ul>
-  </div>
+  <select id="agency-filter" class="agency-filter" aria-label="Filter required reports by agency">
+    <option value="All">All</option>
+    <% @agencies.each do |agency| %>
+      <option value="<%= agency.name %>"><%= agency.name %></option>
+    <% end %>
+  </select>
 
   <span>Rows per Page:</span>
   <div id="per_page-dropdown" class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-label="Change number of rows per page">
       <% if params[:per_page] != nil %>
         <%= params[:per_page] %>
       <% else %>
@@ -46,7 +38,7 @@
   <table id="required-report-table" class="table table-striped table-bordered">
     <thead>
     <tr>
-      <th class="col-md-2">ID</th>
+      <th class="col-md-2">Row Number</th>
       <th class="col-md-2">Agency</th>
       <th class="col-md-2">Name</th>
       <th class="col-md-3">Description</th>
@@ -61,7 +53,11 @@
     <tbody>
     <% @required_reports.each_with_index do |required_report, index| %>
       <tr>
-        <th aria-label="ID: <%= index + 1 %>. Agency: <%= required_report.agency_name %>. Report Name: <%= required_report.name %>. The value in this cell is "><%= index + 1 %></th>
+        <% if (params[:page].to_i - 1) * (params[:per_page].to_i) + index + 1 <= params[:per_page].to_i %>
+          <th aria-label="Row Number: <%= index + 1 %>. Agency: <%= required_report.agency_name %>. Report Name: <%= required_report.name %>. The value in this cell is "><%= index + 1 %></th>
+        <% else %>
+          <th aria-label="Row Number: <%= (params[:page].to_i - 1) * (params[:per_page].to_i) + index + 1 %>. Agency: <%= required_report.agency_name %>. Report Name: <%= required_report.name %>. The value in this cell is "><%= (params[:page].to_i - 1) * (params[:per_page].to_i) + index + 1 %></th>
+        <% end %>
         <td><%= required_report.agency_name %></td>
         <td><%= required_report.name %></td>
         <td><%= required_report.description %></td>

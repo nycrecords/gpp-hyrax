@@ -98,6 +98,10 @@ class RequiredReportsController < ApplicationController
       params[:per_page] = 20
     end
 
+    if params[:agency].nil?
+      params[:agency] = 'All'
+    end
+
     if params[:agency] == 'All' or params[:agency].nil?
       @required_reports = RequiredReport.all.order(agency_name: :asc, name: :asc).page(params[:page]).per(params[:per_page])
     else
