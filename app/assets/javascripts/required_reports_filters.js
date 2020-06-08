@@ -10,6 +10,7 @@ $(document).ready(function () {
     // Initialize select2 and set initial value
     agencyFilter.select2();
     agencyFilter.select2('val', agency);
+    $('#s2id_agency-filter').attr('aria-label', 'Filter required reports by agency');
 
     // Handle change of agency event
     agencyFilter.on('change', function (data) {

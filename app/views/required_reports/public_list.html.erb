@@ -5,7 +5,7 @@
 
 <div id="required-report-filters" class="col-sm-12">
   <span>Filter by Agency:</span>
-  <select id="agency-filter" class="agency-filter" aria-label="Filter required reports by agency">
+  <select id="agency-filter" class="agency-filter">
     <option value="All">All</option>
     <% @agencies.each do |agency| %>
       <option value="<%= agency.name %>"><%= agency.name %></option>
