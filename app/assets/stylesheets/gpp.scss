@@ -250,6 +250,21 @@ body.gpp-dashboard {
   color: black !important;
 }
 
+#required-report-filters {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.agency-filter {
+  text-align: left;
+  padding-right: 10px;
+  min-width: 20%;
+}
+
+.center {
+  text-align: center;
+}
+
 .underline-link {
   text-decoration: underline;
 }
