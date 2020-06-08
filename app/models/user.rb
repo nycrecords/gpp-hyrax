@@ -40,8 +40,9 @@ class User < ApplicationRecord
     user = where(guid: user_json['id']).first
     if user.nil?
       user = where(email: user_json['email']).first_or_create
-      AuthorizeSubmitterMailer.email(user).deliver
-      NewSubmitterMailer.email(user).deliver
+      send_new_user_emails = true
+    else
+      send_new_user_emails = false
     end
 
     user.guid = user_json['id']
@@ -55,6 +56,11 @@ class User < ApplicationRecord
     user.has_nyc_account = user_json['hasNYCAccount']
     user.display_name = "#{user.first_name} #{user.last_name}"
     user.save
+
+    if send_new_user_emails
+      AuthorizeSubmitterMailer.email(user).deliver
+      NewSubmitterMailer.email(user).deliver
+    end
     user
   end
 

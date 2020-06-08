@@ -4,20 +4,20 @@
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 </head>
 <body>
-A new user has registered for <% ENV['APP_NAME'] %> at <% ENV['RAILS_HOST'] %>:
+A new user has registered for <%=ENV['APP_NAME'] %> at <%=ENV['RAILS_HOST'] %>:
 <table>
   <tbody>
   <tr>
     <td>Name: </td>
-    <td><% @user.display_name %></td>
+    <td><%= @user.display_name %></td>
   </tr>
   <tr>
     <td>Email: </td>
-    <td><% @user.email %></td>
+    <td><%= @user.email %></td>
   </tr>
   <tr>
     <td>Date: </td>
-    <td><% DateTime.now('%m/%d/%Y at %H:%M:%S') %></td>
+    <td><%= @timestamp %></td>
   </tr>
   </tbody>
 </table>
