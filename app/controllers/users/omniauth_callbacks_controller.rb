@@ -16,6 +16,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     user_json = nycidwebservices.search_user(saml_attrs[:GUID])
+    if user_json['nycEmployee'] == false
+      flash[:notice] = "Looks like you logged in with a public user account. That isn't needed to search reports so we've logged you out."
+      redirect_to :root and return
+    end
     @user = User.from_omniauth(user_json)
     last_login_datetime = @user.last_sign_in_at
 
