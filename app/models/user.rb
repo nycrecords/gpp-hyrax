@@ -17,12 +17,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # remove :database_authenticatable, remove :validatable to integrate with SAML
   devise_modules = [
-    :registerable,
-    :recoverable,
-    :trackable,
-    :omniauthable,
-    omniauth_providers: [:saml],
-    authentication_keys: [:email]
+      :registerable,
+      :recoverable,
+      :trackable,
+      :omniauthable,
+      omniauth_providers: [:saml],
+      authentication_keys: [:email]
   ]
 
   devise(*devise_modules)
@@ -38,8 +38,10 @@ class User < ApplicationRecord
   # @param [Hash] user_json
   def self.from_omniauth(user_json)
     user = where(guid: user_json['id']).first
+    send_new_user_emails = false
     if user.nil?
       user = where(email: user_json['email']).first_or_create
+      send_new_user_emails = true
     end
 
     user.guid = user_json['id']
@@ -53,6 +55,11 @@ class User < ApplicationRecord
     user.has_nyc_account = user_json['hasNYCAccount']
     user.display_name = "#{user.first_name} #{user.last_name}"
     user.save
+
+    if send_new_user_emails
+      AuthorizeSubmitterMailer.email(user).deliver
+      NewSubmitterMailer.email(user).deliver
+    end
     user
   end
 
