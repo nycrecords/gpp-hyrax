@@ -13,6 +13,11 @@
 
 <%= render 'search_header' %>
 
+<div id="filters">
+  <%= render 'search_sidebar' %>
+  <hr>
+</div>
+
 <%- if @response.empty? %>
   <%= render "zero_results" %>
 <%- elsif render_grouped_response? %>
