@@ -16,6 +16,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     user_json = nycidwebservices.search_user(saml_attrs[:GUID])
+    if user_json['nycEmployee'] == false
+      flash[:notice] = "Looks like you logged in with a public user account. That isn't needed to search reports so we've logged you out."
+      gpp_collection = Collection.where(title: 'Government Publications').first
+      path = gpp_collection.present? ? hyrax.collection_path(gpp_collection) : root_path
+      redirect_to path and return
+    end
     @user = User.from_omniauth(user_json)
     last_login_datetime = @user.last_sign_in_at
 
