@@ -300,3 +300,15 @@ table#activity a {
 :focus{
   outline: 2px solid #337ab7 !important;
 }
+
+li.nav-item a:focus{
+  outline: 2px solid white !important;
+}
+
+a.navbar-brand:focus {
+  outline: 2px solid white !important;
+}
+
+#search-submit-header:focus {
+  outline: 2px solid orange !important;
+}
