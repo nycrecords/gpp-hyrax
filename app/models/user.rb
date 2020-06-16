@@ -40,7 +40,7 @@ class User < ApplicationRecord
     user = where(guid: user_json['id']).first
     send_new_user_emails = false
     if user.nil?
-      user = where(email: user_json['email']).first_or_create
+      user = where(email: user_json['email'].downcase).first_or_create
       send_new_user_emails = true
     end
 
