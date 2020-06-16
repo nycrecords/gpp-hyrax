@@ -274,6 +274,11 @@ body.gpp-dashboard {
   text-decoration: underline;
 }
 
+.navbar-link:focus {
+  outline: 2px solid white !important;
+  outline-offset: 1px !important;
+}
+
 a.gpp-nav-link:hover, a.gpp-nav-link:focus {
   text-decoration: underline !important;
 }
@@ -311,4 +316,12 @@ a.navbar-brand:focus {
 
 .switch-language {
   color: black !important;
+}
+
+.upper-header-left {
+  padding-left: 10px;
+  a:focus {
+    outline: 2px solid white !important;
+    outline-offset: 1px !important;
+  }
 }
