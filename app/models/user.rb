@@ -39,8 +39,9 @@ class User < ApplicationRecord
   def self.from_omniauth(user_json)
     user = where(guid: user_json['id']).first
     send_new_user_emails = false
+    user_email_downcase = user_json['email'].downcase
     if user.nil?
-      user = where(email: user_json['email']).first_or_create
+      user = where(email: user_email_downcase).first_or_create
       send_new_user_emails = true
     end
 
@@ -48,7 +49,7 @@ class User < ApplicationRecord
     user.first_name = user_json['firstName']
     user.middle_initial = user_json['middleInitial']
     user.last_name = user_json['lastName']
-    user.email = user_json['email']
+    user.email = user_email_downcase
     user.email_validated = user_json['validated']
     user.active = user_json['active']
     user.nyc_employee = user_json['nycEmployee']
