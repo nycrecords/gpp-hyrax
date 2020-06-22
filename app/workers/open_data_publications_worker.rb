@@ -7,24 +7,24 @@ class OpenDataPublicationsWorker
     file = File.join(ENV['OPENDATA_CSV_PATH'],
                      "opendata_publications_#{Time.now.strftime('%Y-%m-%d_%H-%M-%S')}.csv")
     publications = NycGovernmentPublication.where('suppressed_bsi': 'false')
-    header = ['Title',
-              'Sub-Title',
-              'Agency',
-              'Required Report Name',
-              'Additional Creators',
-              'Subject',
-              'Description',
-              'Date Published',
-              'Report Type',
-              'Languages',
-              'Associated Year - Fiscal',
-              'Associated Year - Calendar',
-              'Associated Borough',
-              'Associate School District',
-              'Associated Community Board District',
-              'Associated Place',
-              'Filename',
-              'Last Modified']
+    header = ["Title",
+              "Sub-Title",
+              "Agency",
+              "Required Report Name",
+              "Additional Creators",
+              "Subject",
+              "Description",
+              "Date Published",
+              "Report Type",
+              "Languages",
+              "Associated Year - Fiscal",
+              "Associated Year - Calendar",
+              "Associated Borough",
+              "Associate School District",
+              "Associated Community Board District",
+              "Associated Place",
+              "Filename",
+              "Last Modified"]
     CSV.open(file, 'w') do |writer|
       writer << header
       publications.each do |p|
