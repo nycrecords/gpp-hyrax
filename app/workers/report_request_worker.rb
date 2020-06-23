@@ -63,8 +63,9 @@ class ReportRequestWorker
         # Send email notice of late report
         ReportRequestMailer.email(agency, pdf).deliver
 
-        # Set delinquency_report_published_date to current datetime
-        report.update_attributes(delinquency_report_published_date: Time.current)
+        # Set delinquency_report_id and delinquency_report_published_date
+        report.update_attributes(delinquency_report_id: work.id,
+                                 delinquency_report_published_date: Time.current)
       else
         failed_reports[required_report_due_date.id] = { name: required_report.name,
                                                         error: work.errors.full_messages.join(' ') }
