@@ -12,7 +12,7 @@ class McafeeVirusScanLinux < Hydra::Works::VirusScanner
   end
 
   def mcafee_scanner
-    scan_command = "sudo #{@uvscan_path} --delete --v #{file}"
+    scan_command = "sudo #{@uvscan_path} --delete --verbose #{file}"
     system(scan_command)
     file_exists = Dir.glob(file)
     return false unless file_exists.empty?
