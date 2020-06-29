@@ -12,11 +12,11 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # Use "path" as the file to store the server info state. This is
 # used by "pumactl" to query and control the server.
 #
-state_path "/var/run/puma/puma.state"
+state_path "/opt/hyrax/puma.state"
 
 # Store the pid of the server in the file at "path".
 #
-pidfile "/var/run/puma/puma.pid"
+pidfile "/opt/hyrax/puma.pid"
 
 # === Cluster mode ===
 
