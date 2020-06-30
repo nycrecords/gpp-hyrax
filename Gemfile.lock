@@ -552,7 +552,7 @@ GEM
     power_converter (0.1.2)
     public_suffix (4.0.3)
     pul_uv_rails (2.0.1)
-    puma (3.12.2)
+    puma (3.12.6)
     qa (2.2.0)
       activerecord-import
       deprecation
@@ -854,7 +854,7 @@ DEPENDENCIES
   nilify_blanks
   omniauth-saml
   pg
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.1.6, >= 5.1.6.2)
   rails-latex
   riiif (~> 2.0)
