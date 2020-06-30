@@ -44,4 +44,10 @@ end
 
 plugin :tmp_restart
 
+# Allow workers to reload bundler context when master process is issued
+# a USR1 signal. This allows proper reloading of gems while the master
+# is preserved across a phased-restart. (incompatible with preload_app)
+# (off by default)
+
+# see https://github.com/puma/puma/blob/master/docs/deployment.md#restarting
 prune_bundler
