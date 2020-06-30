@@ -17,14 +17,13 @@
                          aria_label: "Search Field" %>
 
       <div class="input-group-btn">
-        <button type="submit" class="btn btn-primary" id="search-submit-header" aria-label="Search">
+        <button type="submit" class="btn btn-default" id="search-submit-header" aria-label="Search">
           <%= t('hyrax.search.button.html') %>
         </button>
-        <button class="btn btn-default" type="button" aria-label="Advanced Search Options">
-          <%= link_to 'More options',
-                      blacklight_advanced_search_engine.advanced_search_path(search_state.to_h),
-                      class: 'advanced_search underline-link' %>
-        </button>
+        <%= link_to 'More Options',
+                    blacklight_advanced_search_engine.advanced_search_path(search_state.to_h),
+                    class: 'advanced_search underline-link btn btn-default',
+                    aria: { label: 'Advanced Search Options' } %>
       </div><!-- /.input-group-btn -->
     </div><!-- /.input-group -->
 
