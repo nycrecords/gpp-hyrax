@@ -29,4 +29,5 @@ test:
 production:
   <<: *default
   database: <%= ENV.fetch("DATABASE_NAME") %>
+  pool: 50
 
