@@ -300,3 +300,79 @@ table#activity a {
 :focus{
   outline: 2px solid #337ab7 !important;
 }
+
+// Google Translate styles
+.container-fluid {
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.border-top {
+  border: 1px solid #e7e7e7;
+}
+
+.narrow {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40rem;
+}
+
+.py-2 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.goog-te-combo {
+  display: inline-block;
+  width: 100%;
+  height: calc(1.5em + 1rem + 2px);
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  vertical-align: middle;
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 1rem center/8px 10px;
+  background-color: #fff;
+  border: 1px solid #777677;
+  border-radius: 0;
+  appearance: none;
+}
+
+.goog-te-combo {
+  -webkit-appearance: none; // Hide select arrow in Chrome
+  -moz-appearance: none; // Hide select arrow in Firefox
+}
+
+.goog-te-combo::-ms-expand {
+  display: none; // Hide select arrow in IE/Edge
+}
+
+#google_translate_element select {
+  height: calc(1.5em + 1rem + 2px);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  font-size: 2rem;
+}
+
+#google_translate_element {
+  text-align: center;
+}
+
+#google_translate_element select {
+  margin-bottom: 0.5rem;
+}
+
+#google_translate_element .goog-logo-link {
+  margin-left: auto;
+  margin-right: auto;
+}

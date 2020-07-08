@@ -1,5 +1,9 @@
 <ul id="user_utility_links" class="nav navbar-nav navbar-right">
-  <%= render 'shared/locale_picker' if available_translations.size > 1 %>
+  <li>
+    <a data-toggle="collapse" data-target="#global-language" role="button" aria-expanded="false" aria-controls="global-langugae" aria-label="Language picker" title="Language" href="#">
+      Translate
+    </a>
+  </li>
   <% if user_signed_in? %>
     <% if current_user.nyc_employee %>
       <li>
