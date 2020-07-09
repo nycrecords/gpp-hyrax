@@ -5,7 +5,7 @@
     <%= content_for(:head) %>
   </head>
 
-  <body class="gpp-dashboard">
+  <body class="gpp-dashboard" data-turbolinks="false">
     <% if current_user %>
       <%= auto_session_warning_tag message: "Your session will expire in approximately 5 minutes." %>
       <%= auto_session_timeout_js timeout: 1800,
@@ -20,6 +20,13 @@
     </div>
     <%= render '/nycid_header' %>
     <%= render '/masthead' %>
+
+    <div class="container-fluid border-top collapse" id="global-language">
+      <div class="narrow py-2">
+        <div id="google_translate_element"></div>
+      </div>
+    </div>
+
     <%= content_for(:navbar) %>
     <div id="content-wrapper" role="main">
       <div class="sidebar maximized">
@@ -43,5 +50,16 @@
 
     </div><!-- /#content-wrapper -->
     <%= render 'shared/ajax_modal' %>
+
+    <!-- Google Translate -->
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   </body>
 </html>
