@@ -374,11 +374,13 @@ table#activity a {
   margin-right: auto;
 }
 
-body {
-  margin-bottom: 0 !important // Remove 133px margin present in default Hyrax
+// These styles prevent the overrides made by the google translate script
+html {
+  height: auto !important;
 }
 
-.site-footer {
-  // Google translate adds a position relative style to the body so we need to change the footer from absolute to relative to compensate
-  position: relative !important;
+body {
+  position: initial !important;
+  min-height: initial !important;
+  top: auto !important;
 }
