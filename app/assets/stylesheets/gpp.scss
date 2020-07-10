@@ -302,7 +302,7 @@ table#activity a {
 }
 
 // Google Translate styles
-.container-fluid {
+.container-fluid.border-top {
   width: 100%;
   padding-right: 1rem;
   padding-left: 1rem;
@@ -325,11 +325,6 @@ table#activity a {
   padding-bottom: 1rem;
 }
 
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
 .goog-te-combo {
   display: inline-block;
   width: 100%;
@@ -345,6 +340,8 @@ select {
   border: 1px solid #777677;
   border-radius: 0;
   appearance: none;
+  -webkit-appearance: none; // Hide select arrow in Chrome
+  -moz-appearance: none; // Hide select arrow in Firefox
 }
 
 .goog-te-combo {
@@ -375,4 +372,13 @@ select {
 #google_translate_element .goog-logo-link {
   margin-left: auto;
   margin-right: auto;
+}
+
+body {
+  margin-bottom: 0 !important // Remove 133px margin present in default Hyrax
+}
+
+.site-footer {
+  // Google translate adds a position relative style to the body so we need to change the footer from absolute to relative to compensate
+  position: relative !important;
 }
