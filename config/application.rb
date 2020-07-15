@@ -35,6 +35,9 @@ module GppHyrax
     )
 
     config.local_timezone = ENV['LOCAL_TIMEZONE']
+
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = [:en]
   end
 end
 
