@@ -62,16 +62,16 @@
 
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <% if Rails.env == 'production' %>
+    <% if ActiveModel::Type::Boolean.new.cast(ENV['GOOGLE_ANALYTICS_ENABLED']) %>
       <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-31414661-4"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV['GOOGLE_ANALYTICS_ID'] %>"></script>
 
       <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', 'UA-31414661-4');
+          gtag('config', '<%= ENV['GOOGLE_ANALYTICS_ID'] %>');
       </script>
     <% end %>
   </body>
