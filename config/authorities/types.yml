@@ -53,6 +53,8 @@ terms:
     term: Reports - Every 5 Years
   - id: Reports - Monthly
     term: Reports - Monthly
+  - id: Reports - Quarterly
+    term: Reports - Quarterly
   - id: Reports - Weekly
     term: Reports - Weekly
   - id: Reports - Other (Consultant/Staff)
