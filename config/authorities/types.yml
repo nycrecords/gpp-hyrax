@@ -47,12 +47,16 @@ terms:
     term: Reports - Biannual (Twice a Year)
   - id: Reports - Biennial (Every Two Years)
     term: Reports - Biennial (Every Two Years)
+  - id: Reports - Daily
+    term: Reports - Daily
   - id: Reports - Every 4 Years
     term: Reports - Every 4 Years
   - id: Reports - Every 5 Years
     term: Reports - Every 5 Years
   - id: Reports - Monthly
     term: Reports - Monthly
+  - id: Reports - Quarterly
+    term: Reports - Quarterly
   - id: Reports - Weekly
     term: Reports - Weekly
   - id: Reports - Other (Consultant/Staff)
