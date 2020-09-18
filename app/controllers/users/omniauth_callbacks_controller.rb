@@ -15,13 +15,25 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
     end
 
+    # Get the User Attributes from NYC.ID
     user_json = nycidwebservices.search_user(saml_attrs[:GUID])
+    
+    # Get the domain for the Users' email address
+    email_domain = user_json['email'].split('@').last
+
+    # Users whose email domain is in the approved list (but are not NYC Employees) should be treated as NYC Employees
+    if APPROVED_NYCID_DOMAINS.include?(email_domain)
+      user_json['nycEmployee'] = true
+    end
+
+    # Users who are not NYC Employees (or treated as NYC Employees) cannot login
     if user_json['nycEmployee'] == false
       flash[:notice] = "Looks like you logged in with a public user account. That isn't needed to search reports so we've logged you out."
       gpp_collection = Collection.where(title: 'Government Publications').first
       path = gpp_collection.present? ? hyrax.collection_path(gpp_collection) : root_path
       redirect_to path and return
     end
+
     @user = User.from_omniauth(user_json)
     last_login_datetime = @user.last_sign_in_at
 
