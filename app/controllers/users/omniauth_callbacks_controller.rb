@@ -14,9 +14,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         return
       end
     end
-
+   
     user_json = nycidwebservices.search_user(saml_attrs[:GUID])
-    if user_json['nycEmployee'] == false
+    email_domain = user_json['email'].split('@').last
+
+    if user_json['nycEmployee'] == false && !APPROVED_NYCID_DOMAINS.include?(email_domain)
       flash[:notice] = "Looks like you logged in with a public user account. That isn't needed to search reports so we've logged you out."
       gpp_collection = Collection.where(title: 'Government Publications').first
       path = gpp_collection.present? ? hyrax.collection_path(gpp_collection) : root_path
