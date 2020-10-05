@@ -7,8 +7,8 @@ terms:
     term: Administrative Trials and Hearings, Office of (OATH)
   - id: Aging, Department for the (DFTA)
     term: Aging, Department for the (DFTA)
-  - id: Animal Welfare, Mayor's Office of
-    term: Animal Welfare, Mayor's Office of
+  - id: Animal Welfare, Mayor's Office of (MOAW)
+    term: Animal Welfare, Mayor's Office of (MOAW)
   - id: Borough Presidents
     term: Borough Presidents
   - id: Buildings, Department of (DOB)
@@ -173,6 +173,18 @@ terms:
     term: Probation, Department of (DOP)
   - id: Procurement Policy Board (PPB)
     term: Procurement Policy Board (PPB)
+  - id: Protect Tenants, Mayor's Office to (MOPT)
+    term: Protect Tenants, Mayor's Office to (MOPT)
+  - id: Public Administrator, Bronx County (PABX)
+    term: Public Administrator, Bronx County (PABX)
+  - id: Public Administrator, Kings County (PAKC)
+    term: Public Administrator, Kings County (PAKC)
+  - id: Public Administrator, New York County (PABX)
+    term: Public Administrator, New York County (PABX)
+  - id: Public Administrator, Queens County (PAQC)
+    term: Public Administrator, Queens County (PAQC)
+  - id: Public Administrator, Richmond County (PARC)
+    term: Public Administrator, Richmond County (PARC)
   - id: Public Advocate (PUB ADV)
     term: Public Advocate (PUB ADV)
   - id: Public Design Commission (DesignCommission)
@@ -203,6 +215,8 @@ terms:
     term: Taxi and Limousine Commission (TLC)
   - id: Technology and Innovation, Mayor's Office of (MOTI)
     term: Technology and Innovation, Mayor's Office of (MOTI)
+  - id: ThriveNYC, Mayor's Office of
+    term: ThriveNYC, Mayor's Office of
   - id: Transportation, Department of (DOT)
     term: Transportation, Department of (DOT)
   - id: Veterans' Services, Department of (DVS)
