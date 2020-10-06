@@ -179,8 +179,8 @@ terms:
     term: Public Administrator, Bronx County (PABX)
   - id: Public Administrator, Kings County (PAKC)
     term: Public Administrator, Kings County (PAKC)
-  - id: Public Administrator, New York County (PABX)
-    term: Public Administrator, New York County (PABX)
+  - id: Public Administrator, New York County (PANY)
+    term: Public Administrator, New York County (PANY)
   - id: Public Administrator, Queens County (PAQC)
     term: Public Administrator, Queens County (PAQC)
   - id: Public Administrator, Richmond County (PARC)
@@ -215,8 +215,8 @@ terms:
     term: Taxi and Limousine Commission (TLC)
   - id: Technology and Innovation, Mayor's Office of (MOTI)
     term: Technology and Innovation, Mayor's Office of (MOTI)
-  - id: ThriveNYC, Mayor's Office of
-    term: ThriveNYC, Mayor's Office of
+  - id: ThriveNYC, Mayor's Office of (Thrive)
+    term: ThriveNYC, Mayor's Office of (Thrive)
   - id: Transportation, Department of (DOT)
     term: Transportation, Department of (DOT)
   - id: Veterans' Services, Department of (DVS)
