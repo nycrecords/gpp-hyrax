@@ -11,6 +11,16 @@ terms:
     term: Animal Welfare, Mayor's Office for (MOAW)
   - id: Borough Presidents
     term: Borough Presidents
+  - id: Borough President - Bronx County (BPBX)
+    term: Borough President - Bronx County (BPBX)
+  - id: Borough President - Kings County (BPKC)
+    term: Borough President - Kings County (BPKC)
+  - id: Borough President - New York County (BPNY)
+    term: Borough President - New York County (BPNY)
+  - id: Borough President - Queens County (BPQC)
+    term: Borough President - Queens County (BPQC)
+  - id: Borough President - Richmond County (BPRC)
+    term: Borough President - Richmond County (BPRC)
   - id: Buildings, Department of (DOB)
     term: Buildings, Department of (DOB)
   - id: Business Integrity Commission (BIC)
@@ -155,6 +165,8 @@ terms:
     term: New York City Fire Pension Fund
   - id: NYC & Company (NYCGO)
     term: NYC & Company (NYCGO)
+  - id: NYC Census (Census)
+    term: NYC Census (Census)
   - id: NYC Employees' Retirement System (NYCERS)
     term: NYC Employees' Retirement System (NYCERS)
   - id: NYC Service (SERVICE)
