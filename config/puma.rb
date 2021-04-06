@@ -16,7 +16,7 @@ state_path "/opt/hyrax/puma.state"
 
 # Store the pid of the server in the file at "path".
 #
-pidfile "/opt/hyrax/puma.pid"
+pidfile "/tmp/hyrax.pid"
 
 # === Cluster mode ===
 
