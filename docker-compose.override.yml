@@ -1,0 +1,56 @@
+# Overrides the docker-compose file for development environment
+# - Use the example end.production file (because in dev it doesn't matter)
+# - Publish the fcrepo and solr ports
+# - No nginx in front of the app
+# - app accessible on port 3000
+
+version: '3'
+
+volumes:
+  file_uploads:
+  derivatives:
+  cache:
+  fcrepo:
+  redis:
+
+services:
+
+  fcrepo:
+    ports:
+      - 8080:8080
+    volumes:
+      - fcrepo:/data
+
+  solr:
+    environment:
+      - OOM=script
+    ports:
+      - 8983:8983
+
+  web:
+    ports:
+      - 3000:3000
+    environment:
+      - RAILS_FORCE_SSL=false
+    volumes:
+      - file_uploads:${UPLOADS_PATH}
+      - derivatives:${DERIVATIVES_PATH}
+      - cache:${CACHE_PATH}
+      - .:/data
+    networks:
+      internal:
+        aliases:
+          - web
+          - gpp-hyrax.records.test
+
+  workers:
+    volumes:
+      - file_uploads:${UPLOADS_PATH}
+      - derivatives:${DERIVATIVES_PATH}
+      - cache:${CACHE_PATH}
+      - ${HOST_APP_DATA_PATH:-/srv/ngdr/data/}:/data/data
+      - .:/data
+
+  redis:
+    volumes:
+      - redis:/data
