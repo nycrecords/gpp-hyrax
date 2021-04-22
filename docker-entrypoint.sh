@@ -16,10 +16,15 @@ sleep 15s
 
 ## Run any pending migrations, if the database exists
 ## If not setup the database
-bundle exec rake db:exists && bundle exec rake db:migrate || bundle exec rake db:setup && \
-bin/rails hyrax:default_admin_set:create && \
-bin/rails hyrax:default_collection_types:create && \
-bundle exec rake hyrax:workflow:load
+if bundle exec rake db:exists
+then
+  bundle exec db:migrate
+else
+  bundle exec rake db:setup
+  bin/rails hyrax:default_admin_set:create
+  bin/rails hyrax:default_collection_types:create
+  bundle exec rake hyrax:workflow:load
+fi
 
 # check that Solr is running
 SOLR=$(curl --silent --connect-timeout 45 "http://${SOLR_HOST:-solr}:${SOLR_PORT:-8983}/solr/" | grep "Apache SOLR")
