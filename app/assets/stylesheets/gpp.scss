@@ -1,3 +1,4 @@
+/*
 @import 'morris.js/0.5.1/morris';
 @import 'bootstrap/variables';
 
@@ -48,9 +49,9 @@ body.gpp-dashboard {
     border-top: 2px solid $tab-active-accent-color;
   }
 
-  /* The #masthead selector below could (and ideally, should) be removed if we can
+  !* The #masthead selector below could (and ideally, should) be removed if we can
    * replace the "navbar-static-top" class with "navbar-fixed-top" for the Admin UI only
-   */
+   *!
   #masthead {
     border: 0;
     left: 0;
@@ -61,11 +62,11 @@ body.gpp-dashboard {
     }
   }
 
-  /* This is needed in Chrome for the admin/admin_sets edit view AND the collection
+  !* This is needed in Chrome for the admin/admin_sets edit view AND the collection
    * sharing edit view to render the participants tab
    * Without this the contents of that tab flow off the right-hand side of the screen
    * (The other containers on that page have `float: left` except for the fieldset.)
-   */
+   *!
   .admin-set-participants {
     float: left;
   }
@@ -383,4 +384,4 @@ body {
   position: initial !important;
   min-height: initial !important;
   top: auto !important;
-}
+}*/

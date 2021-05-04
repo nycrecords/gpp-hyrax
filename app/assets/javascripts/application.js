@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= 
 //= require turbolinks
 //
 // Required by Blacklight
@@ -30,3 +29,5 @@
 
 //= require character-counter
 //= require jquery.inputmask.bundle.min
+//= require nyc_core_framework
+//= require gpp_custom

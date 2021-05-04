@@ -1,24 +1,23 @@
-<%= form_tag search_form_action, method: :get, class: "form-horizontal search-form", id: "search-form-header", role: "search" do %>
+<%= form_tag search_form_action, method: :get, class: "narrow py-2", id: "search-form-header",aria:{label: "Search"},role: "search" do %>
   <%= render_hash_as_hidden_fields(search_state.params_for_search.except(:q, :search_field, :qt, :page, :utf8)) %>
   <%= hidden_field_tag :search_field, 'all_fields' %>
   <%= hidden_field_tag :search_field, 'member_of_collection_ids' %>
-  <div class="form-group">
+  <div class="input-group">
 
-    <label class="control-label col-sm-3" for="search-field-header">
-      Search
-    </label>
+    <label class="sr-only" for="search-field-header">Search</label>
 
-    <div class="input-group" aria-label="Search Bar">
+
       <%= text_field_tag :q,
                          current_search_parameters,
-                         class: "q form-control",
+                         class: "form-control form-control-lg",
                          id: "search-field-header",
                          placeholder: t("hyrax.search.form.q.placeholder"),
                          aria_label: "Search Field" %>
 
       <div class="input-group-btn">
-        <button type="submit" class="btn btn-primary" id="search-submit-header" aria-label="Search">
-          <%= t('hyrax.search.button.html') %>
+        <button type="submit" style="background-color:#036" class="btn btn-primary btn-lg " id="search-submit-header" aria-label="Search">
+          <span class="sr-only">Search</span>
+          <span class="fas fa-arrow-right" role="img"></span>
         </button>
         <button class="btn btn-default" type="button" aria-label="Advanced Search Options">
           <%= link_to 'More options',

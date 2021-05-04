@@ -1,21 +1,30 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation" aria-label="Secondary Navigation">
-  <div class="container-fluid">
-    <div class="row">
-      <ul class="nav navbar-nav col-sm-5">
-        <li <%= 'class=active' if current_page?(hyrax.root_path) %>>
-          <%= link_to t(:'hyrax.controls.home'), hyrax.root_path, aria: current_page?(hyrax.root_path) ? {current: 'page'} : nil, class: 'gpp-nav-link' %></li>
-        <li <%= 'class=active' if current_page?(hyrax.contact_path) %>>
-          <%= link_to t(:'hyrax.controls.contact'), hyrax.contact_path, aria: current_page?(hyrax.contact_path) ? {current: 'page'} : nil, class: 'gpp-nav-link' %></li>
-        <li <%= 'class=active' if current_page?(main_app.public_list_required_reports_path) %>>
-          <%= link_to t(:'hyrax.controls.public_list_required_reports'), main_app.public_list_required_reports_path, aria: current_page?(main_app.public_list_required_reports_path) ? {current: 'page'} : nil, class: 'gpp-nav-link' %></li>
-        <% if current_user and (current_user.admin? or current_user.library_reviewers?) %>
-          <li <%= 'class=active' if current_page?(main_app.required_reports_path) %>>
-            <%= link_to t(:'hyrax.controls.manage_required_reports'), main_app.required_reports_path, aria: current_page?(main_app.required_reports_path) ? {current: 'page'} : nil, class: 'gpp-nav-link' %></li>
-        <% end %>
-      </ul><!-- /.nav -->
-      <div class="searchbar-right navbar-right col-sm-7">
-        <%= render partial: 'catalog/search_form' %>
+<div class="container-fluid collapse d-lg-block px-0 border-lg-top border-bottom" id="nav-primary">
+  <h2 class="sr-only">
+    Primary Navigation
+  </h2>
+  <div class="wide">
+    <nav class="nav nav-pills" role="navigation">
+      <div class="nav-item">
+        <% css_class = current_page?'/catalog' ?"active" : "" %>
+        <%= link_to t(:'hyrax.controls.browse'), '/catalog', aria:{haspopup: true,expanded: false}, class: "nav-link #{css_class}" ,id: 'browse_all',role: 'button'%>
       </div>
-    </div>
+      <div class="nav-item">
+        <% css_class = current_page?(main_app.public_list_required_reports_path) ? "active" : "" %>
+        <%= link_to t(:'hyrax.controls.public_list_required_reports'), main_app.public_list_required_reports_path, aria:{haspopup: true,expanded: false}, class: "nav-link #{css_class}" ,id: 'required_reports',role: 'button' %>
+      </div>
+      <% if current_user and (current_user.admin? or current_user.library_reviewers?) %>
+        <div class="nav-item">
+          <% css_class = current_page?(main_app.required_reports_path) ? "active" : "" %>
+          <%= link_to t(:'hyrax.controls.manage_required_reports'), main_app.required_reports_path, aria:{haspopup: true,expanded: false}, class: "nav-link #{css_class}",id: 'manage_required_reports',role: 'button' %>
+        </div>
+      <% end %>
+      <div class="nav-item">
+        <% css_class = current_page?(hyrax.contact_path) ? "active" : "" %>
+        <%= link_to t(:'hyrax.controls.contact'), hyrax.contact_path, aria:{haspopup: true,expanded: false}, class: "nav-link #{css_class}" ,id: 'contact',role: 'button' %>
+      </div>
+
+    </nav>
   </div>
-</nav><!-- /.navbar -->
+</div>
+
+

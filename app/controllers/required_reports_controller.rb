@@ -109,7 +109,7 @@ class RequiredReportsController < ApplicationController
   # GET /required_reports/public_list
   def public_list
     if params[:per_page].nil?
-      params[:per_page] = 20
+      params[:per_page] = RequiredReport.all.count
     end
 
     if params[:agency].nil?

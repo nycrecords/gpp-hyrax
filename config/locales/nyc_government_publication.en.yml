@@ -6,3 +6,14 @@ en:
       nyc_government_publication:
         description:        "NYC Government Agency Publication"
         name:               "NYC Government Publication"
+    controls:
+      browse: Browse All
+      adv_search: Advanced Search
+    search:
+      form:
+        q:
+          placeholder: "Search"
+    dashboard:
+      my:
+        heading:
+          title: Publication Title

@@ -1,0 +1,227 @@
+
+h1 a {
+  color: #000;
+}
+h1 a:hover {
+  text-decoration: none;
+  color: #000;
+}
+.wrap-header img {
+  max-width: 270px;
+}
+
+.maintext {
+  line-height: 1;
+}
+
+.accordion-group li {
+  list-style: none;
+}
+
+
+.recent a {
+    font-weight: 500;
+}
+
+ol.breadcrumb {
+  padding-left: 2px;
+}
+ol.breadcrumb li {
+  display: inline;
+}
+.names span {
+  margin-right: 5px;
+  padding-left: 2px;
+}
+#azindex {
+float: left;
+margin: 5px 0 5px 5px;
+padding: 0px 5px 25px 5px;
+}
+
+#index li {
+float: left;
+height: 2em;
+list-style-type: none;
+padding: 0;
+width: 2em;
+}
+
+#index a:link, #index a:visited {
+display: block;
+height: 2em;
+padding: 0.75em 0 0 0;
+text-align: center;
+width: 3em;
+}
+.input-group #startyear, #endyear {
+  width: 120px !important;
+  flex: none;
+  display: inline-block;
+}
+ul {
+  margin-left: -15px;
+}
+ul a {
+  color: #181A7B;
+}
+
+.subgroups-list {
+  list-style: none;
+}
+
+.description {
+  font-size: 12pt;
+}
+
+.sidebar li {
+  list-style: none;
+  font-size: 10pt;
+  padding: 3px;
+}
+
+.page-link {
+  color: #036 !important;
+}
+
+.browse-all {
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-left: -1px;
+  line-height: 1.5;
+  color: #fff !important;
+  background-color: #181A7B;
+  border: 1px solid #dee2e6;
+}
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+    justify-content: center;
+  }
+
+
+.accordion-group .card {
+  background-color: #eee !important;
+}
+.card-body {
+  background-color: #fff !important;
+  }
+
+.subject {
+  min-width: 150px;
+}
+
+.agency {
+  min-width: 250px;
+}
+
+.language {
+  min-width: 200px;
+}
+.type {
+  min-width: 200px;
+}
+.borough {
+  min-width: 150px;
+}
+.year {
+  min-width: 350px;
+}
+.card-body ul {
+  list-style: none;
+  margin-left: -40px;
+}
+
+.reports {
+    height:200px;
+    overflow-y :auto;
+    overflow-x:hidden;
+    position:absolute;
+    width:400px;
+
+}
+
+.required a {
+  font-weight: 600;
+}
+
+table.dataTable thead th {
+    position: relative;
+    background-image: none !important;
+}
+
+table.dataTable thead .sorting::after,
+table.dataTable thead .sorting_asc::after
+{
+    display: inline ;
+    position: absolute ;
+    right: 0px ;
+    top : auto;
+    font-family: "Font Awesome 5 Free" ;
+    font-weight: 900;
+    content: "\f0d8" ;
+    color: #036;
+    opacity: 1 ;
+
+}
+
+table.dataTable thead .sorting_desc::after{
+
+    display: inline ;
+    position: absolute ;
+    right: 0px ;
+    top : auto;
+    font-family: "Font Awesome 5 Free" ;
+    font-weight: 900;
+    content: "\f0d7" ;
+    color: #036;
+    opacity: 1 ;
+
+}
+
+.collapse:not(.in) {
+  display: none;
+}
+
+.pagination > li:first-of-type > a {
+    margin-left: 0;
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+}
+.pagination > li:last-of-type > a {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+.pagination > li > a
+{
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #036;
+
+    border: 1px solid #dee2e6;
+}
+
+#required-report-table > thead > tr > th
+{
+    color:#000;
+    vertical-align: middle;
+}
+
+.underline-link {
+    color: #036 ;
+}
+
+#user_utility_links li > a
+{
+    color: black;
+    text-decoration: none!important;
+}
