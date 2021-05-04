@@ -1,137 +1,72 @@
 <% provide :page_title, construct_page_title('Home') %>
-<div class="hyc-container" itemscope itemtype="http://schema.org/CollectionPage">
-  <div class="row hyc-header">
-    <div class="col-md-12">
 
-      <% unless @presenter.banner_file.blank? %>
-          <header class="hyc-banner" style="background-image:url(<%= @presenter.banner_file %>)">
-      <% else %>
-          <header class="hyc-generic">
-      <% end %>
 
-      <div class="hyc-title well">
-        <h1><%= @presenter.title.first %></h1>
+
+<section class="featured-panel device-md">
+  <div class="card bg-dark">
+    <img class="card-img opacity-10 full-opacity-on-device" src="/bps_01734.jpg" alt="background image">
+    <div class="card-img-overlay d-flex">
+      <div class="container align-self-center my-2">
+        <div class="text-white text-center">
+          <h1 class="card-title display-4 font-weight-bold">Government Publications Portal</h1>
+          <p style="font-weight:600">The Government Publications Portal holds New York City’s recent agency publications.
+            The portal is maintained by the Municipal Library at the New York City Department of Records and Information Services (DORIS)
+            as part of the government’s ongoing mission to make government information accessible.</p>
+          <div class="maintext"><small>The New York City Charter, Section 1133,
+            requires agencies to submit digital copies of all publications to the Library. A list of all required reports is published on this website.
+            Should the agencies concerned not submit the report within the required
+            time limit, DORIS will issue a request for the report to the agency. Such requests will be published in place of the report until the report is published.</small></div>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <% unless @presenter.logo_record.blank? %>
-          <div class="hyc-logos">
-            <% @presenter.logo_record.each_with_index  do |lr, i| %>
-
-                <% if lr[:linkurl].blank? %>
-                    <img alt="<%= lr[:alttext] %>" src="<%= lr[:file_location] %>" />
-                <% else %>
-                    <a href="<%= lr[:linkurl] %>">
-                      <img alt="<%= lr[:alttext] %>" src="<%= lr[:file_location] %>" />
-                    </a>
-                <% end %>
-
+<% if can? :deposit, @presenter.solr_document %>
+  <section class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div style="text-align: center;">
+            <% if @presenter.create_many_work_types? %>
+              <%= link_to t('hyrax.collection.actions.add_new_work.label'),
+                          '#',
+                          title: t('hyrax.collection.actions.add_new_work.desc'),
+                          data: { behavior: "select-work", target: "#worktypes-to-create", 'create-type' => 'single', add_works_to_collection: @presenter.id },
+                          class: 'btn btn-primary deposit-new-work-through-collection' %>
+            <% else # simple link to the first work type %>
+              <%= link_to 'Submit a Publication',
+                          new_polymorphic_path([main_app, @presenter.first_work_type], add_works_to_collection: @presenter.id),
+                          class: 'btn btn-primary btn-lg submit-btn', :style=>'background-color: #181A7B;' %>
             <% end %>
           </div>
-      <% end %>
-
-      <% unless @presenter.total_viewable_items.blank? %>
-          <div class="hyc-bugs">
-            <div class="hyc-item-count">
-              <b><%= @presenter.total_viewable_items %></b>
-              <%= 'Item'.pluralize(@presenter.total_viewable_items) %></div>
-
-            <% unless @presenter.creator.blank? %>
-                <div class="hyc-created-by">Created by: <%= @presenter.creator.first %></div>
-            <% end %>
-
-            <% unless @presenter.modified_date.blank? %>
-                <div class="hyc-last-updated">Last Updated: <%= @presenter.modified_date %></div>
-            <% end %>
-          </div>
-      <% end %>
-
-      </header>
-
-    </div>
-  </div>
-
-  <div class="hyc-container">
-    <p>Welcome to the Government Publications Portal. The Government Publications Portal is a permanent searchable
-      digital repository for all of New York City’s recent agency publications. The portal is maintained by the
-      Municipal Library at the New York City Department of Records and Information Services (DORIS). The portal is
-      part of New York City government’s ongoing mission to make government information publicly and easily
-      accessible. The <a
-      href="http://library.amlegal.com/nxt/gateway.dll/New%20York/charter/newyorkcitycharter/chapter49officersandemployees?f=templates$fn=default.htm$3.0$vid=amlegal:newyork_ny$anc=JD_1133"
-      target="_blank" rel="noopener noreferrer" class="underline-link">New York City Charter, Section 1133</a>, requires agencies to submit
-      digital copies of all publications to the Library for permanent
-      access and storage. Beginning July 1, 2019, DORIS will maintain a list of all required reports on its website
-      for public perusal. Effective January 1, 2020, more information will be available including not only access
-      to the report but citation to the law requiring the publication, date or reporting period covered. Should
-      the agencies concerned not submit the report within the required time limit, DORIS will issue a request for the
-      report to the agency. Such requests will be published on the government publications website in place of the
-      report until such report is published.</p>
-    <p>For older agency publications on paper, please consult our <a href="https://nycrecords.bywatersolutions.com/"
-                                                                     target="_blank" rel="noopener noreferrer"
-                                                                     class="underline-link">electronic
-      catalog</a>.</p>
-    <p>To find publications, search by keyword, such as agency name, subject, title, report type, or date. Once you
-      have search results, you can sort them further using filters, including by relevance, by date, or with just one
-      letter of the alphabet.</p>
-  </div>
-
-  <div class="row">
-    <div class="col-md-8">
-      <%= render 'collection_description', presenter: @presenter %>
-
-      <% if @presenter.collection_type_is_nestable? && @presenter.total_parent_collections > 0 %>
-        <div class="hyc-blacklight hyc-bl-title">
-          <h2>
-            <%= t('.parent_collection_header') %> (<%= @presenter.total_parent_collections %>)
-          </h2>
         </div>
-        <div class="hyc-blacklight hyc-bl-results">
-          <%= render 'show_parent_collections', presenter: @presenter %>
-        </div>
-      <% end %>
-
-    </div>
-  </div>
-
-  <% if can? :deposit, @presenter.solr_document %>
-    <div style="text-align: center;">
-      <% if @presenter.create_many_work_types? %>
-        <%= link_to t('hyrax.collection.actions.add_new_work.label'),
-                    '#',
-                    title: t('hyrax.collection.actions.add_new_work.desc'),
-                    data: { behavior: "select-work", target: "#worktypes-to-create", 'create-type' => 'single', add_works_to_collection: @presenter.id },
-                    class: 'btn btn-primary deposit-new-work-through-collection' %>
-      <% else # simple link to the first work type %>
-        <%= link_to 'Submit a Publication',
-                    new_polymorphic_path([main_app, @presenter.first_work_type], add_works_to_collection: @presenter.id),
-                    class: 'btn btn-primary submit-btn' %>
-      <% end %>
-    </div>
-  <% end %>
-
-  <!-- Subcollections -->
-  <% if @presenter.collection_type_is_nestable? && @subcollection_count > 0 %>
-      <div class="hyc-blacklight hyc-bl-title">
-        <h4><%= t('.subcollection_count') %> (<%= @subcollection_count %>)</h4>
+        <!-- .col -->
       </div>
-      <div class="hyc-blacklight hyc-bl-results">
-        <%= render 'subcollection_list', collection: @subcollection_docs %>
-      </div>
-  <% end %>
+      <!-- .row -->
+    </div>
+    <!-- .container -->
+  </section>
+
+<% end %>
+
 
   <!-- Works -->
   <% if @members_count > 0 %>
-      <div class="hyc-blacklight hyc-bl-sort">
-        <%= render 'sort_and_per_page', collection: @presenter %>
-      </div>
+     <!-- <div class="hyc-blacklight hyc-bl-sort">
+        <%#= render 'sort_and_per_page', collection: @presenter %>
+      </div>-->
 
-      <div class="hyc-blacklight hyc-bl-results">
-        <br>
-        <h2>Available Publications</h2>
+  <section class="py-3">
+    <div class="container">
+      <div class="row py-2">
+        <h3>Recently Published</h3>
+      </div>
         <%= render_document_index @member_docs %>
-      </div>
+    </div>
 
-      <div class="hyc-blacklight hyc-bl-pager">
-        <%= render 'paginate' %>
-      </div>
+  </section>
+
+
   <% end # if @members_count > 0 %>
 </div>

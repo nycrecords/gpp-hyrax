@@ -1,0 +1,11 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= t("hyrax.dashboard.my.heading.title") %></th>
+    <th>Date Published</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= render partial: 'show_document_list_row', collection: documents, as: :document %>
+  </tbody>
+</table>

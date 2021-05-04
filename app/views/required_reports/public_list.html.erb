@@ -1,85 +1,54 @@
 <%= javascript_include_tag 'required_reports_filters.js' %>
 <% provide :page_title, construct_page_title('Required Reports') %>
 
-<h1>Required Reports</h1>
+<main id="skip-header-target" role="main">
+  <section class="py-3">
+    <div class="container">
+      <div class="row matrix-gutter px-2 justify-content-between">
+        <div class="col-9"><h2>Required Reports</h2>
+        </div>
+      </div>
+      <div class="row matrix-gutter px-2 pb-2 justify-content-between">
+        <div class="col-9">
+          <p>Agencies are required to submit reports to the Government Publications Portal as of June 2020.</p>
+        </div>
+      </div>
+      <div class="row px-2">
+        <div class="col-lg">
+          <div class="table-responsive">
+            <table id="required-report-table" class="table table-striped recent">
+              <thead>
+              <tr class="bg-white">
 
-<div id="required-report-filters" class="col-sm-12">
-  <span>Filter by Agency:</span>
-  <select id="agency-filter" class="agency-filter">
-    <option value="All">All</option>
-    <% @agencies.each do |agency| %>
-      <option value="<%= agency.name %>"><%= agency.name %></option>
-    <% end %>
-  </select>
+              <th scope="col" id="agency" >Agency</th>
+              <th scope="col">Required Report</th>
+              <th scope="col">Frequency</th>
+              <th scope="col">Authorizing Law</th>
+              <th scope="col">Last Published</th>
+              </tr>
+              </thead>
 
-  <span>Rows per Page:</span>
-  <div id="per_page-dropdown" class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-label="Change number of rows per page">
-      <% if params[:per_page] != nil %>
-        <%= params[:per_page] %>
-      <% else %>
-        20
-      <% end %> per page <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-      <li role="menuitem"><a href="/required_reports/public_list?locale=en&amp;per_page=10&amp;agency=<%= params[:agency] %>">10<span class="sr-only"> per page</span></a></li>
-      <li role="menuitem"><a href="/required_reports/public_list?locale=en&amp;per_page=20&amp;agency=<%= params[:agency] %>">20<span class="sr-only"> per page</span></a></li>
-      <li role="menuitem"><a href="/required_reports/public_list?locale=en&amp;per_page=50&amp;agency=<%= params[:agency] %>">50<span class="sr-only"> per page</span></a></li>
-      <li role="menuitem"><a href="/required_reports/public_list?locale=en&amp;per_page=100&amp;agency=<%= params[:agency] %>">100<span class="sr-only"> per page</span></a></li>
-    </ul>
-  </div>
-</div>
+              <tbody class="small">
+              <% @required_reports.each_with_index do |required_report, index| %>
+                <tr>
 
-<div class="center">
-  <%= paginate @required_reports %>
-</div>
+                  <td><%= required_report.agency_name %></td>
+                  <td><a class=" font-weight-bold underline-link" href="/"> <%= required_report.name %></a><br/>
+                    <%= required_report.description %></td>
+                  <td><%= required_report.frequency_string %></td>
+                  <td><span><%= required_report.local_law %></span><br/><span><%= required_report.charter_and_code %></span></td>
+                  <td><%= required_report.last_published_date %></td>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
 
-<div class="table-responsive">
-  <table id="required-report-table" class="table table-striped table-bordered">
-    <thead>
-    <tr>
-      <th class="col-md-2">Row Number</th>
-      <th class="col-md-2">Agency</th>
-      <th class="col-md-2">Name</th>
-      <th class="col-md-3">Description</th>
-      <th class="col-md-1">Frequency</th>
-      <th class="col-md-1">Authorizing Resource (Local Law)</th>
-      <th class="col-md-1">Authorizing Resource (Charter and Code)</th>
-      <th class="col-md-1">Last Published Date</th>
-      <th class="col-md-1">See All Reports</th>
-    </tr>
-    </thead>
+        </div>
+      </div>
 
-    <tbody>
-    <% @required_reports.each_with_index do |required_report, index| %>
-      <tr>
-        <% if (params[:page].to_i - 1) * (params[:per_page].to_i) + index + 1 <= params[:per_page].to_i %>
-          <th aria-label="Row Number: <%= index + 1 %>. Agency: <%= required_report.agency_name %>. Report Name: <%= required_report.name %>. The value in this cell is "><%= index + 1 %></th>
-        <% else %>
-          <th aria-label="Row Number: <%= (params[:page].to_i - 1) * (params[:per_page].to_i) + index + 1 %>. Agency: <%= required_report.agency_name %>. Report Name: <%= required_report.name %>. The value in this cell is "><%= (params[:page].to_i - 1) * (params[:per_page].to_i) + index + 1 %></th>
-        <% end %>
-        <td><%= required_report.agency_name %></td>
-        <td><%= required_report.name %></td>
-        <td><%= required_report.description %></td>
-        <td><%= required_report.frequency_string %></td>
-        <td><%= required_report.local_law %></td>
-        <td><%= required_report.charter_and_code %></td>
-        <td><%= required_report.last_published_date %></td>
-        <td><%= link_to 'Search',
-                        @search_url[0] +
-                            url_encode(required_report.agency_name) +
-                            @search_url[1] + url_encode(required_report.name) +
-                            @search_url[2],
-                        aria: { label: format('Search all, %s for %s',
-                                              required_report.name,
-                                              required_report.agency_name) },
-                        class: 'underline-link' %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+    </div>
+  </section>
+</main>
 
-<div class="center">
-  <%= paginate @required_reports %>
-</div>
+
+

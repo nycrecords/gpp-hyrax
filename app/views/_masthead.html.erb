@@ -1,21 +1,55 @@
-<header>
-  <nav id="masthead" class="navbar navbar-inverse navbar-static-top" role="navigation" aria-label="Main Navigation">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-collapse" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <%= render '/logo' %>
+<header id="global-header" role="banner">
+  <%= render '/nycid_header' %>
+  <div class="wrap-header">
+    <div class="container-fluid wide">
+      <div class="row  pt-1 pb-1 align-items-center">
+        <div class="col">
+          <div class="d-flex justify-content-center justify-content-lg-start">
+            <a class="align-self-center" href="https://nyc.gov/doris" title="Home">
+              <img src="/DORIS-logo.png" alt="DORIS" width="50%">
+            </a>
+          </div>
+          <!-- .d-flex -->
+        </div>
+        <!-- .col -->
+        <div class="col">
+          <div class="d-flex justify-content-center text-center ">
+            <h1 class="h2"><a href="/">Government Publications<br></a></h1>
+          </div>
+          <!-- .d-flex -->
+        </div>
+        <div class="col justify-content-end border-top border-lg-0">
+          <div class="row no-gutters justify-content-end py-2 mr-auto">
+            <!-- Menu Toggle -->
+            <div class="col-auto d-flex d-lg-none">
+              <button class="no-btn-style" type="button" data-toggle="collapse"
+                      data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                      aria-label="Toggle navigation">
+                <span class="fas fa-bars fa-lg" role="img"></span>
+              </button>
+            </div>
+            <!-- .col -->
+            <div class="col-auto">
+              <%= render '/user_util_links' %>
+            </div>
+            <!-- .col -->
+          </div>
+          <!-- .row -->
+        </div>
+        <!-- .col -->
       </div>
-
-      <div class="collapse navbar-collapse" id="top-navbar-collapse">
-        <%= render '/user_util_links' %>
-      </div>
+      <!-- .row -->
     </div>
-  </nav>
+    <!-- .container-fluid -->
+  </div>
+  <!-- .wrap-header -->
+  <div class="container-fluid border-top collapse" id="global-language">
+    <div class="narrow py-2">
+      <div id="google_translate_element"></div>
+    </div>
+  </div>
+  <div class="container-fluid border-top collapse" id="global-publication-search">
+    <%= render partial: 'catalog/search_form' %>
+  </div>
+  <%= content_for(:navbar) %>
 </header>
-
