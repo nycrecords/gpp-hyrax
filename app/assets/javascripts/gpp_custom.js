@@ -13,7 +13,6 @@ $('#required-report-table').DataTable({
             "next": "&raquo;"
         }
     },
-    "bFilter": false,
     "initComplete": function( settings, json ) {
         $('#required-report-table_wrapper').removeClass("form-inline");
 
