@@ -8,13 +8,11 @@ class RequiredReportDueDate < ApplicationRecord
   #
   # Ex:
   #     [ { due_date: 2020-01-01 }, { due_date: 2020-02-01 }, ... ]
-  def generate_due_date_attributes(frequency, frequency_integer, start_date, end_date)
-    return [] if frequency.blank? || start_date.blank?
+  def generate_due_date_attributes(frequency, frequency_integer, start_date, end_date, automated_date)
+    return [] if (frequency.blank? || start_date.blank? || automated_date == false)
 
     # Convert string parameters to proper types.
     frequency_integer = frequency_integer.to_i
-    start_date = Date.parse(start_date)
-    end_date = Date.parse(end_date) rescue nil
 
     frequency_calculation = FrequencyCalculation.new
     due_dates = frequency_calculation.calculate(frequency,

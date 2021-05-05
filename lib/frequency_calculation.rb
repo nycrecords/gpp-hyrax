@@ -17,7 +17,7 @@ class FrequencyCalculation
     frequency_symbol = get_frequency_symbol(frequency)
 
     while date < end_date
-      date = date.advance(frequency_symbol => frequency_integer)
+      date = date.advance(frequency_symbol => frequency_integer*2)
       dates << @calendar.roll_forward(date)
     end
 

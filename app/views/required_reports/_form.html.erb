@@ -44,6 +44,13 @@
               input_html: { class: 'form-control' }
   %>
 
+  <%= f.input :automated_date,
+              as: :select,
+              selected: 'false',
+              input_html: { class: 'form-control' },
+              required: true
+  %>
+
   <%= f.input :frequency,
               as: :select,
               collection: FrequenciesService.select_all_options,

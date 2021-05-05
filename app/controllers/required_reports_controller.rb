@@ -42,11 +42,15 @@ class RequiredReportsController < ApplicationController
   # POST /required_reports
   # POST /required_reports.json
   def create
+    start_date = Date.parse(required_report_params[:start_date]) rescue nil
+    end_date = Date.parse(required_report_params[:end_date]) rescue nil
+    automated_date = required_report_params[:automated_date]
     # Get attributes for RequiredReportDueDate.
     due_date_attributes = RequiredReportDueDate.new.generate_due_date_attributes(required_report_params[:frequency],
                                                                                  required_report_params[:frequency_integer],
-                                                                                 required_report_params[:start_date],
-                                                                                 required_report_params[:end_date])
+                                                                                 start_date,
+                                                                                 end_date,
+                                                                                 automated_date)
 
     # Return new RequiredReport object with required_report_due_dates_attributes added to params.
     @required_report = RequiredReport.new(required_report_params.merge(required_report_due_dates_attributes:
