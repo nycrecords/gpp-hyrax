@@ -3,7 +3,7 @@ class CreateDueDatesWorker
 
   def perform(*args)
     current_date = DateTime.current.to_date
-    required_reports = RequiredReport.where.not(start_date: nil).where(automated_date: true).where("end_date is null OR end_date <= ?", current_date)
+    required_reports = RequiredReport.where.not(start_date: nil).where(automated_date: true).where("end_date is null OR end_date >= ?", current_date)
     required_reports.each do |rr|
       # Get most recent year to determine start_date and calculate future due dates
       latest_year = RequiredReportDueDate.where(required_report_id: rr.id).order(due_date: :desc).first.due_date.year
