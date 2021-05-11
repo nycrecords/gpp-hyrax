@@ -304,13 +304,14 @@ ActiveRecord::Schema.define(version: 20210505160641) do
 
   create_table "required_report_due_dates", force: :cascade do |t|
     t.bigint "required_report_id", null: false
-    t.date "due_date", null: false
+    t.date "base_due_date", null: false
     t.datetime "date_submitted"
     t.datetime "delinquency_report_published_date"
     t.string "submission_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "delinquency_report_id"
+    t.date "grace_due_date", null: false
     t.index ["required_report_id"], name: "index_required_report_due_dates_on_required_report_id"
   end
 

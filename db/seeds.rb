@@ -27,11 +27,10 @@ required_reports.each do |row|
 
   # Calculate due dates for each required report
   due_date_attributes = RequiredReportDueDate.new.generate_due_date_attributes(frequency,
-                                                                               row[5],
+                                                                               frequency_integer,
                                                                                start_date,
                                                                                end_date,
                                                                                automated_date)
-
   RequiredReport.create({ id: row[0],
                           agency_name: row[1],
                           name: row[2],

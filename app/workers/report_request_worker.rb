@@ -12,7 +12,7 @@ class ReportRequestWorker
     late_date = calendar.subtract_business_days(today, 11)
     late_reports = RequiredReportDueDate.includes(required_report: :agency)
                                         .where(date_submitted: nil, delinquency_report_published_date: nil)
-                                        .where('due_date < ?', late_date)
+                                        .where('grace_due_date < ?', late_date)
     failed_reports = {}
     late_reports.each do |report|
       required_report_due_date = report
