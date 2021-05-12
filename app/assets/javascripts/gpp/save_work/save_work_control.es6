@@ -117,7 +117,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
                     // Add blank option
                     requiredReportField.append(new Option('', ''));
                     data['required_report_names'].forEach(function (report) {
-                        let option = new Option(report['report_name'] + ' (' + report['due_date'] + ')', report['report_name']);
+                        let option = new Option(report['report_name'] + ' (' + report['base_due_date'] + ')', report['report_name']);
                         option.setAttribute('report_due_date_id', report['report_due_date_id']);
                         requiredReportField.append(option);
                     });

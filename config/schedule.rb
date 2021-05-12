@@ -26,3 +26,7 @@ job_type :sidekiq, "cd :path && RAILS_ENV=development bundle exec sidekiq-client
 every :weekday, at: '9am', roles: [:app] do
   sidekiq "push ReportRequestWorker"
 end
+
+every 1.year, at: 'January 1st 12:00am', roles: [:app] do
+  sidekiq "push CreateDueDatesWorker"
+end

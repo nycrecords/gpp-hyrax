@@ -8,20 +8,24 @@ class FrequencyCalculation
 
   # Returns an array of unique due dates.
   def calculate(frequency, frequency_integer, start_date, end_date)
-    dates = [@calendar.roll_forward(start_date)]
+    first_due_date = @calendar.roll_forward(start_date)
+    base_dates = [first_due_date]
+    grace_dates = [first_due_date]
 
-    return dates if frequency == 'Once'
+    return [base_dates, grace_dates] if frequency == 'Once'
 
-    date = start_date
+    base_date = start_date
     end_date = calculate_end_date(start_date, end_date)
     frequency_symbol = get_frequency_symbol(frequency)
 
-    while date < end_date
-      date = date.advance(frequency_symbol => frequency_integer)
-      dates << @calendar.roll_forward(date)
+    while base_date < end_date
+      grace_date = base_date.advance(frequency_symbol => frequency_integer*2)
+      base_date = base_date.advance(frequency_symbol => frequency_integer)
+      base_dates << @calendar.roll_forward(base_date)
+      grace_dates << @calendar.roll_forward(grace_date)
     end
 
-    dates.uniq
+    [base_dates, grace_dates]
   end
 
   # Returns an end_date, the date to stop calculating until.

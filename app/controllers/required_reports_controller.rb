@@ -42,11 +42,15 @@ class RequiredReportsController < ApplicationController
   # POST /required_reports
   # POST /required_reports.json
   def create
+    start_date = Date.parse(required_report_params[:start_date]) rescue nil
+    end_date = Date.parse(required_report_params[:end_date]) rescue nil
+    automated_date = required_report_params[:automated_date]
     # Get attributes for RequiredReportDueDate.
     due_date_attributes = RequiredReportDueDate.new.generate_due_date_attributes(required_report_params[:frequency],
                                                                                  required_report_params[:frequency_integer],
-                                                                                 required_report_params[:start_date],
-                                                                                 required_report_params[:end_date])
+                                                                                 start_date,
+                                                                                 end_date,
+                                                                                 automated_date)
 
     # Return new RequiredReport object with required_report_due_dates_attributes added to params.
     @required_report = RequiredReport.new(required_report_params.merge(required_report_due_dates_attributes:
@@ -95,12 +99,12 @@ class RequiredReportsController < ApplicationController
     @required_reports = RequiredReportDueDate.includes(:required_report)
                             .where(date_submitted: nil)
                             .where('required_reports.agency_name = ?', @agency)
-                            .order('required_reports.name ASC, due_date ASC')
+                            .order('required_reports.name ASC, base_due_date ASC')
                             .references(:required_reports)
 
     @required_reports.each do |required_report|
       @required_report_names << { 'report_name': required_report.required_report.name,
-                                  'due_date': required_report.due_date,
+                                  'base_due_date': required_report.base_due_date,
                                   'report_due_date_id': required_report.id }
     end
     render json: { 'required_report_names': @required_report_names }

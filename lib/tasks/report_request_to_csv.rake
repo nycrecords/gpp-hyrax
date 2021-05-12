@@ -8,7 +8,7 @@ task :report_request_to_csv, [:date] => :environment do |t, args|
   late_date = calendar.subtract_business_days(date, 11)
   late_reports = RequiredReportDueDate.includes(required_report: :agency)
                    .where(date_submitted: nil, delinquency_report_published_date: nil)
-                   .where('due_date < ?', late_date)
+                   .where('grace_due_date < ?', late_date)
 
 
   csv_file = File.join(ENV['OPENDATA_CSV_PATH'],
@@ -50,7 +50,7 @@ task :report_request_to_csv, [:date] => :environment do |t, args|
                  agency.name,
                  required_report.name,
                  required_report.description,
-                 required_report_due_date.due_date,
+                 required_report_due_date.grace_due_date,
                  "Delinquent Report Notice",
                  "Compliance",
                  date.to_s,
