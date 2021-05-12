@@ -2,7 +2,7 @@ class CreateDueDatesWorker
   include Sidekiq::Worker
 
   def perform(*args)
-    current_date = DateTime.new(2023, 1, 1, 0, 0, 0)
+    current_date = DateTime.current.to_date
     required_reports = RequiredReport.where.not(start_date: nil)
                          .where(automated_date: true)
                          .where("end_date is null OR end_date >= ?", current_date)
