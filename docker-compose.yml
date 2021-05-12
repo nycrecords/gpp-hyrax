@@ -50,7 +50,7 @@ services:
       internal:
     env_file:
       - .env
-    expose:
+    ports:
       - 5432
   fcrepodb:
     <<: *db

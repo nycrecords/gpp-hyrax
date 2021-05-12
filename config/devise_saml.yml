@@ -19,8 +19,8 @@ default: &default
 development:
   <<: *default
   idp_metadata_url: 'https://fidm.us1.gigya.com/saml/v2.0/3_DkZigi2v_eW7z-cZt8PAw-cYWQYg2d8VqABUFRZUhhzxNAdwR5brLl_h8Hqbo7Bm/idp/metadata'
-  sp_cert_path: 'config/certs/sp_nyc2.crt'
-  sp_key_path: 'config/certs/sp_nyc2.key'
+  sp_cert_path: 'config/certs/sp.crt'
+  sp_key_path: 'config/certs/sp.key'
 
 test:
   <<: *default
