@@ -19,12 +19,18 @@ class ReportRequestWorker
       required_report = required_report_due_date.required_report
       agency = required_report.agency
 
-      # Create PDF
-      pdf = ApplicationController.new.render_to_string(template: 'report_request_mailer/notice.pdf.erb',
-                                                       locals: { :@required_report_due_date => required_report_due_date,
-                                                                 :@required_report => required_report,
-                                                                 :@agency => agency },
-                                                       layout: 'application.pdf')
+      # Generate PDF and handle exception if render fails
+      begin
+        pdf = ApplicationController.new.render_to_string(template: 'report_request_mailer/notice.pdf.erb',
+                                                         locals: { :@required_report_due_date => required_report_due_date,
+                                                                   :@required_report => required_report,
+                                                                   :@agency => agency },
+                                                         layout: 'application.pdf')
+      rescue ActionView::Template::Error => e
+        failed_reports[required_report_due_date.id] = { name: required_report.name,
+                                                        error: e.message }
+        next
+      end
 
       f = Tempfile.new([format('%s_report_request', required_report.id.to_s), '.pdf'])
       f.write(pdf)
