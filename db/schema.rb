@@ -329,7 +329,7 @@ ActiveRecord::Schema.define(version: 20210505160641) do
     t.date "last_published_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "automated_date", default: false, null: false
+    t.boolean "automated_date", default: true, null: false
   end
 
   create_table "roles", id: :serial, force: :cascade do |t|
