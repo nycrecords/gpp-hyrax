@@ -142,6 +142,6 @@ class RequiredReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def required_report_params
-      params.require(:required_report).permit(:agency_name, :name, :description, :local_law, :charter_and_code, :frequency, :frequency_integer, :other_frequency_description, :start_date, :end_date, :last_published_date)
+      params.require(:required_report).permit(:agency_name, :name, :description, :local_law, :charter_and_code, :automated_date, :frequency, :frequency_integer, :other_frequency_description, :start_date, :end_date, :last_published_date)
     end
 end
