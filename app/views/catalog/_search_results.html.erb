@@ -9,13 +9,14 @@
   <%= json_api_link_tag %>
 <% end %>
 
-<h1><%= t('blacklight.search.search_results') %></h1>
-
 <%= render 'search_header' %>
 
 <div id="filters">
   <%= render 'search_sidebar' %>
-  <hr>
+</div>
+
+<div class="pb-2">
+  <%= render 'constraints' %>
 </div>
 
 <%- if @response.empty? %>

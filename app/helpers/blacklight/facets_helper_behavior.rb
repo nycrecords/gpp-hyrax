@@ -120,9 +120,10 @@ module Blacklight::FacetsHelperBehavior
   # @return [String]
   def render_facet_value(facet_field, item, options ={})
     path = path_for_facet(facet_field, item)
-    content_tag(:span, :class => "facet-label") do
-      link_to_unless(options[:suppress_link], facet_display_value(facet_field, item), path, :class=>"facet_select underline-link")
-    end + render_facet_count(item.hits)
+
+      link_to_unless(options[:suppress_link], facet_display_value(facet_field, item), path, :class=>"facet_select underline-link") +
+          "<b> (".html_safe + render_facet_count(item.hits)+ ")</b>".html_safe
+
   end
 
   ##

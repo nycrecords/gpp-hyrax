@@ -17,3 +17,15 @@ en:
       my:
         heading:
           title: Publication Title
+  blacklight:
+    search:
+      facets:
+        more_html: 'more <span class="sr-only">%{field_name}</span> +'
+      per_page:
+        aria_label: 'Results navigation'
+      pagination_info:
+        no_items_found: 'No reports found'
+        single_item_found: '1 report found'
+        pages:
+          one: '%{start_num} - %{end_num} of %{total_num}'
+          other: '%{start_num} - %{end_num} of <strong>%{total_num}'

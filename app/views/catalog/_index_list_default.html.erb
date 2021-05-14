@@ -1,26 +1,11 @@
-<div class="col-md-12">
-  <div class="metadata">
-    <dl class="dl-horizontal">
-      <% doc_presenter = index_presenter(document) %>
-      <% index_fields(document).each do |field_name, field| -%>
-        <% if should_render_index_field? document, field %>
-          <dt><%= render_index_field_label document, field: field_name %></dt>
-          <dd><%= doc_presenter.field_value field %></dd>
-        <% end %>
-      <% end %>
-    </dl>
-  </div>
-</div>
-<% if document.collection? %>
-  <% collection_presenter = Hyrax::CollectionPresenter.new(document, current_ability) %>
-  <div class="col-md-4">
-    <div class="collection-counts-wrapper">
-      <div class="collection-counts-item">
-        <span><%= collection_presenter.total_viewable_collections %></span>Collections
-      </div>
-      <div class="collection-counts-item">
-        <span><%= collection_presenter.total_viewable_works %></span>Works
-      </div>
-    </div>
-  </div>
+<% doc_presenter = index_presenter(document) %>
+
+<% field = index_fields(document)["agency_tesim"] %>
+<% if should_render_index_field? document, field %>
+  <td><%= doc_presenter.field_value field %></td>
+<% end %>
+
+<% field = index_fields(document)["date_published_tesim"] %>
+<% if should_render_index_field? document, field %>
+  <td><%= doc_presenter.field_value field %></td>
 <% end %>

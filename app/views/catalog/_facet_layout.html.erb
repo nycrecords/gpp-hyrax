@@ -1,0 +1,15 @@
+<div class="col-md">
+  <div class="accordion-group" role="tablist" id="accordion-01">
+    <div class="card mb-2">
+      <% facet_class_name = facet_field_label(facet_field.key).parameterize.underscore.downcase %>
+      <button class="py-1 btn btn-outline border-primary collapse dropdown-toggle collapsed" id="acc-button-<%=facet_class_name %>>" data-toggle="collapse" href="#panel-acc-button-<%=facet_class_name %>" role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+        <%=facet_field_label(facet_field.key).split("(")[0] %>
+      </button>
+      <div class="collapse" id="panel-acc-button-<%=facet_class_name %>" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01" style="">
+        <div class="card-body <%=facet_class_name %>">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

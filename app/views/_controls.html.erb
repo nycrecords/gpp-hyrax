@@ -5,7 +5,7 @@
   <div class="wide">
     <nav class="nav nav-pills" role="navigation">
       <div class="nav-item">
-        <% css_class = current_page?'/catalog' ?"active" : "" %>
+        <% css_class = current_page?('/catalog') ?"active" : "" %>
         <%= link_to t(:'hyrax.controls.browse'), '/catalog', aria:{haspopup: true,expanded: false}, class: "nav-link #{css_class}" ,id: 'browse_all',role: 'button'%>
       </div>
       <div class="nav-item">
@@ -22,7 +22,6 @@
         <% css_class = current_page?(hyrax.contact_path) ? "active" : "" %>
         <%= link_to t(:'hyrax.controls.contact'), hyrax.contact_path, aria:{haspopup: true,expanded: false}, class: "nav-link #{css_class}" ,id: 'contact',role: 'button' %>
       </div>
-
     </nav>
   </div>
 </div>

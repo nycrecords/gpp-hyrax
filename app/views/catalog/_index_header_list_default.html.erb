@@ -1,5 +1,10 @@
-<div class="search-results-title-row">
-  <h4 class="search-result-title"><%= link_to document.title_or_label,
-                                                    document,
-                                                    class: 'underline-link' %></h4>
-</div>
+<td class="search-results-title-row">
+  <%= link_to document.title_or_label, document, class: 'font-weight-bold underline-link' %><br>
+  <% doc_presenter = index_presenter(document) %>
+
+  <% field = index_fields(document)["description_tesim"] %>
+  <% if should_render_index_field? document, field %>
+  <%= doc_presenter.field_value field %>
+<% end %>
+
+</td>

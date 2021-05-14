@@ -1,0 +1,17 @@
+<% # main container for facets/limits menu -%>
+<% if has_facet_values?  %>
+  <div id="facets" class="facets sidenav">
+    <div class="section bg-light mb-2">
+      <div class="row py-1 px-3 pt-2">
+        <div class="col-1 px-0">
+        <h2 class="h5 pt-1">Filter by:</h2>
+        </div>
+        <div class="col-11">
+          <div class="row">
+         <%= render_facet_partials %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

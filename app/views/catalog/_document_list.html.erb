@@ -1,0 +1,15 @@
+<%# container for all documents in index view -%>
+<div id="search-results">
+  <table id="search-results-table" class="table table-striped catalog" start="<%= document_counter_with_offset(0) %>">
+    <thead>
+    <tr>
+      <th style="color:#000"><%= t("hyrax.dashboard.my.heading.title") %></th>
+      <th style="color:#000">Agency</th>
+      <th style="color:#000">Date Published</th>
+    </tr>
+    </thead>
+    <tbody class="small">
+    <%= render documents, as: :document %>
+    </tbody>
+  </table>
+</div>

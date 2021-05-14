@@ -1,0 +1,10 @@
+<ul class="small">
+  <% paginator = facet_paginator(facet_field, display_facet) %>
+  <%= render_facet_limit_list paginator, facet_field.key %>
+</ul>
+<% unless paginator.last_page? || params[:action] == "facet" %>
+  <li class="more_facets_link">
+    <%= link_to t("more_#{field_name}_html", scope: 'blacklight.search.facets', default: :more_html, field_name: facet_field.label),
+                search_facet_path(id: facet_field.key), class: "btn btn-sm btn-primary" %>
+  </li>
+<% end %>

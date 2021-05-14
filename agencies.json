@@ -1,0 +1,442 @@
+[
+  {
+    "name": "Actuary, NYC Office of the (NYCOA)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Administrative Justice Coordinator, NYC Office of (AJC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Administrative Trials and Hearings, Office of (OATH)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Aging, Department for the (DFTA)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Animal Welfare, Mayor's Office of",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Borough Presidents",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Buildings, Department of (DOB)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Business Integrity Commission (BIC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Campaign Finance Board (CFB)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Center for Innovation through Data Intelligence (CIDI)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Chief Medical Examiner, NYC Office of (OCME)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Children's Services, Administration for (ACS)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "City Clerk, Office of the (CLERK)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "City Council, New York (NYCC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "City Planning, Department of (DCP)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Citywide Administrative Services, Department of (DCAS)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Civic Engagement Commission (CEC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Civil Service Commission (CSC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Civilian Complaint Review Board (CCRB)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Commission on Gender Equity (CGE)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Commission to Combat Police Corruption (CCPC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Community Affairs Unit (CAU)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Community Boards",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Comptroller (COMP)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Conflicts of Interest Board (COIB)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Consumer and Worker Protection, Department of (DCWP)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Contract Services, Mayor's Office of (MOCS)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Correction, Board of (BOC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Correction, Department of (DOC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Criminal Justice, Mayor's Office of (MOCJ)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Cultural Affairs, Department of (DCLA)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Data Analytics, Mayor's Office of (MODA)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Design and Construction, Department of (DDC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Districting Commission",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Economic Development Corporation (EDC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Economic Opportunity, Mayor's Office for (Opportunity)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Education, Department of (DOE)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Elections, Board of (BOE)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Emergency Management, Office of (OEM)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "End Domestic and Gender-Based Violence, Mayor's Office to (ENDGBV)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Environmental Coordination, Mayor's Office of (OEC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Environmental Protection, Department of (DEP)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Environmental Remediation, Mayor's Office of (OER)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Equal Employment Practices Commission (EEPC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Finance, Department of (DOF)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Financial Information Services Agency - Office of Payroll Administration (FISA-OPA)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Fire Department, New York City (FDNY)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Food Policy Director, Mayor's Office of the (MOFP)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "GreeNYC (GNYC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Health and Hospitals Corporation (HHC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Health and Mental Hygiene, Department of (DOHMH)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Homeless Services, Department of (DHS)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Housing Authority, New York City (NYCHA)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Housing Preservation and Development, Department of (HPD)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Housing Recovery Operations (HRO)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Human Resources Administration (HRA)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Human Rights, City Commission on (CCHR)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Immigrant Affairs, Mayor's Office of (MOIA)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Independent Budget Office, NYC (IBO)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Information Privacy, Mayor's Office of (MOIP)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Information Technology and Telecommunications, Department of (DOITT)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Inspector General NYPD, Office of the (OIG-NYPD)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Intergovernmental Affairs, Mayor's Office of (MOIGA)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "International Affairs, Mayor's Office for (IA)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Investigation, Department of (DOI)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Labor Relations, NYC Office of (OLR)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Landmarks Preservation Commission (LPC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Law Department (LAW)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Loft Board (LOFT)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Long-Term Planning &amp; Sustainability, Office of (OLTPS)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Management and Budget, Office of (OMB)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Mayor's Fund to Advance NYC (FUND)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Mayor's Office (OM)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Media and Entertainment, Mayor's Office of (MOME)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Municipal Drug Strategy Council (MDSC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "New Business Acceleration Team (NBAT)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "New York City Fire Pension Fund",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "NYC & Company (NYCGO)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "NYC Employees' Retirement System (NYCERS)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "NYC Service (SERVICE)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Operations, Mayor's Office of (OPS)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Parks and Recreation, Department of (DPR)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "People with Disabilities, Mayor's Office of (MOPD)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Police Department (NYPD)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Police Pension Fund (PPF)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Probation, Department of (DOP)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Procurement Policy Board (PPB)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Public Advocate (PUB ADV)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Public Design Commission (DesignCommission)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Quadrennial Advisory Commission (QuadAC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Records and Information Services, Department of (DORIS)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Recovery & Resiliency, Mayor's Office of (ORR)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Rent Guidelines Board (RGB)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Sanitation, Department of (DSNY)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "School Construction Authority (SCA)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Small Business Services, Department of (SBS)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Standards and Appeals, Board of (BSA)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Sustainability, Mayor's Office of (Sustainability)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Tax Appeals Tribunal, New York City (TAT)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Tax Commission, New York City (TC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Taxi and Limousine Commission (TLC)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Technology and Innovation, Mayor's Office of (MOTI)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Transportation, Department of (DOT)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Veterans' Services, Department of (DVS)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Water Board (NYWB)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Water Finance Authority, NYC Municipal (NYW)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Waterfront Management Advisory Board (WMAB)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Workforce Development, Mayor's Office of (WKDEV)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Workforce Investment Board (WIB)",
+    "point_of_contact_emails": []
+  },
+  {
+    "name": "Youth and Community Development, Department of (DYCD)",
+    "point_of_contact_emails": []
+  }
+]
