@@ -29,6 +29,8 @@ terms:
     term: Campaign Finance Board (CFB)
   - id: Center for Innovation through Data Intelligence (CIDI)
     term: Center for Innovation through Data Intelligence (CIDI)
+  - id: Charter Review Commission (CRC)
+    term: Charter Review Commission (CRC)
   - id: Chief Medical Examiner, NYC Office of (OCME)
     term: Chief Medical Examiner, NYC Office of (OCME)
   - id: Children's Services, Administration for (ACS)
@@ -47,6 +49,10 @@ terms:
     term: Civil Service Commission (CSC)
   - id: Civilian Complaint Review Board (CCRB)
     term: Civilian Complaint Review Board (CCRB)
+  - id: Climate Resiliency, Mayor's Office of (MOCR)
+    term: Climate Resiliency, Mayor's Office of (MOCR)
+  - id: Climate and Sustainability, Mayor's Office of (MOC&S)
+    term: Climate and Sustainability, Mayor's Office of (MOC&S)
   - id: Commission on Gender Equity (CGE)
     term: Commission on Gender Equity (CGE)
   - id: Commission to Combat Police Corruption (CCPC)
@@ -55,6 +61,8 @@ terms:
     term: Community Affairs Unit (CAU)
   - id: Community Boards
     term: Community Boards
+  - id: Community Mental Health, Mayor's Office of (OCMH)
+    term: Community Mental Health, Mayor's Office of (OCMH)
   - id: Comptroller (COMP)
     term: Comptroller (COMP)
   - id: Conflicts of Interest Board (COIB)
