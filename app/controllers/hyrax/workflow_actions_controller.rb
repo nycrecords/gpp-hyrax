@@ -47,7 +47,7 @@ module Hyrax
 
       date_published = Date.parse(work.date_published)
 
-      required_report = RequiredReport.where(agency_name: work.agency, name: required_report_name).first
+      required_report = RequiredReport.where(agency_name: work.agency, name: required_report_name, end_date: nil).first
 
       case workflow_action_name
       when 'comment_only'
