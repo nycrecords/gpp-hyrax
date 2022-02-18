@@ -319,6 +319,8 @@ terms:
     term: Taxicabs
   - id: Teachers
     term: Teachers
+  - id: Technology
+    term: Technology
   - id: Television
     term: Television
   - id: Terminals
