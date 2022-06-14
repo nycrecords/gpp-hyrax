@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :set_cache_headers, :check_concurrent_session
 
-  auto_session_timeout 30.minutes
-  before_timedout_action
+  # auto_session_timeout 30.minutes
+  # before_timedout_action
 
   helper Openseadragon::OpenseadragonHelper
   # Adds a few additional behaviors into the application controller
@@ -28,6 +28,11 @@ class ApplicationController < ActionController::Base
   def is_already_logged_in?
     current_user && (session.id != current_user.unique_session_id)
   end
+
+  # adding this for time issue
+   def authenticate
+      redirect_to some_path if session[:session_key].nil?
+   end
 
   # Redirect to location that triggered authentication or to homepage
   def after_sign_in_path_for(resource)

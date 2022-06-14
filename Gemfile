@@ -54,8 +54,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Debug
-  gem 'ruby-debug-ide'
-  gem 'debase'
+  gem 'ruby-debug-ide', '~> 0.7.0'
+  gem 'debase', '~> 0.2.5.beta2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -87,7 +87,6 @@ gem 'hydra-role-management'
 gem 'jquery-ui-rails'
 gem 'nilify_blanks'
 gem 'omniauth-saml'
-
 # Use sidekiq and whenever for background jobs
 gem 'sidekiq'
 gem 'sidekiq-client-cli'
@@ -95,3 +94,7 @@ gem 'whenever'
 
 # Use Rails-LaTeX to generate PDFs
 gem 'rails-latex'
+
+gem 'bulkrax', '2.2.2'
+
+gem 'willow_sword', github: 'notch8/willow_sword'

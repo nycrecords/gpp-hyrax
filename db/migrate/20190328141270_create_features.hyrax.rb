@@ -1,4 +1,4 @@
-class CreateFeatures < ActiveRecord::Migration[5.1]
+class CreateFeatures < ActiveRecord::Migration[5.0]
   def change
     create_table :hyrax_features do |t|
       t.string :key, null: false

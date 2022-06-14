@@ -1,4 +1,4 @@
-class AddExternalKeyToContentBlocks < ActiveRecord::Migration[5.1]
+class AddExternalKeyToContentBlocks < ActiveRecord::Migration[5.0]
   def change
     add_column :content_blocks, :external_key, :string
     remove_index :content_blocks, :name

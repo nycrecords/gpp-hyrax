@@ -1,4 +1,4 @@
-class CreateRequiredReports < ActiveRecord::Migration[5.1]
+class CreateRequiredReports < ActiveRecord::Migration[5.0]
   def change
     create_table :required_reports do |t|
       t.string :agency_name, null: false

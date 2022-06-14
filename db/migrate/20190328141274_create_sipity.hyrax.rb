@@ -1,4 +1,4 @@
-class CreateSipity < ActiveRecord::Migration[5.1]
+class CreateSipity < ActiveRecord::Migration[5.0]
   def change
     create_table "sipity_notification_recipients" do |t|
       t.integer  "notification_id",                null: false

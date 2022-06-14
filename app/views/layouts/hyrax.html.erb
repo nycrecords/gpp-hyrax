@@ -6,14 +6,14 @@
   </head>
 
   <body data-turbolinks="false">
-    <% if current_user %>
+    <!-- <% if current_user %>
       <%= auto_session_warning_tag message: "Your session will expire in approximately 5 minutes." %>
       <%= auto_session_timeout_js timeout: 1800,
                                   frequency: 60,
                                   start: 60,
                                   warning: 300,
                                   logoutURL: main_app.destroy_user_session_path %>
-    <% end %>
+    <% end %> -->
 
     <div class="skip-to-content">
       <%= link_to "Skip to Content", "#skip-to-content" , data: { turbolinks: false } %>
