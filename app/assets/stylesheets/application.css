@@ -16,4 +16,5 @@
  *= require 'bulkrax/application'
  *= require_self
  *= require 'blacklight_advanced_search'
+ *= require 'bulkrax/application'
  */
