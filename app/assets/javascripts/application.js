@@ -30,3 +30,4 @@
 
 //= require character-counter
 //= require jquery.inputmask.bundle.min
+//= require bulkrax/application

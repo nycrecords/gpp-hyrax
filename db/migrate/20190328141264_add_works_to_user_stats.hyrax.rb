@@ -1,4 +1,4 @@
-class AddWorksToUserStats < ActiveRecord::Migration[5.1]
+class AddWorksToUserStats < ActiveRecord::Migration[5.0]
   def self.up
     add_column :user_stats, :work_views, :integer
     add_column :work_view_stats, :user_id, :integer

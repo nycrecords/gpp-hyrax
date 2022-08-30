@@ -1,4 +1,4 @@
-class CreateProxyDepositRequests < ActiveRecord::Migration[5.1]
+class CreateProxyDepositRequests < ActiveRecord::Migration[5.0]
   def change
     create_table :proxy_deposit_requests do |t|
       t.string :generic_file_id, null: false

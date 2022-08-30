@@ -1,4 +1,4 @@
-class CreateAgencies < ActiveRecord::Migration[5.1]
+class CreateAgencies < ActiveRecord::Migration[5.0]
   def change
     create_table :agencies do |t|
       t.string :name, null: false, index: { unique: true }

@@ -1,4 +1,4 @@
-class UpdateCollectionTypeColumnOptions < ActiveRecord::Migration[5.1]
+class UpdateCollectionTypeColumnOptions < ActiveRecord::Migration[5.0]
   def up
     change_column :hyrax_collection_types, :title, :string, unique: true
     change_column :hyrax_collection_types, :machine_id, :string, unique: true

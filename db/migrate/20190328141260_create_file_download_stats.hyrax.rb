@@ -1,4 +1,4 @@
-class CreateFileDownloadStats < ActiveRecord::Migration[5.1]
+class CreateFileDownloadStats < ActiveRecord::Migration[5.0]
   def change
     create_table :file_download_stats do |t|
       t.datetime :date

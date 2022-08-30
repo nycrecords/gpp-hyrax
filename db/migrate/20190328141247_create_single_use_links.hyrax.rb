@@ -1,4 +1,4 @@
-class CreateSingleUseLinks < ActiveRecord::Migration[5.1]
+class CreateSingleUseLinks < ActiveRecord::Migration[5.0]
   def change
     create_table :single_use_links do |t|
       t.string :downloadKey

@@ -7,7 +7,12 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6', '>= 5.1.6.2'
+# gem 'rails', '~> 5.1.6', '>= 5.1.6.2'
+gem 'rails', '~> 5.2', '>= 5.2.6'
+
+# gem activate fedora added when we faced issues whiel upgrading riuby version 5.2.6
+gem 'active-fedora', '~> 13.2.7'
+
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.3.0"
 # Use postgresql as the database
@@ -54,14 +59,14 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Debug
-  gem 'ruby-debug-ide'
-  gem 'debase'
+  gem 'ruby-debug-ide', '~> 0.7.0'
+  gem 'debase', '~> 0.2.5.beta2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '2.7.0'
+gem 'hyrax', '3.4.1'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
@@ -87,7 +92,6 @@ gem 'hydra-role-management'
 gem 'jquery-ui-rails'
 gem 'nilify_blanks'
 gem 'omniauth-saml'
-
 # Use sidekiq and whenever for background jobs
 gem 'sidekiq'
 gem 'sidekiq-client-cli'
@@ -95,3 +99,7 @@ gem 'whenever'
 
 # Use Rails-LaTeX to generate PDFs
 gem 'rails-latex'
+
+gem 'bulkrax', '2.2.2'
+
+gem 'willow_sword', github: 'notch8/willow_sword'

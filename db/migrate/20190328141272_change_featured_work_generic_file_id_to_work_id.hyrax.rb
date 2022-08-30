@@ -1,4 +1,4 @@
-class ChangeFeaturedWorkGenericFileIdToWorkId < ActiveRecord::Migration[5.1]
+class ChangeFeaturedWorkGenericFileIdToWorkId < ActiveRecord::Migration[5.0]
   def change
     return unless column_exists?(:featured_works, :generic_file_id)
     rename_column :featured_works, :generic_file_id, :work_id

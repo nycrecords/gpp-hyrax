@@ -1,4 +1,4 @@
-class CreateCollectionTypes < ActiveRecord::Migration[5.1]
+class CreateCollectionTypes < ActiveRecord::Migration[5.0]
   def change
     create_table :hyrax_collection_types do |t|
       t.string :title

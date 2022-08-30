@@ -1,4 +1,4 @@
-class CreateQaLocalAuthorities < ActiveRecord::Migration[5.1]
+class CreateQaLocalAuthorities < ActiveRecord::Migration[5.0]
   def change
     create_table :qa_local_authorities do |t|
       t.string :name

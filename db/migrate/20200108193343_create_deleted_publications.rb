@@ -1,4 +1,4 @@
-class CreateDeletedPublications < ActiveRecord::Migration[5.1]
+class CreateDeletedPublications < ActiveRecord::Migration[5.0]
   def change
     create_table :deleted_publications do |t|
       t.string :user_guid, null: false

@@ -1,4 +1,4 @@
-class CreateChecksumAuditLogs < ActiveRecord::Migration[5.1]
+class CreateChecksumAuditLogs < ActiveRecord::Migration[5.0]
   def self.up
     create_table :checksum_audit_logs do |t|
       t.string :file_set_id

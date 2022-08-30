@@ -1,4 +1,4 @@
-class TidyUpBecauseOfBadException < ActiveRecord::Migration[5.1]
+class TidyUpBecauseOfBadException < ActiveRecord::Migration[5.0]
   def change
     if column_exists?(Hyrax::PermissionTemplate.table_name, :workflow_id)
       Hyrax::PermissionTemplate.all.each do |permission_template|

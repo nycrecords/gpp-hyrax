@@ -1,4 +1,4 @@
-class AddPermissionTemplateToSipityWorkflow < ActiveRecord::Migration[5.1]
+class AddPermissionTemplateToSipityWorkflow < ActiveRecord::Migration[5.0]
   def change
     add_column :sipity_workflows, :permission_template_id, :integer, index: true
     remove_index :sipity_workflows, :name

@@ -1,4 +1,4 @@
-class AddSocialToUsers < ActiveRecord::Migration[5.1]
+class AddSocialToUsers < ActiveRecord::Migration[5.0]
   def self.up
     add_column :users, :facebook_handle, :string
     add_column :users, :twitter_handle, :string

@@ -1,4 +1,4 @@
-class CreateSipityWorkflowMethods < ActiveRecord::Migration[5.1]
+class CreateSipityWorkflowMethods < ActiveRecord::Migration[5.0]
   def change
     create_table :sipity_workflow_methods do |t|
       t.string   "service_name",                    null: false
