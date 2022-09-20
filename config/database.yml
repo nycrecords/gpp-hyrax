@@ -14,20 +14,16 @@ default: &default
   port: <%= ENV.fetch("DATABASE_PORT") { 5432 } %>
   database: <%= ENV.fetch("DATABASE_NAME") { "gpp-hyrax-dev" } %>
   timeout: 5000
-
 development:
   <<: *default
   database: gpp-hyrax-dev
-
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
   database: gpp-hyrax-test
-
 production:
   <<: *default
   database: <%= ENV.fetch("DATABASE_NAME") %>
   pool: 50
-

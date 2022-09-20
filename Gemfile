@@ -66,7 +66,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '3.4.1'
+#added Psych
+gem 'psych', '< 4'
+
+gem 'hyrax', '~>3.4.1'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
@@ -77,6 +80,9 @@ gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'jquery-rails'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
+#installing binding new rails version and used for debugging ex: binding.pry
+gem 'pry'
+
 group :development, :test do
   gem 'fcrepo_wrapper'
 end
