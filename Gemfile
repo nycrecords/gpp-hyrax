@@ -7,7 +7,8 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6', '>= 5.1.6.2'
+# gem 'rails', '~> 5.1.6', '>= 5.1.6.2'
+gem 'rails', '~> 5.2', '>= 5.2.6'
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.3.0"
 # Use postgresql as the database
@@ -54,14 +55,17 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Debug
-  gem 'ruby-debug-ide'
-  gem 'debase'
+  # gem 'ruby-debug-ide'
+  # gem 'debase'
+
+  gem 'ruby-debug-ide', '~> 0.7.0'
+  gem 'debase', '~> 0.2.5.beta2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '2.7.0'
+gem 'hyrax', '~> 3.4.0'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
