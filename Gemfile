@@ -8,7 +8,7 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # gem 'rails', '~> 5.1.6', '>= 5.1.6.2'
-gem 'rails', '~> 5.2', '>= 5.2.6'
+gem 'rails', '~> 5.2', '>= 5.2.8.1'
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.3.0"
 # Use postgresql as the database
@@ -65,7 +65,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '~> 3.4.0'
+gem 'hyrax', '2.9.6'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
@@ -74,7 +74,7 @@ gem 'rsolr', '>= 1.0'
 gem 'bootstrap-sass', '~> 3.0'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'jquery-rails'
-gem 'devise'
+gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'devise-guests', '~> 0.6'
 group :development, :test do
   gem 'fcrepo_wrapper'
@@ -90,7 +90,7 @@ gem 'httparty'
 gem 'hydra-role-management'
 gem 'jquery-ui-rails'
 gem 'nilify_blanks'
-gem 'omniauth-saml'
+gem 'omniauth-saml', '~> 1.10', '>= 1.10.1'
 
 # Use sidekiq and whenever for background jobs
 gem 'sidekiq'

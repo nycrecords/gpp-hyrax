@@ -1,10 +1,10 @@
 # Generated via
 #  `rails generate hyrax:work NycGovernmentPublication`
 class NycGovernmentPublication < ActiveFedora::Base
-  include ::Hyrax::WorkBehavior
+  include Hyrax::WorkBehavior
   include ::NycGovernmentPublicationsMetadata
 
-  self.human_readable_type = 'NYC Government Publication'
+  # self.human_readable_type = 'NYC Government Publication'
 
   self.indexer = NycGovernmentPublicationIndexer
   # Change this to restrict which works can be added as a child.

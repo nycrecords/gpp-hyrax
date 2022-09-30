@@ -1,6 +1,6 @@
 # Laod the environment variables for Puma using Dotenv
-require 'dotenv'
-Dotenv.load('.env')
+# require 'dotenv'
+# Dotenv.load('.env')
 
 # Set the environment in which the rack's app will run. The value must be a string.
 #
