@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_21_155361) do
+ActiveRecord::Schema.define(version: 2021_05_05_160641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,105 +33,6 @@ ActiveRecord::Schema.define(version: 2022_09_21_155361) do
     t.datetime "updated_at", null: false
     t.index ["document_id"], name: "index_bookmarks_on_document_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
-  end
-
-  create_table "bulkrax_entries", force: :cascade do |t|
-    t.string "identifier"
-    t.string "collection_ids"
-    t.string "type"
-    t.bigint "importerexporter_id"
-    t.text "raw_metadata"
-    t.text "parsed_metadata"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "last_error_at"
-    t.datetime "last_succeeded_at"
-    t.string "importerexporter_type", default: "Bulkrax::Importer"
-    t.integer "import_attempts", default: 0
-  end
-
-  create_table "bulkrax_exporter_runs", force: :cascade do |t|
-    t.bigint "exporter_id"
-    t.integer "total_work_entries", default: 0
-    t.integer "enqueued_records", default: 0
-    t.integer "processed_records", default: 0
-    t.integer "deleted_records", default: 0
-    t.integer "failed_records", default: 0
-    t.index ["exporter_id"], name: "index_bulkrax_exporter_runs_on_exporter_id"
-  end
-
-  create_table "bulkrax_exporters", force: :cascade do |t|
-    t.string "name"
-    t.bigint "user_id"
-    t.string "parser_klass"
-    t.integer "limit"
-    t.text "parser_fields"
-    t.text "field_mapping"
-    t.string "export_source"
-    t.string "export_from"
-    t.string "export_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "last_error_at"
-    t.datetime "last_succeeded_at"
-    t.date "start_date"
-    t.date "finish_date"
-    t.string "work_visibility"
-    t.string "workflow_status"
-    t.index ["user_id"], name: "index_bulkrax_exporters_on_user_id"
-  end
-
-  create_table "bulkrax_importer_runs", force: :cascade do |t|
-    t.bigint "importer_id"
-    t.integer "total_work_entries", default: 0
-    t.integer "enqueued_records", default: 0
-    t.integer "processed_records", default: 0
-    t.integer "deleted_records", default: 0
-    t.integer "failed_records", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "processed_collections", default: 0
-    t.integer "failed_collections", default: 0
-    t.integer "total_collection_entries", default: 0
-    t.integer "processed_relationships", default: 0
-    t.integer "failed_relationships", default: 0
-    t.text "invalid_records"
-    t.integer "processed_file_sets", default: 0
-    t.integer "failed_file_sets", default: 0
-    t.integer "total_file_set_entries", default: 0
-    t.integer "processed_works", default: 0
-    t.integer "failed_works", default: 0
-    t.index ["importer_id"], name: "index_bulkrax_importer_runs_on_importer_id"
-  end
-
-  create_table "bulkrax_importers", force: :cascade do |t|
-    t.string "name"
-    t.string "admin_set_id"
-    t.bigint "user_id"
-    t.string "frequency"
-    t.string "parser_klass"
-    t.integer "limit"
-    t.text "parser_fields"
-    t.text "field_mapping"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "validate_only"
-    t.datetime "last_error_at"
-    t.datetime "last_succeeded_at"
-    t.index ["user_id"], name: "index_bulkrax_importers_on_user_id"
-  end
-
-  create_table "bulkrax_statuses", force: :cascade do |t|
-    t.string "status_message"
-    t.string "error_class"
-    t.text "error_message"
-    t.text "error_backtrace"
-    t.integer "statusable_id"
-    t.string "statusable_type"
-    t.integer "runnable_id"
-    t.string "runnable_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "checksum_audit_logs", force: :cascade do |t|
@@ -252,12 +153,6 @@ ActiveRecord::Schema.define(version: 2022_09_21_155361) do
     t.boolean "brandable", default: true, null: false
     t.string "badge_color", default: "#663333"
     t.index ["machine_id"], name: "index_hyrax_collection_types_on_machine_id", unique: true
-  end
-
-  create_table "hyrax_default_administrative_set", force: :cascade do |t|
-    t.string "default_admin_set_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "hyrax_features", force: :cascade do |t|
@@ -460,9 +355,9 @@ ActiveRecord::Schema.define(version: 2022_09_21_155361) do
   end
 
   create_table "single_use_links", force: :cascade do |t|
-    t.string "download_key"
+    t.string "downloadKey"
     t.string "path"
-    t.string "item_id"
+    t.string "itemId"
     t.datetime "expires"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -500,7 +395,7 @@ ActiveRecord::Schema.define(version: 2022_09_21_155361) do
 
   create_table "sipity_entity_specific_responsibilities", force: :cascade do |t|
     t.integer "workflow_role_id", null: false
-    t.integer "entity_id", null: false
+    t.string "entity_id", null: false
     t.integer "agent_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -731,8 +626,6 @@ ActiveRecord::Schema.define(version: 2022_09_21_155361) do
     t.index ["work_id"], name: "index_work_view_stats_on_work_id"
   end
 
-  add_foreign_key "bulkrax_exporter_runs", "bulkrax_exporters", column: "exporter_id"
-  add_foreign_key "bulkrax_importer_runs", "bulkrax_importers", column: "importer_id"
   add_foreign_key "collection_type_participants", "hyrax_collection_types"
   add_foreign_key "curation_concerns_operations", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"

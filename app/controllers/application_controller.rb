@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :set_cache_headers, :check_concurrent_session
+  before_action :set_cache_headers
+                # :check_concurrent_session
 
   auto_session_timeout 30.minutes
   before_timedout_action
