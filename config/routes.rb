@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
+  mount Bulkrax::Engine, at: '/'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
   mount BlacklightAdvancedSearch::Engine => '/'
 
     concern :searchable, Blacklight::Routes::Searchable.new
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable

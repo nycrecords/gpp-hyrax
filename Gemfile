@@ -21,7 +21,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem "mini_racer"
+gem "mini_racer", platforms: :ruby
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -56,7 +56,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Debug
   # gem 'ruby-debug-ide'
-  # gem 'debase'
+  gem 'debase'
   #
   # gem 'ruby-debug-ide', '~> 0.7.0'
   # gem 'debase', '~> 0.2.5.beta2'
@@ -66,7 +66,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'hyrax', '2.9.6'
-gem "bulkrax"
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
@@ -75,7 +74,7 @@ gem 'rsolr', '>= 1.0'
 gem 'bootstrap-sass', '~> 3.0'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'jquery-rails'
-gem 'devise', '~> 4.7', '>= 4.7.1'
+# gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'devise-guests', '~> 0.6'
 group :development, :test do
   gem 'fcrepo_wrapper'
@@ -100,3 +99,7 @@ gem 'whenever'
 
 # Use Rails-LaTeX to generate PDFs
 gem 'rails-latex'
+
+gem "bulkrax"
+
+gem "devise"
