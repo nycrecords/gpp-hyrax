@@ -30,11 +30,4 @@
   <%= menu.nav_link(hyrax.admin_stats_path) do %>
     <span class="fa fa-bar-chart" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.statistics') %></span>
   <% end %>
-
-  <% if current_user.agency_submitters? && current_user.bulk_importers? %>
-    <%= menu.nav_link(bulkrax.importers_path) do %>
-        <span class="fa fa-bar-chart" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('bulkrax.admin.sidebar.importers') %></span>
-    <% end %>
-  <% end %>
-
 <% end %>

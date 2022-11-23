@@ -839,6 +839,8 @@ GEM
     sidekiq-client-cli (0.1.7)
       cli
       sidekiq (>= 2.15)
+    sidekiq-failures (1.0.4)
+      sidekiq (>= 4.0.0)
     signet (0.17.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
@@ -974,6 +976,7 @@ DEPENDENCIES
   puma (~> 3.12)
   rails (= 5.2.6)
   rails-latex
+  redis (~> 4.0)
   riiif (~> 2.0)
   rsolr (>= 1.0)
   rspec-rails (~> 3.5)
@@ -982,6 +985,7 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   sidekiq-client-cli
+  sidekiq-failures
   solr_wrapper (>= 0.3)
   spring
   spring-watcher-listen (~> 2.0.0)

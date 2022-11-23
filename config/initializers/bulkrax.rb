@@ -47,6 +47,16 @@ Bulkrax.setup do |config|
   #   e.g. to exclude date
   #   config.field_mappings["Bulkrax::OaiDcParser"]["date"] = { from: ["date"], excluded: true  }
   #
+  # Handle fields that accept multiple values
+  config.field_mappings["Bulkrax::CsvParser"]["subject"] = { from: ["subject"], split: '\;' }
+  config.field_mappings["Bulkrax::CsvParser"]["language"] = { from: ["language"], split: '\;' }
+  config.field_mappings["Bulkrax::CsvParser"]["fiscal_year"] = { from: ["fiscal_year"], split: '\;' }
+  config.field_mappings["Bulkrax::CsvParser"]["calendar_year"] = { from: ["calendar_year"], split: '\;' }
+  config.field_mappings["Bulkrax::CsvParser"]["borough"] = { from: ["borough"], split: '\;' }
+  config.field_mappings["Bulkrax::CsvParser"]["school_district"] = { from: ["school_district"], split: '\;' }
+  config.field_mappings["Bulkrax::CsvParser"]["community_board_district"] = { from: ["community_board_district"], split: '\;' }
+  config.field_mappings["Bulkrax::CsvParser"]["associated_place"] = { from: ["associated_place"], split: '\;' }
+  #
   #   e.g. to import parent-child relationships
   #   config.field_mappings['Bulkrax::CsvParser']['parents'] = { from: ['parents'], related_parents_field_mapping: true }
   #   config.field_mappings['Bulkrax::CsvParser']['children'] = { from: ['children'], related_children_field_mapping: true }
@@ -64,7 +74,7 @@ Bulkrax.setup do |config|
   # and download errored entries to still work, but does mean if you upload the
   # same source record in two different files you WILL get duplicates.
   # It is given two arguments, self at the time of call and the index of the record
-    config.fill_in_blank_source_identifiers = ->(parser, index) { "b-#{parser.importer.id}-#{index}"}
+    config.fill_in_blank_source_identifiers = ->(parser, index) { "Work-#{index + 1}-Importer-#{parser.importer.id}"}
   # or use a uuid
   #    config.fill_in_blank_source_identifiers = ->(parser, index) { SecureRandom.uuid }
 

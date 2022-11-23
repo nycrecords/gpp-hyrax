@@ -56,7 +56,8 @@ module Bulkrax
       # end
 
       # Add default collection id to metadata
-      record["parents"] = ENV['DEFAULT_COLLECTION_ID']
+      record["parents"] = Collection.where(title: "Government Publications").first.id
+      # record["parents"] = "5d86p020k"
 
       self.parsed_metadata = {}
       add_identifier

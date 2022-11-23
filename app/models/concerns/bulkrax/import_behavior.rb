@@ -1,10 +1,10 @@
 # frozen_string_literal: true
+# [gpp override] Call job to auto-approve bulk imports
 
 module Bulkrax
   # Import Behavior for Entry classes
   module ImportBehavior # rubocop:disable Metrics/ModuleLength
     extend ActiveSupport::Concern
-
     def build_for_importer
       begin
         build_metadata
