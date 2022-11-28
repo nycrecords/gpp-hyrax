@@ -24,7 +24,7 @@ module Bulkrax
       ensure
         self.save!
       end
-        AutoApproveBulkImportsJob.perform_later(work: @item)
+        AutoApproveBulkImportsJob.perform_later(work: @item) unless e
     end
 
 

@@ -20,7 +20,7 @@ Bulkrax.setup do |config|
 
 
   # Path to store pending imports
-  config.import_path = 'tmp/imports'
+  # config.import_path = 'tmp/imports'
 
   # Path to store exports before download
   # config.export_path = 'tmp/exports'
@@ -48,20 +48,23 @@ Bulkrax.setup do |config|
   #   config.field_mappings["Bulkrax::OaiDcParser"]["date"] = { from: ["date"], excluded: true  }
   #
   # Handle fields that accept multiple values
-  config.field_mappings["Bulkrax::CsvParser"]["subject"] = { from: ["subject"], split: '\;' }
-  config.field_mappings["Bulkrax::CsvParser"]["language"] = { from: ["language"], split: '\;' }
-  config.field_mappings["Bulkrax::CsvParser"]["fiscal_year"] = { from: ["fiscal_year"], split: '\;' }
-  config.field_mappings["Bulkrax::CsvParser"]["calendar_year"] = { from: ["calendar_year"], split: '\;' }
-  config.field_mappings["Bulkrax::CsvParser"]["borough"] = { from: ["borough"], split: '\;' }
-  config.field_mappings["Bulkrax::CsvParser"]["school_district"] = { from: ["school_district"], split: '\;' }
-  config.field_mappings["Bulkrax::CsvParser"]["community_board_district"] = { from: ["community_board_district"], split: '\;' }
-  config.field_mappings["Bulkrax::CsvParser"]["associated_place"] = { from: ["associated_place"], split: '\;' }
-  #
-  #   e.g. to import parent-child relationships
-  #   config.field_mappings['Bulkrax::CsvParser']['parents'] = { from: ['parents'], related_parents_field_mapping: true }
-  #   config.field_mappings['Bulkrax::CsvParser']['children'] = { from: ['children'], related_children_field_mapping: true }
+  config.field_mappings["Bulkrax::CsvParser"] = {
+    "title" => { from: ["title"] },
+    "subject" => { from: ["subject"], split: '\;' },
+    "language" => { from: ["language"], split: '\;' },
+    "fiscal_year" => { from: ["fiscal_year"], split: '\;' },
+    "calendar_year" => { from: ["calendar_year"], split: '\;' },
+    "borough" => { from: ["borough"], split: '\;' },
+    "school_district" => { from: ["school_district"], split: '\;' },
+    "community_board_district" => { from: ["community_board_district"], split: '\;' },
+    "associated_place" => { from: ["associated_place"], split: '\;' }
+  }
+
+      #   e.g. to import parent-child relationships
+    config.field_mappings['Bulkrax::CsvParser']['parents'] = { from: ['parents'], related_parents_field_mapping: true }
+    config.field_mappings['Bulkrax::CsvParser']['children'] = { from: ['children'], related_children_field_mapping: true }
     # (For more info on importing relationships, see Bulkrax Wiki: https://github.com/samvera-labs/bulkrax/wiki/Configuring-Bulkrax#parent-child-relationship-field-mappings)
-  #
+
   # #   e.g. to add the required source_identifier field
   #   #   config.field_mappings["Bulkrax::CsvParser"]["source_id"] = { from: ["old_source_id"], source_identifier: true  }
   # If you want Bulkrax to fill in source_identifiers for you, see below
