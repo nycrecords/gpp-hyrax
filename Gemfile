@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # gem 'rails', '~> 5.1.6', '>= 5.1.6.2'
 gem 'rails', '5.2.6'
@@ -32,9 +31,35 @@ gem 'jbuilder', '~> 2.5'
 gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'rsolr', '>= 1.0'
+gem 'bootstrap-sass', '~> 3.0'
+gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
+gem 'jquery-rails'
+gem 'devise-guests', '~> 0.6'
+gem 'riiif', '~> 2.0'
+gem 'blacklight_advanced_search'
+gem 'business'
+gem 'dotenv-rails'
+gem 'httparty'
+gem 'hydra-role-management'
+gem 'jquery-ui-rails'
+gem 'nilify_blanks'
+gem 'omniauth-saml'
+gem "devise"
+gem 'auto-session-timeout'
+# Use sidekiq and whenever for background jobs
+gem 'sidekiq'
+gem 'sidekiq-client-cli'
+gem 'whenever'
+gem 'sidekiq-failures'
+# Use Rails-LaTeX to generate PDFs
+gem 'rails-latex'
+gem 'hyrax', '2.9.6'
+gem "bulkrax"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,6 +70,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rspec-rails', "~> 3.5"
   gem 'shoulda-matchers'
+  gem 'solr_wrapper', '>= 0.3'
+  gem 'fcrepo_wrapper'
 end
 
 group :development do
@@ -57,49 +84,6 @@ group :development do
   # Debug
   # gem 'ruby-debug-ide'
   gem 'debase'
-  #
   # gem 'ruby-debug-ide', '~> 0.7.0'
   # gem 'debase', '~> 0.2.5.beta2'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'hyrax', '2.9.6'
-group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
-end
-
-gem 'rsolr', '>= 1.0'
-gem 'bootstrap-sass', '~> 3.0'
-gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
-gem 'jquery-rails'
-# gem 'devise', '~> 4.7', '>= 4.7.1'
-gem 'devise-guests', '~> 0.6'
-group :development, :test do
-  gem 'fcrepo_wrapper'
-end
-
-gem 'riiif', '~> 2.0'
-
-gem 'auto-session-timeout-warning', git: 'https://github.com/nycrecords/auto-session-timeout-warning.git'
-gem 'blacklight_advanced_search'
-gem 'business'
-gem 'dotenv-rails'
-gem 'httparty'
-gem 'hydra-role-management'
-gem 'jquery-ui-rails'
-gem 'nilify_blanks'
-gem 'omniauth-saml', '~> 1.10', '>= 1.10.1'
-
-# Use sidekiq and whenever for background jobs
-gem 'sidekiq'
-gem 'sidekiq-client-cli'
-gem 'whenever'
-gem 'sidekiq-failures'
-# Use Rails-LaTeX to generate PDFs
-gem 'rails-latex'
-
-gem "bulkrax"
-
-gem "devise"

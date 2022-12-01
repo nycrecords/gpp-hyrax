@@ -1,6 +1,5 @@
 class SessionsController < Devise::SessionsController
-  # skip_before_action :check_concurrent_session
-
+  skip_before_action :check_concurrent_session
   auto_session_timeout_actions
   SAML_SETTINGS = Devise.omniauth_configs[:saml].strategy
 
@@ -26,6 +25,7 @@ class SessionsController < Devise::SessionsController
   end
 
   def timeout
-    redirect_to user_saml_omniauth_authorize_path(locale: nil) + '/spslo'
+    redirect_to root_path
+    # redirect_to user_saml_omniauth_authorize_path(locale: nil) + '/spslo'
   end
 end

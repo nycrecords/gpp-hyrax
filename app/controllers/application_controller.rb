@@ -1,9 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :set_cache_headers
-                # :check_concurrent_session
-
+  before_action :set_cache_headers, :check_concurrent_session
   auto_session_timeout 30.minutes
-  before_timedout_action
 
   helper Openseadragon::OpenseadragonHelper
   # Adds a few additional behaviors into the application controller
@@ -27,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   # Return boolean value of whether user is logged in
   def is_already_logged_in?
-    current_user && (session.id != current_user.unique_session_id)
+    current_user && (session.id.to_s != current_user.unique_session_id)
   end
 
   # Redirect to location that triggered authentication or to homepage
@@ -42,6 +39,11 @@ class ApplicationController < ActionController::Base
     path = gpp_collection.present? ? hyrax.collection_path(gpp_collection) : root_path
 
     stored_location_for(resource) || path
+  end
+
+  def active_url
+    # Used by session timeout to retain session for importers route
+    return main_app.active_path
   end
 
   private
