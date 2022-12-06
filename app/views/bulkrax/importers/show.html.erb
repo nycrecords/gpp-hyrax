@@ -24,11 +24,12 @@
 
     </div>
 
-    <%= render partial: 'bulkrax/shared/bulkrax_field_mapping', locals: {item: @importer} %>
+    <% render partial: 'bulkrax/shared/bulkrax_field_mapping', locals: {item: @importer} %>
 
     <p class="bulkrax-p-align" title="<%= @importer.last_run&.processed_works %> processed, <%= @importer.last_run&.failed_works %> failed">
-      <strong>Total Works:</strong>
-      <%= @importer.last_run&.total_work_entries %>
+      <strong>Total Processed Works:</strong>
+        <%= @importer.last_run&.processed_works %>
+        <%#= @importer.last_run&.total_work_entries %>
     </p>
 
     <div class="bulkrax-nav-tab-bottom-margin">

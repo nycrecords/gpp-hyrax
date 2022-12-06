@@ -61,8 +61,8 @@ Bulkrax.setup do |config|
   }
 
       #   e.g. to import parent-child relationships
-    config.field_mappings['Bulkrax::CsvParser']['parents'] = { from: ['parents'], related_parents_field_mapping: true }
-    config.field_mappings['Bulkrax::CsvParser']['children'] = { from: ['children'], related_children_field_mapping: true }
+  config.field_mappings['Bulkrax::CsvParser']['parents'] = { from: ['parents'], related_parents_field_mapping: true }
+  config.field_mappings['Bulkrax::CsvParser']['children'] = { from: ['children'], related_children_field_mapping: true }
     # (For more info on importing relationships, see Bulkrax Wiki: https://github.com/samvera-labs/bulkrax/wiki/Configuring-Bulkrax#parent-child-relationship-field-mappings)
 
   # #   e.g. to add the required source_identifier field
@@ -77,7 +77,7 @@ Bulkrax.setup do |config|
   # and download errored entries to still work, but does mean if you upload the
   # same source record in two different files you WILL get duplicates.
   # It is given two arguments, self at the time of call and the index of the record
-    config.fill_in_blank_source_identifiers = ->(parser, index) { "Work-#{index + 1}-Importer-#{parser.importer.id}"}
+  config.fill_in_blank_source_identifiers = ->(parser, index) { "Work-#{index + 1}-Importer-#{parser.importer.id}"}
   # or use a uuid
   #    config.fill_in_blank_source_identifiers = ->(parser, index) { SecureRandom.uuid }
 
