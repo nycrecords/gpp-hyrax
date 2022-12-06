@@ -38,26 +38,8 @@ module Bulkrax
       raise StandardError, 'Record not found' if record.nil?
       raise StandardError, "Missing required elements, missing element(s) are: #{importerexporter.parser.missing_elements(keys_without_numbers(record.keys)).join(', ')}" unless importerexporter.parser.required_elements?(keys_without_numbers(record.keys))
 
-      # Handle required fields validation
-      csv_errors = []
-      record.each do |key, value| csv_errors.push(key) if value.to_s.blank? end
-      raise StandardError, "Missing required elements, missing element(s) are: #{csv_errors.join(', ')}" unless csv_errors.blank?
-
-      # Handle constraint validation
-      raise StandardError, "Title is required and must be between 10-150 characters" if !record[:title.to_s].length.between?(10, 150)
-      raise StandardError, "Description is required and must be between 100-300 characters." if !record[:description.to_s].length.between?(100, 300)
-
-      # begin
-      #   date_published = record[:date_published.to_s].include?("/") ? record[:date_published.to_s].gsub!(/\//, "-") : record[:date_published.to_s]
-      #   # date_published = record[:date_published.to_s].gsub(/\//, "-") if record[date_published].include?("/")
-      #   record[:date_published.to_s] =  Date.strptime(date_published, "%D")
-      # rescue
-      #   raise StandardError, "Date Published is invalid. Please enter a date in the format: YYYY-MM-DD"
-      # end
-
       # Add default collection id to metadata
       record["parents"] = Collection.where(title: "Government Publications").first.id
-      # record["parents"] = "5d86p020k"
 
       self.parsed_metadata = {}
       add_identifier
