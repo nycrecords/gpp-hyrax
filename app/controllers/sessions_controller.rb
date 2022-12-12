@@ -25,7 +25,6 @@ class SessionsController < Devise::SessionsController
   end
 
   def timeout
-    redirect_to root_path
-    # redirect_to user_saml_omniauth_authorize_path(locale: nil) + '/spslo'
+    redirect_to user_saml_omniauth_authorize_path(locale: nil) + '/spslo'
   end
 end

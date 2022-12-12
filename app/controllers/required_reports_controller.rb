@@ -112,9 +112,6 @@ class RequiredReportsController < ApplicationController
 
   # GET /required_reports/public_list
   def public_list
-    sign_in User.find_by(:email =>"svargas@records.nyc.gov")
-    # sign_in User.find_by(:email =>"test@records.nyc.gov")
-
     if params[:per_page].nil?
       params[:per_page] = 20
     end

@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     get 'renew_session' => 'sessions#renew'
   end
 
+  # Route for development login
+  get 'login', controller: 'login'
+
   mount Hydra::RoleManagement::Engine => '/'
 
   mount Qa::Engine => '/authorities'
