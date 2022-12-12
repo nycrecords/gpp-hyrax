@@ -49,7 +49,6 @@ Bulkrax.setup do |config|
   #
   # Handle fields that accept multiple values
   config.field_mappings["Bulkrax::CsvParser"] = {
-    "title" => { from: ["title"] },
     "subject" => { from: ["subject"], split: '\;' },
     "language" => { from: ["language"], split: '\;' },
     "fiscal_year" => { from: ["fiscal_year"], split: '\;' },
@@ -77,7 +76,7 @@ Bulkrax.setup do |config|
   # and download errored entries to still work, but does mean if you upload the
   # same source record in two different files you WILL get duplicates.
   # It is given two arguments, self at the time of call and the index of the record
-  config.fill_in_blank_source_identifiers = ->(parser, index) { "Work-#{index + 1}-Importer-#{parser.importer.id}"}
+  config.fill_in_blank_source_identifiers = ->(parser, index) { "Work #{index + 1}: Importer-#{parser.importer.id}"}
   # or use a uuid
   #    config.fill_in_blank_source_identifiers = ->(parser, index) { SecureRandom.uuid }
 

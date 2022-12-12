@@ -1,4 +1,4 @@
-<%# [gpp-override] Remove unused fields from view %>
+<%# [gpp-override] Override to remove unused fields from UI %>
 <div class="col-xs-12 main-header">
   <h1><span class="fa fa-cloud-upload" aria-hidden="true"></span> Importer: <%= @importer.name %></h1>
   <% if @importer.parser_klass == 'Bulkrax::CsvParser' && @work_entries.map { |e| e.status == 'failed' }.any? %>

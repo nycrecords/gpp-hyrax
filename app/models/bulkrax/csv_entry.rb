@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+# [gpp-override] Override build_metadata to add default collection id to metadata
 require 'csv'
 
 module Bulkrax
