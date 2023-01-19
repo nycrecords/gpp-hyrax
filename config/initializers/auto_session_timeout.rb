@@ -46,7 +46,7 @@ module AutoSessionTimeout
   end
 
   def session_timeout_warning?(c)
-    ((Time.now - c.session[:auto_session_expires_at].to_time) / 1.minutes).abs.floor() == 5 if c.session[:auto_session_expires_at]
+    ((Time.now - c.session[:auto_session_expires_at].to_time) / 1.minutes).abs.floor == 5 if c.session[:auto_session_expires_at]
   end
 
   def render_timeout_warning
