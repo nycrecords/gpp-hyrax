@@ -955,7 +955,7 @@ PLATFORMS
 DEPENDENCIES
   blacklight_advanced_search
   bootstrap-sass (~> 3.0)
-  bulkrax
+  bulkrax (= 4.4.0)
   business
   byebug
   capybara (~> 2.13)

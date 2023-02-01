@@ -1,5 +1,6 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
+// [gpp-override] Override to hide default/unused values from form
 
 function prepBulkrax(event) {
     var refresh_button = $('.refresh-set-source')
@@ -91,7 +92,6 @@ function handleFileToggle(file_path) {
     $('#cloud').hide()
     $('#file_path input').attr('required', null)
     $('#file_upload input').attr('required', 'required')
-    // $('.importer_admin_set_id').hide()
     $('.importer_parser_klass').hide()
 
     $('#importer_parser_fields_file_style_specify_a_path_on_the_server').click(function(e){

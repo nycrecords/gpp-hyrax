@@ -18,7 +18,6 @@ Bulkrax.setup do |config|
   # Default is the first returned by Hyrax.config.curation_concerns
   # config.default_work_type = MyWork
 
-
   # Path to store pending imports
   # config.import_path = 'tmp/imports'
 
@@ -59,7 +58,7 @@ Bulkrax.setup do |config|
     "associated_place" => { from: ["associated_place"], split: '\;' }
   }
 
-      #   e.g. to import parent-child relationships
+  # e.g. to import parent-child relationships
   config.field_mappings['Bulkrax::CsvParser']['parents'] = { from: ['parents'], related_parents_field_mapping: true }
   config.field_mappings['Bulkrax::CsvParser']['children'] = { from: ['children'], related_children_field_mapping: true }
     # (For more info on importing relationships, see Bulkrax Wiki: https://github.com/samvera-labs/bulkrax/wiki/Configuring-Bulkrax#parent-child-relationship-field-mappings)

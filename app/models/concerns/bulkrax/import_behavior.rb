@@ -5,6 +5,7 @@ module Bulkrax
   # Import Behavior for Entry classes
   module ImportBehavior # rubocop:disable Metrics/ModuleLength
     extend ActiveSupport::Concern
+
     def build_for_importer
       begin
         build_metadata
@@ -26,7 +27,6 @@ module Bulkrax
       end
         AutoApproveBulkImportsJob.perform_later(work: @item) unless e
     end
-
 
     def add_user_to_permission_templates!
       permission_template = Hyrax::PermissionTemplate.find_or_create_by!(source_id: @item.id)

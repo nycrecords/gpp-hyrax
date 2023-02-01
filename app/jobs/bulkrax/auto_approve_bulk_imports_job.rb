@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Bulkrax
   class AutoApproveBulkImportsJob < ApplicationJob
     queue_as :import

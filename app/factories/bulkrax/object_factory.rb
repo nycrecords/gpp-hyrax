@@ -8,9 +8,9 @@ module Bulkrax
 
     define_model_callbacks :save, :create
     attr_reader :attributes, :object, :source_identifier_value, :klass, :replace_files, :update_files, :work_identifier, :related_parents_parsed_mapping, :importer_run_id
-    #
-    $bulk_import = true
 
+    # Set global variable to disable sending email notifications for bulk imports
+    $bulk_import = true
 
     # rubocop:disable Metrics/ParameterLists
     def initialize(attributes:, source_identifier_value:, work_identifier:, related_parents_parsed_mapping: nil, replace_files: false, user: nil, klass: nil, importer_run_id: nil, update_files: false)
@@ -162,26 +162,53 @@ module Bulkrax
       file_set_attrs = attrs.slice(*object.attributes.keys)
       object.assign_attributes(file_set_attrs)
 
-      attrs['uploaded_files'].each do |uploaded_file_id|
+      attrs['uploaded_files']&.each do |uploaded_file_id|
         uploaded_file = ::Hyrax::UploadedFile.find(uploaded_file_id)
         next if uploaded_file.file_set_uri.present?
 
-        actor = ::Hyrax::Actors::FileSetActor.new(object, @user)
-        uploaded_file.update(file_set_uri: actor.file_set.uri)
-        actor.file_set.permissions_attributes = work_permissions
-        actor.create_metadata
-        actor.create_content(uploaded_file)
-        actor.attach_to_work(work)
+        create_file_set_actor(attrs, work, work_permissions, uploaded_file)
+      end
+      attrs['remote_files']&.each do |remote_file|
+        create_file_set_actor(attrs, work, work_permissions, nil, remote_file)
       end
 
       object.save!
     end
 
+    def create_file_set_actor(attrs, work, work_permissions, uploaded_file, remote_file = nil)
+      actor = ::Hyrax::Actors::FileSetActor.new(object, @user)
+      uploaded_file&.update(file_set_uri: actor.file_set.uri)
+      actor.file_set.permissions_attributes = work_permissions
+      actor.create_metadata(attrs)
+      actor.create_content(uploaded_file) if uploaded_file
+      actor.attach_to_work(work, attrs)
+      handle_remote_file(remote_file: remote_file, actor: actor, update: false) if remote_file
+    end
+
     def update_file_set(attrs)
       file_set_attrs = attrs.slice(*object.attributes.keys)
       actor = ::Hyrax::Actors::FileSetActor.new(object, @user)
-
+      attrs['remote_files']&.each do |remote_file|
+        handle_remote_file(remote_file: remote_file, actor: actor, update: true)
+      end
       actor.update_metadata(file_set_attrs)
+    end
+
+    def handle_remote_file(remote_file:, actor:, update: false)
+      actor.file_set.label = remote_file['file_name']
+      actor.file_set.import_url = remote_file['url']
+
+      url = remote_file['url']
+      tmp_file = Tempfile.new(remote_file['file_name'].split('.').first)
+      tmp_file.binmode
+
+      URI.open(url) do |url_file|
+        tmp_file.write(url_file.read)
+      end
+
+      tmp_file.rewind
+      update == true ? actor.update_content(tmp_file) : actor.create_content(tmp_file, from_url: true)
+      tmp_file.close
     end
 
     def clean_attrs(attrs)

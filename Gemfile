@@ -58,7 +58,7 @@ gem 'sidekiq-failures'
 # Use Rails-LaTeX to generate PDFs
 gem 'rails-latex'
 gem 'hyrax', '2.9.6'
-gem "bulkrax"
+gem "bulkrax", '4.4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

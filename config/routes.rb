@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   # Route for development login
-  get 'login', controller: 'login'
+  resources :login
 
   mount Hydra::RoleManagement::Engine => '/'
 
