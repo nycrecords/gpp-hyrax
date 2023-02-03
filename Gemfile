@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-# gem 'rails', '~> 5.1.6', '>= 5.1.6.2'
 gem 'rails', '5.2.6'
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.3.0"
@@ -19,7 +18,6 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 gem "mini_racer", platforms: :ruby
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -28,7 +26,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 4.0'
+# gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
@@ -38,25 +36,25 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rsolr', '>= 1.0'
 gem 'bootstrap-sass', '~> 3.0'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.5'
 gem 'devise-guests', '~> 0.6'
-gem "devise"
+gem 'devise', '~> 4.8'
 gem 'riiif', '~> 2.0'
-gem 'blacklight_advanced_search'
-gem 'business'
+gem 'blacklight_advanced_search', '~> 6.0'
+gem 'business', '~> 2.3'
 gem 'dotenv-rails'
-gem 'httparty'
-gem 'hydra-role-management'
-gem 'jquery-ui-rails'
-gem 'nilify_blanks'
-gem 'omniauth-saml'
+gem 'httparty', '~> 0.20.0'
+gem 'hydra-role-management', '~> 1.0'
+gem 'jquery-ui-rails', '~> 6.0'
+gem 'nilify_blanks', '~> 1.4'
+gem 'omniauth-saml', '~> 2.1'
 # Use sidekiq and whenever for background jobs
 gem 'sidekiq', '~> 6.0'
 gem 'sidekiq-client-cli'
-gem 'whenever'
-gem 'sidekiq-failures'
+gem 'whenever', '~> 1.0'
+gem 'sidekiq-failures', '~> 1.0', '>= 1.0.4'
 # Use Rails-LaTeX to generate PDFs
-gem 'rails-latex'
+gem 'rails-latex','~> 2.3', '>= 2.3.4'
 gem 'hyrax', '2.9.6'
 gem "bulkrax", '4.4.0'
 
@@ -81,8 +79,5 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Debug
-  # gem 'ruby-debug-ide'
   gem 'debase'
-  # gem 'ruby-debug-ide', '~> 0.7.0'
-  # gem 'debase', '~> 0.2.5.beta2'
 end
