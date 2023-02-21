@@ -1,6 +1,5 @@
 class SessionsController < Devise::SessionsController
   skip_before_action :check_concurrent_session
-
   auto_session_timeout_actions
   SAML_SETTINGS = Devise.omniauth_configs[:saml].strategy
 

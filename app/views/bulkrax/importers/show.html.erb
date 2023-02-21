@@ -1,0 +1,62 @@
+<%# [gpp-override] Override to remove unused fields from UI %>
+<div class="col-xs-12 main-header">
+  <h1><span class="fa fa-cloud-upload" aria-hidden="true"></span> Importer: <%= @importer.name %></h1>
+  <% if @importer.parser_klass == 'Bulkrax::CsvParser' && @work_entries.map { |e| e.status == 'failed' }.any? %>
+    <div class="pull-right">
+      <%= link_to 'Export Errored Entries', importer_export_errors_path(@importer.id), class: 'btn btn-primary' %>
+      <%= link_to 'Upload Corrected Entries', importer_upload_corrected_entries_path(@importer.id), class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+<div class="panel panel-default bulkrax-align-text">
+  <div class="panel-body">
+    <p class="bulkrax-p-align">
+      <strong>Name:</strong>
+      <%= @importer.name %>
+    </p>
+
+    <p class="bulkrax-p-align">
+      <strong>User:</strong>
+      <%= @importer.user %>
+    </p>
+
+    <%= render partial: 'bulkrax/shared/bulkrax_errors', locals: {item: @importer} %>
+
+    </div>
+
+    <% render partial: 'bulkrax/shared/bulkrax_field_mapping', locals: {item: @importer} %>
+
+    <p class="bulkrax-p-align" title="<%= @importer.last_run&.processed_works %> processed, <%= @importer.last_run&.failed_works %> failed">
+      <strong>Total Processed Works:</strong>
+        <%= @importer.last_run&.processed_works %>
+        <%#= @importer.last_run&.total_work_entries %>
+    </p>
+
+    <div class="bulkrax-nav-tab-bottom-margin">
+      <!-- Nav tabs -->
+      <ul class="bulkrax-nav-tab-top-margin tab-nav nav nav-tabs" role="tablist">
+        <li role="presentation" class='active'><a href="#work-entries" aria-controls="work-entries" role="tab" data-toggle="tab">Work Entries</a></li>
+
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content outline">
+        <%= render partial: 'bulkrax/shared/work_entries_tab', locals: { item: @importer, entries: @work_entries } %>
+      </div>
+    </div>
+
+    <p class="bulkrax-p-align">
+      <%= link_to 'Edit', edit_importer_path(@importer) %>
+      |
+      <%= link_to 'Back', importers_path %><br /><br />
+    </p>
+
+    <% if @importer.validate_only == true %>
+      <div class='pull-left'>
+        <%= button_to 'Continue', importer_continue_path(@importer), method: :put, class: 'btn btn-primary' %>
+      </div>
+      <div class='pull-right'>
+        <%= button_to 'Discard', @importer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

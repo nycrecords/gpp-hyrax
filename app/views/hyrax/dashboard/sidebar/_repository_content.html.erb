@@ -11,3 +11,9 @@
                   also_active_for: hyrax.dashboard_works_path) do %>
   <span class="fa fa-file" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.works') %></span>
 <% end %>
+
+<% if current_user.agency_submitters? && current_user.bulk_importers? || current_user.admin?%>
+    <%= menu.nav_link(bulkrax.importers_path) do %>
+        <span class="fa fa-cloud-upload" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('bulkrax.admin.sidebar.importers') %></span>
+    <% end %>
+<% end %>
