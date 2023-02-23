@@ -306,8 +306,8 @@ Devise.setup do |config|
   sp_key = Rails.root.join(saml_config[:sp_key_path])
   config.omniauth :saml,
                   issuer: saml_config[:issuer],
-                  idp_sso_target_url: idp_metadata[:idp_sso_target_url],
-                  idp_slo_target_url: idp_metadata[:idp_slo_target_url],
+                  idp_sso_service_url: idp_metadata[:idp_sso_service_url],
+                  idp_slo_service_url: idp_metadata[:idp_slo_service_url],
                   assertion_consumer_service_binding: saml_config[:acs_binding],
                   assertion_consumer_service_url: saml_config[:acs_url],
                   slo_default_relay_state: '/',

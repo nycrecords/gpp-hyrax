@@ -35,8 +35,7 @@
     <% end %>
   <% else %>
     <li class="nav-item">
-      <%= link_to t("hyrax.toolbar.profile.login"), main_app.user_saml_omniauth_authorize_path %>
+      <%= link_to t("hyrax.toolbar.profile.login"), main_app.user_saml_omniauth_authorize_path, method: :post %>
     </li>
   <% end %>
-
 </ul>
