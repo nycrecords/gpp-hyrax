@@ -60,5 +60,9 @@
   <%= @required_report.last_published_date %>
 </p>
 
-<!--<%#= link_to 'Edit', edit_required_report_path(@required_report) %> |-->
-<%= link_to 'Back', required_reports_path %>
+<div>
+    <%= link_to 'Back', required_reports_path, class: "btn btn-primary"%>
+    <% if current_user.admin? || current_user.library_reviewers? %>
+        <%= link_to 'Delete',  @required_report, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }  %>
+    <% end %>
+</div>

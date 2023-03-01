@@ -17,9 +17,9 @@ class RequiredReportsController < ApplicationController
     end
 
     if params[:agency] == 'All' or params[:agency].nil?
-      @required_reports = RequiredReport.all.order(agency_name: :asc, name: :asc).page(params[:page]).per(params[:per_page])
+      @required_reports = RequiredReport.all.order(agency_name: :asc, name: :asc).page(params[:page]).per(params[:per_page]).where(deleted: nil)
     else
-      @required_reports = RequiredReport.where(agency_name: params[:agency]).order(name: :asc).page(params[:page]).per(params[:per_page])
+      @required_reports = RequiredReport.where(agency_name: params[:agency]).order(name: :asc).page(params[:page]).per(params[:per_page]).where(deleted: nil)
     end
 
     @agencies = Agency.all.order(name: :asc)
@@ -83,13 +83,15 @@ class RequiredReportsController < ApplicationController
 
   # DELETE /required_reports/1
   # DELETE /required_reports/1.json
-  # def destroy
-  #   @required_report.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to required_reports_url, notice: 'Required report was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
+  def destroy
+    @required_report = RequiredReport.find(params[:id])
+    @required_report.update(deleted: true)
+    respond_to do |format|
+      format.html { redirect_to required_reports_url, notice: 'Required report was successfully deleted.' }
+      format.json { head :no_content }
+    end
+  end
+
 
   # GET /required_reports/agency_required_reports
   def agency_required_reports
@@ -121,9 +123,9 @@ class RequiredReportsController < ApplicationController
     end
 
     if params[:agency] == 'All' or params[:agency].nil?
-      @required_reports = RequiredReport.all.order(agency_name: :asc, name: :asc).page(params[:page]).per(params[:per_page])
+      @required_reports = RequiredReport.all.order(agency_name: :asc, name: :asc).page(params[:page]).per(params[:per_page]).where(deleted: nil)
     else
-      @required_reports = RequiredReport.where(agency_name: params[:agency]).order(name: :asc).page(params[:page]).per(params[:per_page])
+      @required_reports = RequiredReport.where(agency_name: params[:agency]).order(name: :asc).page(params[:page]).per(params[:per_page]).where(deleted: nil)
     end
 
     @agencies = Agency.all.order(name: :asc)
@@ -142,6 +144,6 @@ class RequiredReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def required_report_params
-      params.require(:required_report).permit(:agency_name, :name, :description, :local_law, :charter_and_code, :automated_date, :frequency, :frequency_integer, :other_frequency_description, :start_date, :end_date, :last_published_date)
+      params.require(:required_report).permit(:agency_name, :name, :description, :local_law, :charter_and_code, :automated_date, :frequency, :frequency_integer, :other_frequency_description, :start_date, :end_date, :last_published_date, :deleted)
     end
 end
