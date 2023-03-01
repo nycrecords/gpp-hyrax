@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 # [gpp-override] Override build_metadata to add default collection id to metadata
+# [gpp-override] Override build_metadata to add date published field validation
 require 'csv'
 
 module Bulkrax
@@ -40,6 +41,15 @@ module Bulkrax
 
       # Add default collection id to metadata
       record["parents"] = Collection.where(title: "Government Publications").first.id
+
+      # Handle date published format validation and conversion
+      begin
+        Date.strptime(record['date_published'], '%m/%d/%y')
+      rescue
+        raise StandardError, "Incorrect format entered for Date Published. Accepted format: MM/DD/YYYY"
+      else
+        record["date_published"] = Date.strptime(record['date_published'], '%m/%d/%y').strftime('%Y-%m-%d')
+      end
 
       self.parsed_metadata = {}
       add_identifier
