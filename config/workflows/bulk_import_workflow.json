@@ -1,0 +1,20 @@
+{
+    "workflows": [
+        {
+            "name": "bulk_import",
+            "label": "Bulk Import workflow",
+            "description": "A single submission step",
+            "allows_access_grant": false,
+            "actions": [
+                {
+                    "name": "deposit",
+                    "from_states": [],
+                    "transition_to": "deposited",
+                    "methods": [
+                      "Hyrax::Workflow::ActivateObject"
+                    ]
+                }
+            ]
+        }
+    ]
+}

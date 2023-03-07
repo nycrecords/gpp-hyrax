@@ -1,5 +1,5 @@
-<%# [gpp-override] Override to set Default Admin Set and csv parser %>
-<%# [gpp-override] Override to set csv row limit to 200%>
+<%# [gpp-override] Override to set Bulk Import Admin Set,  and csv parser %>
+<%# [gpp-override] Override to set csv row limit to 200 %>
 
 <div class="panel-body">
     <% if importer.errors.any? %>
@@ -16,7 +16,7 @@
 
     <%= form.hidden_field :name, value: "#{current_user} - #{Time.now.strftime("%Y-%m-%d %H:%M:%S")}" %>
 
-    <%= form.hidden_field :admin_set_id, collection: available_admin_sets, value: "admin_set/default"%>
+    <%= form.hidden_field :admin_set_id, collection: available_admin_sets, value: @bulk_imports_admin_set %>
 
     <%= form.hidden_field :user_id, value: current_user.id %>
 

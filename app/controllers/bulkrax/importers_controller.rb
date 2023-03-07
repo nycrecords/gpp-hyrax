@@ -48,6 +48,7 @@ module Bulkrax
     # GET /importers/new
     def new
       @importer = Importer.new
+      @bulk_imports_admin_set = AdminSet.where(title: "Bulk Imports").first.id
       if api_request?
         json_response('new')
       else
