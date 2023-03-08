@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     concern :searchable, Blacklight::Routes::Searchable.new
 
   require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
