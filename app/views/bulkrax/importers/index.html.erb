@@ -23,7 +23,6 @@
               <th scope="col">Name</th>
               <th scope="col">Status</th>
               <th scope="col">Last Run</th>
-              <th scope="col">Entries Enqueued</th>
               <th scope="col">Entries Processed</th>
               <th scope="col">Entries Failed</th>
               <th scope="col">Total Work Entries</th>
@@ -39,7 +38,6 @@
                 <th scope="row"><%= link_to importer.name, importer_path(importer) %></th>
                 <td><%= importer.status %></td>
                 <td><%= importer.last_imported_at.strftime("%b %d, %Y") if importer.last_imported_at %></td>
-                <td><%= importer.last_run&.enqueued_records %></td>
                 <td><%= (importer.last_run&.processed_records || 0) %></td>
                 <td><%= (importer.last_run&.failed_records || 0) %></td>
                 <td><%= importer.last_run&.processed_works + importer.last_run&.failed_records if importer.last_run&.processed_works != nil %></td>
