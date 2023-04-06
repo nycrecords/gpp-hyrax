@@ -1,5 +1,6 @@
 :queues:
     - default
+    - derivatives
+    - ingest
     - import
     - export
-    - ingest

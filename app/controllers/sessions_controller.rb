@@ -27,6 +27,7 @@ class SessionsController < Devise::SessionsController
   end
 
   def timeout
-    redirect_to user_saml_omniauth_authorize_path(locale: nil) + '/spslo'
+    path = ActiveModel::Type::Boolean.new.cast(ENV['LOCAL_LOGIN']) ? destroy_user_session_path : user_saml_omniauth_authorize_path(locale: nil) + '/spslo'
+    redirect_to path
   end
 end

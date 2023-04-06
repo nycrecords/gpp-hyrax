@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 # [gpp-override] Role validation for index
 # [gpp-override] Redirect on render_request to importer instance on creation
+# [gpp-override] Schedule bulk import
+# [gpp-override] Sort import entries by id
 
 require_dependency 'bulkrax/application_controller'
 require_dependency 'oai'
@@ -39,7 +41,7 @@ module Bulkrax
           add_importer_breadcrumbs
           add_breadcrumb @importer.name
 
-          @work_entries = @importer.entries.where(type: @importer.parser.entry_class.to_s).page(params[:work_entries_page]).per(30)
+          @work_entries = @importer.entries.where(type: @importer.parser.entry_class.to_s).order('id').page(params[:work_entries_page]).per(30)
           @collection_entries = @importer.entries.where(type: @importer.parser.collection_entry_class.to_s).page(params[:collections_entries_page]).per(30)
           @file_set_entries = @importer.entries.where(type: @importer.parser.file_set_entry_class.to_s).page(params[:file_set_entries_page]).per(30)
       end
@@ -84,7 +86,7 @@ module Bulkrax
       if @importer.save
         files_for_import(file, cloud_files)
         if params[:commit] == 'Create and Import'
-          Bulkrax::ImporterJob.send(@importer.parser.perform_method, @importer.id)
+          Bulkrax::ImporterJob.set(wait: duration_to_submission.seconds).perform_later(@importer.id)
           render_request('Importer was successfully created and import has been queued.')
         elsif params[:commit] == 'Create and Validate'
           Bulkrax::ImporterJob.send(@importer.parser.perform_method, @importer.id)
@@ -327,6 +329,14 @@ module Bulkrax
       render 'hyrax/base/unauthorized' unless current_user && current_user.bulk_importers? || current_user.admin?
     end
 
+    def duration_to_submission
+      over_cutoff_time? ? ((ENV['SUBMISSION_TIME'].to_time + 1.day) - Time.now).to_i : ((Time.new.to_date.to_s + '-' + ENV['SUBMISSION_TIME']).to_time - Time.now).to_i
+    end
+
+    def over_cutoff_time?
+      # Check if user submission is 5 minutes before scheduled submission time
+      ((ENV['SUBMISSION_TIME'].to_time - Time.now).to_i / 1.minutes) <= 5
+    end
   end
   # rubocop:enable Metrics/ClassLength
 end
