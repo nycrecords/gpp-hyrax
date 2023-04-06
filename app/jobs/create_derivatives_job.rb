@@ -1,3 +1,5 @@
+# [gpp-override] Delete temp files after derivatives are created
+
 class CreateDerivativesJob < Hyrax::ApplicationJob
   queue_as :derivatives
 
