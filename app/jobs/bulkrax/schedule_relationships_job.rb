@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# [gpp-override] Add email notification after job completion
 
 module Bulkrax
   class ScheduleRelationshipsJob < ApplicationJob
