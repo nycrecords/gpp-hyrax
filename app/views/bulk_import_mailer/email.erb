@@ -12,7 +12,7 @@
         <p>Total Work Entries: <%= @importer.last_run&.processed_works + @importer.last_run&.failed_records if @importer.last_run&.processed_works != nil  %> </p>
 
         <% @importer.entries.order('id').each do |e| %>
-            <% entry_path = bulkrax.importer_entry_path(@importer.id, e.id) %>
+            <% entry_path = bulkrax.importer_entry_url(@importer.id, e.id) %>
             <p>
                 <%= link_to e.identifier, entry_path %> -
                 Status: <%= e.status %> -
