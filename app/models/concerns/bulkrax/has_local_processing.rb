@@ -17,20 +17,57 @@ module Bulkrax::HasLocalProcessing
     end
 
     def field_validation
+      required_fields = %w[title agency subject description date_published report_type language]
+      csv_errors = validate_required_fields(required_fields)
+      csv_errors << "fiscal_year or calendar_year" if associated_year_blank?
+
+      raise StandardError, "Missing required elements, missing element(s) are: #{csv_errors.join(', ')}" unless csv_errors.empty?
+
+      csv_errors.concat(validate_length_requirements)
+
+      raise StandardError, csv_errors.join(" - ") unless csv_errors.empty?
+
+      validate_years(:fiscal_year.to_s) if record[:fiscal_year.to_s].present?
+      validate_years(:calendar_year.to_s) if record[:calendar_year.to_s].present?
+
+      validate_date_published
+    end
+
+    def validate_required_fields(fields)
+      missing_fields = fields.select { |field| record[field].to_s.strip.empty? }
+      missing_fields.map(&:to_s)
+    end
+
+    def associated_year_blank?
+      record[:fiscal_year.to_s].blank? && record[:calendar_year.to_s].blank?
+    end
+
+    def validate_length_requirements
       csv_errors = []
-      self.record.each do |key, value| csv_errors.push(key) if value.to_s.blank? end
-      raise StandardError, "Missing required elements, missing element(s) are: #{csv_errors.join(', ')}" unless csv_errors.blank?
+      csv_errors << "title must be between 10-150 characters." unless record[:title.to_s].length.between?(10, 150)
+      csv_errors << "description must be between 100-300 characters." unless record[:description.to_s].length.between?(100, 300)
+      csv_errors
+    end
 
-      # Handle required fields validation
-      raise StandardError, "Title is required and must be between 10-150 characters" if !record[:title.to_s].length.between?(10, 150)
-      raise StandardError, "Description is required and must be between 100-300 characters." if !record[:description.to_s].length.between?(100, 300)
+    def validate_years(field)
+      years = record[field].to_s.split(';')
+      invalid_years = years.reject { |year| valid_year?(year) }
 
-      # Handle date_published validation and conversion
-      begin
-        date_published_conversion = Date.strptime(record[:date_published.to_s], '%m/%d/%Y').to_s
-        self.parsed_metadata[:date_published] = date_published_conversion
-      rescue
-        raise Date::Error, 'Invalid Date entered for Date Published. Accepted format: MM/DD/YYYY"'
-      end
+      raise StandardError, "Invalid year entered for #{field}. Accepted format: YYYY. Year must be greater than 1600." unless invalid_years.empty?
+    end
+
+    def valid_year?(year)
+      year.length == 4 && Date.strptime(year, '%Y') >= Date.new(1600)
+    rescue ArgumentError, TypeError
+      false
+    end
+
+    def validate_date_published
+      error_msg = 'Invalid Date entered for date_published. Accepted format: YYYY-MM-DD'
+      date_published = Date.strptime(record[:date_published.to_s], '%Y-%m-%d')
+
+      raise StandardError, error_msg if date_published.year < 1000
+    rescue Date::Error
+      raise StandardError, error_msg
     end
 end
