@@ -67,6 +67,8 @@ module Bulkrax::HasLocalProcessing
       date_published = Date.strptime(record[:date_published.to_s], '%Y-%m-%d')
 
       raise StandardError, error_msg if date_published.year < 1000
+
+      self.parsed_metadata['date_published'] = date_published.to_s
     rescue Date::Error
       raise StandardError, error_msg
     end
