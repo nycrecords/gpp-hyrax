@@ -53,7 +53,7 @@ module Bulkrax::HasLocalProcessing
       years = record[field].to_s.split(';')
       invalid_years = years.reject { |year| valid_year?(year) }
 
-      raise StandardError, "Invalid year entered for #{field}. Accepted format: YYYY. Year must be greater than 1600." unless invalid_years.empty?
+      raise StandardError, "Invalid year entered for #{field}. Accepted format: YYYY. Year must be greater than or equal to 1600." unless invalid_years.empty?
     end
 
     def valid_year?(year)
