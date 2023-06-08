@@ -63,10 +63,10 @@ module Bulkrax::HasLocalProcessing
     end
 
     def validate_date_published
-      error_msg = 'Invalid Date entered for date_published. Accepted format: YYYY-MM-DD. Year must be greater than or equal to 1600'
+      error_msg = 'Invalid Date entered for date_published. Accepted format: YYYY-MM-DD. Year must be greater than or equal to 1600.'
       date_published = Date.strptime(record[:date_published.to_s], '%Y-%m-%d')
 
-      raise StandardError, error_msg if date_published.year < 1600
+      raise StandardError, error_msg if date_published.year < 1600 or date_published.year > 9999
 
       self.parsed_metadata['date_published'] = date_published.to_s
     rescue Date::Error
