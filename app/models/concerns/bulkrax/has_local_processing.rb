@@ -17,7 +17,7 @@ module Bulkrax::HasLocalProcessing
     end
 
     def field_validation
-      required_fields = %w[title agency subject description date_published report_type language]
+      required_fields = %w[title agency subject description date_published report_type language file]
       csv_errors = validate_required_fields(required_fields)
       csv_errors << "fiscal_year or calendar_year" if associated_year_blank?
 
