@@ -1,10 +1,11 @@
 class BulkImportMailer < ApplicationMailer
   default from: ENV['DEFAULT_FROM']
 
-  def email(importer)
+  def email(importer, filename)
     @importer = importer
-    @submitter = User.find_by(id: importer.user_id)
-    mail(to: [ENV['LIBRARY_USER_EMAIL'], @submitter],
+    @file_name = filename
+
+    mail(to: [ENV['LIBRARY_USER_EMAIL'], @importer.user.to_s],
          cc: Role.find_by(name: 'library_reviewers').users.to_a,
          subject: 'Government Publications Portal: Bulk Import Completed')
   end

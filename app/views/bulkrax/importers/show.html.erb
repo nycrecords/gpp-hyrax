@@ -20,6 +20,11 @@
       <%= @importer.user %>
     </p>
 
+    <p class="bulkrax-p-align">
+        <strong>Filename:</strong>
+        <%= @importer.parser_fields['import_file_path'].split('/')[-1] %>
+    </p>
+
     <%= render partial: 'bulkrax/shared/bulkrax_errors', locals: {item: @importer} %>
 
     </div>

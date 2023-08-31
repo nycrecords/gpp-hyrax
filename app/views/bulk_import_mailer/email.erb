@@ -6,6 +6,7 @@
     <body>
         <p>Importer: <%= @importer.name %> </p>
         <p>User: <%= @importer.user %> </p>
+        <p>Filename: <%= @file_name %> </p>
         <p>Status: <%= @importer.status %> </p>
         <p>Entries Processed: <%= @importer.last_run&.processed_records %> </p>
         <p>Entries Failed: <%= @importer.last_run&.failed_records %> </p>
