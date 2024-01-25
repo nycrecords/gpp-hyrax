@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 # [gpp-override] Add email notification after job completion
+# [gpp-override] Add function to cleanup imported zip file and its contents
 
 module Bulkrax
   class ScheduleRelationshipsJob < ApplicationJob
@@ -13,7 +14,7 @@ module Bulkrax
 
       if pending_num.zero?
         BulkImportMailer.email(importer, file_name).deliver_now
-        cleanup_imported_file(importer.id, file_path)
+        cleanup_imported_files(file_path)
       end
     end
 
@@ -33,13 +34,22 @@ module Bulkrax
       false
     end
 
-    def cleanup_imported_file(importer_id, file_path)
+    def cleanup_imported_files(file_path)
+      # This function removes the folders containing the import zip file and the extracted contents
       zip_file_dir = File.dirname(file_path)
-      import_dir = File.join(Bulkrax.import_path, "import_#{File.basename(zip_file_dir)}_#{importer_id}")
+      imports_dir = File.dirname(File.dirname(file_path))
+
+      extracted_files_search = "import_" + File.basename(zip_file_dir)
+      matching_directory = Dir.glob("#{imports_dir}/*").find do |entry|
+        File.directory?(entry) && File.basename(entry).start_with?(extracted_files_search)
+      end
+
+      extracted_files_dir = matching_directory || ''
+      Rails.logger.info("Found and processing directory: #{extracted_files_dir}") unless extracted_files_dir.empty?
 
       begin
-        Rails.logger.info("Cleaning up imported files: #{zip_file_dir}, #{import_dir}")
-        FileUtils.rm_rf([zip_file_dir, import_dir])
+        Rails.logger.info("Cleaning up imported files: #{zip_file_dir}, #{extracted_files_dir}")
+        FileUtils.rm_rf([zip_file_dir, extracted_files_dir])
         Rails.logger.info("Cleanup successful.")
       rescue StandardError => e
         Rails.logger.error("Error during cleanup: #{e.message}")

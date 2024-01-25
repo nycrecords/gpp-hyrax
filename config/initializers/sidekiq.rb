@@ -10,3 +10,5 @@ end
 Sidekiq.configure_client do |s|
   s.redis = redis_config
 end
+
+Sidekiq.default_worker_options = { retry: 5 }
