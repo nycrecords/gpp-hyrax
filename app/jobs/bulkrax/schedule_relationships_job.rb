@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 # [gpp-override] Add email notification after job completion
+# [gpp-override] Add function to cleanup imported zip file and its contents
 
 module Bulkrax
   class ScheduleRelationshipsJob < ApplicationJob
@@ -34,6 +35,7 @@ module Bulkrax
     end
 
     def cleanup_imported_files(file_path)
+      # This function removes the folders containing the import zip file and the extracted contents
       zip_file_dir = File.dirname(file_path)
       imports_dir = File.dirname(File.dirname(file_path))
 
