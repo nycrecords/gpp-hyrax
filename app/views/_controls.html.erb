@@ -3,7 +3,7 @@
     <div class="row">
       <ul class="nav navbar-nav col-sm-5">
         <li <%= 'class=active' if current_page?(hyrax.root_path) %>>
-          <%= link_to t(:'hyrax.controls.home'), hyrax.root_path, aria: current_page?(hyrax.root_path) ? {current: 'page'} : nil, class: 'gpp-nav-link' %></li>
+          <%= link_to t(:'hyrax.controls.home'), hyrax.root_path, aria: current_page?(hyrax.root_path) ? {current: 'page'} : nil, class: 'gpp-nav-link', data: {turbolinks: false} %></li>
         <li <%= 'class=active' if current_page?(hyrax.contact_path) %>>
           <%= link_to t(:'hyrax.controls.contact'), hyrax.contact_path, aria: current_page?(hyrax.contact_path) ? {current: 'page'} : nil, class: 'gpp-nav-link' %></li>
         <li <%= 'class=active' if current_page?(main_app.public_list_required_reports_path) %>>
