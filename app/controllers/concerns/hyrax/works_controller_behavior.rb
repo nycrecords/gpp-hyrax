@@ -167,7 +167,7 @@ module Hyrax
       # If there are no previous publications, set date_published to nil
       if publications.present?
         publications.each do |p|
-          if !(p.suppressed?) && required_report
+          if !(p.suppressed?) && p.required_report_name != "Not Required"
             # Set required_report.date_published to the publication with the next chronological published date
             required_report.update_attributes(last_published_date: p.date_published)
             break

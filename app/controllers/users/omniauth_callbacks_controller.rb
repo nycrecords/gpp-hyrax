@@ -46,4 +46,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     sign_in_and_redirect @user
   end
+
+  def after_omniauth_failure_path_for(scope)
+    ENV['RAILS_HOST']
+  end
 end
