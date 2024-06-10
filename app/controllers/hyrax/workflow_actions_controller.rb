@@ -46,8 +46,10 @@ module Hyrax
       return if required_report_name == 'Not Required'
 
       date_published = Date.parse(work.date_published)
-
-      required_report = RequiredReport.where(agency_name: work.agency, name: required_report_name).first
+      # Find all required reports for the specified agency and name
+      required_reports = RequiredReport.where(agency_name: work.agency, name: required_report_name)
+      # Search for a required report with no end_date. If none, select the first report found
+      required_report = required_reports.find_by(end_date: nil) || required_reports.first
 
       case workflow_action_name
       when 'comment_only'
@@ -55,16 +57,16 @@ module Hyrax
       when 'approve'
         # Set last_published_date if work is approved and date_published is after current value of last_published_date
         if required_report.last_published_date.nil? || (date_published > required_report.last_published_date)
-          required_report.update_attributes(last_published_date: date_published)
+          required_report.update(last_published_date: date_published)
         end
       when 'request_changes'
         # Set date_submitted to nil on request_changes
         required_report_due_date = RequiredReportDueDate.where(submission_id: work.id).first
-        required_report_due_date.update_attributes(date_submitted: nil)
+        required_report_due_date&.update(date_submitted: nil)
       when 'request_review'
         # Set date_submitted to current date and time on request_review
         required_report_due_date = RequiredReportDueDate.where(submission_id: work.id).first
-        required_report_due_date.update_attributes(date_submitted: Time.current)
+        required_report_due_date&.update(date_submitted: Time.current)
       end
     end
   end
