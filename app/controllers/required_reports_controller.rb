@@ -112,26 +112,44 @@ class RequiredReportsController < ApplicationController
 
   # GET /required_reports/public_list
   def public_list
-    if params[:per_page].nil?
-      params[:per_page] = 20
-    end
+    params[:per_page] ||= 20
+    params[:agency] ||= 'All'
 
-    if params[:agency].nil?
-      params[:agency] = 'All'
-    end
+    # Determine if the current user is an admin
+    @is_admin = user_signed_in? && (current_user.admin? || current_user.library_reviewers?)
 
-    if params[:agency] == 'All' or params[:agency].nil?
-      @required_reports = RequiredReport.all.order(agency_name: :asc, name: :asc).page(params[:page]).per(params[:per_page])
-    else
-      @required_reports = RequiredReport.where(agency_name: params[:agency]).order(name: :asc).page(params[:page]).per(params[:per_page])
-    end
+    # Build the base query with visibility conditions based on user role
+    base_query = if @is_admin
+                   RequiredReport.all
+                 else
+                   RequiredReport.where(is_visible: true)
+                 end
 
+    # Apply agency filter to the base query
+    @required_reports = if params[:agency] == 'All'
+                          base_query.order(agency_name: :asc, name: :asc)
+                        else
+                          base_query.where(agency_name: params[:agency]).order(name: :asc)
+                        end
+
+    # Apply pagination
+    @required_reports = @required_reports.page(params[:page]).per(params[:per_page])
+
+    # Fetch agencies for the dropdown
     @agencies = Agency.all.order(name: :asc)
     @search_url = [
         root_url(locale: nil) + 'catalog?utf8=%E2%9C%93&locale=en&agency=',
         '&required_report_name=',
         '&sort=date_published_ssi+desc&search_field=advanced'
     ]
+  end
+
+  def toggle_visibility
+    if @required_report.update(is_visible: params[:required_report][:is_visible])
+      render json: { success: true }
+    else
+      render json: { success: false, error: @required_report.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
@@ -142,6 +160,6 @@ class RequiredReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def required_report_params
-      params.require(:required_report).permit(:agency_name, :name, :description, :local_law, :charter_and_code, :automated_date, :frequency, :frequency_integer, :other_frequency_description, :start_date, :end_date, :last_published_date)
+      params.require(:required_report).permit(:agency_name, :name, :description, :local_law, :charter_and_code, :automated_date, :frequency, :frequency_integer, :other_frequency_description, :start_date, :end_date, :last_published_date, :is_visible)
     end
 end
