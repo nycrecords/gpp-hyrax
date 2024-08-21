@@ -76,6 +76,10 @@ module Hyrax
     def show
       @user_collections = user_collections
 
+      if user_signed_in? && (current_user.admin? || current_user.library_reviewers?) && @presenter.required_report_name.first != 'Not Required'
+        @required_report_base_due_date = RequiredReportDueDate.find_by(submission_id: @presenter.id)&.base_due_date.to_s
+      end
+
       respond_to do |wants|
         wants.html { presenter && parent_presenter }
         wants.json do
