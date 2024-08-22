@@ -97,7 +97,7 @@ module Hyrax
       end
 
       if user_signed_in? && (current_user.admin? || current_user.library_reviewers?) && @presenter&.required_report_name&.first != 'Not Required'
-        required_report = RequiredReportDueDate.find_by(submission_id: @presenter.id)
+        required_report = RequiredReportDueDate.find_by(submission_id: @presenter.id) || RequiredReportDueDate.find_by(delinquency_report_id: @presenter.id)
         @required_report_base_due_date = required_report.base_due_date.to_s if required_report.present?
       end
     end
