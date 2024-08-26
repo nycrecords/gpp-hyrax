@@ -43,6 +43,8 @@ terms:
     term: Census
   - id: Charities
     term: Charities
+  - id: Child Welfare
+    term: Child Welfare
   - id: Children
     term: Children
   - id: City Planning
@@ -169,6 +171,8 @@ terms:
     term: Internet
   - id: Islands
     term: Islands
+  - id: Juvenile Justice
+    term: Juvenile Justice
   - id: Labor and Employment
     term: Labor and Employment
   - id: Land Use
@@ -231,6 +235,8 @@ terms:
     term: Poverty
   - id: Prices
     term: Prices
+  - id: Privacy
+    term: Privacy
   - id: Purchasing Methods
     term: Purchasing Methods
   - id: Public Authorities
@@ -377,3 +383,5 @@ terms:
     term: World Trade Center
   - id: Youth
     term: Youth
+  - id: Zoning
+    term: Zoning
