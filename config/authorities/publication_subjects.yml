@@ -43,6 +43,8 @@ terms:
     term: Census
   - id: Charities
     term: Charities
+  - id: Child Welfare
+    term: Child Welfare
   - id: Children
     term: Children
   - id: City Planning
@@ -67,6 +69,8 @@ terms:
     term: Cost
   - id: Courts
     term: Courts
+  - id: COVID-19
+    term: COVID-19
   - id: Crime and Criminals
     term: Crime and Criminals
   - id: Criminal Justice
@@ -141,8 +145,8 @@ terms:
     term: Health
   - id: History
     term: History
-  - id: Homeless Persons
-    term: Homeless Persons
+  - id: Homelessness
+    term: Homelessness
   - id: Hospitals
     term: Hospitals
   - id: Hotels
@@ -167,6 +171,8 @@ terms:
     term: Internet
   - id: Islands
     term: Islands
+  - id: Juvenile Justice
+    term: Juvenile Justice
   - id: Labor and Employment
     term: Labor and Employment
   - id: Land Use
@@ -229,6 +235,8 @@ terms:
     term: Poverty
   - id: Prices
     term: Prices
+  - id: Privacy
+    term: Privacy
   - id: Purchasing Methods
     term: Purchasing Methods
   - id: Public Authorities
@@ -239,6 +247,10 @@ terms:
     term: Public Welfare
   - id: Queens
     term: Queens
+  - id: Racial Equity
+    term: Racial Equity
+  - id: Racial Justice
+    term: Racial Justice
   - id: Real Property
     term: Real Property
   - id: Records
@@ -315,6 +327,8 @@ terms:
     term: Taxicabs
   - id: Teachers
     term: Teachers
+  - id: Technology
+    term: Technology
   - id: Television
     term: Television
   - id: Terminals
@@ -369,3 +383,5 @@ terms:
     term: World Trade Center
   - id: Youth
     term: Youth
+  - id: Zoning
+    term: Zoning

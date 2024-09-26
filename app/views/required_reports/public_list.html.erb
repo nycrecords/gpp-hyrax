@@ -49,6 +49,14 @@
       <th class="col-md-1">Authorizing Resource (Charter and Code)</th>
       <th class="col-md-1">Last Published Date</th>
       <th class="col-md-1">See All Reports</th>
+      <% if @is_admin %>
+         <th class="col-md-1" style="white-space: nowrap;">
+             Show <i class="glyphicon glyphicon-info-sign"
+                          data-toggle="show-hide-tooltip"
+                          data-placement="bottom"
+                          title="Toggle visibility of reports on the public list."></i>
+         </th>
+      <% end %>
     </tr>
     </thead>
 
@@ -76,6 +84,15 @@
                                               required_report.name,
                                               required_report.agency_name) },
                         class: 'underline-link' %></td>
+        <% if @is_admin %>
+              <td>
+                  <input type="checkbox"
+                         name="admin_checkbox"
+                         class="visibility-checkbox"
+                         data-report-id="<%= required_report.id %>"
+                         <%= required_report.is_visible ? 'checked' : '' %> />
+              </td>
+        <% end %>
       </tr>
     <% end %>
     </tbody>
