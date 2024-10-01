@@ -1,0 +1,19 @@
+<% if current_user %>
+<div class="modal fade" id="timeout-modal" tabindex="-1" role="dialog" aria-labelledby="timeout-dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="timeout-dialog-title">Session Timeout</h5>
+            </div>
+            <div class="modal-body">
+                <p>Your session will expire in 5 minutes. </p>
+                <p>Do you want to stay signed in?</p>
+            </div>
+            <div class="modal-footer">
+                    <%= link_to "Stay Signed In", main_app.renew_session_path, role:'button', id:"renew-session-btn", class: "btn btn-default", method: :get, remote: true %>
+                    <%= link_to "Sign Out", main_app.destroy_user_session_path, role: 'button', class: "btn btn-primary" %>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>

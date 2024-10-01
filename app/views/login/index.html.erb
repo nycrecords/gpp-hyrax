@@ -1,0 +1,8 @@
+<% provide :page_title, construct_page_title('Login') %>
+<h3>Login</h3>
+
+<%= form_tag do %>
+    <%= label_tag "Email"  %>
+    <%= email_field_tag(:email, nil, required: true) %>
+    <%= submit_tag "Login", class: "btn btn-primary" %>
+<% end %>

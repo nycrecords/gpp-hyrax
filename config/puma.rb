@@ -1,6 +1,6 @@
 # Laod the environment variables for Puma using Dotenv
 require 'dotenv'
-Dotenv.load('/opt/hyrax/.env')
+Dotenv.load('.env')
 
 # Set the environment in which the rack's app will run. The value must be a string.
 #
@@ -33,8 +33,9 @@ workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 # The default is "5, 5".
 #
 # threads 5, 5
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
-threads threads_count, threads_count
+min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { 5 }
+max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
+threads min_threads_count, max_threads_count
 
 port        ENV.fetch("PORT") { 3000 }
 

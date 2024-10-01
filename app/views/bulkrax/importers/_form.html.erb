@@ -1,0 +1,44 @@
+<%# [gpp-override] Override to set Bulk Import Admin Set and csv parser %>
+<%# [gpp-override] Override to set csv row limit to 100 %>
+
+<div class="panel-body">
+    <% if importer.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(importer.errors.count, "error") %> prohibited this importer from being saved:</h2>
+
+            <ul>
+                <% importer.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <%= form.hidden_field :name, value: "#{current_user} - #{Time.now.strftime("%Y-%m-%d %H:%M:%S")}" %>
+
+    <%= form.hidden_field :admin_set_id, collection: available_admin_sets, value: @bulk_imports_admin_set %>
+
+    <%= form.hidden_field :user_id, value: current_user.id %>
+
+    <% form.input :frequency, collection: form.object.class.frequency_enums %>
+
+    <%= form.hidden_field :limit, as: :integer, value: 100 %>
+
+    <%= form.input :parser_klass,
+                   collection: Bulkrax.parsers.map {|p| [p[:name],
+                                                         p[:class_name],
+                                                         {'data-partial' => p[:partial]}]},
+
+                   label: "Parser",
+                   selected: "CSV - Comma Separated Values" %>
+
+    <%= form.fields_for :parser_fields do |fi| %>
+        <div class='parser_fields'>
+<!--            <p>Specific fields for each parser are available only when a parser is selected</p>-->
+            <% Bulkrax.parsers.map {|p| p[:partial]}.uniq.each do |partial| %>
+                <%= render partial: partial, locals: {form: form, fi: fi, importer: importer} %>
+            <% end %>
+        </div>
+    <% end %>
+
+</div>

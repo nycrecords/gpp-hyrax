@@ -95,6 +95,11 @@ module Hyrax
           render body: presenter.export_as_nt, content_type: 'application/n-triples'
         end
       end
+
+      if user_signed_in? && (current_user.admin? || current_user.library_reviewers?) && @presenter&.required_report_name&.first != 'Not Required'
+        required_report = RequiredReportDueDate.find_by(submission_id: @presenter.id) || RequiredReportDueDate.find_by(delinquency_report_id: @presenter.id)
+        @required_report_base_due_date = required_report.base_due_date.to_s if required_report.present?
+      end
     end
 
     def edit
@@ -167,7 +172,7 @@ module Hyrax
       # If there are no previous publications, set date_published to nil
       if publications.present?
         publications.each do |p|
-          if !(p.suppressed?)
+          if !(p.suppressed?) && p.required_report_name != "Not Required"
             # Set required_report.date_published to the publication with the next chronological published date
             required_report.update_attributes(last_published_date: p.date_published)
             break

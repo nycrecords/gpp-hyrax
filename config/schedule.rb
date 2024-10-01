@@ -23,7 +23,7 @@ env :PATH, ENV['PATH']
 
 job_type :sidekiq, "cd :path && RAILS_ENV=development bundle exec sidekiq-client :task :output"
 
-every :weekday, at: '9am', roles: [:app] do
+every :weekday, at: '7am', roles: [:app] do
   sidekiq "push ReportRequestWorker"
 end
 

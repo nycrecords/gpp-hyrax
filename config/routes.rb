@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
 
+  mount Bulkrax::Engine, at: '/'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
   mount BlacklightAdvancedSearch::Engine => '/'
 
     concern :searchable, Blacklight::Routes::Searchable.new
+
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
@@ -18,6 +24,9 @@ Rails.application.routes.draw do
     get 'timeout' => 'sessions#timeout'
     get 'renew_session' => 'sessions#renew'
   end
+
+  # Route for development login
+  resources :login
 
   mount Hydra::RoleManagement::Engine => '/'
 
@@ -44,6 +53,10 @@ Rails.application.routes.draw do
     collection do
       get 'agency_required_reports'
       get 'public_list'
+    end
+
+    member do
+      patch 'toggle_visibility'
     end
   end
 

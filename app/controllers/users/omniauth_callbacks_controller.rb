@@ -1,6 +1,6 @@
 # Controller which implements Omniauth callbacks.
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_before_action :check_concurrent_session
+  skip_before_action :verify_authenticity_token, :check_concurrent_session
 
   include NYCID
   def saml
@@ -45,5 +45,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     sign_in_and_redirect @user
+  end
+
+  def after_omniauth_failure_path_for(scope)
+    ENV['RAILS_HOST']
   end
 end

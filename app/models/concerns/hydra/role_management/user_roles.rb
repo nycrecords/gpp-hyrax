@@ -31,6 +31,10 @@ module Hydra
       def library_reviewers?
         roles.where(name: 'library_reviewers').exists?
       end
+
+      def bulk_importers?
+        roles.where(name: 'bulk_importers').exists?
+      end
     end
   end
 end
