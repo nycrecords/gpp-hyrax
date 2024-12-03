@@ -20,4 +20,6 @@ test:
     - leland_himself@example.com
 
 production:
-  # Add roles for users here.
+  library_reviewers:
+  agency_submitters:
+  bulk_importers:

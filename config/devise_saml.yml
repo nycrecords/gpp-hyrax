@@ -19,8 +19,8 @@ default: &default
 development:
   <<: *default
   idp_metadata_url: 'https://fidm.us1.gigya.com/saml/v2.0/3_DkZigi2v_eW7z-cZt8PAw-cYWQYg2d8VqABUFRZUhhzxNAdwR5brLl_h8Hqbo7Bm/idp/metadata'
-  sp_cert_path: 'config/certs/sp.crt'
-  sp_key_path: 'config/certs/sp.key'
+  sp_cert_path: <%= ENV.fetch('SAML_SP_CERT_PATH') { 'config/certs/sp.crt' } %>
+  sp_key_path: <%= ENV.fetch('SAML_SP_KEY_PATH') { 'config/certs/sp.key' } %>
 
 test:
   <<: *default
@@ -30,6 +30,6 @@ test:
 
 production:
   <<: *default
-  idp_metadata_url: <%= ENV['SAML_IDP_METADATA_URL'] %>
-  sp_cert_path: <%= ENV['SAML_SP_CERT_PATH'] %>
-  sp_key_path: <%= ENV['SAML_SP_KEY_PATH'] %>
+  idp_metadata_url: <%= ENV.fetch('SAML_IDP_METADATA_URL') { 'https://fidm.us1.gigya.com/saml/v2.0/3_DkZigi2v_eW7z-cZt8PAw-cYWQYg2d8VqABUFRZUhhzxNAdwR5brLl_h8Hqbo7Bm/idp/metadata' }%>
+  sp_cert_path: <%= ENV.fetch('SAML_SP_CERT_PATH') { 'config/certs/sp.crt' } %>
+  sp_key_path: <%= ENV.fetch('SAML_SP_KEY_PATH') { 'config/certs/sp.key' } %>

@@ -6,6 +6,7 @@
 
 # Ignore environment configuration
 .env
+/docker/.env
 
 # Ignore certificates and private keys
 /config/certs/*

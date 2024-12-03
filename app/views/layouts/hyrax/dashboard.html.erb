@@ -10,7 +10,7 @@
           <%= auto_session_timeout_js %>
       <% end %>
     <div class="skip-to-content">
-      <%= link_to "Skip to Content", "#skip-to-content", data: { turbolinks: false } %>
+      <%= link_to "Skip to Content", "#skip-to-content" %>
     </div>
     <%= render '/nycid_header' %>
     <%= render '/masthead' %>
@@ -37,7 +37,8 @@
           </div>
         <% end %>
 
-          <a name="skip-to-content" id="skip-to-content" tabindex="0"></a>
+          <a name="skip-to-content" id="skip-to-content"></a>
+          <%= render 'shared/read_only' if Flipflop.read_only? %>
           <%= content_for?(:content) ? yield(:content) : yield %>
 
       </div>

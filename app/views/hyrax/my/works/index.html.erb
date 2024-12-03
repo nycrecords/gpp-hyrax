@@ -6,11 +6,11 @@
 <% end %>
 
 <script>
-    //<![CDATA[
+//<![CDATA[
 
-    <%= render partial: 'scripts', formats: [:js] %>
+  <%= render partial: 'scripts', formats: [:js] %>
 
-    //]]>
+//]]>
 </script>
 
 <% provide :page_header do %>
@@ -18,20 +18,34 @@
   <% if current_ability.can_create_any_work? %>
     <div class="pull-right">
       <% if @create_work_presenter.many? %>
-        <%# Removed batch upload button here. Refer to /vendor/bundle/ruby/2.5.0/gems/hyrax-2.5.1/app/views/hyrax/my/works/index.html.erb for original code. %>
-        <%= link_to(
-                t(:'helpers.action.work.new'),
+        <% if Flipflop.batch_upload? %>
+          <%= link_to(
+                t(:'helpers.action.batch.new'),
                 '#',
-                data: { behavior: "select-work", target: "#worktypes-to-create", 'create-type' => 'single' },
+                data: { behavior: "select-work", target: "#worktypes-to-create", 'create-type' => 'batch' },
                 class: 'btn btn-primary'
+              ) %>
+        <% end %>
+        <%= link_to(
+              t(:'helpers.action.work.new'),
+              '#',
+              data: { behavior: "select-work", target: "#worktypes-to-create", 'create-type' => 'single' },
+              id: 'add-new-work-button',
+              class: 'btn btn-primary'
             ) %>
       <% else # simple link to the first work type %>
-        <%# Removed batch upload button here. Refer to /vendor/bundle/ruby/2.5.0/gems/hyrax-2.5.1/app/views/hyrax/my/works/index.html.erb for original code. %>
+        <% if Flipflop.batch_upload? %>
+          <%= link_to(
+              t(:'helpers.action.batch.new'),
+              hyrax.new_batch_upload_path(payload_concern: @create_work_presenter.first_model),
+              class: 'btn btn-primary'
+              ) %>
+        <% end %>
         <%= link_to(
-                'Submit a Publication',
-                new_polymorphic_path([main_app, @create_work_presenter.first_model],
-                                     add_works_to_collection: Collection.first),
-                class: 'btn btn-primary'
+              'Submit a Publication',
+              new_polymorphic_path([main_app, @create_work_presenter.first_model]),
+              id: 'add-new-work-button',
+              class: 'btn btn-primary'
             ) %>
       <% end %>
     </div>
@@ -53,7 +67,7 @@
       </div>
       <div class="panel-body">
         <%= render 'search_header' %>
-        <h2 class="sr-only">Works listing</h2>
+        <h2 class="sr-only"><%= t('hyrax.my.count.works.works_listing') %></h2>
         <%= render 'document_list' %>
 
         <%= render 'results_pagination' %>

@@ -7,8 +7,9 @@ Rails.application.routes.draw do
 
     concern :searchable, Blacklight::Routes::Searchable.new
 
-  require 'sidekiq/web'
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :user, ->(u) { u.admin? } do
+    require 'sidekiq/web'
+    require 'sidekiq-status/web'
     mount Sidekiq::Web => '/sidekiq'
   end
 

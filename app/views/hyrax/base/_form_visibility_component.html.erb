@@ -1,5 +1,9 @@
 <fieldset>
-  <legend class="legend-save-work">Visibility</legend>
+  <% if local_assigns[:save_work] %>
+    <legend class="legend-save-work"><%= t('.visibility') %></legend>
+  <% else %>
+    <legend><%= t('.visibility') %><%= raw(t('.subtitle_html')) %></legend>
+  <% end %>
   <ul class="visibility">
     <li class="radio">
       <label>

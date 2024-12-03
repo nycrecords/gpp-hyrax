@@ -302,8 +302,13 @@ Devise.setup do |config|
 
   idp_metadata_parser = OneLogin::RubySaml::IdpMetadataParser.new
   idp_metadata = idp_metadata_parser.parse_remote_to_hash(saml_config[:idp_metadata_url])
-  sp_cert = Rails.root.join(saml_config[:sp_cert_path])
-  sp_key = Rails.root.join(saml_config[:sp_key_path])
+
+  sp_cert_path = Rails.root.join(saml_config[:sp_cert_path])
+  sp_key_path = Rails.root.join(saml_config[:sp_key_path])
+
+  sp_cert = File.exist?(sp_cert_path) ? File.read(sp_cert_path) : "CERTIFICATE"
+  sp_key = File.exist?(sp_key_path) ? File.read(sp_key_path) : "PRIVATE_KEY"
+
   config.omniauth :saml,
                   issuer: saml_config[:issuer],
                   idp_sso_service_url: idp_metadata[:idp_sso_service_url],
@@ -313,8 +318,8 @@ Devise.setup do |config|
                   slo_default_relay_state: '/',
                   request_attributes: {},
                   idp_cert: idp_metadata[:idp_cert],
-                  certificate: File.read(sp_cert),
-                  private_key: File.read(sp_key),
+                  certificate: sp_cert,
+                  private_key: sp_key,
                   # security: saml_config[:security_config]
                   security: {
                     authn_requests_signed: saml_config[:security_config][:authn_requests_signed],

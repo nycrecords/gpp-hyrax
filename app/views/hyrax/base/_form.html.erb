@@ -1,8 +1,8 @@
 <%= simple_form_for [main_app, @form],
                     html: {
-                        data: { behavior: 'work-form',
-                                'param-key' => @form.model_name.param_key },
-                        multipart: true
+                      data: { behavior: 'work-form',
+                              'param-key' => @form.model_name.param_key },
+                      multipart: true
                     } do |f| %>
   <% if f.object.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
@@ -14,7 +14,12 @@
       <%= render 'form_visibility_error', f: f %>
     </div>
   <% end %>
-  <%= render 'hyrax/base/guts4form', f: f %>
+  <% if Flipflop.batch_upload? && !f.object.persisted? %>
+    <% provide :metadata_tab do %>
+      <p class="switch-upload-type"><%= t('.batch_upload_hint') %> <%= link_to t('.batch_link'), hyrax.new_batch_upload_path(payload_concern: @form.model.class) %></p>
+    <% end %>
+  <% end %>
+  <%= render 'hyrax/base/guts4form', f: f, tabs: form_tabs_for(form: f.object) %>
 <% end %>
 
 <script type="text/javascript">

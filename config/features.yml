@@ -1,0 +1,5 @@
+show_deposit_agreement:
+  enabled: false
+
+active_deposit_agreement_acceptance:
+  enabled: false

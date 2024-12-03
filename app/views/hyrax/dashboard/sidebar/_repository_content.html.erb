@@ -2,15 +2,19 @@
 
 <% if current_user.admin? or current_user.library_reviewers? %>
   <%= menu.nav_link(hyrax.my_collections_path,
+                    onclick: "dontChangeAccordion(event);",
                     also_active_for: hyrax.dashboard_collections_path) do %>
     <span class="fa fa-folder-open" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.collections') %></span>
   <% end %>
 <% end %>
 
-<%= menu.nav_link(hyrax.my_works_path,
-                  also_active_for: hyrax.dashboard_works_path) do %>
-  <span class="fa fa-file" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.works') %></span>
-<% end %>
+  <%= menu.nav_link(hyrax.my_works_path,
+                    onclick: "dontChangeAccordion(event);",
+                    also_active_for: hyrax.dashboard_works_path) do %>
+    <span class="fa fa-file" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.works') %></span>
+  <% end %>
+
+  <%= render 'hyrax/dashboard/sidebar/menu_partials', menu: menu, section: :repository_content %>
 
 <% if current_user.agency_submitters? && current_user.bulk_importers? || current_user.admin?%>
     <%= menu.nav_link(bulkrax.importers_path) do %>

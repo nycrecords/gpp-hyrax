@@ -1,5 +1,8 @@
 ---
 en:
+  activefedora:
+    models:
+      nyc_government_publication: "NYC Government Publication"
   blacklight:
     search:
       fields:
