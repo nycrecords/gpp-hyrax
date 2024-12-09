@@ -1,56 +1,45 @@
-# Overrides the docker-compose file for development environment
-# - Use the example end.production file (because in dev it doesn't matter)
-# - Publish the fcrepo and solr ports
-# - No nginx in front of the app
-# - app accessible on port 3000
-
-version: '3'
-
-volumes:
-  file_uploads:
-  derivatives:
-  cache:
-  fcrepo:
-  redis:
-
 services:
-
-  fcrepo:
-    ports:
-      - 8080:8080
+  web:
+    build:
+      target: gpp-hyrax-dev
     volumes:
-      - fcrepo:/data
+      - .:/app/doris/gpp-hyrax
+      - ./public:/app/doris/gpp-hyrax/public
+      - bundle:/bundle
 
   solr:
-    environment:
-      - OOM=script
-    ports:
-      - 8983:8983
+    command: >
+      sh -c "
+      precreate-core hydra-development /opt/solr/server/configsets/hyraxconf;
+      solr-precreate hydra-test /opt/solr/server/configsets/hyraxconf;
+      "
 
-  web:
-    ports:
-      - 3000:3000
-    environment:
-      - RAILS_FORCE_SSL=false
+  sidekiq:
     volumes:
-      - file_uploads:${UPLOADS_PATH}
-      - derivatives:${DERIVATIVES_PATH}
-      - cache:${CACHE_PATH}
-      - .:/data
+      - .:/app/doris/gpp-hyrax
+      - ./public:/app/doris/gpp-hyrax/public
+      - bundle:/bundle
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
     networks:
-      internal:
-        aliases:
-          - web
-          - gpp-hyrax.records.test
+      - gpp-hyrax
 
-  workers:
+  chrome:
+    image: selenium/standalone-chrome:3.141
+    logging:
+      driver: none
     volumes:
-      - file_uploads:${UPLOADS_PATH}
-      - derivatives:${DERIVATIVES_PATH}
-      - cache:${CACHE_PATH}
-      - ${HOST_APP_DATA_PATH:-/srv/ngdr/data/}:/data/data
-      - .:/data
+      - /dev/shm:/dev/shm
+    shm_size: 2G
+    ports:
+      - "4444:4444"
+      - "5959:5900"
+    networks:
+      - gpp-hyrax
 
-  redis:
-    volumes:
-      - redis:/data
+volumes:
+  bundle:

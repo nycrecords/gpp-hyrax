@@ -1,0 +1,43 @@
+# Environment files
+docker/.env
+.env
+
+# Git and VCS
+.git
+
+# Logs and temp files
+log/
+tmp/
+!/log/.keep
+!/tmp/.keep
+
+# Build artifacts
+coverage/
+*.rbc
+*.gem
+
+# Node and Yarn
+node_modules/
+yarn-error.log
+
+# Ruby-specific files
+.bundle/
+vendor/bundle
+lib/bundler/man/
+
+# Test and spec files
+coverage/
+spec/reports/
+spec/examples.txt
+test/tmp/
+test/version_tmp/
+
+# IDE/Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.DS_Store
+
+# Certificates
+config/certs/*

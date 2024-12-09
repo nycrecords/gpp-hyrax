@@ -1,131 +1,127 @@
-version: '3'
-
-volumes:
-  solr:
-  db:
-  db-fcrepo:
-  app:
-
-networks:
-  internal:
-
 services:
-  fcrepo:
-    image: ualbertalib/docker-fcrepo4:4.7
-    expose:
-      - 8080
+  web:
+    image: doris/gpp-hyrax
+    build:
+      context: .
+      target: gpp-hyrax
+    command: start-app.sh
+    stdin_open: true
+    tty: true
+    user: root
+    env_file: &env_file
+      - docker/.env
     depends_on:
+      - fcrepo
       - fcrepodb
-    networks:
-      internal:
-    environment:
-      - CATALINA_OPTS=-Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms512m -Xmx1024m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=256m -XX:+DisableExplicitGC -Dfcrepo.home=/data -Dfcrepo.object.directory=/data/objects -Dfcrepo.binary.directory=/data/binaries -Dfcrepo.postgresql.username=$POSTGRES_USER -Dfcrepo.postgresql.password=$POSTGRES_PASSWORD -Dfcrepo.postgresql.host=$POSTGRES_HOST_FCREPO -Dfcrepo.postgresql.port=$POSTGRES_PORT -Dfcrepo.modeshape.configuration=classpath:/config/jdbc-postgresql/repository.json
-
-  solr:
-    image: solr:7-alpine
-    expose:
-      - 8983
+      - postgres
+      - redis
+      - solr
     ports:
-      - 8983:8983
-    env_file:
-      - .env
-    healthcheck:
-      test: ["CMD-SHELL", "wget -O /dev/null http://localhost:8983/solr/"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-    networks:
-      internal:
+      - "5000:5000"
     volumes:
-      - solr:/opt/solr/server/solr/mycores
-      - ./solr/config:/opt/solr/solr_conf
-    command:
-      - sh
-      - "-c"
-      - "precreate-core hydra-test /opt/solr/solr_conf; solr-precreate ${SOLR_CORE} /opt/solr/solr_conf"
-
-  db: &db
-    image: postgres:11-alpine
+      - hyrax-uploads:/data/uploads
+      - hyrax-derivatives:/data/derivatives
+      - hyrax-imports:/data/imports
+      - rails-public:/app/doris/gpp-hyrax/public
+      - rails-tmp:/app/doris/gpp-hyrax/tmp:cached
     networks:
-      internal:
-    env_file:
-      - .env
+      - gpp-hyrax
+
+  sidekiq:
+    image: doris/gpp-hyrax
+    command: start-sidekiq.sh web:$PORT
+    user: root
+    env_file: *env_file
+    depends_on:
+      - web
+      - fcrepo
+      - fcrepodb
+      - postgres
+      - redis
+      - solr
+    volumes:
+      - hyrax-uploads:/data/uploads
+      - hyrax-derivatives:/data/derivatives
+      - hyrax-imports:/data/imports
+      - rails-public:/app/doris/gpp-hyrax/public
+      - rails-tmp:/app/doris/gpp-hyrax/tmp:cached
+    networks:
+      - gpp-hyrax
+
+  postgres: &db
+    image: postgres:13
+    env_file: *env_file
+    volumes:
+      - db:/var/lib/postgresql/data
     ports:
       - 5432
+    networks:
+      - gpp-hyrax
+
   fcrepodb:
     <<: *db
     environment:
-      - POSTGRES_DB=${POSTGRES_DB_FCREPO}
+      - POSTGRES_DB=${FCREPO_DB}
+      - POSTGRES_USER=${FCREPO_DB_USER}
+      - POSTGRES_PASSWORD=${FCREPO_DB_PASSWORD}
     volumes:
       - db-fcrepo:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "POSTGRES_PASSWORD=${POSTGRES_PASSWORD} pg_isready -U ${POSTGRES_USER} -h localhost -d ${POSTGRES_DB_FCREPO}"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-  appdb:
-    <<: *db
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB_APP}
-    volumes:
-      - db:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "POSTGRES_PASSWORD=${POSTGRES_PASSWORD} pg_isready -U ${POSTGRES_USER} -h localhost -d ${POSTGRES_DB_APP}"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
 
-  app: &app
-    build:
-      context: .
-      args:
-        RAILS_ENV: ${RAILS_ENV}
-        UPLOADS_PATH: ${UPLOADS_PATH}
-        DERIVATIVES_PATH: ${DERIVATIVES_PATH}
-        CACHE_PATH: ${CACHE_PATH}
-        FITS_PATH: ${FITS_PATH}
-        FITS_VERSION: ${FITS_VERSION}
-    env_file:
-      - .env
+  fcrepo:
+    image: samvera/fcrepo4:4.7.5
+    env_file: *env_file
+    depends_on:
+      - fcrepodb
+    ports:
+      - "8984:8080"
     volumes:
-      - app:${UPLOADS_PATH}
-      - app:${DERIVATIVES_PATH}
-      - app:${CACHE_PATH}
+      - fcrepo:/data
+    environment:
+      MODESHAPE_CONFIG: "classpath:/config/jdbc-postgresql/repository.json"
+      JAVA_OPTIONS: >-
+        -Dfcrepo.postgresql.username=${FCREPO_DB_USER}
+        -Dfcrepo.postgresql.password=${FCREPO_DB_PASSWORD}
+        -Dfcrepo.postgresql.host=fcrepodb 
+        -Dfcrepo.postgresql.port=${DATABASE_PORT}
     networks:
-      internal:
-
-  web:
-    <<: *app
-    command: bash -c "/bin/docker-entrypoint.sh"
-    environment:
-      - VIRTUAL_HOST=hyrax.docker
-      - VIRTUAL_PORT=3000
-    depends_on:
-      - appdb
-      - solr
-      - fcrepo
-      - redis
-    expose:
-      - 3000
-
-  workers:
-    <<: *app
-    command: bundle exec sidekiq
-    depends_on:
-      - appdb
-      - solr
-      - fcrepo
-      - redis
+      - gpp-hyrax
 
   redis:
-    image: redis:5
-    command: redis-server --appendonly yes
-    expose:
-      - 6379
+    image: redis:6
+    env_file: *env_file
+    volumes:
+      - redis:/data
     networks:
-      internal:
-    healthcheck:
-      test: ["CMD-SHELL", "redis-cli ping"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
+      - gpp-hyrax
+
+  solr:
+    image: solr:8.11.1
+    env_file: *env_file
+    ports:
+      - "8983:8983"
+    command: >
+      sh -c "solr-precreate hyrax /opt/solr/server/configsets/hyraxconf;"
+    volumes:
+      - solr:/var/solr/data:cached
+      - ./solr/config:/opt/solr/server/configsets/hyraxconf
+    networks:
+      - gpp-hyrax
+
+volumes:
+  db:
+  db-fcrepo:
+  fcrepo:
+  hyrax-derivatives:
+  hyrax-uploads:
+  hyrax-imports:
+  rails-public:
+  rails-tmp:
+  redis:
+  solr:
+
+networks:
+  gpp-hyrax:
+    driver: bridge
+    name: gpp-hyrax
+    driver_opts:
+      com.docker.network.bridge.name: br-gpp-hyrax
