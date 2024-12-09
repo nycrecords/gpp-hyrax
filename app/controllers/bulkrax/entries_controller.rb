@@ -5,9 +5,10 @@ require_dependency "oai"
 
 module Bulkrax
   class EntriesController < ApplicationController
-    include Hyrax::ThemedLayoutController
+    include Hyrax::ThemedLayoutController if defined?(::Hyrax)
     before_action :authenticate_user!
-    with_themed_layout 'dashboard'
+    before_action :check_permissions
+    with_themed_layout 'dashboard' if defined?(::Hyrax)
 
     def show
       if params[:importer_id].present?
@@ -23,6 +24,7 @@ module Bulkrax
       @entry = Entry.find(params[:id])
 
       render 'hyrax/base/unauthorized' unless current_user.admin? || current_user.library_reviewers? || @importer.user_id == current_user[:id]
+      return unless defined?(::Hyrax)
       add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
       add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
       add_breadcrumb 'Importers', bulkrax.importers_path
@@ -35,11 +37,16 @@ module Bulkrax
       @exporter = Exporter.find(params[:exporter_id])
       @entry = Entry.find(params[:id])
 
+      return unless defined?(::Hyrax)
       add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
       add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
       add_breadcrumb 'Exporters', bulkrax.exporters_path
       add_breadcrumb @exporter.name, bulkrax.exporter_path(@exporter.id)
       add_breadcrumb @entry.id
+    end
+
+    def check_permissions
+      raise CanCan::AccessDenied unless current_ability.can_import_works? || current_ability.can_export_works?
     end
   end
 end

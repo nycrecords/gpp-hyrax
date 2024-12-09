@@ -87,6 +87,7 @@ Bulkrax.setup do |config|
   # is controlled by the active terms in config/authorities/rights_statements.yml
   # Defaults: 'rights_statement' and 'license'
   # config.qa_controlled_properties += ['my_field']
+  Bulkrax::CreateRelationshipsJob.update_child_records_works_file_sets = true
 end
 
 # Sidebar for hyrax 3+ support

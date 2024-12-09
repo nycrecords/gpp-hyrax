@@ -20,7 +20,7 @@
 
     <%= form.hidden_field :user_id, value: current_user.id %>
 
-    <% form.input :frequency, collection: form.object.class.frequency_enums %>
+    <%= form.hidden_field :frequency, collection: form.object.class.frequency_enums %>
 
     <%= form.hidden_field :limit, as: :integer, value: 100 %>
 

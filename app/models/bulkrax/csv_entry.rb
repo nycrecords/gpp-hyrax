@@ -7,20 +7,54 @@ module Bulkrax
   # We do too much in these entry classes. We need to extract the common logic from the various
   # entry models into a module that can be shared between them.
   class CsvEntry < Entry # rubocop:disable Metrics/ClassLength
-    serialize :raw_metadata, JSON
+    serialize :raw_metadata, Bulkrax::NormalizedJson
 
     def self.fields_from_data(data)
       data.headers.flatten.compact.uniq
     end
 
+    class_attribute(:csv_read_data_options, default: {})
+
     # there's a risk that this reads the whole file into memory and could cause a memory leak
     def self.read_data(path)
       raise StandardError, 'CSV path empty' if path.blank?
-      CSV.read(path,
-               headers: true,
-               header_converters: :symbol,
-               encoding: 'utf-8')
+      options = {
+        headers: true,
+        header_converters: ->(h) { h.to_s.strip.to_sym },
+        encoding: 'utf-8'
+      }.merge(csv_read_data_options)
+
+      results = CSV.read(path, **options)
+      csv_wrapper_class.new(results)
     end
+
+    # The purpose of this class is to reject empty lines.  This causes lots of grief in importing.
+    # But why not use {CSV.read}'s `skip_lines` option?  Because for some CSVs, it will never finish
+    # reading the file.
+    #
+    # There is a spec that demonstrates this approach works.
+    class CsvWrapper
+      include Enumerable
+      def initialize(original)
+        @original = original
+      end
+
+      delegate :headers, to: :@original
+
+      def each
+        @original.each do |row|
+          next if all_fields_are_empty_for(row: row)
+          yield(row)
+        end
+      end
+
+      private
+
+      def all_fields_are_empty_for(row:)
+        row.to_hash.values.all?(&:blank?)
+      end
+    end
+    class_attribute :csv_wrapper_class, default: CsvWrapper
 
     def self.data_for_entry(data, _source_id, parser)
       # If a multi-line CSV data is passed, grab the first row
@@ -35,14 +69,14 @@ module Bulkrax
     end
 
     def build_metadata
-      raise StandardError, 'Record not found' if record.nil?
-      raise StandardError, "Missing required elements, missing element(s) are: #{importerexporter.parser.missing_elements(keys_without_numbers(record.keys)).join(', ')}" unless importerexporter.parser.required_elements?(keys_without_numbers(record.keys))
+      validate_record
 
       # Add default collection id to metadata
       record["parents"] = Collection.where(title: "Government Publications").first.id
 
       self.parsed_metadata = {}
       add_identifier
+      establish_factory_class
       add_ingested_metadata
       # TODO(alishaevn): remove the collections stuff entirely and only reference collections via the new parents code
       add_collections
@@ -55,14 +89,29 @@ module Bulkrax
       self.parsed_metadata
     end
 
+    def validate_record
+      raise StandardError, 'Record not found' if record.nil?
+      unless importerexporter.parser.required_elements?(record)
+        raise StandardError, "Missing required elements, missing element(s) are: "\
+"#{importerexporter.parser.missing_elements(record).join(', ')}"
+      end
+    end
+
     def add_identifier
       self.parsed_metadata[work_identifier] = [record[source_identifier]]
     end
 
+    def establish_factory_class
+      parser.model_field_mappings.each do |key|
+        add_metadata('model', record[key]) if record.key?(key)
+      end
+    end
+
     def add_metadata_for_model
-      if factory_class == Collection
-        add_collection_type_gid
-      elsif factory_class == FileSet
+      if defined?(::Collection) && factory_class == ::Collection
+        add_collection_type_gid if defined?(::Hyrax)
+        # add any additional collection metadata methods here
+      elsif factory_class == Bulkrax.file_model_class
         validate_presence_of_filename!
         add_path_to_file
         validate_presence_of_parent!
@@ -84,7 +133,7 @@ module Bulkrax
     def add_file
       self.parsed_metadata['file'] ||= []
       if record['file']&.is_a?(String)
-        self.parsed_metadata['file'] = record['file'].split(/\s*[;|]\s*/)
+        self.parsed_metadata['file'] = record['file'].split(Bulkrax.multi_value_element_split_on)
       elsif record['file'].is_a?(Array)
         self.parsed_metadata['file'] = record['file']
       end
@@ -99,7 +148,7 @@ module Bulkrax
       self.parsed_metadata = {}
 
       build_system_metadata
-      build_files_metadata unless hyrax_record.is_a?(Collection)
+      build_files_metadata if defined?(Collection) && !hyrax_record.is_a?(Collection)
       build_relationship_metadata
       build_mapping_metadata
       self.save!
@@ -110,7 +159,9 @@ module Bulkrax
     # Metadata required by Bulkrax for round-tripping
     def build_system_metadata
       self.parsed_metadata['id'] = hyrax_record.id
-      self.parsed_metadata[source_identifier] = hyrax_record.send(work_identifier)
+      source_id = hyrax_record.send(work_identifier)
+      source_id = source_id.to_a.first if source_id.is_a?(ActiveTriples::Relation)
+      self.parsed_metadata[source_identifier] = source_id
       self.parsed_metadata[key_for_export('model')] = hyrax_record.has_model.first
     end
 
@@ -148,26 +199,48 @@ module Bulkrax
       end
     end
 
-    def build_mapping_metadata
-      mapping = fetch_field_mapping
-      mapping.each do |key, value|
-        # these keys are handled by other methods
-        next if ['model', 'file', related_parents_parsed_mapping, related_children_parsed_mapping].include?(key)
-        next if value['excluded']
-        next if Bulkrax.reserved_properties.include?(key) && !field_supported?(key)
+    # The purpose of this helper module is to make easier the testing of the rather complex
+    # switching logic for determining the method we use for building the value.
+    module AttributeBuilderMethod
+      # @param key [Symbol]
+      # @param value [Hash<String, Object>]
+      # @param entry [Bulkrax::Entry]
+      #
+      # @return [NilClass] when we won't be processing this field
+      # @return [Symbol] (either :build_value or :build_object)
+      def self.for(key:, value:, entry:)
+        return if key == 'model'
+        return if key == 'file'
+        return if key == entry.related_parents_parsed_mapping
+        return if key == entry.related_children_parsed_mapping
+        return if value['excluded'] || value[:excluded]
+        return if Bulkrax.reserved_properties.include?(key) && !entry.field_supported?(key)
 
-        object_key = key if value.key?('object')
-        next unless hyrax_record.respond_to?(key.to_s) || object_key.present?
+        object_key = key if value.key?('object') || value.key?(:object)
+        return unless entry.hyrax_record.respond_to?(key.to_s) || object_key.present?
 
-        if object_key.present?
-          build_object(value)
-        else
-          build_value(key, value)
-        end
+        models_to_skip = Array.wrap(value['skip_object_for_model_names'] || value[:skip_object_for_model_names] || [])
+
+        return :build_value if models_to_skip.detect { |model| entry.factory_class.model_name.name == model }
+        return :build_object if object_key.present?
+
+        :build_value
       end
     end
 
-    def build_object(value)
+    def build_mapping_metadata
+      mapping = fetch_field_mapping
+      mapping.each do |key, value|
+        method_name = AttributeBuilderMethod.for(key: key, value: value, entry: self)
+        next unless method_name
+
+        send(method_name, key, value)
+      end
+    end
+
+    def build_object(_key, value)
+      return unless hyrax_record.respond_to?(value['object'])
+
       data = hyrax_record.send(value['object'])
       return if data.empty?
 
@@ -175,18 +248,17 @@ module Bulkrax
       object_metadata(Array.wrap(data))
     end
 
-    def build_value(key, value)
-      data = hyrax_record.send(key.to_s)
-      if data.is_a?(ActiveTriples::Relation)
-        if value['join']
-          self.parsed_metadata[key_for_export(key)] = data.map { |d| prepare_export_data(d) }.join(' | ').to_s # TODO: make split char dynamic
-        else
-          data.each_with_index do |d, i|
-            self.parsed_metadata["#{key_for_export(key)}_#{i + 1}"] = prepare_export_data(d)
-          end
-        end
+    def build_value(property_name, mapping_config)
+      return unless hyrax_record.respond_to?(property_name.to_s)
+
+      data = hyrax_record.send(property_name.to_s)
+
+      if mapping_config['join'] || !data.is_a?(Enumerable)
+        self.parsed_metadata[key_for_export(property_name)] = prepare_export_data_with_join(data)
       else
-        self.parsed_metadata[key_for_export(key)] = prepare_export_data(data)
+        data.each_with_index do |d, i|
+          self.parsed_metadata["#{key_for_export(property_name)}_#{i + 1}"] = prepare_export_data(d)
+        end
       end
     end
 
@@ -199,6 +271,14 @@ module Bulkrax
       "#{unnumbered_key}#{key.sub(clean_key, '')}"
     end
 
+    def prepare_export_data_with_join(data)
+      # Yes...it's possible we're asking to coerce a multi-value but only have a single value.
+      return data.to_s unless data.is_a?(Enumerable)
+      return "" if data.empty?
+
+      data.map { |d| prepare_export_data(d) }.join(Bulkrax.multi_value_element_join_on).to_s
+    end
+
     def prepare_export_data(datum)
       if datum.is_a?(ActiveTriples::Resource)
         datum.to_uri.to_s
@@ -208,6 +288,14 @@ module Bulkrax
     end
 
     def object_metadata(data)
+      # NOTE: What is `d` in this case:
+      #
+      #  "[{\"single_object_first_name\"=>\"Fake\", \"single_object_last_name\"=>\"Fakerson\", \"single_object_position\"=>\"Leader, Jester, Queen\", \"single_object_language\"=>\"english\"}]"
+      #
+      # The above is a stringified version of a Ruby string.  Using eval is a very bad idea as it
+      # will execute the value of `d` within the full Ruby interpreter context.
+      #
+      # TODO: Would it be possible to store this as a non-string?  Maybe the actual Ruby Array and Hash?
       data = data.map { |d| eval(d) }.flatten # rubocop:disable Security/Eval
 
       data.each_with_index do |obj, index|
@@ -239,7 +327,7 @@ module Bulkrax
 
     def handle_join_on_export(key, values, join)
       if join
-        parsed_metadata[key] = values.join(' | ') # TODO: make split char dynamic
+        parsed_metadata[key] = values.join(Bulkrax.multi_value_element_join_on)
       else
         values.each_with_index do |value, i|
           parsed_metadata["#{key}_#{i + 1}"] = value
@@ -263,7 +351,7 @@ module Bulkrax
       return [] unless parent_field_mapping.present? && record[parent_field_mapping].present?
 
       identifiers = []
-      split_references = record[parent_field_mapping].split(/\s*[;|]\s*/)
+      split_references = record[parent_field_mapping].split(Bulkrax.multi_value_element_split_on)
       split_references.each do |c_reference|
         matching_collection_entries = importerexporter.entries.select do |e|
           (e.raw_metadata&.[](source_identifier) == c_reference) &&
@@ -310,4 +398,3 @@ module Bulkrax
     end
   end
 end
-

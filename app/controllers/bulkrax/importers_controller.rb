@@ -10,7 +10,7 @@ require_dependency 'oai'
 module Bulkrax
   # rubocop:disable Metrics/ClassLength
   class ImportersController < ApplicationController
-    include Hyrax::ThemedLayoutController
+    include Hyrax::ThemedLayoutController if defined?(::Hyrax)
     include Bulkrax::DownloadBehavior
     include Bulkrax::API
     include Bulkrax::ValidationHelper
@@ -18,16 +18,17 @@ module Bulkrax
     protect_from_forgery unless: -> { api_request? }
     before_action :token_authenticate!, if: -> { api_request? }, only: [:create, :update, :delete]
     before_action :authenticate_user!, unless: -> { api_request? }
-    before_action :validate_users
+    before_action :check_permissions
     before_action :set_importer, only: [:show, :edit, :update, :destroy]
-    with_themed_layout 'dashboard'
+    with_themed_layout 'dashboard' if defined?(::Hyrax)
 
     # GET /importers
     def index
-      @importers = current_user.admin? ? Importer.all : Importer.where(user_id: current_user[:id])
+      # NOTE: We're paginating this in the browser.
+      @importers = current_user.admin? ? Importer.order(created_at: :desc).all : Importer.order(created_at: :desc).where(user_id: current_user[:id])
       if api_request?
         json_response('index')
-      else
+      elsif defined?(::Hyrax)
         add_importer_breadcrumbs
       end
     end
@@ -36,15 +37,14 @@ module Bulkrax
     def show
       if api_request?
         json_response('show')
-      else
+      elsif defined?(::Hyrax)
         render 'hyrax/base/unauthorized' unless current_user.admin? || current_user.library_reviewers? || @importer.user_id == current_user[:id]
-          add_importer_breadcrumbs
-          add_breadcrumb @importer.name
-
-          @work_entries = @importer.entries.where(type: @importer.parser.entry_class.to_s).order('id').page(params[:work_entries_page]).per(30)
-          @collection_entries = @importer.entries.where(type: @importer.parser.collection_entry_class.to_s).page(params[:collections_entries_page]).per(30)
-          @file_set_entries = @importer.entries.where(type: @importer.parser.file_set_entry_class.to_s).page(params[:file_set_entries_page]).per(30)
+        add_importer_breadcrumbs
+        add_breadcrumb @importer.name
       end
+      @work_entries = @importer.entries.where(type: @importer.parser.entry_class.to_s).order('id').page(params[:work_entries_page]).per(30)
+      @collection_entries = @importer.entries.where(type: @importer.parser.collection_entry_class.to_s).page(params[:collections_entries_page]).per(30)
+      @file_set_entries = @importer.entries.where(type: @importer.parser.file_set_entry_class.to_s).page(params[:file_set_entries_page]).per(30)
     end
 
     # GET /importers/new
@@ -53,7 +53,7 @@ module Bulkrax
       @bulk_imports_admin_set = AdminSet.where(title: "Bulk Imports").first.id
       if api_request?
         json_response('new')
-      else
+      elsif defined?(::Hyrax)
         add_importer_breadcrumbs
         add_breadcrumb 'New'
       end
@@ -63,7 +63,7 @@ module Bulkrax
     def edit
       if api_request?
         json_response('edit')
-      else
+      elsif defined?(::Hyrax)
         add_importer_breadcrumbs
         add_breadcrumb @importer.name, bulkrax.importer_path(@importer.id)
         add_breadcrumb 'Edit'
@@ -83,6 +83,9 @@ module Bulkrax
       @importer = Importer.new(importer_params)
       field_mapping_params
       @importer.validate_only = true if params[:commit] == 'Create and Validate'
+      # the following line is needed to handle updating remote files of a FileSet
+      # on a new import otherwise it only gets updated during the update path
+      @importer.parser_fields['update_files'] = true if params[:commit] == 'Create and Import'
       if @importer.save
         files_for_import(file, cloud_files)
         if params[:commit] == 'Create and Import'
@@ -162,6 +165,7 @@ module Bulkrax
     # GET /importer/1/upload_corrected_entries
     def upload_corrected_entries
       @importer = Importer.find(params[:importer_id])
+      return unless defined?(::Hyrax)
       add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
       add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
       add_breadcrumb 'Importers', bulkrax.importers_path
@@ -197,7 +201,6 @@ module Bulkrax
       @importer.write_errored_entries_file
       send_content
     end
-
 
     private
 
@@ -284,7 +287,7 @@ module Bulkrax
     def setup_client(url)
       return false if url.nil?
       headers = { from: Bulkrax.server_name }
-      @client ||= OAI::Client.new(url, headers: headers, parser: 'libxml', metadata_prefix: 'oai_dc')
+      @client ||= OAI::Client.new(url, headers: headers, parser: 'libxml')
     end
 
     # Download methods
@@ -301,8 +304,8 @@ module Bulkrax
       if api_request?
         json_response('create', :created, message)
       else
-        # path = validate_only ? importer_path(@importer) : importers_path
-        redirect_to importer_path(@importer), notice: message
+        path = importer_path(@importer)
+        redirect_to path, notice: message
       end
     end
 
@@ -325,8 +328,8 @@ module Bulkrax
       @importer.save
     end
 
-    def validate_users
-      render 'hyrax/base/unauthorized' unless current_user && current_user.bulk_importers? || current_user.admin?
+    def check_permissions
+      raise CanCan::AccessDenied unless current_ability.can_import_works?
     end
 
     def duration_to_submission
