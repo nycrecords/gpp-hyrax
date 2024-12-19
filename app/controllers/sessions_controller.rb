@@ -13,7 +13,6 @@ class SessionsController < Devise::SessionsController
       user.update_attributes(unique_session_id: nil) unless duplicate
       session['saml_uid'] = saml_uid
       session['saml_session_index'] = saml_session_index
-      response.headers['Clear-Site-Data'] = '"*"'
     end
   end
 
