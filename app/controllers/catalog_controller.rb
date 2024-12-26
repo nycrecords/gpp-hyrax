@@ -89,15 +89,28 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
+    #   Include all fields available to allow searching across all attributes
     config.add_show_field solr_name("title", :stored_searchable)
-    config.add_show_field solr_name("description", :stored_searchable)
-    config.add_show_field solr_name("keyword", :stored_searchable)
+    config.add_show_field solr_name("sub_title", :stored_searchable)
+    config.add_show_field solr_name("agency", :stored_searchable)
+    config.add_show_field solr_name("required_report_name", :stored_searchable)
+    config.add_show_field solr_name("additional_creators", :stored_searchable)
     config.add_show_field solr_name("subject", :stored_searchable)
+    config.add_show_field solr_name("description", :stored_searchable)
+    config.add_show_field solr_name("date_published", :stored_searchable)
+    config.add_show_field solr_name("language", :stored_searchable)
+    config.add_show_field solr_name("fiscal_year", :stored_searchable)
+    config.add_show_field solr_name("calendar_year", :stored_searchable)
+    config.add_show_field solr_name("borough", :stored_searchable)
+    config.add_show_field solr_name("school_district", :stored_searchable)
+    config.add_show_field solr_name("community_board_district", :stored_searchable)
+    config.add_show_field solr_name("associated_place", :stored_searchable)
+    config.add_show_field solr_name("report_type", :stored_searchable)
+    config.add_show_field solr_name("keyword", :stored_searchable)
     config.add_show_field solr_name("creator", :stored_searchable)
     config.add_show_field solr_name("contributor", :stored_searchable)
     config.add_show_field solr_name("publisher", :stored_searchable)
     config.add_show_field solr_name("based_near_label", :stored_searchable)
-    config.add_show_field solr_name("language", :stored_searchable)
     config.add_show_field solr_name("date_uploaded", :stored_searchable)
     config.add_show_field solr_name("date_modified", :stored_searchable)
     config.add_show_field solr_name("date_created", :stored_searchable)
@@ -128,7 +141,7 @@ class CatalogController < ApplicationController
       all_names = config.show_fields.values.map(&:field).join(" ")
       title_name = solr_name("title", :stored_searchable)
       field.solr_parameters = {
-          qf: "#{all_names} file_format_tesim all_text_timv title_tesim sub_title_tesim agency_tesim additional_creators_tesim subject_tesim description_tesim date_published_tesim report_type_tesim language_tesim fiscal_year_tesim calendar_year_tesim borough_tesim school_district_tesim community_board_district_tesim associated_place_tesim required_report_name_tesim",
+          qf: "#{all_names} file_format_tesim all_text_timv",
           pf: title_name.to_s
       }
     end
