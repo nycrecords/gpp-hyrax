@@ -65,7 +65,11 @@ class ReportRequestWorker
           attributes: approve_attributes
         )
         workflow_action_form.save
-
+        work.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+        work.save!
+        VisibilityCopyJob.perform_later(work)
+        InheritPermissionsJob.perform_later(work)
+        
         # Send email notice of late report
         ReportRequestMailer.email(agency, pdf).deliver
 
