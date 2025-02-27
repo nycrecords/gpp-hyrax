@@ -1,1 +1,12 @@
 # See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+
+# Exclude all robots from entire server
+User-agent: *
+Disallow: /
+
+# Exclude all robots from part of the server
+# User-agent: *
+# Crawl-delay: 8
+# Disallow: /catalog
+# Disallow: /files/*/stats
+# Disallow: /works/*/stats
