@@ -1,16 +1,25 @@
+# frozen_string_literal: true
 Rails.application.routes.draw do
-
   mount Bulkrax::Engine, at: '/'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
-  mount Blacklight::Engine => '/'
-  mount BlacklightAdvancedSearch::Engine => '/'
 
-    concern :searchable, Blacklight::Routes::Searchable.new
+  match '/404', to: 'errors#not_found', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
+
+  # [gpp-override] Remove blacklight routes, e.g. suggest, saved_searches, search_history
+  match 'search_history', to: 'errors#not_found', via: :all
+  match 'saved_searches', to: 'errors#not_found', via: :all
+  get 'suggest', to: 'errors#not_found'
+
+  mount Blacklight::Engine => '/'
+  mount BlacklightAdvancedSearch::Engine => '/'
+
+  concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
@@ -60,5 +69,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # Catch all route for any routes that don't exist. Always have this as the last route
+  match '*path', to: 'errors#not_found', via: :all, format: false, defaults: { format: 'html' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

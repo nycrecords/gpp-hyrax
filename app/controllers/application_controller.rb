@@ -15,6 +15,14 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception, except: [:saml]
 
+  def render_400
+    render 'errors/not_found', status: 400, formats: :html
+  end
+
+  def render_404
+    render 'errors/not_found', status: 404, formats: :html, layout: 'layouts/hyrax/1_column'
+  end
+
   # Redirect user to sign_out if user is has another session
   def check_concurrent_session
     return unless is_already_logged_in?
