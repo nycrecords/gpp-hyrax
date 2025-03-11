@@ -54,6 +54,18 @@ class ApplicationController < ActionController::Base
     return main_app.active_path
   end
 
+  # Error caught in catalogController
+  def render_rsolr_exceptions(exception)
+    exception_text = exception.to_s
+
+    if exception_text.include?('java.lang.NumberFormatException') ||
+      exception_text.include?("Can't determine a Sort Order")
+      render_400
+    else
+      render_404
+    end
+  end
+
   private
 
   def set_cache_headers
