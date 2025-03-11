@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   match '/404', to: 'errors#not_found', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
-  require 'sidekiq/web'
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :user, ->(u) { u.admin? } do
+    require 'sidekiq/web'
+    require 'sidekiq-status/web'
     mount Sidekiq::Web => '/sidekiq'
   end
 
