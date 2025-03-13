@@ -15,6 +15,14 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception, except: [:saml]
 
+  def render_400
+    render 'errors/not_found', status: 400, formats: :html
+  end
+
+  def render_404
+    render 'errors/not_found', status: 404, formats: :html, layout: 'layouts/hyrax/1_column'
+  end
+
   # Redirect user to sign_out if user is has another session
   def check_concurrent_session
     return unless is_already_logged_in?
@@ -44,6 +52,18 @@ class ApplicationController < ActionController::Base
   def active_url
     # Used by session timeout to retain session for importers route
     return main_app.active_path
+  end
+
+  # Error caught in catalogController
+  def render_rsolr_exceptions(exception)
+    exception_text = exception.to_s
+
+    if exception_text.include?('java.lang.NumberFormatException') ||
+      exception_text.include?("Can't determine a Sort Order")
+      render_400
+    else
+      render_404
+    end
   end
 
   private

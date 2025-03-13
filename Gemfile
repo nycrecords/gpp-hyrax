@@ -56,6 +56,7 @@ gem 'sidekiq', '~> 6.0'
 gem 'sidekiq-client-cli'
 gem 'whenever', '~> 1.0'
 gem 'sidekiq-failures', '~> 1.0', '>= 1.0.4'
+gem 'sidekiq-status', '~> 3.0.3'
 # Use Rails-LaTeX to generate PDFs
 gem 'rails-latex','~> 2.3', '>= 2.3.4'
 gem 'hyrax', '2.9.6'

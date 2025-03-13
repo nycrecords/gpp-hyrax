@@ -26,6 +26,8 @@ class CatalogController < ApplicationController
     solr_name('date_published', :stored_sortable)
   end
 
+  rescue_from Blacklight::Exceptions::InvalidRequest, with: :render_rsolr_exceptions
+
   configure_blacklight do |config|
     # default advanced config values
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new

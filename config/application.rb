@@ -39,6 +39,9 @@ module GppHyrax
     config.i18n.default_locale = :en
     config.i18n.available_locales = [:en]
 
+    # Add custom error pages
+    config.exceptions_app = self.routes
+
     config.active_job.queue_adapter = :sidekiq
   end
 end
