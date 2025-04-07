@@ -15,6 +15,13 @@ class NycGovernmentPublicationIndexer < Hyrax::WorkIndexer
      solr_doc['title_ssi'] = object.title
      solr_doc['agency_ssi'] = object.agency
      solr_doc['date_published_ssi'] = object.date_published
+     solr_doc['all_text_timv'] = extract_text_from_filesets
    end
+  end
+
+  def extract_text_from_filesets
+    object.file_sets.map do |file_set|
+      file_set.extracted_text&.content
+    end.compact.join(" ")
   end
 end
