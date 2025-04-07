@@ -1,5 +1,6 @@
 class ReportRequestWorker
   include Sidekiq::Worker
+  include Sidekiq::Status::Worker
 
   def perform(*args)
     calendar = Rails.configuration.calendar
