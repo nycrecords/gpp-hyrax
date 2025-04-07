@@ -51,9 +51,15 @@ class CatalogController < ApplicationController
 
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
-        qt: "search",
-        rows: 10,
-        qf: "title_tesim description_tesim creator_tesim keyword_tesim"
+      qt: "search",
+      rows: 10,
+      qf: "title_tesim description_tesim creator_tesim keyword_tesim all_text_timv",
+      hl: true,
+      "hl.fl": "all_text_timv",
+      "hl.simple.pre": '<mark><em>',
+      "hl.simple.post": '</em></mark>',
+      "hl.snippets": 3,
+      "hl.fragsize": 150,
     }
 
     # solr field configuration for document/show views
@@ -88,6 +94,8 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("agency", :stored_searchable), label: "Agency", link_to_search: solr_name("agency", :facetable)
     config.add_index_field solr_name("subject", :stored_searchable), label: "Subject(s)", itemprop: 'about', link_to_search: solr_name("subject", :facetable)
     config.add_index_field solr_name("report_type", :stored_searchable), label: "Report Type", link_to_search: solr_name("report_type", :facetable)
+
+    config.add_index_field 'all_text_timv', label: 'File Text', highlight: true, if: ->(context, _field, document) { context.view_context.show_file_search_text?(document) }
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
