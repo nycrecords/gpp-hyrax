@@ -10,17 +10,15 @@ class Hyrax::CatalogSearchBuilder < Hyrax::SearchBuilder
   ]
 
   def show_works_that_contain_files(solr_parameters)
-    if blacklight_params[:search_field] == 'advanced' && blacklight_params[:all_fields].present?
-      return if solr_parameters[:q].blank?
+    return unless blacklight_params[:search_field] == 'advanced'
 
-      advanced_all_fields_query = advanced_all_fields_query(blacklight_params[:all_fields])
-      solr_parameters[:q] += advanced_all_fields_query
-      return
-    end
+    # Don't overwrite if add_advanced_search_to_solr already handled
+    return if solr_parameters[:q].present?
 
-    # Handle regular search
-    return if blacklight_params[:q].blank? || blacklight_params[:search_field] != 'all_fields'
-    solr_parameters[:user_query] = blacklight_params[:q]
+    user_query = blacklight_params[:q] || blacklight_params[:all_fields]
+    return if user_query.blank?
+
+    solr_parameters[:user_query] = user_query
     solr_parameters[:q] = new_query
     solr_parameters[:defType] = 'lucene'
   end
@@ -48,6 +46,6 @@ class Hyrax::CatalogSearchBuilder < Hyrax::SearchBuilder
   end
 
   def advanced_all_fields_query(all_fields_value)
-    " _query_:\"{!join from=#{ActiveFedora.id_field} to=file_set_ids_ssim}""{!dismax qf=all_text_timv}#{all_fields_value}\""
+    " _query_:\"{!join from=#{ActiveFedora.id_field} to=file_set_ids_ssim}{!dismax qf=all_text_timv}#{all_fields_value}\""
   end
 end
