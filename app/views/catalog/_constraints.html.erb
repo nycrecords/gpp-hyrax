@@ -1,9 +1,16 @@
 <% if query_has_constraints? %>
 
   <div id="appliedParams" class="clearfix constraints-container">
-    <div class="pull-right">
-      <%=link_to t('blacklight.search.start_over'), start_over_path, :class => "catalog_startOverLink btn btn-sm btn-text underline-link", :id=>"startOverLink" %>
-    </div>
+      <div class="pull-right">
+          <% advanced_search = params[:search_field] == 'advanced' %>
+          <% redirect_path = advanced_search ? blacklight_advanced_search_engine.advanced_search_path : start_over_path %>
+
+          <% if advanced_search %>
+              <%= link_to "Modify Search", blacklight_advanced_search_engine.advanced_search_path(search_state&.to_h || {}), class: "btn btn-default me-2" %>
+          <% end %>
+
+          <%= link_to t('blacklight.search.start_over'), redirect_path, class: "catalog_startOverLink btn btn-default advanced-search-start-over ", id: "startOverLink" %>
+      </div>
     <span class="constraints-label"><%= t('blacklight.search.filters.title') %></span>
     <%= render_constraints(params) %>
   </div>
