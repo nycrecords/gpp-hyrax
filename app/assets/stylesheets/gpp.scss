@@ -384,3 +384,8 @@ body {
   min-height: initial !important;
   top: auto !important;
 }
+
+// Override and increase application font size
+body {
+  font-size: 16px !important;
+}
