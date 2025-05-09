@@ -60,6 +60,10 @@ en:
     institution_name_full: The Institution Name
     product_name: Government Publications Portal
     product_twitter_handle: "@SamveraRepo"
+    search:
+      form:
+        q:
+          placeholder: 'Enter search terms or use quotation marks to search as a phrase'
   mailboxer:
     message_mailer:
       subject_new: "%{subject}"
