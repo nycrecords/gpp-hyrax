@@ -184,6 +184,11 @@ module Hyrax
       end
     end
 
+    def show_file_search_text?(document)
+      highlights = document.response.dig(:highlighting, document.id)
+      highlights.present? && highlights.values.any?(&:present?)
+    end
+
     # *Sometimes* a Blacklight index field helper_method
     # @param [String,User,Hash{Symbol=>Array}] args if a hash, the user_key must be under :value
     # @return [ActiveSupport::SafeBuffer] the html_safe link

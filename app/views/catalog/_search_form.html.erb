@@ -1,11 +1,10 @@
 <%= form_tag search_form_action, method: :get, class: "form-horizontal search-form", id: "search-form-header", role: "search" do %>
   <%= render_hash_as_hidden_fields(search_state.params_for_search.except(:q, :search_field, :qt, :page, :utf8)) %>
   <%= hidden_field_tag :search_field, 'all_fields' %>
-  <%= hidden_field_tag :search_field, 'member_of_collection_ids' %>
   <div class="form-group">
 
     <label class="control-label col-sm-3" for="search-field-header">
-      Search
+      Search Full Text
     </label>
 
     <div class="input-group" aria-label="Search Bar">
@@ -22,7 +21,7 @@
         </button>
         <button class="btn btn-default" type="button" aria-label="Advanced Search Options">
           <%= link_to 'More options',
-                      blacklight_advanced_search_engine.advanced_search_path(search_state.to_h),
+                      blacklight_advanced_search_engine.advanced_search_path,
                       class: 'advanced_search underline-link' %>
         </button>
       </div><!-- /.input-group-btn -->

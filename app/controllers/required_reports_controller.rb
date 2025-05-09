@@ -137,11 +137,6 @@ class RequiredReportsController < ApplicationController
 
     # Fetch agencies for the dropdown
     @agencies = Agency.all.order(name: :asc)
-    @search_url = [
-        root_url(locale: nil) + 'catalog?utf8=%E2%9C%93&locale=en&agency=',
-        '&required_report_name=',
-        '&sort=date_published_ssi+desc&search_field=advanced'
-    ]
   end
 
   def toggle_visibility
