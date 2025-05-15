@@ -280,7 +280,7 @@ class CatalogController < ApplicationController
       }
     end
 
-    config.add_search_field('required_report_name') do |field|
+    config.add_search_field('required_report_name', label: 'Mandated Report Name') do |field|
       solr_name = solr_name("required_report_name", :stored_searchable)
       field.solr_local_parameters = {
           qf: solr_name,

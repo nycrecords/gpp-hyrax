@@ -6,11 +6,11 @@
           <%= link_to t(:'hyrax.controls.home'), hyrax.root_path, aria: current_page?(hyrax.root_path) ? {current: 'page'} : nil, class: 'gpp-nav-link', data: {turbolinks: false} %></li>
         <li <%= 'class=active' if current_page?(hyrax.contact_path) %>>
           <%= link_to t(:'hyrax.controls.contact'), hyrax.contact_path, aria: current_page?(hyrax.contact_path) ? {current: 'page'} : nil, class: 'gpp-nav-link' %></li>
-        <li <%= 'class=active' if current_page?(main_app.public_list_required_reports_path) %>>
-          <%= link_to t(:'hyrax.controls.public_list_required_reports'), main_app.public_list_required_reports_path, aria: current_page?(main_app.public_list_required_reports_path) ? {current: 'page'} : nil, class: 'gpp-nav-link' %></li>
+        <li <%= 'class=active' if current_page?(main_app.public_list_mandated_reports_path) %>>
+          <%= link_to t(:'hyrax.controls.public_list_mandated_reports'), main_app.public_list_mandated_reports_path, aria: current_page?(main_app.public_list_mandated_reports_path) ? {current: 'page'} : nil, class: 'gpp-nav-link' %></li>
         <% if current_user and (current_user.admin? or current_user.library_reviewers?) %>
-          <li <%= 'class=active' if current_page?(main_app.required_reports_path) %>>
-            <%= link_to t(:'hyrax.controls.manage_required_reports'), main_app.required_reports_path, aria: current_page?(main_app.required_reports_path) ? {current: 'page'} : nil, class: 'gpp-nav-link' %></li>
+          <li <%= 'class=active' if current_page?(main_app.mandated_reports_path) %>>
+            <%= link_to t(:'hyrax.controls.manage_mandated_reports'), main_app.mandated_reports_path, aria: current_page?(main_app.mandated_reports_path) ? {current: 'page'} : nil, class: 'gpp-nav-link' %></li>
         <% end %>
       </ul><!-- /.nav -->
       <div class="searchbar-right navbar-right col-sm-7">

@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :required_reports do
+  resources :mandated_reports, controller: 'required_reports' do
     collection do
       get 'agency_required_reports'
       get 'public_list'

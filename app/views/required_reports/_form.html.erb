@@ -1,9 +1,9 @@
 <%= javascript_include_tag 'required_reports' %>
 
-<%= simple_form_for @required_report do |f| %>
+<%= simple_form_for @required_report, url: mandated_reports_path do |f| %>
   <% if required_report.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(required_report.errors.count, "error") %> prohibited this required_report from being saved:</h2>
+      <h2><%= pluralize(required_report.errors.count, "error") %> prohibited this mandated_report from being saved:</h2>
 
       <ul>
         <% required_report.errors.full_messages.each do |message| %>

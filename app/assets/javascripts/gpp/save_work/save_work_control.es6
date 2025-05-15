@@ -103,7 +103,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
 
     getAgencyRequiredReports(requiredReportField, selectedAgency, selectedRequiredReport) {
         $.ajax({
-            url: '/required_reports/agency_required_reports',
+            url: '/mandated_reports/agency_required_reports',
             type: 'GET',
             data: {'agency': selectedAgency},
             dataType: 'JSON',

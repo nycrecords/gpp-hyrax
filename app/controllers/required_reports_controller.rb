@@ -58,8 +58,10 @@ class RequiredReportsController < ApplicationController
 
     respond_to do |format|
       if @required_report.save
-        format.html { redirect_to @required_report, notice: 'Required report was successfully created.' }
-        format.json { render :show, status: :created, location: @required_report }
+        path = mandated_report_path(@required_report)
+
+        format.html { redirect_to path, notice: 'Mandated Report was successfully created.' }
+        format.json { render :show, status: :created, location: path }
       else
         format.html { render :new }
         format.json { render json: @required_report.errors, status: :unprocessable_entity }
