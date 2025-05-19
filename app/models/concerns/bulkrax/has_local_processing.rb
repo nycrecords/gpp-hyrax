@@ -13,7 +13,7 @@ module Bulkrax::HasLocalProcessing
     end
 
     def add_default_values
-      self.parsed_metadata['required_report_name'] = "Not Required"
+      self.parsed_metadata['required_report_name'] = "Other Publication"
     end
 
     def field_validation

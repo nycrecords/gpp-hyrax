@@ -40,16 +40,3 @@
     </div>
   </div>
 </div>
-<% if @required_report_base_due_date.present? %>
-    <script>
-        $(document).ready(function () {
-            let baseDueDate = "<%= @required_report_base_due_date %>";
-
-            // Find required_report_name element and append the base due date
-            $('.attribute-required_report_name').each(function() {
-                let originalText = $(this).text();
-                $(this).html(originalText + ' (Due Date: ' + baseDueDate + ')');
-            });
-        });
-    </script>
-<% end %>

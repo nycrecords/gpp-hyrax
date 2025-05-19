@@ -8,6 +8,6 @@ module RequiredReportNameService
       [report.required_report.name + ' (' + report.base_due_date.to_s + ')', report.required_report.name]
     end
 
-    required_reports << ['Not Required', 'Not Required']
+    required_reports << ['Other Publication', 'Other Publication']
   end
 end
