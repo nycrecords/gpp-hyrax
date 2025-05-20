@@ -6,9 +6,9 @@
 <body>
 <ul>
   <% @failed_reports.each do |key, value| %>
-    <li>Required Report Due Date ID:
+    <li>Mandated Report Due Date ID:
       <%= key %><br>
-      Required Report Name:
+      Mandated Report Name:
       <%= value[:name] %><br>
       Error: <%= value[:error] %></li>
   <% end %>
