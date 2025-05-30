@@ -103,7 +103,7 @@ export default class GppSaveWorkControl extends SaveWorkControl {
 
     getAgencyRequiredReports(requiredReportField, selectedAgency, selectedRequiredReport) {
         $.ajax({
-            url: '/required_reports/agency_required_reports',
+            url: '/mandated_reports/agency_required_reports',
             type: 'GET',
             data: {'agency': selectedAgency},
             dataType: 'JSON',
@@ -121,8 +121,8 @@ export default class GppSaveWorkControl extends SaveWorkControl {
                         option.setAttribute('report_due_date_id', report['report_due_date_id']);
                         requiredReportField.append(option);
                     });
-                    // Add Not Required option
-                    requiredReportField.append(new Option('Not Required', 'Not Required'));
+                    // Add Other Publication option
+                    requiredReportField.append(new Option('Other Publication', 'Other Publication'));
                     requiredReportField.prop('disabled', false);
                     if (selectedRequiredReport !== null) {
                         requiredReportField.val(selectedRequiredReport);

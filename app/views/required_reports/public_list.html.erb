@@ -1,8 +1,8 @@
 <%= javascript_include_tag 'required_reports_filters.js' %>
-<% provide :page_title, construct_page_title('Required Reports') %>
+<% provide :page_title, construct_page_title('Mandated Reports') %>
 
-<h1>Required Reports</h1>
-<p>The links provided in this list of Required Report will lead to publications uploaded after mid-June, 2020. There are
+<h1>Mandated Reports</h1>
+<p>The links provided in this list of Mandated Reports will lead to publications uploaded after mid-June, 2020. There are
   other agency publications available on the portal which you can access by using the search bar.</p>
 
 <div id="required-report-filters" class="col-sm-12">
@@ -24,10 +24,10 @@
       <% end %> per page <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu">
-      <li role="menuitem"><a href="/required_reports/public_list?locale=en&amp;per_page=10&amp;agency=<%= params[:agency] %>">10<span class="sr-only"> per page</span></a></li>
-      <li role="menuitem"><a href="/required_reports/public_list?locale=en&amp;per_page=20&amp;agency=<%= params[:agency] %>">20<span class="sr-only"> per page</span></a></li>
-      <li role="menuitem"><a href="/required_reports/public_list?locale=en&amp;per_page=50&amp;agency=<%= params[:agency] %>">50<span class="sr-only"> per page</span></a></li>
-      <li role="menuitem"><a href="/required_reports/public_list?locale=en&amp;per_page=100&amp;agency=<%= params[:agency] %>">100<span class="sr-only"> per page</span></a></li>
+      <li role="menuitem"><a href="/mandated_reports/public_list?locale=en&amp;per_page=10&amp;agency=<%= params[:agency] %>">10<span class="sr-only"> per page</span></a></li>
+      <li role="menuitem"><a href="/mandated_reports/public_list?locale=en&amp;per_page=20&amp;agency=<%= params[:agency] %>">20<span class="sr-only"> per page</span></a></li>
+      <li role="menuitem"><a href="/mandated_reports/public_list?locale=en&amp;per_page=50&amp;agency=<%= params[:agency] %>">50<span class="sr-only"> per page</span></a></li>
+      <li role="menuitem"><a href="/mandated_reports/public_list?locale=en&amp;per_page=100&amp;agency=<%= params[:agency] %>">100<span class="sr-only"> per page</span></a></li>
     </ul>
   </div>
 </div>

@@ -10,7 +10,7 @@ class AllPublicationsWorker
     header = ["Title",
               "Sub-Title",
               "Agency",
-              "Required Report Name",
+              "Mandated Report Name",
               "Additional Creators",
               "Subject",
               "Description",

@@ -49,8 +49,8 @@ en:
     account_name: My Institution Account Id
     controls:
       contact: Contact Us
-      manage_required_reports: Manage Required Reports
-      public_list_required_reports: Required Reports
+      manage_mandated_reports: Manage Mandated Reports
+      public_list_mandated_reports: Mandated Reports
     directory:
       suffix: "@example.org"
     footer:
@@ -104,7 +104,7 @@ en:
       nyc_government_publication:
         title: On the front page, the first page or in the Executive Summary (if any) of the document, what is it called? 10-150 characters.
         agency: What agency is the primary creator of this document?
-        required_report_name: Please select an Agency before selecting Required Report Name. If your required report is not on this list, please contact <a href="mailto:municipal-library-admins@records.nyc.gov">municipal-library-admins@records.nyc.gov</a>.
+        required_report_name: Please select an Agency before selecting Mandated Report Name. The drop-down list contains the names of reports that are on your agency’s annual list of mandated reports. If the publication you are submitting is not on the list, you can select <b>Other Publication</b>. (If you believe it should be on the list of mandated reports, please contact <a href="mailto:municipal-library-admins@records.nyc.gov">municipal-library-admins@records.nyc.gov</a>.) <b>Please note that you are required to submit ALL publications issued by your agency, not just those that are specifically mandated.</b>
         additional_creators: What other agencies, consultants, or authors, if any, contributed to the creation of this document?
         subject: Select what subjects you feel are the most relevant subjects covered in this report. To select multiple subjects, hold down CTRL while clicking an option. Pick up to three.
         description: A brief (100-300 characters) explanation of the contents of this document.
@@ -117,7 +117,7 @@ en:
         school_district: The school district(s) associated with this publication. To select multiple school districts, hold down CTRL while clicking an option. Required if applicable.
         community_board_district: The community board district(s) associated with this publication. To select multiple community board districts, hold down CTRL while clicking an option. Required if applicable.
         associated_place: The place associated with this publication. Required if applicable.
-      required_report:
+      mandated_report:
         title: ''
         description: ''
       defaults:
@@ -147,4 +147,4 @@ en:
         school_district: Associated School District(s)
         community_board_district: Associated Community Board District(s)
         associated_place: Associated Place (Other)
-        required_report_name: Required Report Name
+        required_report_name: Mandated Report Name

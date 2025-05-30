@@ -53,7 +53,7 @@ module Hyrax
     # Update required_report and required_report_due_date values given a work and workflow action
     def update_required_report(work, workflow_action_name)
       required_report_name = work.required_report_name
-      return if required_report_name == 'Not Required'
+      return if ['Not Required', 'Other Publication'].include?(required_report_name)
 
       date_published = Date.parse(work.date_published)
       # Find all required reports for the specified agency and name

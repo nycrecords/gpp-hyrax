@@ -16,7 +16,7 @@ task :report_request_to_csv, [:date] => :environment do |t, args|
 
   header = ["Title",
             "Agency",
-            "Required Report Name",
+            "Mandated Report Name",
             "Description",
             "Report Due Date",
             "Report Type",
@@ -50,7 +50,7 @@ task :report_request_to_csv, [:date] => :environment do |t, args|
                  agency.name,
                  required_report.name,
                  required_report.description,
-                 required_report_due_date.grace_due_date,
+                 required_report_due_date.base_due_date,
                  "Delinquent Report Notice",
                  "Compliance",
                  date.to_s,
