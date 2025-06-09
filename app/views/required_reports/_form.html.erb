@@ -77,6 +77,21 @@
               input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD' }
   %>
 
+  <%= f.input :required_distribution,
+              as: :string,
+              input_html: { class: 'form-control'}
+  %>
+
+  <%= f.input :report_deadline,
+              as: :string,
+              input_html: { class: 'form-control'}
+  %>
+
+  <%= f.input :additional_notes,
+              as: :text,
+              input_html: { class: 'form-control', rows: 3, maxlength: 500 }
+  %>
+
   <div class="actions">
     <%= f.button :submit,
                  class: 'btn btn-primary'
