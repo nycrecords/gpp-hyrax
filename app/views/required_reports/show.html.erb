@@ -1,3 +1,5 @@
+<% provide :page_title, construct_page_title('Show Mandated Reports') %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -60,5 +62,20 @@
   <%= @required_report.last_published_date %>
 </p>
 
-<!--<%#= link_to 'Edit', edit_required_report_path(@required_report) %> |-->
+<p>
+  <strong>Required Distribution:</strong>
+  <%= @required_report.required_distribution %>
+</p>
+
+<p>
+  <strong>Report Deadline:</strong>
+  <%= @required_report.report_deadline %>
+</p>
+
+<p>
+  <strong>Additional Notes:</strong>
+  <%= @required_report.additional_notes %>
+</p>
+
+<!--<%#= link_to 'Edit', edit_mandated_report_path(@required_report) %> |-->
 <%= link_to 'Back', mandated_reports_path %>

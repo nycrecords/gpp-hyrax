@@ -50,12 +50,15 @@
       <th class="col-md-1">Last Published Date</th>
       <th class="col-md-1">See All Reports</th>
       <% if @is_admin %>
-         <th class="col-md-1" style="white-space: nowrap;">
-             Show <i class="glyphicon glyphicon-info-sign"
-                          data-toggle="show-hide-tooltip"
-                          data-placement="bottom"
-                          title="Toggle visibility of reports on the public list."></i>
-         </th>
+        <th class="col-md-1">Required Distribution</th>
+        <th class="col-md-1">Report Deadline</th>
+        <th class="col-md-1">Additional Notes</th>
+        <th class="col-md-1" style="white-space: nowrap;">
+          Show <i class="glyphicon glyphicon-info-sign"
+                  data-toggle="show-hide-tooltip"
+                  data-placement="bottom"
+                  title="Toggle visibility of reports on the public list."></i>
+        </th>
       <% end %>
     </tr>
     </thead>
@@ -87,13 +90,16 @@
                         label: format('Search all, %s for %s', required_report.name, required_report.agency_name)
                       } %></td>
         <% if @is_admin %>
-              <td>
-                  <input type="checkbox"
-                         name="admin_checkbox"
-                         class="visibility-checkbox"
-                         data-report-id="<%= required_report.id %>"
-                         <%= required_report.is_visible ? 'checked' : '' %> />
-              </td>
+          <td><%= required_report.required_distribution %></td>
+          <td><%= required_report.report_deadline %></td>
+          <td><%= required_report.additional_notes %></td>
+          <td>
+            <input type="checkbox"
+                   name="admin_checkbox"
+                   class="visibility-checkbox"
+                   data-report-id="<%= required_report.id %>"
+                   <%= required_report.is_visible ? 'checked' : '' %> />
+          </td>
         <% end %>
       </tr>
     <% end %>

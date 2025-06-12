@@ -1,0 +1,40 @@
+<% provide :page_header do %>
+  <h1><span class="fa fa-address-card" aria-hidden="true"></span> Manage Agency Contacts</h1>
+<% end %>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped datatable agency-contacts">
+        <thead>
+          <th scope="col" class="col-name">Name</th>
+          <th scope="col">Point of Contact Email(s)</th>
+          <th scope="col" class="no-sort"></th>
+        </thead>
+        <tbody>
+          <% if @agencies.present? %>
+            <% @agencies.each do |agency| %>
+              <tr>
+                <td><%= agency.name %></td>
+                <td><%= agency.point_of_contact_emails&.join(", ") %></td>
+                <td>
+                  <%= link_to "Edit", edit_agency_contact_path(agency), class: "btn btn-sm btn-primary ml-2" %>
+                </td>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+    $(function() {
+      $('#agency-contacts').DataTable({
+          destroy: true,
+          columnDefs: [
+              { orderable: false, targets: 'no-sort' }
+          ]
+      });
+    });
+</script>

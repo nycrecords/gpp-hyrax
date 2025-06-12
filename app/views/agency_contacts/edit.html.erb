@@ -1,0 +1,47 @@
+<div id="agency" data-agency-id="<%= @agency.id %>">
+  <%= javascript_include_tag 'agency_contacts.js' %>
+  <% provide :page_header do %>
+    <h1><span class="fa fa-pencil-square-o" aria-hidden="true"></span> <%= @agency.name %></h1>
+    <button id="delete-email-btn" class="btn btn-danger" style="display: none;">Delete Selected</button>
+    <form id="add-email-form" class="pull-right">
+      <div class="input-group">
+        <input type="email" id="new-email-input" placeholder="New point of contact email" class="form-control" required />
+        <div class="input-group-btn">
+          <button id="add-email-btn" class="btn btn-primary">Add Email</button>
+        </div>
+      </div>
+      <div id="email-error-message" class="help-block" style="display: none; "></div>
+    </form>
+  <% end %>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table table-striped datatable agency-contacts-table">
+          <thead>
+            <tr>
+              <th scope="col" class="check-all no-sort email-checkbox">
+                <%= check_box_tag "check_all", "", false, id: "check_all", style:"margin:0px;"%> <span>Select</span>
+              </th>
+              <th scope="col">Point of Contact Email</th>
+            </tr>
+          </thead>
+          <tbody id="agency-contact-rows">
+            <%= render partial: 'agency_contacts/email_rows', locals: { emails: @emails, agency: @agency } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $(function() {
+        $('.agency-contacts-table').DataTable({
+            destroy: true,
+            columnDefs: [
+                { orderable: false, targets: 'no-sort' }
+            ]
+        });
+    });
+</script>

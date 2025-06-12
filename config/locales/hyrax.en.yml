@@ -47,6 +47,9 @@ en:
           title_tesim: Title
   hyrax:
     account_name: My Institution Account Id
+    admin:
+      sidebar:
+        agency_contacts: Manage Agency Contacts
     controls:
       contact: Contact Us
       manage_mandated_reports: Manage Mandated Reports

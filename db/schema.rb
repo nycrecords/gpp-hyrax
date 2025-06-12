@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_01_141507) do
+ActiveRecord::Schema.define(version: 2025_06_05_143718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -443,6 +443,9 @@ ActiveRecord::Schema.define(version: 2024_08_01_141507) do
     t.datetime "updated_at", null: false
     t.boolean "automated_date", default: true, null: false
     t.boolean "is_visible", default: true, null: false
+    t.string "required_distribution"
+    t.string "report_deadline"
+    t.text "additional_notes"
   end
 
   create_table "roles", id: :serial, force: :cascade do |t|
