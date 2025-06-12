@@ -17,7 +17,7 @@ class AgencyContactsController < ApplicationController
   end
 
   def create
-    email = params[:new_email].to_s.strip
+    email = params[:new_email].to_s.downcase.strip
 
     if !valid_email?(email)
       return render json: { error: "Invalid email address." }, status: :unprocessable_entity
