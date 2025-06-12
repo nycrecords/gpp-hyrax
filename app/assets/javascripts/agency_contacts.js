@@ -88,7 +88,7 @@ $(document).ready(function () {
                 refreshContactsTable(response.html);
             },
             error: function (xhr) {
-                const errorMsg = xhr.responseJSON?.error || "Something went wrong.";
+                const errorMsg = (xhr.responseJSON && xhr.responseJSON.error) || "Something went wrong.";
                 emailForm.addClass("has-error");
                 emailError.addClass("has-error").text(errorMsg).show();
             }
