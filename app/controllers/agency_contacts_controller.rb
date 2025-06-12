@@ -85,7 +85,7 @@ class AgencyContactsController < ApplicationController
   def add_agency_breadcrumbs
     add_breadcrumb t(:'hyrax.controls.home'), main_app.root_path
     add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
-    add_breadcrumb 'Agency Contacts', main_app.agency_contacts_path
+    add_breadcrumb t(:'hyrax.admin.sidebar.agency_contacts'), main_app.agency_contacts_path
   end
 
   def ensure_authorized!
