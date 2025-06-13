@@ -108,15 +108,16 @@ $(document).ready(function () {
 
         $.ajax({
             url: `/agency_contacts/${agencyId}`,
-            method: "DELETE",
-            data: { indices },
+            method: "POST",
+            data: { indices, _method: "delete" },
             dataType: "json",
             success: function (response) {
                 showFlashMessage(response.message || "Email(s) deleted.");
                 refreshContactsTable(response.html);
             },
-            error: function () {
-                alert("Failed to delete email(s).");
+            error: function (xhr) {
+                const errorMsg = (xhr.responseJSON && xhr.responseJSON.error) || "Something went wrong.";
+                alert(errorMsg);
             }
         });
     }
