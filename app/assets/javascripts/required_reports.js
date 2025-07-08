@@ -19,7 +19,7 @@ $(document).ready(function () {
             min: '01/01/1600'
         });
 
-    $('#new_required_report').submit(function (e) {
+    $('.new_required_report, .edit_required_report').submit(function (e) {
         let local_law_value_length = $('#required_report_local_law').val().length,
             charter_and_code_value_length = $('#required_report_charter_and_code').val().length,
             frequency_value = $('#required_report_frequency').val(),
@@ -61,9 +61,13 @@ $(document).ready(function () {
 
     // Display an error message to the user
     function showError(message) {
-        let errorDiv = $('#new_required_report #alert-error');
-        errorDiv.text(message);
-        errorDiv.show();
+        let errorDiv = $('#alert-error');
+        errorDiv.text(message).show().focus();
+    }
+
+    // Focus server-side errors on page load
+    const errorDiv = $('#alert-error[data-has-server-errors="true"]');
+    if (errorDiv.length > 0) {
         errorDiv.focus();
     }
 });
