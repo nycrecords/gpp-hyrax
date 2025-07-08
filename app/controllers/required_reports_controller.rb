@@ -118,15 +118,11 @@ class RequiredReportsController < ApplicationController
     params[:per_page] ||= 20
     params[:agency] ||= 'All'
 
-    # Determine if the current user is an admin
-    @is_admin = user_signed_in? && (current_user.admin? || current_user.library_reviewers?)
+    # Determine if the current user has permission to manage reports
+    @can_manage_reports = can?(:update, RequiredReport)
 
-    # Build the base query with visibility conditions based on user role
-    base_query = if @is_admin
-                   RequiredReport.all
-                 else
-                   RequiredReport.where(is_visible: true)
-                 end
+    # Build the base query with visibility conditions based on user permission
+    base_query = @can_manage_reports ? RequiredReport.all : RequiredReport.where(is_visible: true)
 
     # Apply agency filter to the base query
     @required_reports = if params[:agency] == 'All'
