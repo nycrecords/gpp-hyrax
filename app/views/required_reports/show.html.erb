@@ -1,6 +1,4 @@
-<% provide :page_title, construct_page_title('Show Mandated Reports') %>
-
-<p id="notice"><%= notice %></p>
+<% provide :page_title, construct_page_title('Show Mandated Report') %>
 
 <p>
   <strong>Agency:</strong>
@@ -77,5 +75,5 @@
   <%= @required_report.additional_notes %>
 </p>
 
-<!--<%#= link_to 'Edit', edit_mandated_report_path(@required_report) %> |-->
-<%= link_to 'Back', mandated_reports_path %>
+<%= link_to 'Back', mandated_reports_path %> |
+<%= link_to 'Edit', edit_mandated_report_path(@required_report), class: 'btn btn-primary' %>

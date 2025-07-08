@@ -2,8 +2,8 @@
 
 class RequiredReportsController < ApplicationController
   load_and_authorize_resource except: :public_list
-  # Removed :edit, :update, :destroy actions from 'only' for now
-  before_action :set_required_report, only: [:show]
+  # Removed :destroy actions from 'only' for now
+  before_action :set_required_report, only: [:show, :edit, :update]
 
   # GET /required_reports
   # GET /required_reports.json
@@ -36,8 +36,8 @@ class RequiredReportsController < ApplicationController
   end
 
   # GET /required_reports/1/edit
-  # def edit
-  # end
+  def edit
+  end
 
   # POST /required_reports
   # POST /required_reports.json
@@ -58,8 +58,8 @@ class RequiredReportsController < ApplicationController
 
     respond_to do |format|
       if @required_report.save
+        log_mandated_report_event(@required_report, :created)
         path = mandated_report_path(@required_report)
-
         format.html { redirect_to path, notice: 'Mandated Report was successfully created.' }
         format.json { render :show, status: :created, location: path }
       else
@@ -71,17 +71,18 @@ class RequiredReportsController < ApplicationController
 
   # PATCH/PUT /required_reports/1
   # PATCH/PUT /required_reports/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @required_report.update(required_report_params)
-  #       format.html { redirect_to @required_report, notice: 'Required report was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @required_report }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @required_report.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+  def update
+    respond_to do |format|
+      if @required_report.update(required_report_params)
+        log_mandated_report_event(@required_report,:updated, @required_report.previous_changes)
+        format.html { redirect_to mandated_report_path(@required_report), notice: 'Mandated report was successfully updated.' }
+        format.json { render :show, status: :ok, location: mandated_report_path(@required_report) }
+      else
+        format.html { render :edit }
+        format.json { render json: @required_report.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /required_reports/1
   # DELETE /required_reports/1.json
@@ -143,6 +144,7 @@ class RequiredReportsController < ApplicationController
 
   def toggle_visibility
     if @required_report.update(is_visible: params[:required_report][:is_visible])
+      log_mandated_report_event(@required_report, :visibility_updated, @required_report.previous_changes)
       render json: { success: true }
     else
       render json: { success: false, error: @required_report.errors.full_messages }, status: :unprocessable_entity
@@ -154,6 +156,25 @@ class RequiredReportsController < ApplicationController
     def set_required_report
       @required_report = RequiredReport.find(params[:id])
     end
+
+  def log_mandated_report_event(required_report, event_type, changes = nil)
+    if changes
+      filtered_changes = changes.except(:updated_at)
+      previous_value = filtered_changes.transform_values(&:first)
+      new_value = filtered_changes.transform_values(&:last)
+    else
+      previous_value = nil
+      new_value = required_report.attributes
+    end
+
+    Gpp::MandatedReportEvent.create!(
+      required_report: required_report,
+      user: current_user,
+      event_type: event_type,
+      previous_value: previous_value,
+      new_value: new_value
+    )
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def required_report_params
