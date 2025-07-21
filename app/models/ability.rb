@@ -21,6 +21,10 @@ class Ability
       can [:agency_required_reports], RequiredReport
     end
 
+    def library_reviewers?
+      current_user&.library_reviewers?
+    end
+
     # Limits creating new objects to a specific group
     #
     # if user_groups.include? 'special_group'

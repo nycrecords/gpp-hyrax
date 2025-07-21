@@ -6,6 +6,7 @@ class ReportRequestWorker
     calendar = Rails.configuration.calendar
     today = Date.today
     user = User.find_by(email: ENV['LIBRARY_USER_EMAIL'])
+    ability = ::Ability.new(user)
 
     # Do not proceed if today is not a business day
     return unless calendar.business_day?(today)
@@ -51,17 +52,19 @@ class ReportRequestWorker
                      date_published: today.to_s,
                      calendar_year: [today.year.to_s],
                      language: ['English'],
+                     late_notice: true,
+                     suppressed_late_notice: false,
                      member_of_collections_attributes: { '0' => {
                        id: Collection.where(title: 'Government Publication').first.id,
                        _destroy: 'false'
                      } } }
-      actor_environment = Hyrax::Actors::Environment.new(work, user.ability, attributes)
+      actor_environment = Hyrax::Actors::Environment.new(work, ability, attributes)
       status = actor.create(actor_environment)
 
       if status
         approve_attributes = { name: 'approve', comment: '' }
         workflow_action_form = Hyrax::Forms::WorkflowActionForm.new(
-          current_ability: user.ability,
+          current_ability: ability,
           work: work,
           attributes: approve_attributes
         )

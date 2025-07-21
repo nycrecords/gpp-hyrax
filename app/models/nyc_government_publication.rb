@@ -73,6 +73,14 @@ class NycGovernmentPublication < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
+  property :late_notice, predicate: ::RDF::URI.intern('http://a860-gpp.nyc.gov/late-notice'), multiple: false do |index|
+    index.as :stored_searchable, :facetable
+  end
+
+  property :suppressed_late_notice, predicate: ::RDF::URI.intern('http://a860-gpp.nyc.gov/suppressed-late-notice'), multiple: false do |index|
+    index.as :stored_searchable
+  end
+
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
   include ::Hyrax::BasicMetadata

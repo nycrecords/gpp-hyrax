@@ -3,11 +3,14 @@ class Hyrax::CatalogSearchBuilder < Hyrax::SearchBuilder
   include BlacklightAdvancedSearch::AdvancedSearchBuilder
   include Hydra::AccessControlsEnforcement
   include Hyrax::SearchFilters
+  include Gpp::LateNoticeFilters
   self.default_processor_chain += [
     :add_advanced_parse_q_to_solr,
     :add_advanced_search_to_solr,
     :add_highlighting_to_file_text,
     :show_works_that_contain_files,
+    :exclude_suppressed_late_notices,
+    :filter_late_notices
   ]
 
   def show_works_that_contain_files(solr_parameters)
