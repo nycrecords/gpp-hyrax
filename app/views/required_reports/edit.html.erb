@@ -1,0 +1,11 @@
+<% provide :page_title, construct_page_title('Edit Mandated Report') %>
+<h1>Edit Mandated Report</h1>
+
+<%= simple_form_for @required_report, url: mandated_report_path(@required_report), method: :patch do |f| %>
+  <%= render 'form', f: f, required_report: @required_report, disabled_fields: true %>
+
+  <div class="actions">
+    <%= link_to 'Cancel', mandated_reports_path(@required_report.id) %> |
+    <%= f.button :submit, 'Update Report', class: 'btn btn-primary' %>
+  </div>
+<% end %>

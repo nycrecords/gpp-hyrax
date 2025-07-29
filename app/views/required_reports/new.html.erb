@@ -1,6 +1,11 @@
 <% provide :page_title, construct_page_title('New Mandated Report') %>
 <h1>New Mandated Report</h1>
 
-<%= render 'form', required_report: @required_report %>
+<%= simple_form_for @required_report, url: mandated_reports_path do |f| %>
+  <%= render 'form', required_report: @required_report, disabled_fields: false, f: f %>
 
-<%= link_to 'Back', mandated_reports_path %>
+  <div class="actions">
+    <%= link_to 'Back', mandated_reports_path %> |
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -52,11 +52,9 @@ module Hyrax
 
     def create
       if actor.create(actor_environment)
-        # Update RequiredReportDueDate date_submitted
         report_due_date_id = params[hash_key_for_curation_concern]['report_due_date_id']
         if report_due_date_id.present?
-          required_report_due_date = RequiredReportDueDate.where(id: params[hash_key_for_curation_concern]['report_due_date_id']).first
-          required_report_due_date.update_attributes(submission_id: curation_concern.id, date_submitted: Time.current)
+          Gpp::UpdateDueDateSubmissionJob.perform_later(report_due_date_id, curation_concern.id)
         end
 
         after_create_response
@@ -118,30 +116,31 @@ module Hyrax
     def destroy
       title = curation_concern.to_s
       agency = curation_concern.agency
-      required_report_name = curation_concern.required_report_name
+      mandated_report_name = curation_concern.required_report_name
       submission_id = curation_concern.id
+      metadata = nil
 
       # Check that the work has been published before storing metadata
-      if !(curation_concern.suppressed?)
+      unless curation_concern.suppressed?
         metadata = {
-            id: curation_concern.id,
-            date_uploaded: curation_concern.date_uploaded.to_s,
-            title: title,
-            sub_title: curation_concern.sub_title,
-            agency: agency,
-            required_report_name: required_report_name,
-            additional_creators: curation_concern.additional_creators,
-            subject: curation_concern.subject,
-            description: curation_concern.description,
-            date_published: curation_concern.date_published,
-            report_type: curation_concern.report_type,
-            language: curation_concern.language,
-            fiscal_year: curation_concern.fiscal_year,
-            calendar_year: curation_concern.calendar_year,
-            borough: curation_concern.borough,
-            school_district: curation_concern.school_district,
-            community_board_district: curation_concern.community_board_district,
-            associated_place: curation_concern.associated_place
+          id: curation_concern.id,
+          date_uploaded: curation_concern.date_uploaded.to_s,
+          title: title,
+          sub_title: Array(curation_concern.sub_title).first.to_s,
+          agency: agency,
+          required_report_name: mandated_report_name,
+          additional_creators: Array(curation_concern.additional_creators).map(&:to_s),
+          subject: Array(curation_concern.subject).map(&:to_s),
+          description: Array(curation_concern.description).first.to_s,
+          date_published: Array(curation_concern.date_published).first.to_s,
+          report_type: Array(curation_concern.report_type).first.to_s,
+          language: Array(curation_concern.language).map(&:to_s),
+          fiscal_year: Array(curation_concern.fiscal_year).map(&:to_s),
+          calendar_year: Array(curation_concern.calendar_year).map(&:to_s),
+          borough: Array(curation_concern.borough).map(&:to_s),
+          school_district: Array(curation_concern.school_district).map(&:to_s),
+          community_board_district: Array(curation_concern.community_board_district).map(&:to_s),
+          associated_place: Array(curation_concern.associated_place).map(&:to_s),
         }
       end
 
@@ -149,37 +148,8 @@ module Hyrax
       return unless actor.destroy(env)
       Hyrax.config.callback.run(:after_destroy, curation_concern.id, current_user)
 
-      # Query for publications with required_report
-      publications = NycGovernmentPublication.where(required_report_name: required_report_name,
-                                                    agency: agency)
-                                             .order('date_published_ssi desc')
-      required_report = RequiredReport.where(agency_name: agency, name: required_report_name).first
-      required_report_due_date = RequiredReportDueDate.where(submission_id: submission_id).first
-
-      # Store deleted work's metadata in deleted_publications
-      if metadata.present?
-        metadata[:required_report_due_date_id] = required_report_due_date.id unless required_report_due_date.nil?
-        DeletedPublication.create(user_guid: current_user.guid,
-                                  timestamp: Time.current,
-                                  metadata: metadata)
-      end
-
-      # If there are no previous publications, set date_published to nil
-      if publications.present?
-        publications.each do |p|
-          if !(p.suppressed?) && p.required_report_name != "Not Required" && p.required_report_name != "Other Publication"
-            # Set required_report.date_published to the publication with the next chronological published date
-            required_report.update_attributes(last_published_date: p.date_published)
-            break
-          end
-        end
-      else
-        required_report.update_attributes(last_published_date: nil) unless required_report.nil?
-      end
-
-      # Set submission_id and date_submitted to nil in required_report_due_dates
-      required_report_due_date.update_attributes(submission_id: nil,
-                                                 date_submitted: nil) unless required_report_due_date.nil?
+      # Save work metadata to the database and update mandated reports
+      Gpp::DeletePublicationJob.perform_later(metadata, submission_id, agency, mandated_report_name, current_user.guid)
 
       after_destroy_response(title)
     end

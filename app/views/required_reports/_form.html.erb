@@ -1,100 +1,96 @@
 <%= javascript_include_tag 'required_reports' %>
 
-<%= simple_form_for @required_report, url: mandated_reports_path do |f| %>
-  <% if required_report.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(required_report.errors.count, "error") %> prohibited this mandated_report from being saved:</h2>
+<% error_messages = required_report.errors.full_messages %>
+<div id="alert-error" class="alert alert-danger" role="alert"
+     style="<%= error_messages.any? ? '' : 'display: none;' %>"
+     tabindex="0"
+     data-has-server-errors="<%= error_messages.any? %>">
 
-      <ul>
-        <% required_report.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <% if error_messages.any? %>
+    <h4 class="alert-heading">
+      <%= pluralize(error_messages.count, "error") %> prohibited this mandated report from being saved:
+    </h4>
+    <ul>
+      <% error_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
   <% end %>
+</div>
 
-  <div class="alert alert-danger" id="alert-error" role="alert" style="display: none;" tabindex="0"></div>
+<%= f.input :name,
+            as: :string,
+            input_html: { class: 'form-control', disabled: disabled_fields },
+            required: true
+%>
 
-  <%= f.input :name,
-              as: :string,
-              input_html: { class: 'form-control' },
-              required: true
-  %>
+<%= f.input :agency_name,
+            as: :select,
+            collection: AgenciesService.select_all_options,
+            include_blank: true,
+            input_html: { class: 'form-control', disabled: disabled_fields },
+            required: true
+%>
 
-  <%= f.input :agency_name,
-              as: :select,
-              collection: AgenciesService.select_all_options,
-              include_blank: true,
-              input_html: { class: 'form-control' },
-              required: true
-  %>
+<%= f.input :description,
+            as: :string,
+            input_html: { class: 'form-control' }
+%>
 
-  <%= f.input :description,
-              as: :string,
-              input_html: { class: 'form-control' }
-  %>
+<%= f.input :local_law,
+            as: :string,
+            input_html: { class: 'form-control' }
+%>
 
-  <%= f.input :local_law,
-              as: :string,
-              input_html: { class: 'form-control' }
-  %>
+<%= f.input :charter_and_code,
+            as: :string,
+            input_html: { class: 'form-control' }
+%>
 
-  <%= f.input :charter_and_code,
-              as: :string,
-              input_html: { class: 'form-control' }
-  %>
+<%= f.input :automated_date,
+            as: :select,
+            selected: 'true',
+            input_html: { class: 'form-control', disabled: disabled_fields },
+            required: true
+%>
 
-  <%= f.input :automated_date,
-              as: :select,
-              selected: 'true',
-              input_html: { class: 'form-control' },
-              required: true
-  %>
+<%= f.input :frequency,
+            as: :select,
+            collection: FrequenciesService.select_all_options,
+            input_html: { class: 'form-control', disabled: disabled_fields }
+%>
 
-  <%= f.input :frequency,
-              as: :select,
-              collection: FrequenciesService.select_all_options,
-              input_html: { class: 'form-control' }
-  %>
+<%= f.input :frequency_integer,
+            as: :integer,
+            input_html: { class: 'form-control', min: '0', max: '9999', disabled: disabled_fields }
+%>
 
-  <%= f.input :frequency_integer,
-              as: :integer,
-              input_html: { class: 'form-control', min: '0', max: '9999' }
-  %>
+<%= f.input :other_frequency_description,
+            as: :text,
+            input_html: { class: 'form-control', rows: 3, maxlength: 500, disabled: disabled_fields }
+%>
 
-  <%= f.input :other_frequency_description,
-              as: :text,
-              input_html: { class: 'form-control', rows: 3, maxlength: 500 }
-  %>
+<%= f.input :start_date,
+            as: :string,
+            input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD', disabled: disabled_fields }
+%>
 
-  <%= f.input :start_date,
-              as: :string,
-              input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD' }
-  %>
+<%= f.input :end_date,
+            as: :string,
+            input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD', disabled: disabled_fields }
+%>
 
-  <%= f.input :end_date,
-              as: :string,
-              input_html: { class: 'form-control', multiple: false, placeholder: 'YYYY-MM-DD' }
-  %>
+<%= f.input :required_distribution,
+            as: :string,
+            input_html: { class: 'form-control'}
+%>
 
-  <%= f.input :required_distribution,
-              as: :string,
-              input_html: { class: 'form-control'}
-  %>
+<%= f.input :report_deadline,
+            as: :string,
+            input_html: { class: 'form-control'}
+%>
 
-  <%= f.input :report_deadline,
-              as: :string,
-              input_html: { class: 'form-control'}
-  %>
-
-  <%= f.input :additional_notes,
-              as: :text,
-              input_html: { class: 'form-control', rows: 3, maxlength: 500 }
-  %>
-
-  <div class="actions">
-    <%= f.button :submit,
-                 class: 'btn btn-primary'
-    %>
-  </div>
-<% end %>
+<%= f.input :additional_notes,
+            as: :text,
+            input_html: { class: 'form-control', rows: 3, maxlength: 500 }
+%>

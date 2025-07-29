@@ -73,4 +73,8 @@ class SolrDocument
   def required_report_name
     self[Solrizer.solr_name('required_report_name')]
   end
+
+  def late_notice
+    self[Solrizer.solr_name('late_notice')]
+  end
 end
