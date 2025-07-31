@@ -70,6 +70,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("fiscal_year", :facetable), label: "Fiscal Year", limit: 5
     config.add_facet_field solr_name("calendar_year", :facetable), label: "Calendar Year", limit: 5
     config.add_facet_field solr_name("borough", :facetable), label: "Borough(s)", limit: 5
+    config.add_facet_field solr_name("required_report_name", :facetable), label: "Mandated Report Name", if: false
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
