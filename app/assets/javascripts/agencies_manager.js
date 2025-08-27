@@ -1,17 +1,6 @@
 class AgenciesManager {
-    static defaults = {
-        checkAllSelector: "#check-all-items",
-        checkboxSelector: ".agency-item-checkbox",
-        formSelector: "#add-item-form",
-        inputSelector: "#new-item-input",
-        errorSelector: "#item-error-message",
-        deleteBtnSelector: "#delete-item-btn",
-        tableBodySelector: "#agency-item-rows",
-        flashSelector: "#agency-flash-message"
-    };
-
     constructor(config) {
-        this.config = { ...AgenciesManager.defaults, ...config };
+        this.config = Object.assign({}, AgenciesManager.defaults, config);
         this.init();
     }
 
@@ -21,7 +10,9 @@ class AgenciesManager {
     }
 
     registerEventHandlers() {
-        const { checkAllSelector, deleteBtnSelector, formSelector } = this.config;
+        var checkAllSelector = this.config.checkAllSelector;
+        var deleteBtnSelector = this.config.deleteBtnSelector;
+        var formSelector = this.config.formSelector;
 
         $(document)
             .on("change", checkAllSelector, this.toggleAllCheckboxes.bind(this))
@@ -47,8 +38,8 @@ class AgenciesManager {
 
     addItem(e) {
         e.preventDefault();
-        const input = $(this.config.inputSelector);
-        const value = input.val();
+        var input = $(this.config.inputSelector);
+        var value = input.val();
 
         if (!value) return;
 
@@ -64,7 +55,7 @@ class AgenciesManager {
                 this.refreshTable(response.html);
             },
             error: (xhr) => {
-                const error = xhr.responseJSON?.error || "Something went wrong.";
+                var error = (xhr.responseJSON && xhr.responseJSON.error) || "Something went wrong.";
                 $(this.config.formSelector).addClass("has-error");
                 $(this.config.errorSelector).text(error).show();
             }
@@ -74,7 +65,7 @@ class AgenciesManager {
     deleteItems(e) {
         e.preventDefault();
 
-        const indices = $(this.config.checkboxSelector + ":checked")
+        var indices = $(this.config.checkboxSelector + ":checked")
             .map(function () { return $(this).val(); })
             .get();
 
@@ -83,14 +74,14 @@ class AgenciesManager {
         $.ajax({
             url: this.config.deleteUrl,
             method: "POST",
-            data: { indices, _method: "delete", id: this.config.agencyId },
+            data: { indices: indices, _method: "delete", id: this.config.agencyId },
             dataType: "json",
             success: (response) => {
                 this.showFlashMessage(response.message || "Deleted successfully");
                 this.refreshTable(response.html);
             },
             error: (xhr) => {
-                const error = xhr.responseJSON?.error || "Something went wrong.";
+                var error = (xhr.responseJSON && xhr.responseJSON.error) || "Something went wrong.";
                 alert(error);
             }
         });
@@ -99,7 +90,7 @@ class AgenciesManager {
     refreshTable(html) {
         if (!html) return;
 
-        const table = $(this.config.tableSelector);
+        var table = $(this.config.tableSelector);
         if ($.fn.DataTable.isDataTable(table)) {
             table.DataTable().destroy();
         }
@@ -115,9 +106,10 @@ class AgenciesManager {
         this.toggleDeleteBtn();
     }
 
-    showFlashMessage(message, type = "success") {
+    showFlashMessage(message, type) {
+        if (typeof type === "undefined") { type = "success"; }
         $(this.config.flashSelector)
-            .attr("class", `alert alert-${type}`)
+            .attr("class", "alert alert-" + type)
             .attr("role", "alert")
             .text(message)
             .fadeIn()
@@ -125,3 +117,14 @@ class AgenciesManager {
             .fadeOut();
     }
 }
+
+AgenciesManager.defaults = {
+    checkAllSelector: "#check-all-items",
+    checkboxSelector: ".agency-item-checkbox",
+    formSelector: "#add-item-form",
+    inputSelector: "#new-item-input",
+    errorSelector: "#item-error-message",
+    deleteBtnSelector: "#delete-item-btn",
+    tableBodySelector: "#agency-item-rows",
+    flashSelector: "#agency-flash-message"
+};
