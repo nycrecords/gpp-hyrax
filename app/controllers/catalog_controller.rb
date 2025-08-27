@@ -26,6 +26,43 @@ class CatalogController < ApplicationController
     solr_name('date_published', :stored_sortable)
   end
 
+  def index
+    return super if request.xhr?
+
+    # Remove agency_filter if user cleared all agency filters
+    if params[:agency_filter].present? &&
+       params.dig(:f, 'agency_sim').blank? &&
+       params.dig(:f_inclusive, 'agency_sim').blank?
+      cleaned_params = search_state.params_for_search.except(:agency_filter)
+      return redirect_to url_for(only_path: true, params: cleaned_params)
+    end
+
+    unless params[:agency_filter]
+      if (agency_facet = params.dig('f', 'agency_sim')&.first).present?
+        selected_agency = agency_facet
+        aliases = AgenciesService.aliases_for(selected_agency)
+
+        if aliases.present?
+          all_agencies = ([selected_agency] + aliases).uniq
+
+          new_params = search_state.params_for_search.deep_dup
+          new_params.delete('agency')
+          new_params.dig('f')&.delete('agency_sim')
+
+          new_params['f_inclusive'] ||= {}
+          new_params['f_inclusive']['agency_sim'] = all_agencies
+          new_params[:agency_filter] = true
+
+          flash[:agency_aliases] = aliases
+
+          return redirect_to url_for(only_path: true, params: new_params)
+        end
+      end
+    end
+
+    super
+  end
+
   rescue_from Blacklight::Exceptions::InvalidRequest, with: :render_rsolr_exceptions
 
   configure_blacklight do |config|

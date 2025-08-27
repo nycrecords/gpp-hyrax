@@ -1,14 +1,19 @@
 <% provide :page_header do %>
-  <h1><span class="fa fa-pencil-square-o" aria-hidden="true"></span> <%= @agency.name %></h1>
+  <h1><span class="fa fa-pencil-square-o"></span><%= @agency.name %></h1>
 <% end %>
 
-<div class="panel panel-default" data-mode="contacts" data-agency-id="<%= @agency.id %>">
+<div class="panel panel-default" data-agency-id="<%= @agency.id %>">
   <div class="panel-heading clearfix">
-    <form id="add-item-form" class="pull-right add-email-input">
+    <form id="add-item-form" class="pull-right">
       <div class="input-group">
-        <input type="email" id="new-item-input" placeholder="New point of contact email" class="form-control" required />
+        <select id="new-item-input" class="form-control" required>
+          <option value="">Select an agency to alias</option>
+          <% @agencies_list.each do |agency| %>
+            <option value="<%= agency.id %>"><%= agency.name %></option>
+          <% end %>
+        </select>
         <div class="input-group-btn">
-          <button id="add-item-btn" class="btn btn-primary">Add Email</button>
+          <button id="add-item-btn" class="btn btn-primary">Add Alias</button>
         </div>
       </div>
       <div id="item-error-message" class="help-block" style="display: none;"></div>
@@ -18,17 +23,17 @@
 
   <div class="panel-body">
     <div class="table-responsive">
-      <table class="table table-striped datatable agency-contacts-table">
+      <table class="table table-striped datatable agency-aliases-table">
         <thead>
           <tr>
             <th scope="col" class="check-all no-sort check-all-checkbox-column">
               <%= check_box_tag "check_all", "", false, id: "check-all-items", style:"margin:0px;" %> <span>Select</span>
             </th>
-            <th scope="col">Point of Contact Email</th>
+            <th scope="col">Alias Agency Name</th>
           </tr>
         </thead>
         <tbody id="agency-item-rows">
-          <%= render partial: 'shared/agency_item_rows', locals: { items: @emails, table:'contacts' } %>
+          <%= render partial: 'shared/agency_item_rows', locals: { items: @aliases, table:'aliases' } %>
         </tbody>
       </table>
     </div>
@@ -40,10 +45,10 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         new AgenciesManager({
-            tableSelector: ".agency-contacts-table",
+            tableSelector: ".agency-aliases-table",
             agencyId: <%= @agency.id %>,
-            createUrl: "<%= agency_contacts_path %>",
-            deleteUrl: "<%= agency_contact_path(@agency) %>"
+            createUrl: "<%= agency_aliases_path %>",
+            deleteUrl: "<%= agency_alias_path(@agency) %>"
         });
     });
 </script>

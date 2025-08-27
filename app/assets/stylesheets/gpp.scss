@@ -407,12 +407,12 @@ th.no-sort::before {
   display: none !important;
 }
 
-#add-email-form {
+.add-email-input {
   max-width: 400px;
 }
 
 // Set width of checkbox column
-.email-checkbox {
+.check-all-checkbox-column {
   max-width:50px;
   margin: 0;
 }

@@ -2,7 +2,8 @@ class AgencyContactsController < ApplicationController
   include Hyrax::ThemedLayoutController
   before_action :authenticate_user!
   before_action :ensure_authorized!
-  before_action :set_agency, only: [:edit, :create, :destroy]
+  include Gpp::SetAgency
+  include Gpp::AgencyPartialRowsRenderer
   with_themed_layout 'dashboard'
 
   def index
@@ -17,7 +18,7 @@ class AgencyContactsController < ApplicationController
   end
 
   def create
-    email = params[:new_email].to_s.downcase.strip
+    email = params[:new_item].to_s.downcase.strip
 
     if !valid_email?(email)
       return render json: { error: "Invalid email address." }, status: :unprocessable_entity
@@ -25,6 +26,7 @@ class AgencyContactsController < ApplicationController
       return render json: { error: "Email already exists." }, status: :unprocessable_entity
     end
 
+    @agency.point_of_contact_emails ||= []
     @agency.point_of_contact_emails << email
 
     if @agency.save
@@ -52,16 +54,6 @@ class AgencyContactsController < ApplicationController
 
   private
 
-  def set_agency
-    @agency = Agency.find(params[:id])
-
-    if @agency.point_of_contact_emails.nil?
-      @agency.point_of_contact_emails = []
-    end
-
-    @emails = @agency.point_of_contact_emails
-  end
-
   def valid_email?(email)
     # Ensure the email does not contain any spaces
     return false if email.blank? || email.match?(/\s/)
@@ -76,10 +68,9 @@ class AgencyContactsController < ApplicationController
   end
 
   def render_email_rows(message: nil)
-    render json: {
-      html: render_to_string(partial: 'agency_contacts/email_rows',locals: { emails: @emails, agency: @agency }),
-      message: message
-    }
+    render_rows partial: 'shared/agency_item_rows',
+                locals: { items: @agency.point_of_contact_emails, table:'contacts' },
+                message: message
   end
 
   def add_agency_breadcrumbs

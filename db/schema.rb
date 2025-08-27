@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_07_07_193406) do
+ActiveRecord::Schema.define(version: 2025_08_25_144349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2025_07_07_193406) do
     t.datetime "updated_at", null: false
     t.string "ein"
     t.index ["name"], name: "index_agencies_on_name", unique: true
+  end
+
+  create_table "agency_aliases", force: :cascade do |t|
+    t.bigint "primary_agency_id", null: false
+    t.bigint "alias_agency_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["alias_agency_id"], name: "index_agency_aliases_on_alias_agency_id"
+    t.index ["primary_agency_id", "alias_agency_id"], name: "index_agency_aliases_on_primary_agency_id_and_alias_agency_id", unique: true
+    t.index ["primary_agency_id"], name: "index_agency_aliases_on_primary_agency_id"
   end
 
   create_table "bookmarks", id: :serial, force: :cascade do |t|
@@ -754,6 +764,8 @@ ActiveRecord::Schema.define(version: 2025_07_07_193406) do
     t.index ["work_id"], name: "index_work_view_stats_on_work_id"
   end
 
+  add_foreign_key "agency_aliases", "agencies", column: "alias_agency_id"
+  add_foreign_key "agency_aliases", "agencies", column: "primary_agency_id"
   add_foreign_key "bulkrax_exporter_runs", "bulkrax_exporters", column: "exporter_id"
   add_foreign_key "bulkrax_importer_runs", "bulkrax_importers", column: "importer_id"
   add_foreign_key "bulkrax_pending_relationships", "bulkrax_importer_runs", column: "importer_run_id"

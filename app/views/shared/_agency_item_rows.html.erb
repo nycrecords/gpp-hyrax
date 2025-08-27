@@ -1,0 +1,8 @@
+<div id="agency-flash-message" class="alert alert-success" style="display: none;"></div>
+
+<% items.each_with_index do |item, i| %>
+  <tr data-index="<%= i %>">
+    <td><%= check_box_tag "#{table}_indices[]", i, false, id: "item_checkbox_#{i}", class: "agency-item-checkbox" %></td>
+    <td><%= item %></td>
+  </tr>
+<% end %>

@@ -50,6 +50,7 @@ en:
     admin:
       sidebar:
         agency_contacts: Manage Agency Contacts
+        agency_aliases: Manage Agency Aliases
     controls:
       contact: Contact Us
       manage_mandated_reports: Manage Mandated Reports
