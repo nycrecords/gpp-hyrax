@@ -3,7 +3,7 @@ class Hyrax::CatalogSearchBuilder < Hyrax::SearchBuilder
   include BlacklightAdvancedSearch::AdvancedSearchBuilder
   include Hydra::AccessControlsEnforcement
   include Hyrax::SearchFilters
-  include Gpp::LateNoticeFilters
+  include Gpp::SearchFilters
   self.default_processor_chain += [
     :add_advanced_parse_q_to_solr,
     :add_advanced_search_to_solr,
@@ -47,19 +47,5 @@ class Hyrax::CatalogSearchBuilder < Hyrax::SearchBuilder
   # join from file id to work relationship solrized file_set_ids_ssim
   def join_for_works_from_files
     "{!join from=#{ActiveFedora.id_field} to=file_set_ids_ssim}#{dismax_query}"
-  end
-
-  def add_highlighting_to_file_text(solr_parameters)
-    return unless blacklight_params[:search_field] == "all_fields" || blacklight_params[:all_fields].present?
-    solr_parameters[:hl] = true
-    solr_parameters[:'hl.fl'] = 'all_text_timv'
-    solr_parameters[:'hl.method'] = 'unified'
-    solr_parameters[:'hl.requireFieldMatch'] = true
-    solr_parameters[:'hl.weightMatches'] = true
-    solr_parameters[:'hl.simple.pre'] = '<em class="search-highlight">'
-    solr_parameters[:'hl.simple.post'] = '</em>'
-    solr_parameters[:'hl.fragsize'] = ENV.fetch('SOLR_FRAGSIZE', 100).to_i
-    solr_parameters[:'hl.snippets'] = ENV.fetch('SOLR_SNIPPETS', 1).to_i
-    solr_parameters[:'hl.maxAnalyzedChars'] = ENV.fetch('SOLR_MAX_ANALYZED_CHARS', 51200).to_i
   end
 end
