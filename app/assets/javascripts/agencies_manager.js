@@ -53,6 +53,9 @@ class AgenciesManager {
                 this.resetInputState();
                 this.showFlashMessage(response.message || "Added successfully");
                 this.refreshTable(response.html);
+                if (response.options_html) {
+                    $(this.config.inputSelector).html(response.options_html);
+                }
             },
             error: (xhr) => {
                 var error = (xhr.responseJSON && xhr.responseJSON.error) || "Something went wrong.";
@@ -79,6 +82,9 @@ class AgenciesManager {
             success: (response) => {
                 this.showFlashMessage(response.message || "Deleted successfully");
                 this.refreshTable(response.html);
+                if (response.options_html) {
+                    $(this.config.inputSelector).html(response.options_html);
+                }
             },
             error: (xhr) => {
                 var error = (xhr.responseJSON && xhr.responseJSON.error) || "Something went wrong.";

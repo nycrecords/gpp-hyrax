@@ -12,12 +12,7 @@ class AgencyAliasesController < ApplicationController
   end
 
   def edit
-    @aliases = @agency.aliases.map(&:name)
-
-    # Exclude the current agency
-    excluded_ids = @agency.aliases.pluck(:id) + [@agency.id]
-    @agencies_list = Agency.where.not(id: excluded_ids).order(:name)
-
+    set_agency_list
     add_agency_breadcrumbs
     add_breadcrumb "Edit Aliases", edit_agency_alias_path(@agency)
   end
@@ -42,12 +37,12 @@ class AgencyAliasesController < ApplicationController
     agency_alias = @agency.outgoing_aliases.build(alias_agency: alias_agency)
 
     if agency_alias.save
+      set_agency_list
       render_alias_rows(message: "Alias added successfully")
     else
       render json: { error: "Failed to save alias." }, status: :unprocessable_entity
     end
   end
-
 
   def destroy
     indices = Array(params[:indices]).map(&:to_i)
@@ -56,15 +51,28 @@ class AgencyAliasesController < ApplicationController
 
     AgencyAlias.where(primary_agency: @agency, alias_agency_id: ids_to_remove).destroy_all
 
+    set_agency_list
     render_alias_rows(message: "Selected alias(es) removed.")
   end
 
   private
 
+  def set_agency_list
+    @aliases = @agency.aliases.map(&:name)
+    excluded_ids = @agency.aliases.pluck(:id) + [@agency.id]
+    @agencies_list = Agency.where.not(id: excluded_ids).order(:name)
+  end
+
   def render_alias_rows(message: nil)
     render_rows partial: 'shared/agency_item_rows',
                 locals: { items: @agency.aliases.map(&:name), table:'aliases' },
-                message: message
+                message: message,
+                options: {
+                  options_html: render_to_string(
+                    partial: 'agency_select_options',
+                    locals: { agencies_list: @agencies_list },
+                    formats: [:html])
+                }
   end
 
   def add_agency_breadcrumbs
