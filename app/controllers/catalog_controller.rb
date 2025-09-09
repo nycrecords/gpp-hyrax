@@ -126,7 +126,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("agency", :stored_searchable), label: "Agency", link_to_search: solr_name("agency", :facetable)
     config.add_index_field solr_name("subject", :stored_searchable), label: "Subject(s)", itemprop: 'about', link_to_search: solr_name("subject", :facetable)
     config.add_index_field solr_name("report_type", :stored_searchable), label: "Report Type", link_to_search: solr_name("report_type", :facetable)
-    config.add_index_field 'all_text_timv', label: 'File Text', highlight: true, if: ->(context, _field, document) { context.view_context.show_file_search_text?(document) }
+    config.add_index_field 'all_text_timv', label: 'File Text', highlight: true, helper_method: :highlighted_text_display, if: ->(context, _field, document) { context.view_context.show_file_search_text?(document) }
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display

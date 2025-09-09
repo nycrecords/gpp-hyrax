@@ -189,6 +189,16 @@ module Hyrax
       highlights.present? && highlights.values.any?(&:present?)
     end
 
+    def highlighted_text_display(options)
+      file_text = options[:value]
+      return if file_text.blank?
+      if file_text.is_a?(String)
+        "…#{file_text.strip}…".html_safe
+      else
+        "…#{Array(file_text).map(&:strip).join(' ')}…".html_safe
+      end
+    end
+
     # *Sometimes* a Blacklight index field helper_method
     # @param [String,User,Hash{Symbol=>Array}] args if a hash, the user_key must be under :value
     # @return [ActiveSupport::SafeBuffer] the html_safe link
