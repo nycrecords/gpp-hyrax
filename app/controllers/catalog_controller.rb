@@ -26,6 +26,43 @@ class CatalogController < ApplicationController
     solr_name('date_published', :stored_sortable)
   end
 
+  def index
+    return super if request.xhr?
+
+    # Remove agency_filter if user cleared all agency filters
+    if params[:agency_filter].present? &&
+       params.dig(:f, 'agency_sim').blank? &&
+       params.dig(:f_inclusive, 'agency_sim').blank?
+      cleaned_params = search_state.params_for_search.except(:agency_filter)
+      return redirect_to url_for(only_path: true, params: cleaned_params)
+    end
+
+    unless params[:agency_filter]
+      if (agency_facet = params.dig('f', 'agency_sim')&.first).present?
+        selected_agency = agency_facet
+        aliases = AgenciesService.aliases_for(selected_agency)
+
+        if aliases.present?
+          all_agencies = ([selected_agency] + aliases).uniq
+
+          new_params = search_state.params_for_search.deep_dup
+          new_params.delete('agency')
+          new_params.dig('f')&.delete('agency_sim')
+
+          new_params['f_inclusive'] ||= {}
+          new_params['f_inclusive']['agency_sim'] = all_agencies
+          new_params[:agency_filter] = true
+
+          flash[:agency_aliases] = aliases
+
+          return redirect_to url_for(only_path: true, params: new_params)
+        end
+      end
+    end
+
+    super
+  end
+
   rescue_from Blacklight::Exceptions::InvalidRequest, with: :render_rsolr_exceptions
 
   configure_blacklight do |config|
@@ -70,6 +107,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("fiscal_year", :facetable), label: "Fiscal Year", limit: 5
     config.add_facet_field solr_name("calendar_year", :facetable), label: "Calendar Year", limit: 5
     config.add_facet_field solr_name("borough", :facetable), label: "Borough(s)", limit: 5
+    config.add_facet_field solr_name("required_report_name", :facetable), label: "Mandated Report Name", if: false
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -88,7 +126,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("agency", :stored_searchable), label: "Agency", link_to_search: solr_name("agency", :facetable)
     config.add_index_field solr_name("subject", :stored_searchable), label: "Subject(s)", itemprop: 'about', link_to_search: solr_name("subject", :facetable)
     config.add_index_field solr_name("report_type", :stored_searchable), label: "Report Type", link_to_search: solr_name("report_type", :facetable)
-    config.add_index_field 'all_text_timv', label: 'File Text', highlight: true, if: ->(context, _field, document) { context.view_context.show_file_search_text?(document) }
+    config.add_index_field 'all_text_timv', label: 'File Text', highlight: true, helper_method: :highlighted_text_display, if: ->(context, _field, document) { context.view_context.show_file_search_text?(document) }
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display

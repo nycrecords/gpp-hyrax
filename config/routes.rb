@@ -71,6 +71,8 @@ Rails.application.routes.draw do
   end
 
   resources :agency_contacts, only: [:index, :edit, :create, :destroy]
+  resources :agency_aliases, only: [:index, :edit, :create, :destroy]
+
 
   # Catch all route for any routes that don't exist. Always have this as the last route
   match '*path', to: 'errors#not_found', via: :all, format: false, defaults: { format: 'html' }

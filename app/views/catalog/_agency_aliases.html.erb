@@ -1,0 +1,17 @@
+<% if flash[:agency_aliases].present? %>
+  <% selected_agency = params.dig(:f, 'agency_sim')&.first || params.dig(:f_inclusive, 'agency_sim')&.first %>
+  <% aliases = flash[:agency_aliases] %>
+
+  <div class="alert alert-success mb-3">
+    <p>
+      You are filtering by Agency: <strong><%= selected_agency %></strong><br>
+      Your search was automatically expanded. This agency was also known as:
+    </p>
+
+    <ul class="mt-1 mb-0">
+      <% aliases.each do |alias_name| %>
+        <li><%= alias_name %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

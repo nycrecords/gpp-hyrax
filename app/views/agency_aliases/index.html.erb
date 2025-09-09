@@ -1,15 +1,15 @@
 <% provide :page_header do %>
-  <h1><span class="fa fa-address-card" aria-hidden="true"></span> Manage Agency Contacts</h1>
+  <h1><span class="fa fa-tags" aria-hidden="true"></span> Manage Agency Aliases</h1>
 <% end %>
 
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="table-responsive">
-      <table class="table table-striped datatable agency-contacts-table">
+      <table class="table table-striped datatable agency-aliases-table">
         <thead>
           <tr>
             <th class="col-name">Agency Name</th>
-            <th>Point of Contact Email(s)</th>
+            <th>Aliases</th>
             <th class="no-sort"></th>
           </tr>
         </thead>
@@ -19,10 +19,13 @@
             <tr>
               <td><%= agency.name %></td>
               <td>
-                <% if agency.point_of_contact_emails.present? %>
-                  <%= safe_join(agency.point_of_contact_emails, tag("br")) %>
+                <% if agency.aliases.present? %>
+                  <%= safe_join(agency.aliases.map(&:name), tag("br")) %>
                 <% end %>
-              <td class="text-right"><%= link_to "Edit", edit_agency_contact_path(agency), class: "btn btn-sm btn-primary" %></td>
+              </td>
+              <td class="text-right">
+                <%= link_to "Edit", edit_agency_alias_path(agency), class: "btn btn-sm btn-primary" %>
+              </td>
             </tr>
           <% end %>
         </tbody>
@@ -32,8 +35,8 @@
 </div>
 
 <script>
-    $(function() {
-        $('.agency-contacts-table').DataTable({
+    $(function () {
+        $('.agency-aliases-table').DataTable({
             destroy: true,
             columnDefs: [{ orderable: false, targets: 'no-sort' }]
         });

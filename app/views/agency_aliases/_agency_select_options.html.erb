@@ -1,0 +1,4 @@
+<option value="">Select an agency to alias</option>
+<% @agencies_list.each do |agency| %>
+  <option value="<%= agency.id %>"><%= agency.name %></option>
+<% end %>

@@ -7,6 +7,10 @@
     <%= menu.nav_link(main_app.agency_contacts_path) do %>
       <span class="fa fa-flag" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.agency_contacts') %></span>
     <% end %>
+
+    <%= menu.nav_link(main_app.agency_aliases_path) do %>
+      <span class="fa fa-flag" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.agency_aliases') %></span>
+    <% end %>
   <% end %>
 
   <% if can? :manage, User %>
