@@ -9,7 +9,7 @@ terms:
     term: Aged
   - id: Alcohol
     term: Alcohol
-  - id: Animal_welfare
+  - id: Animal Welfare
     term: Animal Welfare
   - id: Archaeology
     term: Archaeology
@@ -19,12 +19,12 @@ terms:
     term: Art and Design
   - id: Athletics
     term: Athletics
-  - id: Banks And Banking
+  - id: Banks and Banking
     term: Banks and Banking
-  - id: Brooklyn
-    term: Brooklyn
   - id: Bronx
     term: Bronx
+  - id: Brooklyn
+    term: Brooklyn
   - id: Budget and Finance
     term: Budget and Finance
   - id: Building Code
@@ -237,14 +237,16 @@ terms:
     term: Prices
   - id: Privacy
     term: Privacy
-  - id: Purchasing Methods
-    term: Purchasing Methods
   - id: Public Authorities
     term: Public Authorities
   - id: Public Health
     term: Public Health
+  - id: Public Safety
+    term: Public Safety
   - id: Public Welfare
     term: Public Welfare
+  - id: Purchasing Methods
+    term: Purchasing Methods
   - id: Queens
     term: Queens
   - id: Racial Equity
@@ -279,14 +281,14 @@ terms:
     term: Schools
   - id: Schools - Administration
     term: Schools - Administration
+  - id: Schools - Buildings
+    term: Schools - Buildings
   - id: Schools - Charter
     term: Schools - Charter
   - id: Schools - Parochial
     term: Schools - Parochial
   - id: Schools - Private
     term: Schools - Private
-  - id: Schools - Buildings
-    term: Schools - Buildings
   - id: Sewage
     term: Sewage
   - id: Small Business
@@ -353,10 +355,10 @@ terms:
     term: Transportation
   - id: Transportation - Finance
     term: Transportation - Finance
-  - id: Transportation - School
-    term: Transportation - School
   - id: Transportation - Planning
     term: Transportation - Planning
+  - id: Transportation - School
+    term: Transportation - School
   - id: Trees
     term: Trees
   - id: Trusts and Estates
